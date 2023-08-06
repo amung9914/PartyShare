@@ -1,7 +1,5 @@
 create database PartyShare2;
 use PartyShare;
-drop table party;
-drop table member;
 CREATE TABLE member 	  -- 회원테이블 
 (
     mNum    INT primary key auto_increment,    
@@ -16,10 +14,10 @@ CREATE TABLE member 	  -- 회원테이블
     mAddr 		VARCHAR(50) NOT NULL, 
     mJoinCnt 	INT  default 0,
     mBlackYN CHAR(1) default 'N',
-    withdraw CHAR(1) default 'N'
+    withdraw CHAR(1) default 'N',
+    profileImage BLOB,
+    profileImageName BLOB
 );
-DESC MEMBER;
-DESC party;
 
 CREATE TABLE party -- 파티 
 (
@@ -36,6 +34,9 @@ CREATE TABLE party -- 파티
     subCategory 	VARCHAR(20),		-- 소분류
     finish 		CHAR(1) default 'N',
     viewCnt  	INT,
+    partyImage1 BLOB,
+    partyImage2 BLOB,
+    partyImage3 BLOB,
     FOREIGN KEY (host) REFERENCES member(mNum) ON UPDATE CASCADE
 );
 
@@ -71,15 +72,6 @@ CREATE TABLE partyBoard  -- --파티 게시판--
     viewCnt   int ,
     FOREIGN KEY (mNick) REFERENCES member(mNick) ON UPDATE CASCADE,
     FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE
-);
-
-
-CREATE TABLE partyImage  -- --파티 이미지--  
-(
-    imgNum    INT primary key auto_increment,   
-    imgName  VARCHAR(20)  NOT NULL,
-    imgid    VARCHAR(20) NOT NULL ,   -- 공지/일반
-    path       VARCHAR(50) NOT NULL 
 );
 
 CREATE TABLE chat  -- --채팅--  
@@ -167,46 +159,3 @@ mNum INT NOT NULL,
 FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE,
 FOREIGN KEY (mNum) REFERENCES member(mNum) ON UPDATE CASCADE
 );
-
-CREATE TABLE userImage -- -- 유저 이미지 --
-(
-userImgeNum INT primary key auto_increment,
-userImageName VARCHAR(20) NOT NULL,
-userImageId VARCHAR(20) NOT NULL,
-userImagePath VARCHAR(50) NOT NULL
-);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
