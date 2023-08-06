@@ -1,4 +1,4 @@
-create database PartyShare2;
+create database PartyShare;
 use PartyShare;
 CREATE TABLE member 	  -- 회원테이블 
 (
