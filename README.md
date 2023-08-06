@@ -11,3 +11,11 @@ About Final Project _ Spring 활용 / PartyShare / Team Project
 - 이진형 : UI 총괄 및 파티상세페이지, 참가확정, 자유게시판, 위시리스트, 챗봇 구현
 - 이인 : 검색, 알림, 신고하기 및 신고관리, 관리자-파티목록 및 관리 구현
 
+### member, party sample data
+```
+INSERT INTO member (mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)
+VALUES ('admin','admin','admin','관리자',30,'F','adminEmail','adminAddr');
+
+INSERT INTO party (pName,host,sido,sigungu,address,startdate,enddate,maincategory)
+VALUES ('testparty',1,'부산','해운대구','내주소','2023-08-06',CURDATE(),'게임');
+```
