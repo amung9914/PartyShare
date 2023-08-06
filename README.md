@@ -11,4 +11,3 @@ About Final Project _ Spring 활용 / PartyShare / Team Project
 - 이진형 : UI 총괄 및 파티상세페이지, 참가확정, 자유게시판, 위시리스트, 챗봇 구현
 - 이인 : 검색, 알림, 신고하기 및 신고관리, 관리자-파티목록 및 관리 구현
 
-![image](https://github.com/amung9914/PartyShare/assets/137124338/a5ba725a-da7b-4a5e-a32e-c7e6f0df0b58)
