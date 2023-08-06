@@ -1,4 +1,4 @@
-create database PartyShare;
+create database PartyShare2;
 use PartyShare;
 CREATE TABLE member 	  -- 회원테이블 
 (
@@ -24,9 +24,10 @@ CREATE TABLE party -- 파티
     pNum    INT primary key auto_increment,    
     pName       VARCHAR(50) NOT NULL ,
     host       INT NOT NULL ,
-    city     	VARCHAR(20) NOT NULL ,
-    district 	VARCHAR(20) NOT NULL ,
-    location    VARCHAR(50) NOT NULL ,
+    sido     	VARCHAR(20) NOT NULL ,
+    sigungu 	VARCHAR(20) NOT NULL ,
+    address    VARCHAR(50) NOT NULL , -- 도로명 주소
+    detailAddress VARCHAR(50) , -- 상세주소
     startDate   DATE NOT NULL ,
     endDate     DATE NOT NULL ,
     pContext 	TEXT ,
@@ -159,3 +160,5 @@ mNum INT NOT NULL,
 FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE,
 FOREIGN KEY (mNum) REFERENCES member(mNum) ON UPDATE CASCADE
 );
+
+
