@@ -161,4 +161,11 @@ FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE,
 FOREIGN KEY (mNum) REFERENCES member(mNum) ON UPDATE CASCADE
 );
 
-
+CREATE TABLE map -- -- 지도 --
+(
+no INT primary key auto_increment,
+pNum INT NOT NULL,
+lat VARCHAR(50) NOT NULL, -- 위도 y좌표 lat
+lng VARCHAR(50) NOT NULL, -- 경도 x좌표 lng
+FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE
+);
