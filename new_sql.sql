@@ -178,3 +178,13 @@ DROP COLUMN finish;
 
 ALTER TABLE friend -- 친구 테이블
 DROP COLUMN msg;
+
+-- auto_increment 속성 추가
+ALTER TABLE joinpartylist
+MODIFY COLUMN no INT AUTO_INCREMENT;
+
+ALTER TABLE joinMember   
+MODIFY COLUMN no INT AUTO_INCREMENT;
+
+ALTER TABLE wishList 	
+MODIFY COLUMN no INT AUTO_INCREMENT;
