@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +21,14 @@ import com.bitc.partyshare.vo.PartyVO;
 
 import lombok.RequiredArgsConstructor;
 
+@PropertySource("classpath:api.properties") // api숨김
 @RequiredArgsConstructor
 @Controller
 public class PartyController {
 
+	@Value("${kakao.key}")
+	private String apiKey;
+	
 	private final MemberService ms;
 	private final PartyService ps;
 	private final MapService maps;
@@ -86,6 +92,7 @@ public class PartyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("apiKey",apiKey);
 		model.addAttribute("party",vo);
 		model.addAttribute("map", map);
 		return "party/updateParty";

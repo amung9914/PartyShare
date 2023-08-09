@@ -1,5 +1,7 @@
 package com.bitc.partyshare.controller;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +14,14 @@ import com.bitc.partyshare.vo.LocationVO;
 
 import lombok.RequiredArgsConstructor;
 
+@PropertySource("classpath:api.properties")
 @RequiredArgsConstructor
 @Controller
 public class HomeController {
 
 	private final MapService ms;
+	@Value("${kakao.key}")
+	private String apiKey;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -46,11 +51,13 @@ public class HomeController {
 	//현재지도확인 페이지
 		@GetMapping("map")
 		public String viewMap(Model model) {
+			model.addAttribute("apiKey",apiKey);
 			try {
 				model.addAttribute("list", ms.mapList());
 			} catch (Exception e) {
 				System.out.println("list정보 불러오기 실패");
 			}
+			
 			return "map/map";
 		}
 }

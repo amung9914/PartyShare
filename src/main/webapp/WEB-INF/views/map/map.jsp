@@ -11,8 +11,7 @@
 <body>
 <div id="map" style="width:100%;height:350px;"></div>
 <div id="detailView"></div>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0534688966ae7b4ea20ffd95099348e8"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
 <script>
 
 //위치 좌표 얻어옴(성공했을 때 실행할 함수, 실패했을 때 실행할 함수)
