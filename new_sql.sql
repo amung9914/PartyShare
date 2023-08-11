@@ -189,4 +189,53 @@ MODIFY COLUMN no INT AUTO_INCREMENT;
 -- joinpartylist 중복 테이블 삭제
 drop table joinpartylist;
 
+-- 아래부터 카테고리 수정분입니다.
 
+-- 파티 설명 테이블 ex)광란의
+CREATE TABLE partyDescription (
+    no INT PRIMARY KEY,
+    description VARCHAR(20) NOT NULL -- FK
+);
+
+-- 파티 주제 테이블 ex)캠핑
+CREATE TABLE partyCategory(
+    no INT PRIMARY KEY,
+    category VARCHAR(20) NOT NULL  -- FK
+);
+
+INSERT INTO partyCategory (category)
+VALUES
+('요리/제조'),
+('아웃도어/여행'),
+('운동/스포츠'),
+('책/글'),
+('업종/직무'),
+('외국/언어'),
+('문화/공연/축제'),
+('음악/악기'),
+('공예/만들기'),
+('댄스/무용'),
+('봉사활동'),
+('사교/인맥'),
+('차/오토바이'),
+('사진/영상'),
+('야구관람'),
+('게임/오락'),
+('반려동물'),
+('가족/결혼'),
+('그외');
+
+INSERT INTO partyDescription (description)
+VALUES
+('기상천외한 파티'),
+('초소형주택에서하는 파티'),
+('캠핑장'),
+('해변바로앞'),
+('멋진 수영장'),
+('속세를 벗어난 숙소'),
+('럭셔리'),
+('대저택'),
+('창작파티'),
+('보트'),
+('서핑'),
+('골프');
