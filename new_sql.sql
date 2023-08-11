@@ -188,3 +188,10 @@ MODIFY COLUMN no INT AUTO_INCREMENT;
 
 -- joinpartylist 중복 테이블 삭제
 drop table joinpartylist;
+
+CREATE TABLE category (
+    no INT AUTO_INCREMENT PRIMARY KEY ,
+    description TEXT NOT NULL,   -- ex)광란의
+    category VARCHAR(20) NOT NULL,  -- ex)캠핑
+    SearchLocation VARCHAR(20) NOT NULL  -- 무시해도 됨 ( 검색 위치 구현 위해 만듦)
+);
