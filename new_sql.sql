@@ -193,15 +193,16 @@ drop table joinpartylist;
 
 -- 파티 설명 테이블 ex)광란의
 CREATE TABLE partyDescription (
-    no INT PRIMARY KEY,
+    no INT PRIMARY KEY AUTO_INCREMENT,
     description VARCHAR(20) NOT NULL -- FK
 );
 
 -- 파티 주제 테이블 ex)캠핑
 CREATE TABLE partyCategory(
-    no INT PRIMARY KEY,
+    no INT PRIMARY KEY AUTO_INCREMENT,
     category VARCHAR(20) NOT NULL  -- FK
 );
+
 
 INSERT INTO partyCategory (category)
 VALUES
