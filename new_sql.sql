@@ -243,3 +243,9 @@ VALUES
 
 -- wishlist에 별칭 칼럼 추가
 ALTER TABLE wishlist ADD alias VARCHAR(20) NOT NULL;
+
+-- 카테고리 table 컬럼명에 맞추어 party table 컬럼명 변경
+ALTER TABLE party
+CHANGE COLUMN mainCategory description VARCHAR(20) NOT NULL,  -- ex)광란의
+DROP COLUMN subCategory,
+ADD COLUMN category VARCHAR(20) NOT NULL; -- ex)캠핑 
