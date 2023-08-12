@@ -28,7 +28,7 @@
         	<p class="card-text">
        
         	날짜 : 
-        	${party.startDate} ~ ${party.endDate} <br/>
+        	${party.formatStartDate} ~ ${party.formatEndDate} <br/>
         	장소 : ${party.address}
         	<c:if test="${!empty party.detailAddress}">
         	,${party.detailAddress}

@@ -86,15 +86,22 @@ public class PartyController {
 	public String updateParty(int pnum,Model model) {
 		PartyVO vo = null;
 		MapVO map = null;
+		List<String> description = null;
+		List<String> category = null;
 		try {
 			vo = ps.read(pnum,model);
 			map = maps.readLocation(pnum);
+			description = ps.description();
+			category = ps.category();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("apiKey",apiKey);
 		model.addAttribute("party",vo);
 		model.addAttribute("map", map);
+		model.addAttribute("description", description);
+		model.addAttribute("category",category);
 		return "party/updateParty";
 	}
 	

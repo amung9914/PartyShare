@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bitc.partyshare.service.MapService;
-import com.bitc.partyshare.vo.LocationVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -41,12 +40,7 @@ public class HomeController {
 		return "friend/findFriend";
 	}
 	
-	@PostMapping("findlocation")
-	public String findloction(LocationVO location, Model model) {
-		model.addAttribute(location);
-		return "map/location";
-	}
-	
+		
 
 	//현재지도확인 페이지
 		@GetMapping("map")

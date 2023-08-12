@@ -24,11 +24,11 @@
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
       	<a href="partyDetail?pnum=${party.pnum}">
-        <h5 class="card-title">파티이름 : ${party.pname}</h5>
+        <h4 class="card-title">파티이름 : ${party.pname}</h4>
         	<p class="card-text">
        
         	날짜 : 
-        	${party.startDate} ~ ${party.endDate} <br/>
+        	${party.formatStartDate} ~ ${party.formatEndDate} <br/>
         	장소 : ${party.address}
         	<c:if test="${!empty party.detailAddress}">
         	,${party.detailAddress}

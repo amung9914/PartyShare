@@ -35,6 +35,18 @@ public interface PartyDAO {
 	@Update("UPDATE party SET pname = #{pname}, sido = #{sido}, sigungu = #{sigungu} , "
 			+" address = #{address} , detailaddress = #{detailAddress}, "
 			+ "pcontext = #{pcontext}, startdate = #{startDate} , enddate = #{endDate} , "
-			+ "maincategory = #{mainCategory}, subcategory = #{subCategory} WHERE pnum = #{pnum}")
+			+ "description = #{description}, category = #{category} WHERE pnum = #{pnum}")
 	int update(PartyVO vo) throws Exception;
+	
+	/**
+	 * description 목록
+	 */
+	@Select("SELECT description FROM partydescription")
+	List<String> description() throws Exception;
+	
+	/**
+	 * category 목록
+	 */
+	 @Select("SELECT category FROM partycategory")
+	List<String> category() throws Exception;
 }

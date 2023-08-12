@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,32 +27,21 @@
 		
 		시작일 : <input type="date" name="startDate" value="${party.startDate}" id="startDateInput"/><br/>
 		종료일 : <input type="date" name="endDate" value="${party.endDate}"/><br/>
-		카테고리1 :    
-		<select name="mainCategory" >
-		    <option value="${party.mainCategory}">${party.mainCategory}</option>
-		    <option value="기상천외한 파티">기상천외한 파티</option>
-		    <option value="초소형 주택">초소형 주택</option>
-		    <option value="캠핑장">캠핑장</option>
-		    <option value="해변바로앞">해변바로앞</option>
-		    <option value="농촌">농촌</option>
-		    <option value="속세를 벗어남">속세를 벗어남</option>
-		    <option value="럭셔리">럭셔리</option>
-		    <option value="대저택">대저택</option>
-		    <option value="그외">그외</option>
+		카테고리1 :
+		<select name="description" >
+		    <option value="${party.description}">${party.description}</option>
+		
+			<c:forEach items="${description}" var="description">    
+		    <option value="${description}">${description}</option>
+		    </c:forEach>
 	  	</select>
 		<br/>
 		카테고리2 : 
-		<select name="subCategory" >
-			<option value="${party.subCategory}">${party.subCategory}</option>
-			<option value="농구">농구</option>
-			<option value="축구">축구</option>
-			<option value="등산">등산</option>
-			<option value="서핑">서핑</option>
-			<option value="게임">게임</option>
-			<option value="수영">수영</option>
-			<option value="음주가무">음주가무</option>
-			<option value="광란의 파티">광란의 파티</option>
-			<option value="그외">그외</option>
+		<select name="category" >
+			<option value="${party.category}">${party.category}</option>
+			<c:forEach items="${category}" var="category">    
+		    <option value="${category}">${category}</option>
+		    </c:forEach>
 		</select>
 		<br/>
 		

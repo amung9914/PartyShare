@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bitc.partyshare.service.MapService;
-import com.bitc.partyshare.vo.LocationVO;
 import com.bitc.partyshare.vo.MapVO;
 
 import lombok.RequiredArgsConstructor;
@@ -25,9 +24,9 @@ public class MapController {
 	
 	
 	@PostMapping("")
-	public String addLocation(LocationVO location, MapVO map, Model model) {
+	public String addLocation(MapVO map, Model model) {
 		
-		System.out.println("locationVO : "+ location);
+		
 		System.out.println("mapVO:"+ map);
 		
 		String result = null;

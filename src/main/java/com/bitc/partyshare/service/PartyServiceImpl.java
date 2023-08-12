@@ -1,6 +1,5 @@
 package com.bitc.partyshare.service;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -47,5 +46,17 @@ public class PartyServiceImpl implements PartyService{
 	public String update(PartyVO vo) throws Exception {
 		return getResult(dao.update(vo));
 	}
+
+	@Override
+	public List<String> description() throws Exception {
+		return dao.description();
+	}
+
+	@Override
+	public List<String> category() throws Exception {
+		return dao.category();
+	}
+
+	
 
 }

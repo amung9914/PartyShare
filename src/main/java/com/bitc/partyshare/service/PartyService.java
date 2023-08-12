@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.ui.Model;
 
 import com.bitc.partyshare.vo.MemberVO;
@@ -30,5 +31,15 @@ public interface PartyService {
 	 * 파티 정보 수정
 	 */
 	String update(PartyVO vo) throws Exception;
+	
+	/**
+	 * description 목록
+	 */
+	List<String> description() throws Exception;
+	
+	/**
+	 * category 목록
+	 */
+	List<String> category() throws Exception;
 
 }
