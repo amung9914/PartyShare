@@ -240,3 +240,6 @@ VALUES
 ('보트'),
 ('서핑'),
 ('골프');
+
+-- wishlist에 별칭 칼럼 추가
+ALTER TABLE wishlist ADD alias VARCHAR(20) NOT NULL;
