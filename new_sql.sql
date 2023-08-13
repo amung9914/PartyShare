@@ -249,3 +249,7 @@ ALTER TABLE party
 CHANGE COLUMN mainCategory description VARCHAR(20) NOT NULL,  -- ex)광란의
 DROP COLUMN subCategory,
 ADD COLUMN category VARCHAR(20) NOT NULL; -- ex)캠핑 
+
+-- 파티게시판 조회수 컬럼 수정
+ALTER TABLE partyBoard
+CHANGE COLUMN viewcnt viewcnt INT default 0;	
