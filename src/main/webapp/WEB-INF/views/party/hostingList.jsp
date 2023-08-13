@@ -11,6 +11,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
+<style>
+ img{
+ 	height: 100px;
+    width: fit-content;
+ }
+</style>
 </head>
 <body>
 <h3>${loginMember}</h3>
@@ -21,7 +27,7 @@
 <c:forEach items="${list}" var="party">
   <div class="col">
     <div class="card">
-      <img src="..." class="card-img-top" alt="...">
+      <img src="upload/${party.partyImage1}" />
       <div class="card-body">
       	<a href="partyDetail?pnum=${party.pnum}">
         <h4 class="card-title">파티이름 : ${party.pname}</h4>
@@ -37,6 +43,7 @@
         	</p>
         </a>
         <a href="partyHost?pnum=${party.pnum}">파티관리</a>
+        <a href="partyBoard/listPage?pnum=${party.pnum}">팀게시판</a>
       </div>
     </div>
   </div>

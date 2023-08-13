@@ -9,9 +9,9 @@
 </head>
 <body>
 
-<h2>파티 수정하기</h2>
+<h2>파티 정보 수정</h2>
 <!-- 수정되는 객체 -->
- <form method="POST">
+ <form method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="pnum" value="${party.pnum}"/> 
 		파티이름 : <input type="text" name="pname" value="${party.pname}"/><br/>
 		
@@ -46,9 +46,13 @@
 		<br/>
 		
 		파티소개 : <textarea name="pcontext" rows="10" >${party.pcontext}</textarea><br/>
-		<button>수정</button>
+	<br/><hr/><br/>
+	<!-- 파티 사진 수정 페이지 -->
+	<jsp:include page="partyimg.jsp" />
+	<br/>
+	<button>저장</button> <button onclick="goBack()">취소</button>
 	</form>
-	<button onclick="goBack()">취소</button>
+	
 <script>
 	function goBack(){
 		history.go(-1);
@@ -102,8 +106,6 @@
                     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
                     level: 3 // 지도의 확대 레벨
                 };  
-
-                
 
                 //주소-좌표 변환 객체를 생성합니다
                 var geocoder = new kakao.maps.services.Geocoder();

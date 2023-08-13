@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.ui.Model;
 
 import com.bitc.partyshare.vo.MemberVO;
@@ -31,6 +32,12 @@ public interface PartyService {
 	 * 파티 정보 수정
 	 */
 	String update(PartyVO vo) throws Exception;
+
+	/**
+	 * 파티 사진 수정
+	 */
+	String updateImage(PartyVO vo) throws Exception;
+
 	
 	/**
 	 * description 목록
@@ -41,5 +48,6 @@ public interface PartyService {
 	 * category 목록
 	 */
 	List<String> category() throws Exception;
+	
 
 }

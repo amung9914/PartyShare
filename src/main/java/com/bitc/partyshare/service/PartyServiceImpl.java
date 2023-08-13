@@ -46,6 +46,11 @@ public class PartyServiceImpl implements PartyService{
 	public String update(PartyVO vo) throws Exception {
 		return getResult(dao.update(vo));
 	}
+	
+	@Override
+	public String updateImage(PartyVO vo) throws Exception {
+		return getResult(dao.updateImage(vo));
+	}
 
 	@Override
 	public List<String> description() throws Exception {
@@ -56,6 +61,8 @@ public class PartyServiceImpl implements PartyService{
 	public List<String> category() throws Exception {
 		return dao.category();
 	}
+
+	
 
 	
 

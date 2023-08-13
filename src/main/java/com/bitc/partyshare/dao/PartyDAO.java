@@ -35,8 +35,18 @@ public interface PartyDAO {
 	@Update("UPDATE party SET pname = #{pname}, sido = #{sido}, sigungu = #{sigungu} , "
 			+" address = #{address} , detailaddress = #{detailAddress}, "
 			+ "pcontext = #{pcontext}, startdate = #{startDate} , enddate = #{endDate} , "
-			+ "description = #{description}, category = #{category} WHERE pnum = #{pnum}")
+			+ "description = #{description}, category = #{category} , "
+			+ "partyImage1 = #{partyImage1}, partyImage2 = #{partyImage2} , "
+			+ "partyImage3 = #{partyImage3} WHERE pnum = #{pnum}")
 	int update(PartyVO vo) throws Exception;
+	
+	/**
+	 * 파티 사진 수정
+	 */
+	@Update("UPDATE party SET  WHERE pnum = #{pnum}")
+	int updateImage(PartyVO vo) throws Exception;
+	
+	
 	
 	/**
 	 * description 목록
@@ -49,4 +59,7 @@ public interface PartyDAO {
 	 */
 	 @Select("SELECT category FROM partycategory")
 	List<String> category() throws Exception;
+	 
+	 
+	
 }

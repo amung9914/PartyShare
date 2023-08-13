@@ -1,20 +1,34 @@
 package com.bitc.partyshare.controller;
 
+import java.io.File;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitc.partyshare.service.MapService;
 import com.bitc.partyshare.service.MemberService;
 import com.bitc.partyshare.service.PartyService;
+import com.bitc.partyshare.utils.FileUtils;
 import com.bitc.partyshare.vo.MapVO;
 import com.bitc.partyshare.vo.MemberVO;
 import com.bitc.partyshare.vo.PartyVO;
@@ -32,6 +46,21 @@ public class PartyController {
 	private final MemberService ms;
 	private final PartyService ps;
 	private final MapService maps;
+	
+	// 이미지 파일 업로드
+	private final String uploadDir;
+	private final ServletContext context;
+	private String realPath;
+	
+	@PostConstruct
+	public void initPath() {
+		realPath = context.getRealPath(File.separator+uploadDir);
+		File file = new File(realPath);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+				
+	}
 	
 	// test용 로그인 페이지
 	@GetMapping("login")
@@ -82,6 +111,7 @@ public class PartyController {
 		return "party/partyHost";
 	}
 	
+	//파티수정 페이지
 	@GetMapping("updateParty")
 	public String updateParty(int pnum,Model model) {
 		PartyVO vo = null;
@@ -108,27 +138,62 @@ public class PartyController {
 	// mapVO, partyVO 수정처리
 	@PostMapping("updateParty")
 	public String updateSubmit(
-			MapVO map, PartyVO party, RedirectAttributes rttr) {
+			MultipartHttpServletRequest request,
+			MapVO map, PartyVO vo, RedirectAttributes rttr) {
 		String result = "FAILED";
 		String result1 = null;
 		String result2 = null;
+		String result3 = null;
+		MultipartFile file1 = request.getFile("image1");
+		MultipartFile file2 = request.getFile("image2");
+		MultipartFile file3 = request.getFile("image3");
+		String savedName1 = null;
+		String savedName2 = null;
+		String savedName3 = null;
+		if(!file1.isEmpty()) {
+			
+			try {
+				savedName1 = FileUtils.uploadThumbnailImage(realPath, file1);
+				vo.setPartyImage1(savedName1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		if(!file2.isEmpty()) {
+			try {
+				savedName2 = FileUtils.uploadOriginalImage(realPath, file2);
+				vo.setPartyImage2(savedName2);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(!file3.isEmpty()) {
+			try {
+				savedName3 = FileUtils.uploadOriginalImage(realPath, file3);
+				vo.setPartyImage3(savedName3);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		try {
 			result1 = maps.updateLocation(map);
-			result2 = ps.update(party);
+			result2 = vo.getPartyImage1();
+			result3 = ps.update(vo);
+			// 파일업로드
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		if(result1.equals("SECCESS") && result1.equals(result2)) {
+		if(result1.equals("SECCESS") && result1.equals(result3) && result1.equals(result3)) {
 			result = "SUCCESS";
 		}
 		rttr.addFlashAttribute("result",result);
-		rttr.addAttribute("pnum",party.getPnum());
+		rttr.addAttribute("pnum",vo.getPnum());
 		return "redirect:/partyHost"; 
 	}
-	
-	
 	
 	// 참여중인 파티 페이지 이동
 	@GetMapping("myParty")
@@ -144,11 +209,29 @@ public class PartyController {
 		return "/party/myPartyList";
 	}
 	
+	@GetMapping("calender")
+	public String calender(HttpSession session, Model model) {
+		//model에 담아서 주기
+		List<PartyVO> list = null;
+		try {
+			list = ps.myPartyList(session);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("list",list);
+		return "party/calender";
+	}
+	
+	
+	
 	// partyDetail 페이지
 	@GetMapping("partyDetail")
 	public String partyDetail(String pnum,Model model) {
 		model.addAttribute("pnum",pnum);
 		return "party/partyDetail";
 	}
+	
+	
+	 
 }
 
