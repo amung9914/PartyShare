@@ -34,17 +34,15 @@
     </div>
     <br/>
     
-    <!-- 검색 찾기 폼 -->
-    <form>
 	    <div class="input-group mb-3">
-	    <select class="form-select" id="inputGroupSelect02">
-		    <option value="1">아이디</option>
-		    <option value="2">닉네임</option>
+	    <select class="form-select" id="select">
+		    <option value="mid">아이디</option>
+		    <option value="mnick">닉네임</option>
 	  	</select>
-	 	 <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+	 	 <input type="text" class="form-control" id="target" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 	 	 <button class="btn btn-outline-secondary" type="submit" id="selectButton">찾기</button>
 		</div>
-	</form>
+	
     <!-- selectButton 제이쿼리로 클릭이벤트 -> find-result 보이게 출력 (완료)-->
     <!-- form태그로 submit 하면 ajax로 결과 받아와서 결과출력란에 보일 수 있도록! 구현하기 -->
     <div class="findResult">
@@ -74,9 +72,48 @@
 </div> <!-- end off-canvas -->
 
 <script>
-$("#selectButton").on("click",function(){
+$("#selectButton").on("click",function(event){
 	$(".findResult").toggle();
-})
+	
+	const select = $("#select").val();
+	const target = $("#target").val();
+	
+	
+	findId();
+	
+	
+	function findId(){
+		let url="friend/searchId/"+select+"/"+target;
+		$.getJSON(url,function(data){
+			console.log(data.mid);
+			console.log(data.mnick);
+			console.log(data.mnum);
+			if(data.mnum === -1){
+				console.log("일치하는 사용자가 없습니다.");
+			}
+		});
+	}
+	
+	
+})// end selectButton
+
+	
+	
+	
+	//페이징 처리된 리스트 불러오는 함수
+	function listPage(page){
+		$("#modDiv").css("display","none");
+		$("body").prepend($("#modDiv"));
+		let url = "comments/"+bno+"/"+page;
+		$.getJSON(url,function(data){
+			// data == Map
+			// {'list':{}, 'pm' : {}}
+			console.log(data);
+			printList(data.list);
+			printPage(data.pm);
+		});
+	}
+	
 
 </script>
 

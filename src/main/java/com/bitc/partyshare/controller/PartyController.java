@@ -48,13 +48,14 @@ public class PartyController {
 	private final MapService maps;
 	
 	// 이미지 파일 업로드
-	private final String uploadDir;
+	private final String uploadPartyDir;
 	private final ServletContext context;
 	private String realPath;
 	
 	@PostConstruct
 	public void initPath() {
-		realPath = context.getRealPath(File.separator+uploadDir);
+		realPath = context.getRealPath(File.separator+uploadPartyDir);
+		System.out.println(realPath);
 		File file = new File(realPath);
 		if(!file.exists()) {
 			file.mkdirs();
@@ -147,6 +148,7 @@ public class PartyController {
 		MultipartFile file1 = request.getFile("image1");
 		MultipartFile file2 = request.getFile("image2");
 		MultipartFile file3 = request.getFile("image3");
+		
 		String savedName1 = null;
 		String savedName2 = null;
 		String savedName3 = null;
@@ -183,6 +185,11 @@ public class PartyController {
 			result1 = maps.updateLocation(map);
 			result2 = vo.getPartyImage1();
 			result3 = ps.update(vo);
+			
+			System.out.println("result1 map 업데이트 : "+ result1);
+			System.out.println("result2 이미지 업로드 : "+ result2);
+			System.out.println("result3 DB 업데이트 : "+ result3);
+			
 			// 파일업로드
 		} catch (Exception e) {
 			e.printStackTrace();

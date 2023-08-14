@@ -36,11 +36,17 @@ public class HomeController {
 	
 	// 친구 찾기 버튼 구현 페이지 
 	@GetMapping("findFriend")
-	public String friendList() {
+	public String findFriend() {
 		return "friend/findFriend";
 	}
 	
-		
+	
+	// 친구 찾기 버튼 구현 페이지 
+	@GetMapping("friendList")
+	public String friendList() {
+		return "friend/friendList";
+	}
+	
 
 	//현재지도확인 페이지
 		@GetMapping("map")

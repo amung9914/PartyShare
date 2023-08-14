@@ -3,21 +3,16 @@ package com.bitc.partyshare.vo;
 import org.springframework.stereotype.Component;
 
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Component
 @Getter @Setter @ToString
-@RequiredArgsConstructor 
 public class MemberVO {
 	// VO 객체 생성시 아이디와 비밀번호 필수값 지정
 	
 	private int mnum;					// 멤버 번호
-	@NonNull
 	private String mid;					// 아이디
-	@NonNull
 	private String mpw;					// 비밀번호
 	private String mname;				// 이름
 	private String mnick;				// 닉네임

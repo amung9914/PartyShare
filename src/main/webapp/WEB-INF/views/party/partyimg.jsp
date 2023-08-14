@@ -17,20 +17,20 @@
 	<input type="hidden" name="partyImage3" value="${party.partyImage3}"> 
 	<h2>파티 사진 수정</h2>
 		<div>
-			<img src="upload/${party.partyImage1}" id="img1"/>
+			<img src="upload/party/${party.partyImage1}" id="img1"/>
 			<br/>
 			<input type="file" name="image1" id="partyImage1" accept=".gif, .jpg, .jpeg, .png"/>
 			<button id="reset1">reset</button>
 			
 		</div>
 		<div>
-			<img src="upload/${party.partyImage2}" id="img2"/>
+			<img src="upload/party/${party.partyImage2}" id="img2"/>
 			<br/>
 			<input type="file" name="image2" id="partyImage2" accept=".gif, .jpg, .jpeg, .png"/>
 			<button id="reset2">reset</button>
 		</div>
 		<div>
-			<img src="upload/${party.partyImage3}" id="img3"/>
+			<img src="upload/party/${party.partyImage3}" id="img3"/>
 			<br/>
 			<input type="file" name="image3" id="partyImage3" accept=".gif, .jpg, .jpeg, .png"/>
 			<button id="reset3">reset</button>

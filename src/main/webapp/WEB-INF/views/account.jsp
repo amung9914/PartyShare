@@ -10,5 +10,7 @@
 	<h3>${loginMember}</h3>
 	<a href="hostingList">개설한 파티 관리</a>
 	<a href="myParty">참여중인 파티</a>
+	<a href="friendList">친구리스트</a>
+	
 </body>
 </html>

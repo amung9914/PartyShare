@@ -27,7 +27,7 @@
 <c:forEach items="${list}" var="party">
   <div class="col">
     <div class="card">
-      <img src="upload/${party.partyImage1}" />
+      <img src="upload/party/${party.partyImage1}" />
       <div class="card-body">
       	<a href="partyDetail?pnum=${party.pnum}">
         <h4 class="card-title">파티이름 : ${party.pname}</h4>

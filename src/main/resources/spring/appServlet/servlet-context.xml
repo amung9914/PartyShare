@@ -31,8 +31,11 @@
 	</beans:bean>
 	
 	<!-- 이 폴더에 업로드한 파일 넣어줄거다 -->
+	<beans:bean id="uploadPartyDir" class="java.lang.String">
+		<beans:constructor-arg value="upload/party"/>
+	</beans:bean>
 	<beans:bean id="uploadDir" class="java.lang.String">
-		<beans:constructor-arg value="upload"/>
+		<beans:constructor-arg value="upload/profile"/>
 	</beans:bean>
 	
 	<context:component-scan base-package="com.bitc.partyshare.controller" />
