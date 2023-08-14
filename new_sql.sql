@@ -253,3 +253,10 @@ ADD COLUMN category VARCHAR(20) NOT NULL; -- ex)캠핑
 -- 파티게시판 조회수 컬럼 수정
 ALTER TABLE partyBoard
 CHANGE COLUMN viewcnt viewcnt INT default 0;	
+
+-- member 테이블 party 테이블 이미지 컬럼 수정
+alter table member drop column profileImage;
+alter table member modify column profileImageName varchar(256);
+alter table party modify column partyImage1 varchar(256);
+alter table party modify column partyImage2 varchar(256);
+alter table party modify column partyImage3 varchar(256);
