@@ -260,3 +260,16 @@ alter table member modify column profileImageName varchar(256);
 alter table party modify column partyImage1 varchar(256);
 alter table party modify column partyImage2 varchar(256);
 alter table party modify column partyImage3 varchar(256);
+
+-- 친구 테이블 수정
+DROP TABLE friend;
+CREATE TABLE friend  -- --친구 추가 --  
+(
+	no	INT primary key auto_increment,
+    fFrom int NOT NULL,   
+    fTo int NOT NULL,
+    YN CHAR(1) default 'N',
+    requestTime TIMESTAMP default NOW(), 
+    FOREIGN KEY (fFrom) REFERENCES member(mnum) ON UPDATE CASCADE,
+    FOREIGN KEY (fTo) REFERENCES member(mnum) ON UPDATE CASCADE
+);
