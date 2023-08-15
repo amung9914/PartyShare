@@ -1,55 +1,65 @@
 package com.bitc.partyshare.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.bitc.partyshare.service.FriendService;
-import com.bitc.partyshare.vo.MemberVO;
+import com.bitc.partyshare.vo.FriendVO;
 
 import lombok.RequiredArgsConstructor;
 
-@RestController
 @RequestMapping("/friend")
 @RequiredArgsConstructor
+@Controller
 public class FriendController {
 
 	private final FriendService fs;
-
+	
+	// 친구 목록 페이지 
+	@GetMapping("")
+	public String friend(HttpSession session, Model model) {
+		List<FriendVO> list = null;
+		try {
+			list = fs.friendList(session);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("list",list);
+		return "friend/friendList";
+	}
 	/**
-	 * 아이디로 사용자 검색
+	 *	친구요청보낸목록 
 	 */
+	@GetMapping("/requestList")
+	public String requestList(HttpSession session, Model model){
+		List<FriendVO> list = null;
+		try {
+			list = fs.requestList(session);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("list",list);
+		return "friend/requestList";
+	}
 	
 	/**
-	 * 닉네임으로 사용자 검색
+	 *	친구요청받은목록 
 	 */
-	
-	
-	/**
-	 * 아이디로 사용자 검색
-	 * 
-	 * @param target
-	 * @return
-	 */
-	/*
-	 * @GetMapping("searchId/mid/{target}") public MemberVO searchId(
-	 * 
-	 * @PathVariable(name="target") String target ) throws Exception{
-	 * 
-	 * System.out.println("이것은mid입니다."); MemberVO vo = fs.searchId(target); if(vo ==
-	 * null) { vo = new MemberVO(); vo.setMnum(-1); } return vo; }
-	 * 
-	 *//**
-		 * 닉네임으로 사용자 검색
-		 * 
-		 * @param target
-		 * @return
-		 *//*
-			 * @GetMapping("searchId/mnick/{target}") public MemberVO searchNick(
-			 * 
-			 * @PathVariable(name="target") String target ) throws Exception{
-			 * System.out.println("이것은mnick입니다."); MemberVO vo = fs.searchNick(target);
-			 * if(vo == null) { vo = new MemberVO(); vo.setMnum(-1); } return vo; }
-			 */
+	@GetMapping("/responseList")
+	public String responseList(HttpSession session, Model model){
+		List<FriendVO> list = null;
+		try {
+			list = fs.responseList(session);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("list",list);
+		return "friend/responseList";
+	}
 }

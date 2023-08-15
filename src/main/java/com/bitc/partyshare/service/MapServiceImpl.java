@@ -19,7 +19,7 @@ public class MapServiceImpl implements MapService {
 	
 	// 내부적으로 사용할 수 있도록 메소드추가
 	private String getResult(int result) {
-		return result == 1?"SECCESS":"FAILED";
+		return result == 1?"SUCCESS":"FAILED";
 	}
 	
 	@Override
