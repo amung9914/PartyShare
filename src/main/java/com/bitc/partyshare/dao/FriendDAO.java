@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.bitc.partyshare.vo.FriendVO;
 import com.bitc.partyshare.vo.MemberVO;
+import com.bitc.partyshare.vo.PartyVO;
 
 public interface FriendDAO {
 
@@ -34,9 +35,19 @@ public interface FriendDAO {
 	int create(FriendVO vo) throws Exception;
 	
 	/**
-	 * 상대방의 아이디로 상대방의 파티 정보를 가져온다. 
+	 * 진행중인 파티 정보를 가져온다. 
 	 * mnum으로 -> joinparty & party -> partyVO
 	 */
+	@Select("SELECT p.* FROM joinMember J, party P "
+			+"WHERE J.pNum = P.pNum AND finish='N' AND mNum = #{mnum}")
+	List<PartyVO> ongoingParty(int mnum) throws Exception;
+	
+	/**
+	 * 참여했었던 파티 정보를 가져온다.
+	 */
+	@Select("SELECT p.* FROM joinMember J, party P "
+			+"WHERE J.pNum = P.pNum AND finish='Y' AND mNum = #{mnum}")
+	List<PartyVO> previousParty(int mnum) throws Exception;
 	
 	/**
 	 * 친구 요청에 이미 요청이 있는지 없는지 확인
@@ -49,11 +60,6 @@ public interface FriendDAO {
 	 */
 	@Select("SELECT * FROM friend WHERE ffrom = #{ffrom} AND fto = #{fto} AND YN = 'Y'")
 	FriendVO confirmFriend(FriendVO vo) throws Exception;
-	
-	
-	//상대방이 수락을 눌렀을 때 
-	// from 유저 to 유저 두명을 각각 db에 저장시킨다. 
-	// 서로서로 친구 맺기
 	
 	/**
 	 * 내가 to 유저, to유저로 찾아서 update Y,
@@ -71,8 +77,20 @@ public interface FriendDAO {
 			@Param("ffrom")int fto) throws Exception;
 
 	/**
-	 * 기존 친구를 삭제 시킨다.
+	 * 기존 친구를 삭제 시킨다.(ffrom = mnum)
 	 */
+	@Delete("DELETE FROM friend WHERE ffrom = #{mnum} AND fto = #{mynum}")
+	int deleteffrom(
+			@Param("mnum")int mnum,
+			@Param("mynum")int mynum) throws Exception; 
+	
+	/**
+	 * 기존 친구를 삭제 시킨다(fto = mnum )
+	 */
+	@Delete("DELETE FROM friend WHERE ffrom = #{mynum} AND fto = #{mnum}")
+	int deletefto(
+			@Param("mynum")int mynum,
+			@Param("mnum")int mnum) throws Exception; 
 	
 	/**
 	 * 내가 친구 요청을 보낸 목록을 확인

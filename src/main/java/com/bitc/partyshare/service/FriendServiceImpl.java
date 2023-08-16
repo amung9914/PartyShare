@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.bitc.partyshare.dao.FriendDAO;
 import com.bitc.partyshare.vo.FriendVO;
 import com.bitc.partyshare.vo.MemberVO;
+import com.bitc.partyshare.vo.PartyVO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -90,6 +91,29 @@ public class FriendServiceImpl implements FriendService {
 		String resultAccept = getResult(dao.accept(ffrom, fto));
 		String resultAcceptNew = getResult(dao.acceptNew(ffrom, fto));
 		if(resultAccept.equals("SUCCESS")&& resultAcceptNew.equals("SUCCESS")) {
+			return "SUCCESS";
+		}
+		
+		return "FAILED";
+	}
+
+	@Override
+	public List<PartyVO> ongoingParty(int mnum) throws Exception {
+		return dao.ongoingParty(mnum);
+	}
+
+	@Override
+	public List<PartyVO> previousParty(int mnum) throws Exception {
+		return dao.previousParty(mnum);
+	}
+
+	@Override
+	public String deleteFriend(HttpSession session, int mnum) throws Exception {
+		MemberVO vo = (MemberVO) session.getAttribute("loginMember");
+		int mynum = vo.getMnum();
+		String resultffrom = getResult(dao.deleteffrom(mnum, mynum));
+		String resultfto = getResult(dao.deletefto(mynum,mnum));
+		if(resultffrom.equals("SUCCESS")&& resultfto.equals("SUCCESS")) {
 			return "SUCCESS";
 		}
 		

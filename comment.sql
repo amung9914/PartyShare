@@ -43,3 +43,16 @@ desc joinmember;
 select * from joinmember 
 
 delete from joinmember where pnum = 3; 
+
+-- 친구 테이블 수정
+DROP TABLE friend;
+CREATE TABLE friend  -- --친구 추가 --  
+(
+	no	INT primary key auto_increment,
+    fFrom int NOT NULL,   
+    fTo int NOT NULL,
+    YN CHAR(1) default 'N',
+    requestTime TIMESTAMP default NOW(), 
+    FOREIGN KEY (fFrom) REFERENCES member(mnum) ON UPDATE CASCADE,
+    FOREIGN KEY (fTo) REFERENCES member(mnum) ON UPDATE CASCADE
+);

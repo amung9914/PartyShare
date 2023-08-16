@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bitc.partyshare.service.FriendService;
 import com.bitc.partyshare.vo.FriendVO;
 import com.bitc.partyshare.vo.MemberVO;
+import com.bitc.partyshare.vo.PartyVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -164,4 +165,58 @@ public class FriendAjaxController {
 		 return entity;
 	 }
 	
+	 /**
+	  * 친구의 진행중인 파티 정보를 가져온다.
+	  */
+	 @GetMapping("ongoingParty/{mnum}")
+	 public List<PartyVO> ongoingParty(
+			 @PathVariable int mnum){
+		 List<PartyVO> list = null;
+		try {
+			list = fs.ongoingParty(mnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 return list;
+	 }
+	 
+	 /**
+	  * 친구의 참여했었던 파티 정보를 가져온다.
+	  */
+	 @GetMapping("previousParty/{mnum}")
+	 public List<PartyVO> previousParty(
+			 @PathVariable int mnum){
+		 List<PartyVO> list = null;
+		try {
+			list = fs.previousParty(mnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 return list;
+	 }
+	 
+	 /**
+	  *  친구 삭제 처리
+	  */
+	 @DeleteMapping("deleteFriend/{mnum}")
+	 public ResponseEntity<String> deleteFriend(
+			 HttpSession session, @PathVariable int mnum){
+		 ResponseEntity<String> entity = null;
+		 String result = null;
+		 HttpHeaders header = new HttpHeaders();
+		 header.add("Content-Type", "text/plain;charset=utf-8");
+		 	try {
+				result=fs.deleteFriend(session, mnum);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 if(result.equals("SUCCESS")) {
+			 entity = new ResponseEntity<>("친구 삭제가 완료되었습니다.",header,HttpStatus.OK);
+		 }else {
+			 entity = new ResponseEntity<>("친구 삭제 실패",header,HttpStatus.BAD_REQUEST);
+		 }
+		 return entity;
+		 
+	 }
+	 
 }

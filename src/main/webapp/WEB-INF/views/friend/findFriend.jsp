@@ -56,7 +56,14 @@
 
 const loginMnum = ${loginMember.mnum};
 
-console.log(loginMnum);
+// 엔터키 EventListener
+document.getElementById("target")
+	.addEventListener("keyup",function(e){
+		if(e.code === 'Enter'){
+			document.getElementById("selectButton").click();
+		}
+	});
+
 $("#selectButton").on("click",function(event){
 	$(".findResult").toggle();
 	// 변수에 담는다.

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bitc.partyshare.vo.FriendVO;
 import com.bitc.partyshare.vo.MemberVO;
+import com.bitc.partyshare.vo.PartyVO;
 
 public interface FriendService {
 	/**
@@ -36,11 +37,15 @@ public interface FriendService {
 
 	
 	/**
-	 * 상대방의 아이디로 상대방의 파티 정보를 가져온다. 
+	 *  진행중인 파티 정보를 가져온다. 
 	 * mnum으로 -> joinparty & party -> partyVO
 	 */
+	List<PartyVO> ongoingParty(int mnum) throws Exception;
 	
-	
+	/**
+	 * 참여했었던 파티 정보를 가져온다.
+	 */
+	List<PartyVO> previousParty(int mnum) throws Exception;
 	
 	/**
 	 * 상대방이 수락을 눌렀을 때 
@@ -53,6 +58,7 @@ public interface FriendService {
 	/**
 	 * 기존 친구를 삭제 시킨다.
 	 */
+	String deleteFriend( HttpSession session, int mnum) throws Exception;
 	
 	/**
 	 * 친구목록을 불러온다
