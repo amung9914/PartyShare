@@ -273,3 +273,17 @@ CREATE TABLE friend  -- --친구 추가 --
     FOREIGN KEY (fFrom) REFERENCES member(mnum) ON UPDATE CASCADE,
     FOREIGN KEY (fTo) REFERENCES member(mnum) ON UPDATE CASCADE
 );
+
+-- 채팅 테이블 수정
+
+DROP TABLE chat;
+
+CREATE TABLE chat(
+   cNum INT PRIMARY KEY AUTO_INCREMENT,
+   pNum INT,
+   mNum INT,
+   content TEXT NOT NULL,
+   finish CHAR NOT NULL DEFAULT 'N',
+   FOREIGN KEY (pNum) REFERENCES party (pNum) ON UPDATE CASCADE,
+   FOREIGN KEY (mNum) REFERENCES member (mNum) ON UPDATE CASCADE
+);
