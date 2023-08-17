@@ -29,8 +29,8 @@
 	</bean>
 	
 	<!-- Mapper Class 생성 -->
-	<mybatis-spring:scan base-package="com.bitc.partyshare.dao"/>
+	<mybatis-spring:scan base-package="com.bitc.*.dao"/>
 	
-	<context:component-scan base-package="com.bitc.partyshare.service"/>
+	<context:component-scan base-package="com.bitc.*.service"/>
 		
 </beans>
