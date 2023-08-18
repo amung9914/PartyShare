@@ -287,3 +287,7 @@ CREATE TABLE chat(
    FOREIGN KEY (pNum) REFERENCES party (pNum) ON UPDATE CASCADE,
    FOREIGN KEY (mNum) REFERENCES member (mNum) ON UPDATE CASCADE
 );
+
+-- notice table 수정
+ALTER table notice modify column date TIMESTAMP default now();
+ALTER table notice add column readed char(1) default 'N';
