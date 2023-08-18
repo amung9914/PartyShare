@@ -291,3 +291,19 @@ CREATE TABLE chat(
 -- notice table 수정
 ALTER table notice modify column date TIMESTAMP default now();
 ALTER table notice add column readed char(1) default 'N';
+
+-- freeBoard 컬럼 수정
+ALTER TABLE freeBoard MODIFY COLUMN date DATETIME;
+
+-- freeBoard 댓글 테이블 추가
+CREATE TABLE IF NOT EXISTS freeBoardComment(
+   cno INT PRIMARY KEY AUTO_INCREMENT,         -- 댓글 번호
+   bno INT NOT NULL,                      -- 댓글 작성 게시글 번호
+   commentText TEXT NOT NULL,               -- 댓글 내용
+   mnick VARCHAR(20) NOT NULL,               -- 작성자 닉네임
+   mid VARCHAR(20) NOT NULL,               -- 작성자 아이디
+   regdate DATETIME NOT NULL DEFAULT now(),   -- 작성시간
+   FOREIGN KEY(bno) REFERENCES freeBoard(bno) ON DELETE CASCADE,
+   FOREIGN KEY(mnick) REFERENCES member(mNick) ON UPDATE CASCADE,
+   FOREIGN KEY(mid) REFERENCES member(mId) ON UPDATE CASCADE
+);
