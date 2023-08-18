@@ -7,12 +7,18 @@ import lombok.Data;
 @Data
 public class PartyBoardVO {
 	private int bno;
-	private int pnum;
-	private String category;
 	private String title;
-	private String context;
-	private Date date;
-	private String mnick;
+	private String content;
+	private String writer;
+	private String category;
+	private int origin;
+	private int depth;
+	private int seq;
+	private Date regdate;
+	private Date updatedate;
 	private int viewCnt;
+	private String showboard;
+	private int mnum;
+	private int pnum;
 	
 }

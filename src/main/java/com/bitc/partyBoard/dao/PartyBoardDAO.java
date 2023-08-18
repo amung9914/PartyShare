@@ -4,19 +4,26 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
-import com.bitc.common.utils.Criteria;
+import com.bitc.common.utils.SearchCriteria;
+import com.bitc.partyBoard.provider.PartyBoardQueryProvider;
 import com.bitc.partyBoard.vo.PartyBoardVO;
 
 
 public interface PartyBoardDAO{
 	
 	// 게시글 작성
-	@Insert("INSERT INTO partyBoard(category,pnum,title,context,mnick,date) "
-			+ "VALUES(#{category},#{pnum},#{title},#{context},#{mnick},NOW())")
-	int create(PartyBoardVO vo) throws Exception;
+	@Insert("INSERT INTO partyBoard(category,pnum,title,content,writer,mnum) "
+			+ "VALUES(#{category},#{pnum},#{title},#{content},#{writer},#{mnum})")
+	void register(PartyBoardVO vo) throws Exception;
+	
+	@Update("UPDATE partyBoard SET origin = LAST_INSERT_ID() "
+			+ "WHERE bno = LAST_INSERT_ID()")
+	void updateOrigin() throws Exception;
 	
 	// 게시글 상세보기
 	@Select("SELECT * FROM partyBoard WHERE bno = #{bno}")
@@ -24,8 +31,7 @@ public interface PartyBoardDAO{
 	
 	// 게시글 수정
 	@Update("UPDATE partyBoard SET title = #{title} , "
-			+ "context = #{context} , "
-			+ "mnick = #{mnick} "
+			+ "content = #{content} , category = #{category} "
 			+ " WHERE bno = #{bno}")
 	int update(PartyBoardVO vo) throws Exception;
 	
@@ -46,10 +52,15 @@ public interface PartyBoardDAO{
 	@Select("SELECT count(*) FROM partyBoard")
 	int totalCount() throws Exception;
 	
-	// 페이징 처리된 게시물 목록
-	@Select("SELECT * FROM partyBoard ORDER BY bno DESC "
-			+ "limit #{startRow}, #{perPageNum}")
-	List<PartyBoardVO> listCriteria(Criteria cri)throws Exception;
+	//검색 기능을 가진 게시글 목록
+	@SelectProvider(type=PartyBoardQueryProvider.class, method="searchSelectSql")
+	List<PartyBoardVO> listCriteria(@Param("pnum")int pnum,@Param("cri")SearchCriteria cri)throws Exception;
+
+	// 답글 추가
+	@Insert("INSERT INTO partyBoard (category,pnum,title,content,writer,mnum,origin,depth,seq) "
+			+ "VALUES(#{category},#{pnum},#{title},#{content},#{writer},#{mnum},#{origin},#{depth},#{seq})")
+	int registReply(PartyBoardVO board);
+	
 	
 }
 

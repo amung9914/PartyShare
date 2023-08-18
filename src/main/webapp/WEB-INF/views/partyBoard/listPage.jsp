@@ -7,18 +7,35 @@
 <head>
 <meta charset="UTF-8">
 <title>listPage.jsp</title>
-<script>
-	var result = '${result}';
-	if(result != ''){
-		alert(result);
-	}
-</script>
 </head>
 <body>
-	<!-- model : list, pm -->
-	<h3>BOARD LIST PAGE</h3>
-	<button onclick="location.href='register?pnum=${pnum}';">NEW BOARD</button>
+	<button onclick="location.href='register?pnum=${pnum}';">글쓰기</button>
 	<h3> LIST </h3>
+	<form name="changeCri" action="listPage" method="GET">
+		<input type="hidden" name="pnum" value="${pnum}"/>
+		<select name="perPageNum" onchange="changeCri.submit();">
+			<c:forEach var="i" begin="5" end="20" step="5">
+				<option value="${i}"${pm.cri.perPageNum eq i?'selected':''}>${i}개씩 보기</option> 
+			</c:forEach>
+		</select>
+	</form>
+	<br/>
+	<form action="listPage" method="GET">
+			<input type="hidden" name="pnum" value="${pnum}"/>
+			<select name="searchType">
+				<option value="n">--------------------------</option>
+				<option value="t">제목</option>
+				<option value="c">내용</option>
+				<option value="w">작성자</option>
+				<option value="tc">제목 &amp; 내용</option>
+				<option value="cw">내용 &amp; 작성자</option>
+				<option value="tcw">제목 &amp; 내용 &amp; 작성자</option>
+			</select>
+			<input type="text" name="keyword" />
+			<input type="submit" value="검색" />
+		</form>
+	<br/>
+	
 	<table border=1>
 		<tr>
 			<th>글번호</th>
@@ -27,21 +44,66 @@
 			<th>날짜</th>
 			<th>조회수</th>
 		</tr>
-		<c:forEach var="board" items="${list}">
-			<tr>
-				<td>${board.bno}</td>
-				<td>
-				<c:if test="${board.category eq '공지사항'}">
-					[공지]
-				</c:if>
-				<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}">${board.title}</a></td>
-				<td>${board.mnick}</td>
-				<td><f:formatDate pattern="yyyy년MM월dd일" 
-					              value="${board.date}"/></td>
-				<td>${board.viewCnt}</td>
-			</tr>
-		</c:forEach>
-		<c:if test="${!empty pm and pm.maxPage > 1}">
+		<c:choose>
+			<c:when test="${!empty list}">
+				<c:forEach var="board" items="${list}">
+					<c:choose>
+						<c:when test="${board.showboard == 'y'}">
+							<tr>
+								<td>${board.bno}</td>
+								<td>
+									<c:if test="${board.depth != 0}">
+										<c:forEach begin="1" end="${board.depth}">
+										&nbsp;&nbsp;&nbsp;
+										</c:forEach>
+									</c:if>
+									<c:if test="${board.category eq 'notice'}">
+										[공지]
+									</c:if>
+									<c:if test="${board.category eq 'reply'}">
+									ㄴ
+									</c:if>
+									<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}">${board.title}</a>
+								</td>
+								<td>${board.writer}</td>
+								
+								<td> <!-- 당일이면 시간표시 / 아니면 날짜표시 -->
+									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
+									<f:formatDate var="reg" pattern="yyyy년MM월dd일" value="${board.regdate}"/>
+									<c:choose>
+										<c:when test="${now eq req}">
+											<f:formatDate pattern="HH:mm:ss" value="${board.regdate}"/>
+										</c:when>
+										<c:otherwise>
+											${reg}
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td>${board.viewCnt}</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td></td>
+								<td>삭제된 게시물 입니다.</td>
+								<td></td>
+								<td> <!-- 삭제 요청 시간 출력 / 당일이면 시간표시 / 아니면 날짜표시 -->
+									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
+									<f:formatDate var="updateTime" pattern="yyyy년MM월dd일" value="${board.updatedate}"/>
+									<c:choose>
+										<c:when test="${now eq updateTime}">
+											<f:formatDate pattern="HH:mm:ss" value="${board.updatedate}"/>
+										</c:when>
+										<c:otherwise>
+											${updateTime}
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td></td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+			</c:forEach>
 			<tr>
 				<th colspan="5">
 					<c:if test="${pm.first}">
@@ -63,7 +125,15 @@
 					</c:if>
 				</th>
 			</tr>
-		</c:if>
+			
+			
+			</c:when>
+			<c:otherwise>
+				<tr>
+					<td colspan="5">등록된 게시물이 없습니다.</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
 	</table>
 </body>
 </html>

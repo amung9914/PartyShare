@@ -4,14 +4,15 @@ import java.util.List;
 
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
+import com.bitc.common.utils.SearchCriteria;
 import com.bitc.partyBoard.vo.PartyBoardVO;
 
 public interface PartyBoardService{
 	
 	/**
-	 *  게시글 작성 - 성공 유무에 따라 메세지 전달
+	 *  게시글 작성 
 	 */
-	String regist(PartyBoardVO board)throws Exception;
+	void regist(PartyBoardVO board)throws Exception;
 	
 	/**
 	 *  조회수 증가
@@ -41,12 +42,17 @@ public interface PartyBoardService{
 	/**
 	 *  페이징 처리된 리스트 목록
 	 */
-	List<PartyBoardVO> listCriteria(Criteria cri)throws Exception;
+	List<PartyBoardVO> listCriteria(int pnum,SearchCriteria cri)throws Exception;
 	
 	/**
 	 *  페이징 정보 처리
 	 */
 	PageMaker getPageMaker(Criteria cri)throws Exception;
+
+	/**
+	 * 답글 추가 처리
+	 */
+	void registReply(PartyBoardVO board) throws Exception ;
 
 	
 }

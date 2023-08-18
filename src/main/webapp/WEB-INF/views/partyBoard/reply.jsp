@@ -14,28 +14,22 @@
     border: 1px solid white;
     border-bottom: 1px solid black;
 }
-#categorySelect{
-	display: none;
-}
+
 </style>
 </head>
 <body>
-	<form action="register" method="POST" id="registerForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
+	<form action="reply" method="POST" id="registerForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
 		<input type="hidden" name="mnum" value="${loginMember.mnum}"/>
 		<input type="hidden" name="writer" value="${loginMember.mnick}" />
-		<input type="hidden" name="pnum" value="${pnum}"/>
+		<input type="hidden" name="pnum" value="${board.pnum}"/>
+		<input type="hidden" name="bno" value="${board.bno}"/>
+		<input type="hidden" name="category" value="reply"/>
+		<!-- 답글에 필요한 속성 추가 -->
+		<input type="hidden" name="origin" value="${board.origin}"/>
+		<input type="hidden" name="depth" value="${board.depth+1}"/>
+		<input type="hidden" name="seq" value="${board.seq+1}"/>
 		
 		<table>
-		<tr>
-			<td>
-				<input type="button" id="selectBtn" value="말머리 선택"/>
-				<select name="category" id="categorySelect" >
-		    		<option value="notice">공지사항</option>
-		    		<option value="normal">일반</option>
-	  			</select>
-	  		</td>
-		</tr>
-		
 		<tr>
 			<td>제목</td>
 			<td>
@@ -109,14 +103,7 @@
       	});
   </script>		
 <script>
-$("#selectBtn").on("click",function(){
-	$("#categorySelect").toggle();
-	$("#selectBtn").toggle();
-})
-$("#categorySelect").on("change",function(){
-	$("#categorySelect").toggle();
-	$("#selectBtn").toggle();
-})
+
 
 $("#saveBtn").click(function(){
 			let content = tinymce.activeEditor.getContent();
@@ -125,7 +112,7 @@ $("#saveBtn").click(function(){
 			
 		});
 function goBack(){
-	location.href="<c:url value='/partyBoard/listPage?pnum=${pnum}'/>";
+	location.href="<c:url value='/partyBoard/read?pnum=${board.pnum}&bno=${board.bno}'/>";
 }
 </script>
 </body>

@@ -3,9 +3,11 @@ package com.bitc.partyBoard.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
+import com.bitc.common.utils.SearchCriteria;
 import com.bitc.partyBoard.dao.PartyBoardDAO;
 import com.bitc.partyBoard.vo.PartyBoardVO;
 
@@ -17,11 +19,17 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 
 	private final PartyBoardDAO dao;
 	
+	// 내부적으로 사용할 수 있도록 메소드추가
+		private String getResult(int result) {
+			return result == 1?"SUCCESS":"FAILED";
+		}
+	
+	@Transactional
 	@Override
-	public String regist(PartyBoardVO board) throws Exception {
-		int result = dao.create(board);
-		String message = (result !=0) ? "SUCCESS" : "FAILED";
-		return message;
+	public void regist(PartyBoardVO board) throws Exception {
+		dao.register(board);
+		// origin column 값을 등록된 게시글 번호로 수정
+		dao.updateOrigin();
 	}
 
 	@Override
@@ -41,22 +49,19 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 
 	@Override
 	public String modify(PartyBoardVO board) throws Exception {
-		int result = dao.update(board);
-		
-		return (result != 0)?"SUCCESS":"FAILED";
+		return getResult(dao.update(board));
 	}
 
 	@Override
 	public String remove(int bno) throws Exception {
-		
-		return dao.delete(bno) == 1 ? "SUCCESS":"FAILED";
+		return getResult(dao.delete(bno));
 	}
 
 	@Override
-	public List<PartyBoardVO> listCriteria(Criteria cri) throws Exception {
+	public List<PartyBoardVO> listCriteria(int pnum,SearchCriteria cri) throws Exception {
 		// database에서 criteria 정보를 이용하여
 		// 사용자가 요청한 페이지에 따라 게시글 목록 검색하여 전달
-		return dao.listCriteria(cri);
+		return dao.listCriteria(pnum,cri);
 	}
 
 	@Override
@@ -65,6 +70,12 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 		// PageMaker 객체 반환
 		int totalCount = dao.totalCount();
 		return new PageMaker(cri,totalCount);
+	}
+	
+	@Transactional
+	@Override
+	public void registReply(PartyBoardVO board)throws Exception  {
+		dao.registReply(board);
 	}
 
 }

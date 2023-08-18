@@ -20,7 +20,7 @@ public class PageMaker {
 	private boolean prev;		// 이전페이지 블럭 존재 여부
 	private boolean next;		// 마지막페이지 블럭 존재 여부
 	
-	private Criteria cri;		// 요청 페이지 , 한번에 보여줄 게시물 수
+	protected Criteria cri;		// 요청 페이지 , 한번에 보여줄 게시물 수
 	
 	public PageMaker() {
 		this(new Criteria(),0);

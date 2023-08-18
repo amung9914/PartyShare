@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,28 +9,38 @@
 <title>read.jsp</title>
 </head>
 <body>
-	
+		<table border="1">
+		<tr>
+			<td>제목</td>
+			<td>${board.title}</td>
+		</tr>
+		<tr>
+			<td>작성자</td>
+			<td>${board.writer}</td>
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td>${board.content}</td>
+		</tr>
+		<tr>
+			<td>작성시간</td>
+			<td>
+				<f:formatDate value="${board.regdate}" pattern="yyyy-MM-dd HH:mm"/>
+			</td>
+		</tr>
+		</table>
 		<div>
-			<label>제목</label>
-			<input type="text" name="title" value="${PartyBoardVO.title}" readonly/>
-		</div>
-		<div>
-			<label>내용</label>
-			<textarea name="content" readonly rows=3>${PartyBoardVO.context}</textarea>
-		</div>
-		<div>
-			<label>작성자</label>
-			<input type="text" name="writer" value="${PartyBoardVO.mnick}" readonly/>
-		</div>
-		<div>
-			<a href="" id="modify">수정</a> |
-			<a href="" id="remove">삭제</a> |
-			<a href="" id="list">목록</a>
+			<c:if test="${!empty loginMember}">
+				<input type="button" id="replyBtn" value="답글작성"/>
+				<c:if test="${loginMember.mnum eq board.mnum}">
+					<input type="button" id="modify" value="수정"/>
+					<input type="button" id="remove" value="삭제"/>
+				</c:if>
+			</c:if>
+			<input type="button" id="list" value="목록"/>
 		</div>
 		<form id="submitForm" method="POST">
-			<input type="hidden" name="bno"  value="${PartyBoardVO.bno}"/>
-			<input type="hidden" name="page"  value="${cri.page}"/>
-			<input type="hidden" name="perPageNum"  value="${cri.perPageNum}"/>
+			<input type="hidden" name="bno"  value="${board.bno}"/>
 		</form>
 	<script>
 		var result = '${result}';
@@ -45,15 +57,17 @@
 			
 			$("#list").click(function(e){
 				e.preventDefault();
-				location.href="listPage?pnum=${PartyBoardVO.pnum}&page=${cri.page}";
+				location.href="listPage?pnum=${board.pnum}";
 			});
+			
+			//답글 작성
+			$("#replyBtn").click(function(e){
+				location.href="reply?pnum=${board.pnum}&bno=${board.bno}";
+			})
 			
 			// 수정 페이지 요청 
 			$("#modify").click(function(e){
-				e.preventDefault();
-				formObj.attr("action","modify?pnum=${PartyBoardVO.pnum}");
-				formObj.attr("method","get");
-				formObj.submit();
+				location.href="modify?pnum=${board.pnum}&bno=${board.bno}";
 			});
 			
 			// 게시글 삭제요청
@@ -61,10 +75,12 @@
 				e.preventDefault();
 				let conf = confirm("복구 할 수 없습니다. 삭제하시겠습니까?");
 				if(conf){
-					formObj.attr("action","remove?pnum=${PartyBoardVO.pnum}");
+					formObj.attr("action","remove?pnum=${board.pnum}");
 					formObj.submit();
 				}
 			});
+			
+			
 		});
 	</script>
 </body>

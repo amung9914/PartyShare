@@ -1,58 +1,24 @@
-select * from map;
-
-select * from partyBoard;
-
-DROP TABLE friend;
-
-CREATE TABLE friend  -- --친구 추가 --  
-(
-	no	INT primary key auto_increment,
-    fFrom int NOT NULL,   
-    fTo int NOT NULL,
-    YN CHAR(1) default 'N',
-    requestTime TIMESTAMP default NOW(), 
-    FOREIGN KEY (fFrom) REFERENCES member(mnum) ON UPDATE CASCADE,
-    FOREIGN KEY (fTo) REFERENCES member(mnum) ON UPDATE CASCADE
-);
+-- 파티 게시판 수정
+drop table partyboard;
 
 
-delete from friend;
-
-desc friend;
-
-INSERT INTO partyBoard(category,pnum,title,context,mnick,date) 
-SELECT category,pnum,title,context,mnick,date FROM partyBoard;
-
-ALTER TABLE partyBoard
-CHANGE COLUMN viewcnt viewcnt INT default 0;	
-
-desc partyboard;
-
--- member 테이블 party 테이블 이미지 컬럼 수정
-alter table member drop column profileImage;
-alter table member modify column profileImageName varchar(256);
-alter table party modify column partyImage1 varchar(256);
-alter table party modify column partyImage2 varchar(256);
-alter table party modify column partyImage3 varchar(256);
-
-delete from party where pnum = 3;
-
-select * from member;
-desc joinmember;
-
-select * from joinmember 
-
-delete from joinmember where pnum = 3; 
-
--- 친구 테이블 수정
-DROP TABLE friend;
-CREATE TABLE friend  -- --친구 추가 --  
-(
-	no	INT primary key auto_increment,
-    fFrom int NOT NULL,   
-    fTo int NOT NULL,
-    YN CHAR(1) default 'N',
-    requestTime TIMESTAMP default NOW(), 
-    FOREIGN KEY (fFrom) REFERENCES member(mnum) ON UPDATE CASCADE,
-    FOREIGN KEY (fTo) REFERENCES member(mnum) ON UPDATE CASCADE
+CREATE TABLE partyboard(
+	bno INT PRIMARY KEY auto_increment, 	-- 게시글 번호
+    pnum INT NOT NULL, 						-- 파티 번호
+	title VARCHAR(200) NOT NULL,			-- 제목
+	content LONGTEXT NOT NULL,				-- 내용
+	writer VARCHAR(50) NOT NULL,			-- 작성자 이름
+    category VARCHAR(20) NOT NULL,			-- 카테고리
+	origin INT NULL DEFAULT 0,				-- 원본글 그룹 번호
+	depth INT NULL DEFAULT 0,				-- view 깊이 번호
+	seq INT NULL DEFAULT 0,					-- 답변글 정렬 순서
+	regdate TIMESTAMP NULL DEFAULT NOW(), 	-- 게시글 등록 시간
+	updatedate TIMESTAMP NULL DEFAULT now(),-- 게시글 수정 시간
+	viewcnt INT NULL DEFAULT 0,				-- 조회수
+	showboard VARCHAR(10) NULL DEFAULT 'y',	-- 게시글 삭제요청 여부
+	mnum INT NOT NULL,						-- 게시글 작성자 회원번호
+	CONSTRAINT fk_partyboard_mnum
+	FOREIGN KEY(mnum) REFERENCES member(mnum),
+    CONSTRAINT fk_partyboard_pnum
+	FOREIGN KEY(pnum) REFERENCES party(pnum)
 );
