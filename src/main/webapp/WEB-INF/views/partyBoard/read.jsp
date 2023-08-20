@@ -7,6 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>read.jsp</title>
+<style>
+	#comments li{
+		list-style:none;
+		padding:10px;
+		border:1px solid #ccc;
+		height:150px;
+		margin: 5px 0;}
+	#modDiv{
+		border:1px solid black;
+		padding:10px;
+		display:none;/* 처음에는 안보이게 */
+	}
+</style>
 </head>
 <body>
 		<table border="1">
@@ -31,6 +44,8 @@
 		</table>
 		<div>
 			<c:if test="${!empty loginMember}">
+				
+				<br/>
 				<input type="button" id="replyBtn" value="답글작성"/>
 				<c:if test="${loginMember.mnum eq board.mnum}">
 					<input type="button" id="modify" value="수정"/>
@@ -38,6 +53,12 @@
 				</c:if>
 			</c:if>
 			<input type="button" id="list" value="목록"/>
+		</div>
+		<br/>
+		<div>
+			<c:if test="${!empty loginMember}">
+				  <%@ include file="comment.jsp" %>  
+			</c:if>
 		</div>
 		<form id="submitForm" method="POST">
 			<input type="hidden" name="bno"  value="${board.bno}"/>

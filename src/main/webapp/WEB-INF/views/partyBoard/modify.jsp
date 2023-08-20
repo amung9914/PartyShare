@@ -36,7 +36,7 @@
 		</tr>
 		<tr>
 		 	<td>CONTENT</td>
-			<td><textarea name="content" id="content" value=`${board.content}`></textarea>
+			<td><textarea name="content" id="content">${board.content}</textarea>
 			</td> 
 		</tr>		
 		<tr>
@@ -46,6 +46,7 @@
 			</th>
 			</table>	
 		</form>
+
 <script src="https://cdn.tiny.cloud/1/ogpnruhgbsh51awvrblkrooy38miyp3g61qzu5jw81jnacn6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>		
 <script>
 	let plugins = ["link","image"];

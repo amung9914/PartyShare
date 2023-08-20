@@ -22,3 +22,50 @@ CREATE TABLE partyboard(
     CONSTRAINT fk_partyboard_pnum
 	FOREIGN KEY(pnum) REFERENCES party(pnum)
 );
+
+-- 파티 게시판 댓글 테이블 생성
+
+CREATE TABLE partyboard_comment(
+	cno INT PRIMARY KEY AUTO_INCREMENT,			-- 댓글 번호
+	bno INT NOT NULL,							-- 댓글 작성 게시글 번호
+	pnum INT NOT NULL,							-- 파티 번호
+	commentText TEXT NOT NULL,					-- 댓글 내용
+	mnick VARCHAR(20) NOT NULL,					-- 작성자 닉네임
+	mid VARCHAR(20) NOT NULL,					-- 작성자 아이디
+	regdate TIMESTAMP NOT NULL DEFAULT now(),	-- 작성시간
+	updatedate TIMESTAMP NOT NULL DEFAULT now(),-- 수정시간
+	CONSTRAINT fk_partyboard_comment_bno FOREIGN KEY(bno) -- 참조무결성 추가
+	REFERENCES partyboard(bno) ON DELETE CASCADE,
+	CONSTRAINT fk_partyboard_comment_pnum		
+	FOREIGN KEY(pnum) REFERENCES party(pnum)ON DELETE CASCADE,
+	CONSTRAINT fk_partyboard_comment_mnick		
+	FOREIGN KEY(mnick) REFERENCES member(mnick)ON DELETE CASCADE,
+	CONSTRAINT fk_partyboard_comment_mid		
+	FOREIGN KEY(mid) REFERENCES member(mid)ON DELETE CASCADE,
+	INDEX(bno)									-- 인덱스 추가
+);
+
+-- 댓글 정보 가지고 올때 -> bno 검색하니까 index 설정하면 속도향상 가능
+SELECT * FROM tbl_comment WHERE bno = 1;
+
+SHOW INDEXES FROM tbl_comment;
+
+-- 외래키 정보 확인
+SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS
+WHERE table_name = 'tbl_comment';
+
+-- 댓글 삽입
+INSERT INTO tbl_comment(bno,commentText,commentAuth)
+VALUES(1, '1번 게시글의 댓글','최기근');
+
+SELECT * FROM tbl_comment WHERE bno = 2;
+SELECT * FROM tbl_board WHERE bno = 2;
+
+INSERT INTO partyboard_comment(pnum,bno,commentText,mnick,mid)
+(SELECT pnum,bno,commentText,mnick,mid FROM partyboard_comment);
+
+
+-- 댓글 볼 때
+SELECT * FROM tbl_comment
+WHERE bno = 1 ORDER BY cno DESC
+limit 0, 10;
