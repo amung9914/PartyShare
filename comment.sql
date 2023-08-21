@@ -66,6 +66,6 @@ INSERT INTO partyboard_comment(pnum,bno,commentText,mnick,mid)
 
 
 -- 댓글 볼 때
-SELECT * FROM tbl_comment
+SELECT * FROM partyboard_comment;
 WHERE bno = 1 ORDER BY cno DESC
 limit 0, 10;

@@ -2,6 +2,7 @@ package com.bitc.partyBoard.service;
 
 import java.util.List;
 
+import com.bitc.common.utils.PageMaker;
 import com.bitc.partyBoard.vo.PartyCommentDTO;
 import com.bitc.partyBoard.vo.PartyCommentVO;
 
@@ -16,7 +17,7 @@ public interface PartyCommentService {
 	/**
 	 * 댓글 삽입
 	 */
-	PartyCommentVO insert(PartyCommentVO vo) throws Exception;
+	String insert(PartyCommentVO vo) throws Exception;
 	
 	/**
 	 * 댓글 수정
@@ -27,5 +28,10 @@ public interface PartyCommentService {
 	 * 댓글 삭제
 	 */
 	String delete(PartyCommentVO vo) throws Exception;
+
+	/**
+	 *  페이징 블럭 정보
+	 */
+	PageMaker getPageMaker(PartyCommentDTO dto) throws Exception;
 	
 }

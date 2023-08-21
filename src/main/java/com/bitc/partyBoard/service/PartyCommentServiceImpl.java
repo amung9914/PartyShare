@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bitc.common.utils.Criteria;
+import com.bitc.common.utils.PageMaker;
 import com.bitc.partyBoard.dao.PartyCommentDAO;
 import com.bitc.partyBoard.vo.PartyCommentDTO;
 import com.bitc.partyBoard.vo.PartyCommentVO;
@@ -30,9 +32,9 @@ public class PartyCommentServiceImpl implements PartyCommentService {
 	
 	@Transactional
 	@Override
-	public PartyCommentVO insert(PartyCommentVO vo) throws Exception {
-		dao.insert(vo);
-		return dao.read();
+	public String insert(PartyCommentVO vo) throws Exception {
+		
+		return getResult(dao.insert(vo)); 
 	}
 
 	@Override
@@ -43,6 +45,16 @@ public class PartyCommentServiceImpl implements PartyCommentService {
 	@Override
 	public String delete(PartyCommentVO vo) throws Exception {
 		return getResult(dao.delete(vo));
+	}
+
+	@Override
+	public PageMaker getPageMaker(PartyCommentDTO dto) throws Exception {
+		int totalCount = dao.totalCount(dto.getBno(),dto.getPnum());
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(dto.getCri());
+		pageMaker.setDisplayPageNum(5);
+		pageMaker.setTotalCount(totalCount);
+		return pageMaker;
 	}
 	
 

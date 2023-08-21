@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -53,6 +54,14 @@ public interface PartyCommentDAO {
 	@Delete("DELETE FROM partyboard_comment WHERE cno = #{cno} "
 			+ "AND pnum = #{pnum} AND bno = #{bno}")
 	int delete(PartyCommentVO vo) throws Exception;
+	
+	/**
+	 * @param bno 검색할 게시글 번호, pnum 파티번호
+	 * @return 해당 게시글에 작성된 댓글 개수
+	 */
+	@Select("SELECT count(*) FROM partyboard_comment "
+			+ "WHERE bno = #{bno} AND pnum = #{pnum}")
+	int totalCount(@Param("bno")int bno,@Param("pnum") int pnum) throws Exception;
 	
 	
 	
