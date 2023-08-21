@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>listPage.jsp</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<button onclick="location.href='register?pnum=${pnum}';">글쓰기</button>
@@ -36,13 +37,14 @@
 		</form>
 	<br/>
 	
-	<table border=1>
+	<table id="boardList" border=1>
 		<tr>
 			<th>글번호</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>날짜</th>
 			<th>조회수</th>
+			<th>신고</th>
 		</tr>
 		<c:choose>
 			<c:when test="${!empty list}">
@@ -63,7 +65,7 @@
 									<c:if test="${board.category eq 'reply'}">
 									ㄴ
 									</c:if>
-									<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}">${board.title}</a>
+									<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}">${board.title}</a>
 								</td>
 								<td>${board.writer}</td>
 								
@@ -80,6 +82,7 @@
 									</c:choose>
 								</td>
 								<td>${board.viewCnt}</td>
+								<td><button class="reportBtn" data-bno="${board.bno}">신고하기</button></td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -135,6 +138,19 @@
 			</c:otherwise>
 		</c:choose>
 	</table>
+	<script>
+	
+	
+	$("#boardList").on("click",".reportBtn",function(){
+		const bno = $(this).attr("data-bno");
+		report();
+		function report(){
+			window.open("report?pnum="+${pnum}+"&bno="+bno,"Pop","width=500,height=600");
+		}
+	})
+	
+	
+	</script>
 </body>
 </html>
 

@@ -9,7 +9,8 @@ public class PartyBoardVO {
 	private int bno;
 	private String title;
 	private String content;
-	private String writer;
+	private String writer; // == mnick
+	private String mid;
 	private String category;
 	private int origin;
 	private int depth;

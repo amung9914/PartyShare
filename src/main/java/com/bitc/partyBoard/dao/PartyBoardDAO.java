@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import com.bitc.common.utils.SearchCriteria;
 import com.bitc.partyBoard.provider.PartyBoardQueryProvider;
 import com.bitc.partyBoard.vo.PartyBoardVO;
+import com.bitc.partyBoard.vo.PartyReportVO;
 
 
 public interface PartyBoardDAO{
@@ -26,31 +27,30 @@ public interface PartyBoardDAO{
 	void updateOrigin() throws Exception;
 	
 	// 게시글 상세보기
-	@Select("SELECT * FROM partyBoard WHERE bno = #{bno}")
-	PartyBoardVO read(int bno)throws Exception;
+	@Select("SELECT M.mid, p.* FROM partyBoard P, member M "
+			+ "WHERE P.writer = M.mnick AND bno = #{bno} AND pnum = #{pnum}")
+	PartyBoardVO read(PartyBoardVO vo)throws Exception;
 	
 	// 게시글 수정
 	@Update("UPDATE partyBoard SET title = #{title} , "
 			+ "content = #{content} , category = #{category} "
-			+ " WHERE bno = #{bno}")
+			+ " WHERE bno = #{bno} AND pnum = #{pnum}")
 	int update(PartyBoardVO vo) throws Exception;
 	
 	// 게시글 삭제
-	@Delete("DELETE FROM partyBoard WHERE bno = #{bno}")
-	int delete(int bno) throws Exception;
+	@Delete("DELETE FROM partyBoard WHERE bno = #{bno} AND pnum = #{pnum}")
+	int delete(@Param("pnum")int pnum, @Param("bno")int bno) throws Exception;
 	
 	// 조회수 증가
 	@Update("UPDATE partyBoard SET viewCnt = viewCnt + 1 "
-			+ " WHERE bno = #{bno}")
-	void updateCnt(int bno) throws Exception;
+			+ " WHERE bno = #{bno} AND pnum = #{pnum}")
+	void updateCnt(@Param("bno")int bno, @Param("pnum")int pnum) throws Exception;
 	
-	// 전체 게시글 목록
-	@Select("SELECT * FROM partyBoard ORDER BY bno DESC")
-	List<PartyBoardVO> listAll()throws Exception;
+	
 
 	// 전체 게시물 개수
-	@Select("SELECT count(*) FROM partyBoard")
-	int totalCount() throws Exception;
+	@Select("SELECT count(*) FROM partyBoard WHERE pnum = #{pnum}")
+	int totalCount(int pnum) throws Exception;
 	
 	//검색 기능을 가진 게시글 목록
 	@SelectProvider(type=PartyBoardQueryProvider.class, method="searchSelectSql")
@@ -60,6 +60,13 @@ public interface PartyBoardDAO{
 	@Insert("INSERT INTO partyBoard (category,pnum,title,content,writer,mnum,origin,depth,seq) "
 			+ "VALUES(#{category},#{pnum},#{title},#{content},#{writer},#{mnum},#{origin},#{depth},#{seq})")
 	int registReply(PartyBoardVO board);
+
+	/**
+	 * 게시글 신고 
+	 */
+	@Insert("INSERT INTO partyboard_report (fromMid,toMid,category,context,pnum,bno) "
+			+ "VALUES(#{fromMid},#{toMid},#{category},#{context},#{pnum},#{bno})")
+	int report(PartyReportVO vo);
 	
 	
 }

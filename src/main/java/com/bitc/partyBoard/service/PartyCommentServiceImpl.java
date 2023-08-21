@@ -10,6 +10,7 @@ import com.bitc.common.utils.PageMaker;
 import com.bitc.partyBoard.dao.PartyCommentDAO;
 import com.bitc.partyBoard.vo.PartyCommentDTO;
 import com.bitc.partyBoard.vo.PartyCommentVO;
+import com.bitc.partyBoard.vo.PartyReportVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -55,6 +56,16 @@ public class PartyCommentServiceImpl implements PartyCommentService {
 		pageMaker.setDisplayPageNum(5);
 		pageMaker.setTotalCount(totalCount);
 		return pageMaker;
+	}
+
+	@Override
+	public PartyCommentVO read(PartyCommentVO vo) throws Exception {
+		return dao.read(vo);
+	}
+
+	@Override
+	public String report(PartyReportVO vo) {
+		return getResult(dao.report(vo));
 	}
 	
 

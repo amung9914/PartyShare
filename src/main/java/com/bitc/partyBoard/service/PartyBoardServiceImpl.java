@@ -10,6 +10,7 @@ import com.bitc.common.utils.PageMaker;
 import com.bitc.common.utils.SearchCriteria;
 import com.bitc.partyBoard.dao.PartyBoardDAO;
 import com.bitc.partyBoard.vo.PartyBoardVO;
+import com.bitc.partyBoard.vo.PartyReportVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,19 +34,15 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 	}
 
 	@Override
-	public void updateCnt(int bno) throws Exception {
-		dao.updateCnt(bno);
+	public void updateCnt(int bno,int pnum) throws Exception {
+		dao.updateCnt(bno,pnum);
 	}
 
 	@Override
-	public PartyBoardVO read(int bno) throws Exception {
-		return dao.read(bno);
+	public PartyBoardVO read(PartyBoardVO board) throws Exception {
+		return dao.read(board);
 	}
 
-	@Override
-	public List<PartyBoardVO> listAll() throws Exception {
-		return null;
-	}
 
 	@Override
 	public String modify(PartyBoardVO board) throws Exception {
@@ -53,8 +50,8 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 	}
 
 	@Override
-	public String remove(int bno) throws Exception {
-		return getResult(dao.delete(bno));
+	public String remove(int pnum,int bno) throws Exception {
+		return getResult(dao.delete(pnum,bno));
 	}
 
 	@Override
@@ -65,17 +62,21 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 	}
 
 	@Override
-	public PageMaker getPageMaker(Criteria cri) throws Exception {
+	public PageMaker getPageMaker(int pnum, Criteria cri) throws Exception {
 		// criteria 요청한 페이지 정보에 따라 페이징 블럭 정보를 저장하는
 		// PageMaker 객체 반환
-		int totalCount = dao.totalCount();
+		int totalCount = dao.totalCount(pnum);
 		return new PageMaker(cri,totalCount);
 	}
 	
-	@Transactional
 	@Override
 	public void registReply(PartyBoardVO board)throws Exception  {
 		dao.registReply(board);
+	}
+
+	@Override
+	public String report(PartyReportVO vo) throws Exception {
+		return getResult(dao.report(vo));
 	}
 
 }

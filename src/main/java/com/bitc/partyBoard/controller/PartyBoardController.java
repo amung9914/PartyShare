@@ -1,20 +1,18 @@
 package com.bitc.partyBoard.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitc.common.utils.Criteria;
-import com.bitc.common.utils.PageMaker;
 import com.bitc.common.utils.SearchCriteria;
 import com.bitc.partyBoard.service.PartyBoardService;
+import com.bitc.partyBoard.service.PartyCommentService;
 import com.bitc.partyBoard.vo.PartyBoardVO;
+import com.bitc.partyBoard.vo.PartyReportVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -51,17 +49,18 @@ public class PartyBoardController {
 	 */
 	@GetMapping("readPage")
 	public String readPage(
-			int bno, RedirectAttributes rttr) throws Exception {
+			int bno, int pnum, RedirectAttributes rttr) throws Exception {
 		// 조회수 증가
-		bs.updateCnt(bno);
+		bs.updateCnt(bno,pnum);
 		rttr.addAttribute("bno",bno);
+		rttr.addAttribute("pnum",pnum);
 		return "redirect:/partyBoard/read";
 	}
 	
 	// 상세보기 요청 게시글 정보
 	@GetMapping("read")
-	public String read(int bno, Model model) throws Exception{
-		model.addAttribute("board",bs.read(bno));
+	public String read(PartyBoardVO board, Model model) throws Exception{
+		model.addAttribute("board",bs.read(board));
 		return "partyBoard/read";
 	}
 	
@@ -71,8 +70,8 @@ public class PartyBoardController {
 	 */
 	@GetMapping("modify")
 	public void modifyGet(
-			int bno, Model model)throws Exception{
-		PartyBoardVO vo = bs.read(bno);
+			PartyBoardVO board, Model model)throws Exception{
+		PartyBoardVO vo = bs.read(board);
 		model.addAttribute("board",vo);
 	}
 
@@ -87,6 +86,7 @@ public class PartyBoardController {
 		String result = bs.modify(vo);
 		rttr.addFlashAttribute("result",result);
 		rttr.addAttribute("bno",vo.getBno()); // get방식으로 파라미터값 삽입.
+		rttr.addAttribute("pnum",vo.getPnum()); // get방식으로 파라미터값 삽입.
 		return "redirect:/partyBoard/read";//?bno="+vo.getBno();
 	}
 	/**
@@ -95,7 +95,7 @@ public class PartyBoardController {
 	 // @PostMapping("board/remove")
 	@PostMapping("remove")
 	public String remove(int pnum,int bno, Criteria cri, RedirectAttributes rttr)throws Exception{
-		String result = bs.remove(bno);
+		String result = bs.remove(pnum,bno);
 		rttr.addFlashAttribute("result",result);
 		rttr.addAttribute("page",cri.getPage());
 		rttr.addAttribute("perPageNum",cri.getPerPageNum());
@@ -111,14 +111,14 @@ public class PartyBoardController {
 	public String listPage(int pnum, SearchCriteria cri, Model model) throws Exception {
 		// 게시글 목록
 		model.addAttribute("list",bs.listCriteria(pnum,cri));
-		model.addAttribute("pm",bs.getPageMaker(cri));
+		model.addAttribute("pm",bs.getPageMaker(pnum,cri));
 		model.addAttribute("pnum",pnum);
 		return "partyBoard/listPage";
 	}
 	
 	@GetMapping("reply")
 	public String reply(int pnum,PartyBoardVO vo,Model model) throws Exception{
-		model.addAttribute("board",bs.read(vo.getBno())); 
+		model.addAttribute("board",bs.read(vo)); 
 		return "partyBoard/reply";
 	}
 	

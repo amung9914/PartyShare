@@ -56,9 +56,7 @@
 		</div>
 		<br/>
 		<div>
-			<c:if test="${!empty loginMember}">
-				  <%@ include file="comment.jsp" %>  
-			</c:if>
+			  <%@ include file="comment.jsp" %>  
 		</div>
 		<form id="submitForm" method="POST">
 			<input type="hidden" name="bno"  value="${board.bno}"/>

@@ -1,7 +1,6 @@
 -- 파티 게시판 수정
 drop table partyboard;
 
-
 CREATE TABLE partyboard(
 	bno INT PRIMARY KEY auto_increment, 	-- 게시글 번호
     pnum INT NOT NULL, 						-- 파티 번호
@@ -69,3 +68,34 @@ INSERT INTO partyboard_comment(pnum,bno,commentText,mnick,mid)
 SELECT * FROM partyboard_comment;
 WHERE bno = 1 ORDER BY cno DESC
 limit 0, 10;
+
+desc notice;
+select * from notice;
+INSERT INTO notice (context) VALUES('test중입니다');
+
+select * from partyboard_report;
+
+-- 파티게시판 신고내역테이블 신규 생성
+CREATE TABLE partyboard_report  
+(
+    no    		INT primary key auto_increment,  
+    fromMid     VARCHAR(20)  NOT NULL,  
+    toMid 		VARCHAR(20)  NOT NULL,
+    date  		 TIMESTAMP default now(),
+    category   VARCHAR(20) NOT NULL,   -- 신고 카테고리 
+    context    TEXT  NOT NULL,   -- 신고 내용 
+    readed char(1) default 'N',
+    pnum INT, -- 파티번호
+    bno INT, -- 게시글 번호
+    cno INT, -- 댓글 번호
+	FOREIGN KEY (pnum) REFERENCES party(pnum)ON DELETE CASCADE,
+	FOREIGN KEY (bno) REFERENCES partyboard(bno)ON DELETE CASCADE,
+	FOREIGN KEY (cno) REFERENCES partyboard_comment(cno)ON DELETE CASCADE,
+	FOREIGN KEY (fromMid) REFERENCES member(mId) ON UPDATE CASCADE,
+    FOREIGN KEY (toMid) REFERENCES member(mId) ON UPDATE CASCADE
+);
+
+alter table partyboard_comment add column reported char(1) default 'N';
+alter table partyboard add column reported char(1) default 'N'; 
+
+SELECT M.mid, p.* FROM partyBoard P, member M WHERE P.writer = M.mnick AND bno = 9 AND pnum = 1;

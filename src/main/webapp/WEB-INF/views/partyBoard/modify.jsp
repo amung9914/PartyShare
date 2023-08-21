@@ -16,7 +16,7 @@
 		<input type="hidden" name="mnum" value="${board.mnum}"/>
 		<input type="hidden" name="bno" value="${board.bno}"/>
 		<input type="hidden" name="writer" value="${board.writer}" />
-		<input type="text" name="pnum" value="${board.pnum}"/>
+		<input type="hidden" name="pnum" value="${board.pnum}"/>
 		
 		<table>
 		<tr>

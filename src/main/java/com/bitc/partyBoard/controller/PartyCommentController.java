@@ -8,9 +8,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +32,9 @@ public class PartyCommentController {
 
 	private final PartyCommentService ps;
 	
-	// 페이징 처리된 게시글 목록
+	/**
+	 *  페이징 처리된 게시글 목록
+	 */
 	@GetMapping("/{pnum}/{bno}/{page}")
 	public Map<String,Object> list(
 			// data == Map
@@ -51,7 +56,9 @@ public class PartyCommentController {
 		return map;
 	}
 	
-	
+	/**
+	 *  댓글 추가 처리
+	 */
 	@PostMapping("") // comments 
 	public ResponseEntity<String> addComment(PartyCommentVO vo) {
 		ResponseEntity<String> entity = null;
@@ -67,5 +74,29 @@ public class PartyCommentController {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return entity;
+	}
+	
+	/**
+	 *  댓글 수정 처리
+	 */
+	@PatchMapping("/{cno}")
+	public String update (
+			@PathVariable(name="cno") int cno,
+			@RequestBody PartyCommentVO vo
+			) throws Exception{
+		String result = ps.update(vo);
+		return result;
+	}
+	
+	/**
+	 * 댓글 삭제 처리
+	 */
+	@DeleteMapping("/{cno}")
+	public String delete (
+			@PathVariable(name="cno") int cno,
+			@RequestBody PartyCommentVO vo
+			) throws Exception{
+		String result = ps.delete(vo);
+		return result;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.bitc.common.utils.PageMaker;
 import com.bitc.partyBoard.vo.PartyCommentDTO;
 import com.bitc.partyBoard.vo.PartyCommentVO;
+import com.bitc.partyBoard.vo.PartyReportVO;
 
 public interface PartyCommentService {
 
@@ -33,5 +34,16 @@ public interface PartyCommentService {
 	 *  페이징 블럭 정보
 	 */
 	PageMaker getPageMaker(PartyCommentDTO dto) throws Exception;
+
+	/**
+	 * 댓글 상세정보 가져오기
+	 */
+	PartyCommentVO read(PartyCommentVO vo) throws Exception;
+	
+	/**
+	 * 댓글 신고하기 
+	 */
+	String report(PartyReportVO vo);
+
 	
 }

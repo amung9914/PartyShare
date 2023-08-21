@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.bitc.partyBoard.vo.PartyCommentDTO;
 import com.bitc.partyBoard.vo.PartyCommentVO;
+import com.bitc.partyBoard.vo.PartyReportVO;
 
 public interface PartyCommentDAO {
 
@@ -30,12 +31,6 @@ public interface PartyCommentDAO {
 	@Insert("INSERT INTO partyboard_comment(pnum,bno,commentText,mnick,mid) "
 			+ "VALUES(#{pnum},#{bno},#{commentText},#{mnick},#{mid})")
 	int insert(PartyCommentVO vo) throws Exception;
-	
-	/**
-	 * 등록한 댓글 가져오기
-	 */
-	@Select("SELECT * FROM partyboard_comment WHERE cno = LAST_INSERT_ID()")
-	PartyCommentVO read() throws Exception;
 	
 	/**
 	 * @param 수정할 댓글 정보
@@ -62,6 +57,21 @@ public interface PartyCommentDAO {
 	@Select("SELECT count(*) FROM partyboard_comment "
 			+ "WHERE bno = #{bno} AND pnum = #{pnum}")
 	int totalCount(@Param("bno")int bno,@Param("pnum") int pnum) throws Exception;
+
+	
+	/**
+	 * 댓글 상세정보 가져오기 
+	 */
+	@Select("SELECT * FROM partyboard_comment WHERE pnum = #{pnum} "
+			+ " AND bno = #{bno} AND cno = #{cno}")
+	PartyCommentVO read(PartyCommentVO vo) throws Exception;
+
+	/**
+	 * 댓글 신고 
+	 */
+	@Insert("INSERT INTO partyboard_report (fromMid,toMid,category,context,pnum,bno,cno) "
+			+ "VALUES(#{fromMid},#{toMid},#{category},#{context},#{pnum},#{bno},#{cno})")
+	int report(PartyReportVO vo);
 	
 	
 	
