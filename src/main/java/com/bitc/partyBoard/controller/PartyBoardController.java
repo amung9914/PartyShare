@@ -10,9 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.SearchCriteria;
 import com.bitc.partyBoard.service.PartyBoardService;
-import com.bitc.partyBoard.service.PartyCommentService;
 import com.bitc.partyBoard.vo.PartyBoardVO;
-import com.bitc.partyBoard.vo.PartyReportVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -110,6 +108,7 @@ public class PartyBoardController {
 	@GetMapping("listPage")
 	public String listPage(int pnum, SearchCriteria cri, Model model) throws Exception {
 		// 게시글 목록
+		model.addAttribute("notice",bs.noticeList(pnum));
 		model.addAttribute("list",bs.listCriteria(pnum,cri));
 		model.addAttribute("pm",bs.getPageMaker(pnum,cri));
 		model.addAttribute("pnum",pnum);

@@ -46,34 +46,22 @@
 			<th>조회수</th>
 			<th>신고</th>
 		</tr>
-		<c:choose>
-			<c:when test="${!empty list}">
-				<c:forEach var="board" items="${list}">
-					<c:choose>
+		<!-- 공지글 출력 -->
+		<c:if test="${!empty notice}">
+			<c:forEach var="board" items="${notice}">
+				<c:choose>
 						<c:when test="${board.showboard == 'y'}">
 							<tr>
 								<td>${board.bno}</td>
 								<td>
-									<c:if test="${board.depth != 0}">
-										<c:forEach begin="1" end="${board.depth}">
-										&nbsp;&nbsp;&nbsp;
-										</c:forEach>
-									</c:if>
-									<c:if test="${board.category eq 'notice'}">
-										[공지]
-									</c:if>
-									<c:if test="${board.category eq 'reply'}">
-									ㄴ
-									</c:if>
-									<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}">${board.title}</a>
+									[공지]<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}">${board.title}</a>
 								</td>
 								<td>${board.writer}</td>
-								
 								<td> <!-- 당일이면 시간표시 / 아니면 날짜표시 -->
 									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
 									<f:formatDate var="reg" pattern="yyyy년MM월dd일" value="${board.regdate}"/>
 									<c:choose>
-										<c:when test="${now eq req}">
+										<c:when test="${now == req}">
 											<f:formatDate pattern="HH:mm:ss" value="${board.regdate}"/>
 										</c:when>
 										<c:otherwise>
@@ -94,7 +82,67 @@
 									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
 									<f:formatDate var="updateTime" pattern="yyyy년MM월dd일" value="${board.updatedate}"/>
 									<c:choose>
-										<c:when test="${now eq updateTime}">
+										<c:when test="${now == updateTime}">
+											<f:formatDate pattern="HH:mm:ss" value="${board.updatedate}"/>
+										</c:when>
+										<c:otherwise>
+											${updateTime}
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td></td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+			</c:forEach>
+		</c:if>
+		<!-- 일반 게시물 -->
+		<c:choose>
+			<c:when test="${!empty list}">
+				<c:forEach var="board" items="${list}">
+					<c:choose>
+						<c:when test="${board.showboard == 'y'}">
+							<tr>
+								<td>${board.bno}</td>
+								<td>
+									<c:if test="${board.depth != 0}">
+										<c:forEach begin="1" end="${board.depth}">
+										&nbsp;&nbsp;&nbsp;
+										</c:forEach>
+									</c:if>
+									<c:if test="${board.category eq 'reply'}">
+									ㄴ
+									</c:if>
+									<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}">${board.title}</a>
+								</td>
+								<td>${board.writer}</td>
+								
+								<td> <!-- 당일이면 시간표시 / 아니면 날짜표시 -->
+									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
+									<f:formatDate var="reg" pattern="yyyy년MM월dd일" value="${board.regdate}"/>
+									<c:choose>
+										<c:when test="${now == reg}">
+											<f:formatDate pattern="HH:mm:ss" value="${board.regdate}"/>
+										</c:when>
+										<c:otherwise>
+											${reg}
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td>${board.viewCnt}</td>
+								<td><button class="reportBtn" data-bno="${board.bno}">신고하기</button></td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td></td>
+								<td>삭제된 게시물 입니다.</td>
+								<td></td>
+								<td> <!-- 삭제 요청 시간 출력 / 당일이면 시간표시 / 아니면 날짜표시 -->
+									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
+									<f:formatDate var="updateTime" pattern="yyyy년MM월dd일" value="${board.updatedate}"/>
+									<c:choose>
+										<c:when test="${now == updateTime}">
 											<f:formatDate pattern="HH:mm:ss" value="${board.updatedate}"/>
 										</c:when>
 										<c:otherwise>

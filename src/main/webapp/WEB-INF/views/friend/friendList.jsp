@@ -20,7 +20,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="findFriend.jsp"/>
+<%@ include file="findFriend.jsp" %>  
 
 <a href="friend/responseList">받은요청</a>
 <a href="friend/requestList">보낸요청</a>

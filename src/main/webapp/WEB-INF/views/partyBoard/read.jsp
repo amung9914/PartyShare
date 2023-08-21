@@ -46,7 +46,9 @@
 			<c:if test="${!empty loginMember}">
 				
 				<br/>
+				<c:if test="${board.category ne 'notice'}">
 				<input type="button" id="replyBtn" value="답글작성"/>
+				</c:if>
 				<c:if test="${loginMember.mnum eq board.mnum}">
 					<input type="button" id="modify" value="수정"/>
 					<input type="button" id="remove" value="삭제"/>

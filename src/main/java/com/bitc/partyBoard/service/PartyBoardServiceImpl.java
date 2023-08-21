@@ -60,6 +60,11 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 		// 사용자가 요청한 페이지에 따라 게시글 목록 검색하여 전달
 		return dao.listCriteria(pnum,cri);
 	}
+	
+	@Override
+	public List<PartyBoardVO> noticeList(int pnum) {
+		return dao.noticeList(pnum);
+	}
 
 	@Override
 	public PageMaker getPageMaker(int pnum, Criteria cri) throws Exception {
@@ -78,5 +83,7 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 	public String report(PartyReportVO vo) throws Exception {
 		return getResult(dao.report(vo));
 	}
+
+	
 
 }

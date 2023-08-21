@@ -42,6 +42,11 @@ public interface PartyBoardService{
 	List<PartyBoardVO> listCriteria(int pnum,SearchCriteria cri)throws Exception;
 	
 	/**
+	 * 공지글 목록 
+	 */
+	List<PartyBoardVO> noticeList(int pnum);
+	
+	/**
 	 *  페이징 정보 처리
 	 */
 	PageMaker getPageMaker(int pnum,Criteria cri)throws Exception;
@@ -55,6 +60,8 @@ public interface PartyBoardService{
 	 * 신고 처리
 	 */
 	String report(PartyReportVO vo) throws Exception;
+
+	
 
 	
 }

@@ -56,6 +56,13 @@ public interface PartyBoardDAO{
 	@SelectProvider(type=PartyBoardQueryProvider.class, method="searchSelectSql")
 	List<PartyBoardVO> listCriteria(@Param("pnum")int pnum,@Param("cri")SearchCriteria cri)throws Exception;
 
+	/**
+	 * 공지 목록 전달 
+	 */
+	@Select("SELECT * FROM partyBoard WHERE category='notice' AND pnum = #{pnum}")
+	List<PartyBoardVO> noticeList(int pnum);
+
+	
 	// 답글 추가
 	@Insert("INSERT INTO partyBoard (category,pnum,title,content,writer,mnum,origin,depth,seq) "
 			+ "VALUES(#{category},#{pnum},#{title},#{content},#{writer},#{mnum},#{origin},#{depth},#{seq})")
@@ -67,7 +74,8 @@ public interface PartyBoardDAO{
 	@Insert("INSERT INTO partyboard_report (fromMid,toMid,category,context,pnum,bno) "
 			+ "VALUES(#{fromMid},#{toMid},#{category},#{context},#{pnum},#{bno})")
 	int report(PartyReportVO vo);
-	
+
+		
 	
 }
 

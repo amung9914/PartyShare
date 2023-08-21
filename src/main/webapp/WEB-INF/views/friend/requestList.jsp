@@ -32,7 +32,7 @@
 				<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
 				<f:formatDate var="req" pattern="yyyy년MM월dd일" value="${list.requestTime}"/>
 				<c:choose>
-					<c:when test="${now eq req}">
+					<c:when test="${now == req}">
 						<f:formatDate pattern="HH:mm:ss" value="${list.requestTime}"/>
 					</c:when>
 					<c:otherwise>

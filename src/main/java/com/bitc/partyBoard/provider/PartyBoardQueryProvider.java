@@ -15,6 +15,7 @@ public class PartyBoardQueryProvider {
 		getSearchWhere(cri,sql);
 
 		sql.AND().WHERE("pnum = #{pnum}");
+		sql.AND().WHERE("category != 'notice'");
 		
 		sql.ORDER_BY("origin DESC, seq ASC");
 		sql.LIMIT(cri.getStartRow()+","+cri.getPerPageNum());
