@@ -59,7 +59,7 @@ public interface PartyBoardDAO{
 	/**
 	 * 공지 목록 전달 
 	 */
-	@Select("SELECT * FROM partyBoard WHERE category='notice' AND pnum = #{pnum}")
+	@Select("SELECT * FROM partyBoard WHERE category='notice' AND pnum = #{pnum} ORDER BY bno DESC ")
 	List<PartyBoardVO> noticeList(int pnum);
 
 	

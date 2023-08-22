@@ -19,7 +19,8 @@ public interface FriendDAO {
 	 */
 	@Select("SELECT * FROM member WHERE mid LIKE CONCAT('%',#{target},'%') ORDER BY mid")
 	List<MemberVO> searchId(String target) throws Exception;
-	
+
+
 	/**
 	 * 닉네임으로 친구를 검색한다.
 	 */
@@ -95,21 +96,21 @@ public interface FriendDAO {
 	/**
 	 * 내가 친구 요청을 보낸 목록을 확인
 	 */
-	@Select("SELECT F.*, M.mid, M.mnick FROM friend F, member M "
+	@Select("SELECT F.*, M.mid, M.mnick, M.profileImageName FROM friend F, member M "
 			+ "	WHERE F.fto = M.mnum AND YN = 'N' AND ffrom = #{ffrom}")
 	List<FriendVO> requestList(int ffrom) throws Exception;
 
 	/**
 	 * 내가 친구 요청 받은 목록을 확인
 	 */
-	@Select("SELECT F.*, M.mid, M.mnick FROM friend F, member M "
+	@Select("SELECT F.*, M.mid, M.mnick, M.profileImageName FROM friend F, member M "
 			+ "	WHERE F.ffrom = M.mnum AND YN = 'N' AND fto = #{fto}")
 	List<FriendVO> responseList(int fto) throws Exception;
 	
 	/**
 	 * 친구목록을 불러온다
 	 */
-	@Select("SELECT F.*, M.mid, M.mnick FROM friend F, member M "
+	@Select("SELECT F.*, M.mid, M.mnick, M.profileImageName FROM friend F, member M "
 			+ "	WHERE F.fto = M.mnum AND YN = 'Y' AND ffrom = #{ffrom}")
 	List<FriendVO> friendList(int ffrom) throws Exception;
 	

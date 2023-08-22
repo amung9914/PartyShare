@@ -22,6 +22,8 @@ CREATE TABLE partyboard(
 	FOREIGN KEY(pnum) REFERENCES party(pnum)
 );
 
+desc partyboard;
+
 -- 파티 게시판 댓글 테이블 생성
 
 CREATE TABLE partyboard_comment(
@@ -99,3 +101,5 @@ alter table partyboard_comment add column reported char(1) default 'N';
 alter table partyboard add column reported char(1) default 'N'; 
 
 SELECT M.mid, p.* FROM partyBoard P, member M WHERE P.writer = M.mnick AND bno = 9 AND pnum = 1;
+
+desc member profileImageName

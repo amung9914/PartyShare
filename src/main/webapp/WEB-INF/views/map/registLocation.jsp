@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page session="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<title>Home</title>
@@ -21,7 +22,7 @@
 		
 		
 	</form>
-	<a href="map">현재지도확인하기</a>
+	<a href="<c:url value='/location/map'/>">현재지도확인하기</a>
 <p style="margin-top:-12px">
 </p>
 <div id="map" style="width:100%;height:350px;"></div>

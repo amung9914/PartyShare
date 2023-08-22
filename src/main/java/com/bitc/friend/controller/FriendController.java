@@ -62,4 +62,6 @@ public class FriendController {
 		model.addAttribute("list",list);
 		return "friend/responseList";
 	}
+	
+
 }

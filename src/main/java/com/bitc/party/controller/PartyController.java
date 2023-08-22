@@ -1,8 +1,6 @@
 package com.bitc.party.controller;
 
 import java.io.File;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,15 +9,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -29,13 +25,13 @@ import com.bitc.common.utils.FileUtils;
 import com.bitc.map.service.MapService;
 import com.bitc.map.vo.MapVO;
 import com.bitc.member.service.MemberService;
-import com.bitc.member.vo.MemberVO;
 import com.bitc.party.service.PartyService;
 import com.bitc.party.vo.PartyVO;
 
 import lombok.RequiredArgsConstructor;
 
 @PropertySource("classpath:api.properties") // api숨김
+@RequestMapping("/party/*")
 @RequiredArgsConstructor
 @Controller
 public class PartyController {
@@ -63,27 +59,18 @@ public class PartyController {
 				
 	}
 	
-	// test용 로그인 페이지
-	@GetMapping("login")
-	public void login() {}
-		
-	// test용 로그인 수행
-	@PostMapping("login")
-	public String login(MemberVO vo, HttpSession session) {
-		MemberVO loginMember = null;
-		try {
-			loginMember = ms.login(vo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} //로그인 서비스 연결
-		session.setAttribute("loginMember", loginMember);
-		return "redirect:/account"; // get으로 mapping으로 감
-	}
-	
-	
-	// 계정관리 메뉴로 이동
-	@GetMapping("account")
-	public void account() {}
+	/**
+	 * 사진출력
+	 */
+	@ResponseBody
+	@GetMapping("printImg")
+	   public ResponseEntity<byte[]> displayImg(String fileName) throws Exception{
+	      return new ResponseEntity<>(
+	            FileUtils.getBytes(realPath, fileName),
+	            FileUtils.getHeaders(fileName),
+	            HttpStatus.OK
+	            );
+	   }
 	
 	// 내가 개설한 파티 리스트 페이지 이동
 	@GetMapping("hostingList")
@@ -203,7 +190,7 @@ public class PartyController {
 		}
 		rttr.addFlashAttribute("result",result);
 		rttr.addAttribute("pnum",vo.getPnum());
-		return "redirect:/partyHost"; 
+		return "redirect:/party/partyHost"; 
 	}
 	
 	// 참여중인 파티 페이지 이동

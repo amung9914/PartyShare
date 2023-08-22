@@ -2,28 +2,35 @@ package com.bitc.map.controller;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitc.map.service.MapService;
 import com.bitc.map.vo.MapVO;
 
 import lombok.RequiredArgsConstructor;
 
-
-@RestController
-@RequestMapping("/location")
+@Controller
+@PropertySource("classpath:api.properties")
+@RequestMapping("/location/*")
 @RequiredArgsConstructor
 public class MapController {
 	
 	private final MapService ms;
 	
+	@Value("${kakao.key}")
+	private String apiKey;
+	
 	// test용 지도 추가 
 	@PostMapping("")
+	@ResponseBody
 	public String addLocation(MapVO map, Model model) {
 		
 		
@@ -39,8 +46,29 @@ public class MapController {
 		return result;
 	}
 	
+	//주소등록페이지 연결
+	@GetMapping("regist")
+	public String registLoction(Model model) {
+		return "map/registLocation";
+	}
+	
+	//현재지도확인 페이지 연결
+		@GetMapping("map")
+		public String viewMap(Model model) {
+			model.addAttribute("apiKey",apiKey);
+			try {
+				model.addAttribute("list", ms.mapList());
+			} catch (Exception e) {
+				System.out.println("list정보 불러오기 실패");
+			}
+			
+			return "map/map";
+		}
+
+	
 	// 지도에 마커를 표시합니다.
 	//location/{pnum}
+	@ResponseBody
 	@GetMapping("/{pnum}")
 	public Map<String, String> nameTag(
 			@PathVariable(name="pnum") int pnum ){

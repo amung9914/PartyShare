@@ -1,7 +1,10 @@
 package com.bitc.friend.controller;
 
+import java.io.File;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bitc.common.utils.FileUtils;
 import com.bitc.friend.service.FriendService;
 import com.bitc.friend.vo.FriendVO;
 import com.bitc.member.vo.MemberVO;
@@ -29,6 +33,33 @@ public class FriendAjaxController {
 
 	private final FriendService fs;
 
+	// 이미지 파일 업로드
+		private final String uploadDir;
+		private final ServletContext context;
+		private String realPath;
+		
+		@PostConstruct
+		public void initPath() {
+			realPath = context.getRealPath(File.separator+uploadDir);
+			System.out.println(realPath);
+			File file = new File(realPath);
+			if(!file.exists()) {
+				file.mkdirs();
+			}
+		}
+		
+		/**
+		 * 사진출력
+		 */
+		@GetMapping("printImg")
+		   public ResponseEntity<byte[]> displayImg(String fileName) throws Exception{
+		      return new ResponseEntity<>(
+		            FileUtils.getBytes(realPath, fileName),
+		            FileUtils.getHeaders(fileName),
+		            HttpStatus.OK
+		            );
+		   }
+	
 	/**
 	 * 아이디로 사용자 검색
 	 */

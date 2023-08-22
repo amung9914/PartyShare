@@ -78,17 +78,17 @@
 			
 			$("#list").click(function(e){
 				e.preventDefault();
-				location.href="listPage?pnum=${board.pnum}";
+				location.href="<c:url value='/partyBoard/listPage?pnum=${board.pnum}'/>";
 			});
 			
 			//답글 작성
 			$("#replyBtn").click(function(e){
-				location.href="reply?pnum=${board.pnum}&bno=${board.bno}";
+				location.href="<c:url value='/partyBoard/reply?pnum=${board.pnum}&bno=${board.bno}'/>";
 			})
 			
 			// 수정 페이지 요청 
 			$("#modify").click(function(e){
-				location.href="modify?pnum=${board.pnum}&bno=${board.bno}";
+				location.href="<c:url value='/partyBoard/modify?pnum=${board.pnum}&bno=${board.bno}'/>";
 			});
 			
 			// 게시글 삭제요청

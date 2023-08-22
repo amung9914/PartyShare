@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +28,9 @@
 <c:forEach items="${list}" var="party">
   <div class="col">
     <div class="card">
-      <img src="upload/party/${party.partyImage1}" />
+      <img src="${path}/party/printImg?fileName=${party.partyImage1}" />
       <div class="card-body">
-      	<a href="partyDetail?pnum=${party.pnum}">
+      	<a href="<c:url value='/party/partyDetail?pnum=${party.pnum}'/>">
         <h4 class="card-title">파티이름 : ${party.pname}</h4>
         	<p class="card-text">
        
@@ -42,8 +43,9 @@
         	
         	</p>
         </a>
-        <a href="partyHost?pnum=${party.pnum}">파티관리</a>
-        <a href="partyBoard/listPage?pnum=${party.pnum}">팀게시판</a>
+        
+        <a href="<c:url value='/party/partyHost?pnum=${party.pnum}'/>">파티관리</a>
+        <a href="<c:url value='/partyBoard/listPage?pnum=${party.pnum}'/>">팀게시판</a>
       </div>
     </div>
   </div>

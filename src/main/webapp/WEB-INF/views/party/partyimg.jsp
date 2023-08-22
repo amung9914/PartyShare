@@ -17,20 +17,20 @@
 	<input type="hidden" name="partyImage3" value="${party.partyImage3}"> 
 	<h2>파티 사진 수정</h2>
 		<div>
-			<img src="upload/party/${party.partyImage1}" id="img1"/>
+			<img src="${path}/party/printImg?fileName=${party.partyImage1}" id="img1"/>
 			<br/>
 			<input type="file" name="image1" id="partyImage1" accept=".gif, .jpg, .jpeg, .png"/>
 			<button id="reset1">reset</button>
 			
 		</div>
 		<div>
-			<img src="upload/party/${party.partyImage2}" id="img2"/>
+			<img src="${path}/party/printImg?fileName=${party.partyImage2}" id="img2"/>
 			<br/>
 			<input type="file" name="image2" id="partyImage2" accept=".gif, .jpg, .jpeg, .png"/>
 			<button id="reset2">reset</button>
 		</div>
 		<div>
-			<img src="upload/party/${party.partyImage3}" id="img3"/>
+			<img src="${path}/party/printImg?fileName=${party.partyImage3}" id="img3"/>
 			<br/>
 			<input type="file" name="image3" id="partyImage3" accept=".gif, .jpg, .jpeg, .png"/>
 			<button id="reset3">reset</button>
@@ -54,17 +54,20 @@
 	$(document).ready(function() {
 	    $("#reset1").on("click", function(event) {
 	        event.preventDefault();
-	        $("#img1").attr("src", "upload/${party.partyImage1}");
+	        $("#img1").attr("src", "${path}/party/printImg?fileName=${party.partyImage1}");
+	        $("#partyImage1").val("");
 	    });
 
 	    $("#reset2").on("click", function(event) {
 	    	event.preventDefault();
-	        $("#img2").attr("src", "upload/${party.partyImage2}");
+	        $("#img2").attr("src", "${path}/party/printImg?fileName=${party.partyImage2}");
+	        $("#partyImage2").val("");
 	    });
 
 	    $("#reset3").on("click", function(event) {
 	    	event.preventDefault();
-	        $("#img3").attr("src", "upload/${party.partyImage2}");
+	        $("#img3").attr("src", "${path}/party/printImg?fileName=${party.partyImage3}");
+	        $("#partyImage3").val("");
 	    });
 	}); 
 		

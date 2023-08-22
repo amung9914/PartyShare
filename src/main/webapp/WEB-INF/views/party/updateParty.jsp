@@ -48,7 +48,7 @@
 		파티소개 : <textarea name="pcontext" rows="10" >${party.pcontext}</textarea><br/>
 	<br/><hr/><br/>
 	<!-- 파티 사진 수정 페이지 -->
-	<jsp:include page="partyimg.jsp" />
+	<%@ include file="partyimg.jsp" %>
 	<br/>
 	<button>저장</button> <button onclick="goBack()">취소</button>
 	</form>

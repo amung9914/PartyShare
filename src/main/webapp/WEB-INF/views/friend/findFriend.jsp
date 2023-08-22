@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,9 +97,10 @@ $("#selectButton").on("click",function(event){
 				$(data).each(function(){
 					$(".findResult").empty();
 					str +="<div data-mnum='"+this.mnum+"' class='username'>";
+					str +="<img class='profileImg' src='${path}/friend/printImg?fileName="+this.profileImageName+"'/>";
 					str += "id : "+this.mid+" | 닉네임 : "+this.mnick;
 					str +="</div>"
-					str += "<button data-mnum='"+this.mnum+"' class='btn btn-outline-secondary' type='button'>친구 요청</button>";
+					str += "<button data-mnum='"+this.mnum+"' class='btn btn-outline-secondary' type='button'>친구 요청</button><br/>";
 					$(".findResult").append(str);
 				});	
 			}

@@ -12,4 +12,5 @@ public class FriendVO {
 	private Date requestTime;
 	private String mid;
 	private String mnick;
+	private String profileImageName;
 }

@@ -14,9 +14,7 @@
     border: 1px solid white;
     border-bottom: 1px solid black;
 }
-#categorySelect{
-	display: none;
-}
+
 </style>
 </head>
 <body>
@@ -28,8 +26,7 @@
 		<table>
 		<tr>
 			<td>
-				<input type="button" id="selectBtn" value="말머리 선택"/>
-				<select name="category" id="categorySelect" >
+	  			<select name="category" id="categorySelect" value="말머리 선택">
 		    		<option value="notice">공지사항</option>
 		    		<option value="normal">일반</option>
 	  			</select>
@@ -109,18 +106,9 @@
       	});
   </script>		
 <script>
-$("#selectBtn").on("click",function(){
-	$("#categorySelect").toggle();
-	$("#selectBtn").toggle();
-})
-$("#categorySelect").on("change",function(){
-	$("#categorySelect").toggle();
-	$("#selectBtn").toggle();
-})
 
 $("#saveBtn").click(function(){
 			let content = tinymce.activeEditor.getContent();
-			console.log(content);
 			$("#registerForm").submit();
 			
 		});

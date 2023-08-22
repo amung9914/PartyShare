@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
 	
 	<div class="col">
     <div class="card">
-      <img src="upload/party/${party.partyImage1}" />
+      <img src="${path}/party/printImg?fileName=${party.partyImage1}" />
       <div class="card-body">
      
         <h5 class="card-title">파티이름 : ${party.pname}</h5>
@@ -37,7 +38,8 @@
         	</c:if>
         	
         	</p>
-        <a href="updateParty?pnum=${party.pnum}">파티 정보 수정</a>
+        	
+        <a href="<c:url value='/party/updateParty?pnum=${party.pnum}'/>">파티 정보 수정</a>
       </div>
     </div>
   </div>

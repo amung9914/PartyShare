@@ -46,6 +46,7 @@
 			<th>조회수</th>
 			<th>신고</th>
 		</tr>
+		
 		<!-- 공지글 출력 -->
 		<c:if test="${!empty notice}">
 			<c:forEach var="board" items="${notice}">
@@ -54,7 +55,7 @@
 							<tr>
 								<td>${board.bno}</td>
 								<td>
-									[공지]<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}">${board.title}</a>
+									[공지]<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>">${board.title}</a>
 								</td>
 								<td>${board.writer}</td>
 								<td> <!-- 당일이면 시간표시 / 아니면 날짜표시 -->
@@ -113,7 +114,7 @@
 									<c:if test="${board.category eq 'reply'}">
 									ㄴ
 									</c:if>
-									<a href="readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}">${board.title}</a>
+									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>">${board.title}</a>
 								</td>
 								<td>${board.writer}</td>
 								
@@ -158,21 +159,21 @@
 			<tr>
 				<th colspan="5">
 					<c:if test="${pm.first}">
-						<a href="listPage?pnum=${pnum}&page=1">[&laquo;]</a>
+						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=1'/>">[&laquo;]</a>
 					</c:if>
 					<c:if test="${pm.prev}">
-						<a href="listPage?pnum=${pnum}&page=${pm.startPage-1}">[&lt;]</a>
+						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.startPage-1}'/>">[&lt;]</a>
 					</c:if>
 					<c:forEach var="i" 
 							   begin="${pm.startPage}" 
 							   end ="${pm.endPage}">
-						<a href="listPage?pnum=${pnum}&page=${i}">[${i}]</a>
+						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${i}'/>">[${i}]</a>
 					</c:forEach>
 					<c:if test="${pm.next}">
-						<a href="listPage?pnum=${pnum}&page=${pm.endPage+1}">[&gt;]</a>
+						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.endPage+1}'/>">[&gt;]</a>
 					</c:if>
 					<c:if test="${pm.last}">
-						<a href="listPage?pnum=${pnum}&page=${pm.maxPage}">[&raquo;]</a>
+						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.maxPage}'/>">[&raquo;]</a>
 					</c:if>
 				</th>
 			</tr>
@@ -193,7 +194,7 @@
 		const bno = $(this).attr("data-bno");
 		report();
 		function report(){
-			window.open("report?pnum="+${pnum}+"&bno="+bno,"Pop","width=500,height=600");
+			window.open("/partyshare/partyBoard/report?pnum="+${pnum}+"&bno="+bno,"Pop","width=500,height=600");
 		}
 	})
 	

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,20 +18,24 @@
  border: 1px solid black;}
  .card li label{
      cursor: pointer;}
+ .profileImg{
+ 	width : 100px;
+ 	}
 </style>
 </head>
 <body>
 <%@ include file="findFriend.jsp" %>  
 
-<a href="friend/responseList">받은요청</a>
-<a href="friend/requestList">보낸요청</a>
+<a href="<c:url value='/friend/responseList'/>">받은요청</a>
+<a href="<c:url value='/friend/requestList'/>">보낸요청</a>
 <h3>[친구 목록]</h3>	
 <div class="card" style="width: 18rem;">
   <ul class="list-group list-group-flush">
   	<c:choose>
   	<c:when test="${!empty list}">
 	    <c:forEach var="list" items="${list}">
-	    <!-- 나중에 label에 프로필 사진 추가할 예정 -->
+	    	
+	    	 <img class="profileImg" src="${path}/friend/printImg?fileName=${list.profileImageName}" />
 		   	<li class="list-group-item ${list.fto}">
 		   		<label class="detailLoad" data-mnum="${list.fto}" data-mid="${list.mid}" >${list.mid} / ${list.mnick}</label>
 		  		 <button type="button" class="btn btn-warning" id="${list.fto}">친구삭제</button>
