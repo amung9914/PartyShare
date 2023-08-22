@@ -23,14 +23,11 @@ public class FriendController {
 	
 	// 친구 목록 페이지 
 	@GetMapping("")
-	public String friend(HttpSession session, Model model) {
+	public String friend(HttpSession session, Model model) throws Exception {
 		List<FriendVO> list = null;
-		try {
 			list = fs.friendList(session);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		model.addAttribute("list",list);
+		model.addAttribute("responseList",fs.responseList(session)); // 친구요청받은 목록 전달
 		return "friend/friendList";
 	}
 	/**
@@ -48,9 +45,11 @@ public class FriendController {
 		return "friend/requestList";
 	}
 	
+	
 	/**
 	 *	친구요청받은목록 
 	 */
+	/*
 	@GetMapping("/responseList")
 	public String responseList(HttpSession session, Model model){
 		List<FriendVO> list = null;
@@ -62,6 +61,6 @@ public class FriendController {
 		model.addAttribute("list",list);
 		return "friend/responseList";
 	}
-	
+	*/
 
 }

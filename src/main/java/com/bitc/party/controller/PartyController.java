@@ -222,7 +222,7 @@ public class PartyController {
 	
 	
 	
-	// partyDetail 페이지
+	// test용 partyDetail 페이지
 	@GetMapping("partyDetail")
 	public String partyDetail(String pnum,Model model) {
 		model.addAttribute("pnum",pnum);

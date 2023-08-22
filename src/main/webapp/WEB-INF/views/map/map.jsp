@@ -9,13 +9,41 @@
     <title>여러개 마커에 이벤트 등록하기1</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>   
 <style>
-	.infoBox{
-		color : red;
+ .infoBox{
+ 	background-color:white;
+ 	width: 400px;
+    border-radius: 20px;
+    display: inline-flex;
+}
+.infoDiv{
+    display: inline-flex;
+    width: 370px;
+}
+.infoDiv img{
+	width: 200px;
+}
+.infoText{
+	padding: 10px;
+}
+.pname{
+	font-size: 20px;
+	height: 75%;
 	}
+.hostName{
+	color:grey;
+} 
+.closeBtn{
+    border-radius: 10px;
+    background-color: #b3b3b3;
+    border: none;
+    color: white;
+    width: 20px;
+    margin: 10px;
+    }
 </style>
 </head>
 <body>
-<div id="map" style="width:100%;height:350px;"></div>
+<div id="map" style="width:100%;height:97.5vh;"></div>
 <div id="detailView"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
 <script>
@@ -92,26 +120,50 @@ function open(){
 	    		
 				let url = "${path}/location/"+pnum;
 				$.getJSON(url,function(data){
-					// data == Map
-					// {'list':{}, 'pm' : {}}
 					pname = data.pname;
 					host = data.host;
+					pImg = data.partyImage1;
 					
-					let str = "";
-					str += "<div class='infoBox' >";
-					str += "</div>";
 					// content HTMLElement 생성
 				    var content = document.createElement('div');
 					
+					let str = "";
+					str += "<div class='infoBox'>";
+					str += "<div class='infoDiv' data-pnum='"+pnum+"'>";
+					str += "<img src='${path}/location/printImg?fileName="+pImg+"'/>";
+					str += "<div class='infoText'>";
+					str += "<div class='pname'>"+pname+"</div>";
+					str += "<div class='hostName'>"+host+"</div>";
+					str += "</div>";
+					str += "</div>";//end infoDiv
+					str += "<div class='btnBox'>";
+					str += "<button class='closeBtn'>x</button>";
+					str += "</div>";
+					str += "</div>";
+					
+				    content.innerHTML = str;
+					
+				    //팝업 클릭 이벤트
+				    $("#map").on("click",".infoDiv",function(){
+				    	let pnum = $(this).attr("data-pnum");
+				    	location.href="<c:url value='/party/partyDetail?pnum="+pnum+"'/>";
+				    })
+				    
+				    //팝업 닫기 이벤트
+				    $("#map").on("click",".closeBtn",function(){
+				    	 overlay.setMap(null);
+				    })
+				    
+					 
 				    //var infoDiv = document.createElement('div');
 				    
-				    
+				    /*
 				 	// 마커 클릭시 표시할 내용입니다.
 				    var info = document.createElement('a');
 				    info.appendChild(document.createTextNode("파티이름:"+pname)); 
 				    info.appendChild(document.createElement('br'));
 				    info.appendChild(document.createTextNode("host:"+host));
-				    info.href = "${path}/party/partyDetail?pnum="+pnum; // 파티 상세페이지 연결
+				    info.href = "/party/partyDetail?pnum="+pnum; // 파티 상세페이지 연결
 				    
 				    //content.appendChild(infoDiv);
 				    content.append(str);
@@ -119,14 +171,16 @@ function open(){
 				    
 
 				    var closeBtn = document.createElement('button');
-				    closeBtn.appendChild(document.createTextNode('닫기'));
+				    closeBtn.appendChild(document.createTextNode('X'));
 				    // 닫기 이벤트 추가
 				    closeBtn.onclick = function() {
 				        overlay.setMap(null);
 				    };
 
 				    content.appendChild(closeBtn);
-
+					
+				    */
+				    
 				    // customoverlay 생성, 이때 map을 선언하지 않으면 지도위에 올라가지 않습니다.
 			    	var overlay = new daum.maps.CustomOverlay({
 				        position: pos.latlng,

@@ -14,6 +14,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
 <style>
+main{
+	float:left;
+	margin : 30px;
+}
+aside{
+	float:left;
+	margin : 30px;
+}
  .detailBox{
  border: 1px solid black;}
  .card li label{
@@ -24,10 +32,8 @@
 </style>
 </head>
 <body>
-<%@ include file="findFriend.jsp" %>  
 
-<a href="<c:url value='/friend/responseList'/>">받은요청</a>
-<a href="<c:url value='/friend/requestList'/>">보낸요청</a>
+<main>
 <h3>[친구 목록]</h3>	
 <div class="card" style="width: 18rem;">
   <ul class="list-group list-group-flush">
@@ -177,5 +183,17 @@ $(".btn.btn-warning").on("click",function(){
 });
 
 </script>
+</main>
+<aside>
+<div>
+<h3> 새로운 친구를 등록해 보세요 </h3>
+<%@ include file="findFriend.jsp" %>  
+<hr/>
+<h3> 친구요청 상태를 확인해 보세요 </h3>
+<a class="btn btn-primary" href="<c:url value='/friend/requestList'/>">보낸요청</a>
+</div>
+<hr/>
+<%@ include file="responseList.jsp" %>
+</aside>
 </body>
 </html>

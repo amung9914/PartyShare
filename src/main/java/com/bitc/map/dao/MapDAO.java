@@ -45,8 +45,9 @@ public interface MapDAO {
 	
 	/**
 	 * @param pnum
-	 * @return 파티 이름, host 이름(pname,host)
+	 * @return 파티이미지, 파티 이름, host 이름(pname,host)
 	 */
-	@Select("SELECT pname, mnick AS host FROM party P, member M WHERE P.host = M.mnum AND pnum = #{pnum} ")
+	@Select("SELECT P.partyImage1, pname, mnick AS host FROM party P, member M "
+			+ "WHERE P.host = M.mnum AND pnum = #{pnum} AND finish ='N'")
 	Map<String,String> nameTagList(int pnum);
 }
