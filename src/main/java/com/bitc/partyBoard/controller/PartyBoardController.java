@@ -122,7 +122,7 @@ public class PartyBoardController {
 	}
 	
 	/**
-	 * 게시글 등록 요청 처리 추가
+	 * 답글 등록 요청 처리 추가
 	 */
 	@PostMapping("reply")
 	public String replyPost(PartyBoardVO board,

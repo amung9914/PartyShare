@@ -63,11 +63,6 @@ public interface PartyBoardDAO{
 	List<PartyBoardVO> noticeList(int pnum);
 
 	
-	// 답글 추가
-	@Insert("INSERT INTO partyBoard (category,pnum,title,content,writer,mnum,origin,depth,seq) "
-			+ "VALUES(#{category},#{pnum},#{title},#{content},#{writer},#{mnum},#{origin},#{depth},#{seq})")
-	int registReply(PartyBoardVO board);
-
 	/**
 	 * 게시글 신고 
 	 */
@@ -75,6 +70,17 @@ public interface PartyBoardDAO{
 			+ "VALUES(#{fromMid},#{toMid},#{category},#{context},#{pnum},#{bno})")
 	int report(PartyReportVO vo);
 
+	/**
+	 * 원본글을 제외한 답글들의 정렬값 수정(밑으로 내리고 신규 답글이 들어갈 자리 만들어줌) 
+	 */
+	@Update("UPDATE partyboard SET seq = seq + 1 "
+			+ " WHERE origin = #{origin} AND seq > #{seq}")
+	void updateReply(PartyBoardVO board);
+	
+	// 답글 추가
+	@Insert("INSERT INTO partyBoard (category,pnum,title,content,writer,mnum,origin,depth,seq) "
+			+ "VALUES(#{category},#{pnum},#{title},#{content},#{writer},#{mnum},#{origin},#{depth},#{seq})")
+	int registReply(PartyBoardVO board);
 		
 	
 }

@@ -73,9 +73,15 @@ public class PartyBoardServiceImpl implements PartyBoardService {
 		int totalCount = dao.totalCount(pnum);
 		return new PageMaker(cri,totalCount);
 	}
-	
+	@Transactional
 	@Override
 	public void registReply(PartyBoardVO board)throws Exception  {
+		// origin, depth, seq
+		// 답변을 달려는 원본 글보다 아래쪽에 배치된 글들 seq(정렬) 값 수정
+		dao.updateReply(board);
+		
+		board.setDepth(board.getDepth() + 1);
+		board.setSeq(board.getSeq() + 1);
 		dao.registReply(board);
 	}
 

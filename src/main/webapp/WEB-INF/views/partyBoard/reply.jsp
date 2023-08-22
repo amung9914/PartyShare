@@ -26,8 +26,8 @@
 		<input type="hidden" name="category" value="reply"/>
 		<!-- 답글에 필요한 속성 추가 -->
 		<input type="hidden" name="origin" value="${board.origin}"/>
-		<input type="hidden" name="depth" value="${board.depth+1}"/>
-		<input type="hidden" name="seq" value="${board.seq+1}"/>
+		<input type="hidden" name="depth" value="${board.depth}"/>
+		<input type="hidden" name="seq" value="${board.seq}"/>
 		
 		<table>
 		<tr>
