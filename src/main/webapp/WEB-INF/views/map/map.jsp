@@ -1,12 +1,18 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>여러개 마커에 이벤트 등록하기1</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>   
+<style>
+	.infoBox{
+		color : red;
+	}
+</style>
 </head>
 <body>
 <div id="map" style="width:100%;height:350px;"></div>
@@ -52,6 +58,13 @@ function open(){
 	var zoomControl = new kakao.maps.ZoomControl();
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 	
+	var imageSrc = '${path}/resources/img/marker.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(64, 64), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(20, 64)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+	
 	// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 	var positions = [
 		<c:forEach items="${list}" var="list">
@@ -66,7 +79,8 @@ function open(){
 	    // 마커를 생성합니다
 	    var marker = new kakao.maps.Marker({
 	        map: map, // 마커를 표시할 지도
-	        position: pos.latlng // 마커의 위치
+	        position: pos.latlng, // 마커의 위치
+	        image: markerImage
 	    });
  
 	    var pnum = pos.content; 
@@ -76,19 +90,20 @@ function open(){
 		// 마커 클릭 이벤트
 	    kakao.maps.event.addListener(marker, 'click', function() {
 	    		
-				let url = "location/"+pnum;
+				let url = "${path}/location/"+pnum;
 				$.getJSON(url,function(data){
 					// data == Map
 					// {'list':{}, 'pm' : {}}
 					pname = data.pname;
 					host = data.host;
 					
+					let str = "";
+					str += "<div class='infoBox' >";
+					str += "</div>";
 					// content HTMLElement 생성
 				    var content = document.createElement('div');
 					
-				    var infoDiv = document.createElement('div');
-				    infoDiv.style.backgroundColor  = "Yellow"; // 원하는 스타일 속성을 설정하세요
-				    infoDiv.style.textDecoration = "underline"; // 다른 스타일 속성도 필요한 경우 설정하세요
+				    //var infoDiv = document.createElement('div');
 				    
 				    
 				 	// 마커 클릭시 표시할 내용입니다.
@@ -96,9 +111,10 @@ function open(){
 				    info.appendChild(document.createTextNode("파티이름:"+pname)); 
 				    info.appendChild(document.createElement('br'));
 				    info.appendChild(document.createTextNode("host:"+host));
-				    info.href = "partyDetail?pnum="+pnum; // 파티 상세페이지 연결
+				    info.href = "${path}/party/partyDetail?pnum="+pnum; // 파티 상세페이지 연결
 				    
-				    content.appendChild(infoDiv);
+				    //content.appendChild(infoDiv);
+				    content.append(str);
 				    infoDiv.appendChild(info);
 				    
 

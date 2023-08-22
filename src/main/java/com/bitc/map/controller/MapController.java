@@ -33,9 +33,6 @@ public class MapController {
 	@ResponseBody
 	public String addLocation(MapVO map, Model model) {
 		
-		
-		System.out.println("mapVO:"+ map);
-		
 		String result = null;
 		try {
 			result = ms.addLocation(map);
