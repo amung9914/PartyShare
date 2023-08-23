@@ -1,4 +1,5 @@
 create database PartyShare;
+ALTER SCHEMA `PartyShare`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_bin ;
 use PartyShare;
 CREATE TABLE member 	  -- 회원테이블 
 (
@@ -46,6 +47,7 @@ CREATE TABLE wishList 	-- 위시리스트--
 	 no       INT primary key,
     mNum   		int,	
     pNum       VARCHAR(50) NOT NULL ,
+    alias  VARCHAR(20) NOT NULL,
     FOREIGN KEY (mNum) REFERENCES member(mNum) ON UPDATE CASCADE
 );
 
@@ -61,18 +63,27 @@ CREATE TABLE freeBoard  -- --자유게시판--
     FOREIGN KEY (mNick) REFERENCES member(mNick) ON UPDATE CASCADE
 );
 
-CREATE TABLE partyBoard  -- --파티 게시판--  
-(
-    bno    INT primary key auto_increment,   
-    pNum 	INT,
-    category    VARCHAR(20) NOT NULL ,   -- 공지/일반
-    title       VARCHAR(20) NOT NULL ,
-    context   	TEXT ,
-    date 		DATE,
-    mNick     VARCHAR(20),
-    viewCnt   int ,
-    FOREIGN KEY (mNick) REFERENCES member(mNick) ON UPDATE CASCADE,
-    FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE
+
+CREATE TABLE partyBoard(
+	bno INT PRIMARY KEY auto_increment, 	-- 게시글 번호
+    pnum INT NOT NULL, 						-- 파티 번호
+	title VARCHAR(200) NOT NULL,			-- 제목
+	content LONGTEXT NOT NULL,				-- 내용
+	writer VARCHAR(50) NOT NULL,			-- 작성자 이름
+    category VARCHAR(20) NOT NULL,			-- 카테고리
+	origin INT NULL DEFAULT 0,				-- 원본글 그룹 번호
+	depth INT NULL DEFAULT 0,				-- view 깊이 번호
+	seq INT NULL DEFAULT 0,					-- 답변글 정렬 순서
+	regdate TIMESTAMP NULL DEFAULT NOW(), 	-- 게시글 등록 시간
+	updatedate TIMESTAMP NULL DEFAULT now(),-- 게시글 수정 시간
+	viewcnt INT NULL DEFAULT 0,				-- 조회수
+	showboard VARCHAR(10) NULL DEFAULT 'y',	-- 게시글 삭제요청 여부
+	mnum INT NOT NULL,						-- 게시글 작성자 회원번호
+	reported char(1) default 'N',
+	CONSTRAINT fk_partyboard_mnum
+	FOREIGN KEY(mnum) REFERENCES member(mnum),
+    CONSTRAINT fk_partyboard_pnum
+	FOREIGN KEY(pnum) REFERENCES party(pnum)
 );
 
 CREATE TABLE chat  -- --채팅--  
@@ -111,18 +122,6 @@ CREATE TABLE partyLocation   -- 파티장소 --   -- 진행 중
     lng     double	NOT NULL
 );
 
-CREATE TABLE joinPartyList  -- -- 참가 중인 파티 목록 --  
-(
-	no	INT primary key,
-    mNum     INT  NOT NULL,   
-    pNum  	 INT  NOT NULL,
-    pName    CHAR(20) NOT NULL ,  
-    startDate  date NOT NULL ,
-    endDate   date NOT NULL, 
-    finish	CHAR(1),
-    FOREIGN KEY (mNum) REFERENCES member(mNum) ON UPDATE CASCADE,
-    FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE
-);
 
 CREATE TABLE blackList  -- -- admin 블랙리스트 --  
 (
@@ -170,11 +169,7 @@ lng VARCHAR(50) NOT NULL, -- 경도 x좌표 lng
 FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE
 );
 
-ALTER TABLE joinpartylist -- 참여중인 파티테이블
-DROP COLUMN pname,
-DROP COLUMN startDate,
-DROP COLUMN endDate,
-DROP COLUMN finish;
+
 
 ALTER TABLE friend -- 친구 테이블
 DROP COLUMN msg;
@@ -186,8 +181,6 @@ MODIFY COLUMN no INT AUTO_INCREMENT;
 ALTER TABLE wishList 	
 MODIFY COLUMN no INT AUTO_INCREMENT;
 
--- joinpartylist 중복 테이블 삭제
-drop table joinpartylist;
 
 -- 아래부터 카테고리 수정분입니다.
 
@@ -241,8 +234,6 @@ VALUES
 ('서핑'),
 ('골프');
 
--- wishlist에 별칭 칼럼 추가
-ALTER TABLE wishlist ADD alias VARCHAR(20) NOT NULL;
 
 -- 카테고리 table 컬럼명에 맞추어 party table 컬럼명 변경
 ALTER TABLE party
@@ -309,30 +300,8 @@ CREATE TABLE IF NOT EXISTS freeBoardComment(
 );
 
 
--- 파티 게시판 수정
-drop table partyboard;
 
-CREATE TABLE partyboard(
-	bno INT PRIMARY KEY auto_increment, 	-- 게시글 번호
-    pnum INT NOT NULL, 						-- 파티 번호
-	title VARCHAR(200) NOT NULL,			-- 제목
-	content LONGTEXT NOT NULL,				-- 내용
-	writer VARCHAR(50) NOT NULL,			-- 작성자 이름
-    category VARCHAR(20) NOT NULL,			-- 카테고리
-	origin INT NULL DEFAULT 0,				-- 원본글 그룹 번호
-	depth INT NULL DEFAULT 0,				-- view 깊이 번호
-	seq INT NULL DEFAULT 0,					-- 답변글 정렬 순서
-	regdate TIMESTAMP NULL DEFAULT NOW(), 	-- 게시글 등록 시간
-	updatedate TIMESTAMP NULL DEFAULT now(),-- 게시글 수정 시간
-	viewcnt INT NULL DEFAULT 0,				-- 조회수
-	showboard VARCHAR(10) NULL DEFAULT 'y',	-- 게시글 삭제요청 여부
-	mnum INT NOT NULL,						-- 게시글 작성자 회원번호
-	reported char(1) default 'N',
-	CONSTRAINT fk_partyboard_mnum
-	FOREIGN KEY(mnum) REFERENCES member(mnum),
-    CONSTRAINT fk_partyboard_pnum
-	FOREIGN KEY(pnum) REFERENCES party(pnum)
-);
+
 
 -- 파티 게시판 댓글 테이블 생성
 
@@ -346,14 +315,11 @@ CREATE TABLE partyboard_comment(
 	regdate TIMESTAMP NOT NULL DEFAULT now(),	-- 작성시간
 	updatedate TIMESTAMP NOT NULL DEFAULT now(),-- 수정시간
 	reported char(1) default 'N',
-	CONSTRAINT fk_partyboard_comment_bno FOREIGN KEY(bno) -- 참조무결성 추가
-	REFERENCES partyboard(bno) ON DELETE CASCADE,
-	CONSTRAINT fk_partyboard_comment_pnum		
-	FOREIGN KEY(pnum) REFERENCES party(pnum)ON DELETE CASCADE,
-	CONSTRAINT fk_partyboard_comment_mnick		
-	FOREIGN KEY(mnick) REFERENCES member(mnick)ON DELETE CASCADE,
-	CONSTRAINT fk_partyboard_comment_mid		
-	FOREIGN KEY(mid) REFERENCES member(mid)ON DELETE CASCADE,
+	FOREIGN KEY(bno) -- 참조무결성 추가
+	REFERENCES partyBoard(bno) ON DELETE CASCADE,
+	FOREIGN KEY(pnum) REFERENCES party(pnum) ON DELETE CASCADE,
+	FOREIGN KEY(mnick) REFERENCES member(mnick) ON DELETE CASCADE,
+	FOREIGN KEY(mid) REFERENCES member(mid) ON DELETE CASCADE,
 	INDEX(bno)									-- 인덱스 추가
 );
 
@@ -371,7 +337,7 @@ CREATE TABLE partyboard_report
     bno INT, -- 게시글 번호
     cno INT, -- 댓글 번호
 	FOREIGN KEY (pnum) REFERENCES party(pnum)ON DELETE CASCADE,
-	FOREIGN KEY (bno) REFERENCES partyboard(bno)ON DELETE CASCADE,
+	FOREIGN KEY (bno) REFERENCES partyBoard(bno)ON DELETE CASCADE,
 	FOREIGN KEY (cno) REFERENCES partyboard_comment(cno)ON DELETE CASCADE,
 	FOREIGN KEY (fromMid) REFERENCES member(mId) ON UPDATE CASCADE,
     FOREIGN KEY (toMid) REFERENCES member(mId) ON UPDATE CASCADE
@@ -381,7 +347,7 @@ CREATE TABLE partyboard_report
 -- 신고 관련 수정
 ALTER TABLE report
 ADD COLUMN bno INT null,
-ADD FOREIGN KEY (bno) REFERENCES freeboard(bno);
+ADD FOREIGN KEY (bno) REFERENCES freeBoard(bno);
 
 ALTER TABLE report
 ADD COLUMN cno INT,
@@ -396,12 +362,9 @@ alter table freeBoard add column reported char(1) default 'N';
 ALTER TABLE partyboard_comment drop column reported; 
 ALTER TABLE partyboard_comment add column showBoard char(1) default 'Y'; 
 
-ALTER TABLE partyboard drop column reported; 
-ALTER TABLE partyboard add column showBoard char(1) default 'Y'; 
+ALTER TABLE partyBoard drop column reported; 
 
 ALTER TABLE freeBoardComment drop column reported; 
 ALTER TABLE freeBoardComment add column showBoard char(1) default 'Y'; 
 ALTER TABLE freeBoard drop column reported; 
 ALTER TABLE freeBoard add column showBoard char(1) default 'Y'; 
-
-
