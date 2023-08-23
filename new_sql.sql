@@ -1,6 +1,6 @@
-create database PartyShare;
-ALTER SCHEMA `PartyShare`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_bin ;
-use PartyShare;
+create database partyShare;
+ALTER SCHEMA `partyShare`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_bin ;
+use partyShare;
 CREATE TABLE member 	  -- 회원테이블 
 (
     mNum    INT primary key auto_increment,    
@@ -42,7 +42,7 @@ CREATE TABLE party -- 파티
     FOREIGN KEY (host) REFERENCES member(mNum) ON UPDATE CASCADE
 );
 
-CREATE TABLE wishList 	-- 위시리스트-- 
+CREATE TABLE wishlist 	-- 위시리스트-- 
 (
 	 no       INT primary key,
     mNum   		int,	
@@ -51,7 +51,7 @@ CREATE TABLE wishList 	-- 위시리스트--
     FOREIGN KEY (mNum) REFERENCES member(mNum) ON UPDATE CASCADE
 );
 
-CREATE TABLE freeBoard  -- --자유게시판--  
+CREATE TABLE freeboard  -- --자유게시판--  
 (
     bno    INT primary key auto_increment,    
     category    VARCHAR(20) NOT NULL ,   -- 공지/일반
@@ -64,7 +64,7 @@ CREATE TABLE freeBoard  -- --자유게시판--
 );
 
 
-CREATE TABLE partyBoard(
+CREATE TABLE partyboard(
 	bno INT PRIMARY KEY auto_increment, 	-- 게시글 번호
     pnum INT NOT NULL, 						-- 파티 번호
 	title VARCHAR(200) NOT NULL,			-- 제목
@@ -106,7 +106,7 @@ CREATE TABLE friend  -- --친구 추가 --
     FOREIGN KEY (fTo) REFERENCES member(mNick) ON UPDATE CASCADE
 );
 
-CREATE TABLE joinMember   -- 파티 참여 인원 --  
+CREATE TABLE joinmember   -- 파티 참여 인원 --  
 (
 	no	INT primary key,
     pNum    INT NOT NULL,   
@@ -115,7 +115,7 @@ CREATE TABLE joinMember   -- 파티 참여 인원 --
     FOREIGN KEY (mNum) REFERENCES member(mNum) ON UPDATE CASCADE
 );
 
-CREATE TABLE partyLocation   -- 파티장소 --   -- 진행 중
+CREATE TABLE partylocation   -- 파티장소 --   -- 진행 중
 (	
     pNum   	INT primary key,
     lat  	double  NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE partyLocation   -- 파티장소 --   -- 진행 중
 );
 
 
-CREATE TABLE blackList  -- -- admin 블랙리스트 --  
+CREATE TABLE blacklist  -- -- admin 블랙리스트 --  
 (
     no    	INT primary key auto_increment,  
     mNum     INT  NOT NULL,   
@@ -151,7 +151,7 @@ CREATE TABLE notice  -- -- 알림 --
     context   		 TEXT  NOT NULL   
 );
 
-CREATE TABLE banMember -- -- 신고내역 --
+CREATE TABLE banmember -- -- 신고내역 --
 (
 no INT primary key auto_increment,
 pNum INT NOT NULL,
@@ -175,29 +175,29 @@ ALTER TABLE friend -- 친구 테이블
 DROP COLUMN msg;
 
 -- auto_increment 속성 추가
-ALTER TABLE joinMember   
+ALTER TABLE joinmember   
 MODIFY COLUMN no INT AUTO_INCREMENT;
 
-ALTER TABLE wishList 	
+ALTER TABLE wishlist 	
 MODIFY COLUMN no INT AUTO_INCREMENT;
 
 
 -- 아래부터 카테고리 수정분입니다.
 
 -- 파티 설명 테이블 ex)광란의
-CREATE TABLE partyDescription (
+CREATE TABLE partydescription (
     no INT PRIMARY KEY AUTO_INCREMENT,
     description VARCHAR(20) NOT NULL -- FK
 );
 
 -- 파티 주제 테이블 ex)캠핑
-CREATE TABLE partyCategory(
+CREATE TABLE partycategory(
     no INT PRIMARY KEY AUTO_INCREMENT,
     category VARCHAR(20) NOT NULL  -- FK
 );
 
 
-INSERT INTO partyCategory (category)
+INSERT INTO partycategory (category)
 VALUES
 ('요리/제조'),
 ('아웃도어/여행'),
@@ -219,7 +219,7 @@ VALUES
 ('가족/결혼'),
 ('그외');
 
-INSERT INTO partyDescription (description)
+INSERT INTO partydescription (description)
 VALUES
 ('기상천외한 파티'),
 ('초소형주택에서하는 파티'),
@@ -242,7 +242,7 @@ DROP COLUMN subCategory,
 ADD COLUMN category VARCHAR(20) NOT NULL; -- ex)캠핑 
 
 -- 파티게시판 조회수 컬럼 수정
-ALTER TABLE partyBoard
+ALTER TABLE partyboard
 CHANGE COLUMN viewcnt viewcnt INT default 0;	
 
 -- member 테이블 party 테이블 이미지 컬럼 수정
@@ -284,17 +284,17 @@ ALTER table notice modify column date TIMESTAMP default now();
 ALTER table notice add column readed char(1) default 'N';
 
 -- freeBoard 컬럼 수정
-ALTER TABLE freeBoard MODIFY COLUMN date DATETIME;
+ALTER TABLE freeboard MODIFY COLUMN date DATETIME;
 
 -- freeBoard 댓글 테이블 추가
-CREATE TABLE IF NOT EXISTS freeBoardComment(
+CREATE TABLE IF NOT EXISTS freeboard_comment(
    cno INT PRIMARY KEY AUTO_INCREMENT,         -- 댓글 번호
    bno INT NOT NULL,                      -- 댓글 작성 게시글 번호
    commentText TEXT NOT NULL,               -- 댓글 내용
    mnick VARCHAR(20) NOT NULL,               -- 작성자 닉네임
    mid VARCHAR(20) NOT NULL,               -- 작성자 아이디
    regdate DATETIME NOT NULL DEFAULT now(),   -- 작성시간
-   FOREIGN KEY(bno) REFERENCES freeBoard(bno) ON DELETE CASCADE,
+   FOREIGN KEY(bno) REFERENCES freeboard(bno) ON DELETE CASCADE,
    FOREIGN KEY(mnick) REFERENCES member(mNick) ON UPDATE CASCADE,
    FOREIGN KEY(mid) REFERENCES member(mId) ON UPDATE CASCADE
 );
@@ -316,7 +316,7 @@ CREATE TABLE partyboard_comment(
 	updatedate TIMESTAMP NOT NULL DEFAULT now(),-- 수정시간
 	reported char(1) default 'N',
 	FOREIGN KEY(bno) -- 참조무결성 추가
-	REFERENCES partyBoard(bno) ON DELETE CASCADE,
+	REFERENCES partyboard(bno) ON DELETE CASCADE,
 	FOREIGN KEY(pnum) REFERENCES party(pnum) ON DELETE CASCADE,
 	FOREIGN KEY(mnick) REFERENCES member(mnick) ON DELETE CASCADE,
 	FOREIGN KEY(mid) REFERENCES member(mid) ON DELETE CASCADE,
@@ -337,7 +337,7 @@ CREATE TABLE partyboard_report
     bno INT, -- 게시글 번호
     cno INT, -- 댓글 번호
 	FOREIGN KEY (pnum) REFERENCES party(pnum)ON DELETE CASCADE,
-	FOREIGN KEY (bno) REFERENCES partyBoard(bno)ON DELETE CASCADE,
+	FOREIGN KEY (bno) REFERENCES partyboard(bno)ON DELETE CASCADE,
 	FOREIGN KEY (cno) REFERENCES partyboard_comment(cno)ON DELETE CASCADE,
 	FOREIGN KEY (fromMid) REFERENCES member(mId) ON UPDATE CASCADE,
     FOREIGN KEY (toMid) REFERENCES member(mId) ON UPDATE CASCADE
@@ -347,14 +347,14 @@ CREATE TABLE partyboard_report
 -- 신고 관련 수정
 ALTER TABLE report
 ADD COLUMN bno INT null,
-ADD FOREIGN KEY (bno) REFERENCES freeBoard(bno);
+ADD FOREIGN KEY (bno) REFERENCES freeboard(bno);
 
 ALTER TABLE report
 ADD COLUMN cno INT,
-ADD FOREIGN KEY (cno) REFERENCES freeBoardComment(cno);
+ADD FOREIGN KEY (cno) REFERENCES freeboard_comment(cno);
 
-alter table freeBoardComment add column reported char(1) default 'N';
-alter table freeBoard add column reported char(1) default 'N'; 
+alter table freeboard_comment add column reported char(1) default 'N';
+alter table freeboard add column reported char(1) default 'N'; 
 
 
 --  freeBoard , freeBoardComment , partyboard , partyboard_comment reported -> showBoard 이름만 변경
@@ -362,9 +362,43 @@ alter table freeBoard add column reported char(1) default 'N';
 ALTER TABLE partyboard_comment drop column reported; 
 ALTER TABLE partyboard_comment add column showBoard char(1) default 'Y'; 
 
-ALTER TABLE partyBoard drop column reported; 
+ALTER TABLE partyboard drop column reported; 
 
-ALTER TABLE freeBoardComment drop column reported; 
-ALTER TABLE freeBoardComment add column showBoard char(1) default 'Y'; 
-ALTER TABLE freeBoard drop column reported; 
-ALTER TABLE freeBoard add column showBoard char(1) default 'Y'; 
+ALTER TABLE freeboard_comment drop column reported; 
+ALTER TABLE freeboard_comment add column showBoard char(1) default 'Y'; 
+ALTER TABLE freeboard drop column reported; 
+ALTER TABLE freeboard add column showBoard char(1) default 'Y'; 
+
+
+INSERT INTO member (mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)
+VALUES ('admin','admin','admin','관리자',30,'F','adminEmail','adminAddr');
+INSERT INTO member (mnum,mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)
+VALUES (2,'id001','1111','김서영','김서영',30,'F','김서영Email','김서영Addr');
+INSERT INTO member (mnum,mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)
+VALUES (3,'id002','1111','이진형','이진형',30,'M','2Email','2Addr');
+INSERT INTO member (mnum,mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)
+VALUES (4,'id003','1111','김선국','김선국',30,'M','3Email','3Addr');
+INSERT INTO member (mnum,mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)
+VALUES (5,'id004','1111','이인','이인',30,'M','4Email','4Addr');
+INSERT INTO member (mnum,mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)
+VALUES (6,'id005','1111','김진우','김진우',30,'M','5Email','5Addr');
+
+INSERT INTO party (pnum,pName,host,sido,sigungu,address,startdate,enddate,category,description)
+VALUES (1,'testparty',1,'부산','해운대구','내주소',NOW(),NOW(),'책/글','창작파티');
+INSERT INTO party (pnum,pName,host,sido,sigungu,address,startdate,enddate,category,description)
+VALUES (2,'testparty',1,'부산','해운대구','내주소',NOW(),NOW(),'책/글','창작파티');
+INSERT INTO party (pnum,pName,host,sido,sigungu,address,startdate,enddate,category,description)
+VALUES (3,'testparty',1,'부산','해운대구','내주소',NOW(),NOW(),'책/글','창작파티');
+INSERT INTO party (pnum,pName,host,sido,sigungu,address,startdate,enddate,category,description)
+VALUES (4,'testparty',1,'부산','해운대구','내주소',NOW(),NOW(),'책/글','창작파티');
+
+INSERT INTO joinmember(pnum, mnum)
+VALUES
+  (1, 1), (2, 1), (3, 1), (4, 1),
+  (1, 2), (2, 2), (3, 2), (4, 2),
+  (1, 3), (2, 3), (3, 3), (4, 3),
+  (1, 4), (2, 4), (3, 4), (4, 4),
+  (1, 5), (2, 5), (3, 5), (4, 5),
+  (1, 6), (2, 6), (3, 6), (4, 6);
+
+commit;
