@@ -103,3 +103,4 @@ alter table partyboard add column reported char(1) default 'N';
 SELECT M.mid, p.* FROM partyBoard P, member M WHERE P.writer = M.mnick AND bno = 9 AND pnum = 1;
 
 desc member profileImageName
+

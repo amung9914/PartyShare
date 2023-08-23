@@ -145,14 +145,14 @@
 		    <artifactId>javax.annotation-api</artifactId>
 		    <version>1.3.2</version>
 		</dependency>
-		
-		<!-- Java - MySQL 연동 -->
-		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+	<!-- 	
+		Java - MySQL 연동
+		https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
 		<dependency>
 		    <groupId>com.mysql</groupId>
 		    <artifactId>mysql-connector-j</artifactId>
 		    <version>8.0.33</version>
-		</dependency>
+		</dependency> -->
 		
 		<!-- spring - jdbc 연동 -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
@@ -229,6 +229,15 @@
 		    <artifactId>imgscalr-lib</artifactId>
 		    <version>4.2</version>
 		</dependency>
+		
+		<!-- 마리아 DB 연결 -->
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+		    <groupId>org.mariadb.jdbc</groupId>
+		    <artifactId>mariadb-java-client</artifactId>
+		    <version>3.1.4</version>
+		</dependency>
+				
 		
 	</dependencies>
     <build>
