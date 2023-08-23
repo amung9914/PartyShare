@@ -390,3 +390,18 @@ ADD FOREIGN KEY (cno) REFERENCES freeBoardComment(cno);
 alter table freeBoardComment add column reported char(1) default 'N';
 alter table freeBoard add column reported char(1) default 'N'; 
 
+
+--  freeBoard , freeBoardComment , partyboard , partyboard_comment reported -> showBoard 이름만 변경
+
+ALTER TABLE partyboard_comment drop column reported; 
+ALTER TABLE partyboard_comment add column showBoard char(1) default 'Y'; 
+
+ALTER TABLE partyboard drop column reported; 
+ALTER TABLE partyboard add column showBoard char(1) default 'Y'; 
+
+ALTER TABLE freeBoardComment drop column reported; 
+ALTER TABLE freeBoardComment add column showBoard char(1) default 'Y'; 
+ALTER TABLE freeBoard drop column reported; 
+ALTER TABLE freeBoard add column showBoard char(1) default 'Y'; 
+
+
