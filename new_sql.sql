@@ -385,7 +385,7 @@ ADD FOREIGN KEY (bno) REFERENCES freeboard(bno);
 
 ALTER TABLE report
 ADD COLUMN cno INT,
-ADD FOREIGN KEY (cno) REFERENCES freeBoardComment(bno);
+ADD FOREIGN KEY (cno) REFERENCES freeBoardComment(cno);
 
 alter table freeBoardComment add column reported char(1) default 'N';
 alter table freeBoard add column reported char(1) default 'N'; 
