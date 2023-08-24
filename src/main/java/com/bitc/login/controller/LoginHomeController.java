@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bitc.common.utils.FileUtils;
 import com.bitc.login.service.JoinService;
 import com.bitc.login.vo.LoginDTO;
-import com.bitc.login.vo.MemberVO;
+import com.bitc.member.vo.MemberVO;
 
 @Controller
 @RequestMapping("/member")

@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.bitc.partyDetail.vo.MemberVO;
-import com.bitc.partyDetail.vo.PartyVO;
+import com.bitc.member.vo.MemberVO;
+import com.bitc.party.vo.PartyVO;
 
 public interface partyDetailService {
 	

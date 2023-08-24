@@ -3,7 +3,7 @@ package com.bitc.login.service;
 import javax.servlet.http.HttpSession;
 
 import com.bitc.login.vo.LoginDTO;
-import com.bitc.login.vo.MemberVO;
+import com.bitc.member.vo.MemberVO;
 
 public interface JoinService {
 	

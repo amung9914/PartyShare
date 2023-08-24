@@ -18,8 +18,8 @@ import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
 import com.bitc.freeboard.service.freeBoardService;
 import com.bitc.freeboard.vo.FreeBoardVO;
-import com.bitc.freeboard.vo.ReportVO;
-import com.bitc.partyDetail.vo.MemberVO;
+import com.bitc.member.vo.MemberVO;
+import com.bitc.report.vo.ReportVO;
 
 import lombok.RequiredArgsConstructor;
 

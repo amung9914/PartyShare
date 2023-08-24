@@ -10,10 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitc.member.vo.MemberVO;
+import com.bitc.party.vo.PartyVO;
 import com.bitc.partyDetail.dao.partyDetailMapper;
 import com.bitc.partyDetail.vo.MapVO;
-import com.bitc.partyDetail.vo.MemberVO;
-import com.bitc.partyDetail.vo.PartyVO;
 
 @Service
 public class partyDetailServiceImpl implements partyDetailService{

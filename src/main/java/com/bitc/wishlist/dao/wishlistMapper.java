@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.bitc.partyDetail.vo.PartyVO;
+import com.bitc.party.vo.PartyVO;
 import com.bitc.wishlist.vo.WishlistVO;
 
 public interface wishlistMapper {

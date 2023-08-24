@@ -1,10 +1,6 @@
 package com.bitc.partyDetail.controller;
 
 
-import java.io.File;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,14 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bitc.common.utils.FileUtils;
+import com.bitc.member.vo.MemberVO;
+import com.bitc.party.vo.PartyVO;
 import com.bitc.partyDetail.service.partyDetailService;
-import com.bitc.partyDetail.vo.MemberVO;
-import com.bitc.partyDetail.vo.PartyVO;
 
 import lombok.RequiredArgsConstructor;
 

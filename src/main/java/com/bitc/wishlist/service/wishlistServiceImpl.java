@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bitc.partyDetail.vo.PartyVO;
+import com.bitc.party.vo.PartyVO;
 import com.bitc.wishlist.dao.wishlistMapper;
 import com.bitc.wishlist.vo.WishlistVO;
 

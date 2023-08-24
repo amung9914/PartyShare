@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitc.login.dao.JoinDAO;
 import com.bitc.login.vo.LoginDTO;
-import com.bitc.login.vo.MemberVO;
+import com.bitc.member.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,8 +49,8 @@ public class JoinServiceImpl implements JoinService{
 			session.setAttribute("loginMember", m);
 			if(m != null) {
 				System.out.println(m);
-				System.out.println(m.getMBlackYN());
-				if(m.getMBlackYN().equals("Y")) {	
+				System.out.println(m.getMblackYN());
+				if(m.getMblackYN().equals("Y")) {	
 					return "member/blackList";
 				}
 				return "member/loginSuccess";

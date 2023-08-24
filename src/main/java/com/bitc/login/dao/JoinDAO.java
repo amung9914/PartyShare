@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import com.bitc.login.vo.LoginDTO;
-import com.bitc.login.vo.MemberVO;
+import com.bitc.member.vo.MemberVO;
 
 public interface JoinDAO {
 	

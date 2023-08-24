@@ -14,6 +14,12 @@
 <a href="<c:url value='/freeBoard/freeBoard'/>">자유게시판</a>
 
 
+
+
+
+<%@ include file="common/header.jsp" %>
+<%@ include file="common/search.jsp" %>
+
 <%@ include file="home/partyList.jsp" %>
 </body>
 </html>

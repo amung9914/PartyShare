@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bitc.partyDetail.vo.MemberVO;
-import com.bitc.partyDetail.vo.PartyVO;
+import com.bitc.member.vo.MemberVO;
+import com.bitc.party.vo.PartyVO;
 import com.bitc.wishlist.service.wishlistService;
 import com.bitc.wishlist.vo.WishlistVO;
 

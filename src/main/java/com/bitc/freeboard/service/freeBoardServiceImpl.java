@@ -14,7 +14,7 @@ import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
 import com.bitc.freeboard.dao.freeBoardMapper;
 import com.bitc.freeboard.vo.FreeBoardVO;
-import com.bitc.freeboard.vo.ReportVO;
+import com.bitc.report.vo.ReportVO;
 
 @Service
 public class freeBoardServiceImpl implements freeBoardService{

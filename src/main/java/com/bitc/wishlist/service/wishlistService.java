@@ -2,7 +2,7 @@ package com.bitc.wishlist.service;
 
 import java.util.List;
 
-import com.bitc.partyDetail.vo.PartyVO;
+import com.bitc.party.vo.PartyVO;
 import com.bitc.wishlist.vo.WishlistVO;
 
 public interface wishlistService {
