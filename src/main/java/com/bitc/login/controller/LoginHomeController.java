@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bitc.common.utils.FileUtils;
 import com.bitc.login.service.JoinService;
-import com.bitc.login.utils.FileUtils;
 import com.bitc.login.vo.LoginDTO;
 import com.bitc.login.vo.MemberVO;
 
@@ -69,7 +69,7 @@ public class LoginHomeController {
                 if (fileExtension.equalsIgnoreCase(allowedExtension)) {
                     // 파일 처리 로직 추가
                 	 try {
-						String savedName = FileUtils.uploadFile(realPath, file);
+						String savedName = FileUtils.uploadOriginalImage(realPath, file);
                vo.setProfileImageName(savedName);
                js.Join(vo);
 					} catch (Exception e) {
@@ -98,16 +98,17 @@ public class LoginHomeController {
     
     @GetMapping("/goJoin")
     public String goJoin () {
-    	return "home";
+    	return "member/join";
     }
 
     @GetMapping("/login")
     public String goLogin() { 
-        return "login";
+        return "member/login";
     }
     
     @GetMapping("/loginFailed")
-    public void loginFailed() {
+    public String loginFailed() {
+    	return "member/loginFailed";
     }
 
     @PostMapping("/loginCheck")

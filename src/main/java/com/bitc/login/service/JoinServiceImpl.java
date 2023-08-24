@@ -51,11 +51,11 @@ public class JoinServiceImpl implements JoinService{
 				System.out.println(m);
 				System.out.println(m.getMBlackYN());
 				if(m.getMBlackYN().equals("Y")) {	
-					return "blackList";
+					return "member/blackList";
 				}
-				return "loginSuccess";
+				return "member/loginSuccess";
 			}
-			return "loginFailed";
+			return "member/loginFailed";
 			
 	}
 
