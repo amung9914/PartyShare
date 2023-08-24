@@ -2,8 +2,6 @@ package com.bitc.common.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +29,7 @@ public class HomeController {
 	}
 	
 		
-		// test용 로그인 페이지
-		@GetMapping("login")
-		public void login() {}
-			
+		/*	
 		// test용 로그인 수행
 		@PostMapping("login")
 		public String login(MemberVO vo, HttpSession session) {
@@ -48,7 +43,7 @@ public class HomeController {
 			return "redirect:/account"; // get으로 mapping으로 감
 		}	
 		
-
+*/
 		// 계정관리 메뉴로 이동
 		@GetMapping("account")
 		public void account() {}

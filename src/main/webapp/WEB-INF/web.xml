@@ -33,7 +33,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:/spring/appServlet/servlet-context.xml</param-value>
+			<param-value>classpath:/spring/appServlet/*</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -42,5 +42,15 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error500</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error500</location>
+	</error-page>
 
 </web-app>
