@@ -25,6 +25,7 @@ import com.bitc.common.utils.FileUtils;
 import com.bitc.map.service.MapService;
 import com.bitc.map.vo.MapVO;
 import com.bitc.member.service.MemberService;
+import com.bitc.member.vo.MemberVO;
 import com.bitc.party.service.PartyService;
 import com.bitc.party.vo.PartyVO;
 
@@ -90,11 +91,14 @@ public class PartyController {
 	@GetMapping("partyHost")
 	public String partyHost(int pnum,Model model) {
 		PartyVO vo = null;
+		List<MemberVO> list = null;
 		try {
-			vo = ps.read(pnum,model);
+			vo = ps.read(pnum);
+			list = ps.getJoinPartyMemberList(pnum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("partyJoinMember",list);
 		model.addAttribute("party",vo);
 		return "party/partyHost";
 	}
@@ -107,7 +111,7 @@ public class PartyController {
 		List<String> description = null;
 		List<String> category = null;
 		try {
-			vo = ps.read(pnum,model);
+			vo = ps.read(pnum);
 			map = maps.readLocation(pnum);
 			description = ps.description();
 			category = ps.category();

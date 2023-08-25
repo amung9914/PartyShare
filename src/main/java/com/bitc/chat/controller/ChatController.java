@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bitc.chat.service.ChatService;
 import com.bitc.chat.vo.ChatVO;
 import com.bitc.member.vo.MemberVO;
-import com.bitc.party.service.CreatePartyService;
+import com.bitc.party.service.PartyService;
 import com.bitc.party.vo.PartyVO;
 
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class ChatController {
 	
 	private final ChatService sc;
-	private final CreatePartyService ps;
+	private final PartyService ps;
 	
 	@RequestMapping("/chat")
     public ModelAndView enterChat(@RequestParam int pnum, ModelAndView mav, HttpSession session, RedirectAttributes rttr) {
@@ -40,11 +40,11 @@ public class ChatController {
 			if(!joinMemberList.contains(member)) {
 				String message = "파티 맴버만 입장할 수 있습니다.";
 				rttr.addFlashAttribute("message", message);
-				mav.setViewName("redirect:/party/partyDetail?pnum="+pnum);
+				mav.setViewName("redirect:/partyDetail/detailOfParty?pNum="+pnum);
 				return mav;
 			}
 			firstList = sc.selectFirstChatList(pnum);
-			party = ps.selectParty(pnum);
+			party = ps.read(pnum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

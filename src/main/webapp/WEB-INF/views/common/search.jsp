@@ -26,11 +26,11 @@
       background-color: aqua;
     }
   /* 헤더부분 시작 */  
-    header{
+    #searchHeader{
     width: 100%;
     height:180px;
     background: transparent;
-   	margin-top:10%;
+    margin-top: 3%;
   	}
   	
   	#userMenu{
@@ -154,12 +154,10 @@
      }
      #previous{
      float:left;
-     position: fixed;
   	 top:50px;
      }
      #next{
      float:right;
-     position: fixed;
   	 top:50px;
    	 left:1800px;
      }
@@ -167,7 +165,7 @@
   </style>
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<header>	
+<header id="searchHeader">	
   
 
   <div id="barContatiner"></div>

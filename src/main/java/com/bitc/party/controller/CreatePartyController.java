@@ -211,19 +211,6 @@ public class CreatePartyController {
 		return map;
 	}
 	
-	@GetMapping("/partyAdmin")
-	public String partyManagement(Model model, int pnum) {
-		List<MemberVO> list = null;
-		try {
-			list = ps.getJoinPartyMemberList(pnum);
-			model.addAttribute("partyJoinMember",list);
-			model.addAttribute("pnum", pnum);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "party/partyAdmin";
-	}
-	
 	@GetMapping("/partyMemberBan")
 	public String partyMemberBan(Model model, int mnum, int pnum, RedirectAttributes rttr) {
 		try {
@@ -233,7 +220,7 @@ public class CreatePartyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/party/partyAdmin";
+		return "redirect:/party/partyHost";
 	}
 	
 	@GetMapping("/partyFinish")
@@ -246,7 +233,7 @@ public class CreatePartyController {
 			e.printStackTrace();
 		}
 
-		return "redirect:partyList";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/partyDetail")

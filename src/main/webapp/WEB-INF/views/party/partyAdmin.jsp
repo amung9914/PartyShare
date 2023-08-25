@@ -28,7 +28,7 @@
 </style>
 </head>
 <body>
-<a href="<c:url value='/home'/>">home으로</a>
+<a href="<c:url value='/'/>">home으로</a>
 <c:if test="${!empty message}">
 	<script>
 		alert('${message}');
