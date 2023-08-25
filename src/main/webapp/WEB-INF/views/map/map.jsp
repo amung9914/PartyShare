@@ -146,40 +146,13 @@ function open(){
 				    //팝업 클릭 이벤트
 				    $("#map").on("click",".infoDiv",function(){
 				    	let pnum = $(this).attr("data-pnum");
-				    	location.href="<c:url value='/party/partyDetail?pnum="+pnum+"'/>";
+				    	location.href="<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
 				    })
 				    
-				    //팝업 닫기 이벤트
+				    //팝업 닫기 이벤트 
 				    $("#map").on("click",".closeBtn",function(){
 				    	 overlay.setMap(null);
 				    })
-				    
-					 
-				    //var infoDiv = document.createElement('div');
-				    
-				    /*
-				 	// 마커 클릭시 표시할 내용입니다.
-				    var info = document.createElement('a');
-				    info.appendChild(document.createTextNode("파티이름:"+pname)); 
-				    info.appendChild(document.createElement('br'));
-				    info.appendChild(document.createTextNode("host:"+host));
-				    info.href = "/party/partyDetail?pnum="+pnum; // 파티 상세페이지 연결
-				    
-				    //content.appendChild(infoDiv);
-				    content.append(str);
-				    infoDiv.appendChild(info);
-				    
-
-				    var closeBtn = document.createElement('button');
-				    closeBtn.appendChild(document.createTextNode('X'));
-				    // 닫기 이벤트 추가
-				    closeBtn.onclick = function() {
-				        overlay.setMap(null);
-				    };
-
-				    content.appendChild(closeBtn);
-					
-				    */
 				    
 				    // customoverlay 생성, 이때 map을 선언하지 않으면 지도위에 올라가지 않습니다.
 			    	var overlay = new daum.maps.CustomOverlay({
@@ -189,8 +162,6 @@ function open(){
 			        overlay.setMap(map);
 				});
 			
-	    	
-	    	
 	        
 	    });
 	  
