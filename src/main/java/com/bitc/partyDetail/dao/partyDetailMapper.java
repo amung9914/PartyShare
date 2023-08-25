@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.bitc.map.vo.MapVO;
 import com.bitc.member.vo.MemberVO;
 import com.bitc.party.vo.PartyVO;
-import com.bitc.partyDetail.vo.MapVO;
 
 public interface partyDetailMapper {
 
@@ -22,7 +22,7 @@ public interface partyDetailMapper {
 	@Select("SELECT COUNT(*) FROM joinmember WHERE pNum = #{pNum}")
 	public int NumberOfJoinMember(int pNum) throws Exception;
 
-	@Select("SELECT * FROM member WHERE mNum IN (SELECT mNum FROM joinMember WHERE pNum = #{pNum})")
+	@Select("SELECT * FROM member WHERE mNum IN (SELECT mNum FROM joinmember WHERE pNum = #{pNum})")
 	public List<MemberVO> readJoinMember(int pNum) throws Exception;
 
 	@Select("SELECT * FROM map WHERE pNum = #{pNum}")

@@ -23,6 +23,8 @@
 <h3>${loginMember}</h3>
 	개설한 파티 목록
 	
+
+
 <div class="row row-cols-1 row-cols-md-2 g-4">
 
 <c:forEach items="${list}" var="party">
@@ -30,7 +32,7 @@
     <div class="card">
       <img src="${path}/party/printImg?fileName=${party.partyImage1}" />
       <div class="card-body">
-      	<a href="<c:url value='/party/partyDetail?pnum=${party.pnum}'/>">
+      	<a href="<c:url value='/partyDetail/detailOfParty?pNum=${party.pnum}'/>">
         <h4 class="card-title">파티이름 : ${party.pname}</h4>
         	<p class="card-text">
        

@@ -10,7 +10,7 @@ public class PartyBoardQueryProvider {
 	public String searchSelectSql(@Param("pnum")int pnum,@Param("cri")SearchCriteria cri) {
 		SQL sql = new SQL();
 		sql.SELECT("*");
-		sql.FROM("partyBoard");
+		sql.FROM("partyboard");
 		
 		getSearchWhere(cri,sql);
 

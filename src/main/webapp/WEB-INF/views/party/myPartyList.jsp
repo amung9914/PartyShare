@@ -32,7 +32,7 @@
      <img src="${path}/party/printImg?fileName=${party.partyImage1}" />
       <div class="card-body">
       
-      	<a href="<c:url value='/party/partyDetail?pnum=${party.pnum}'/>">
+      	<a href="<c:url value='/partyDetail/detailOfParty?pNum=${party.pnum}'/>">
         <h5 class="card-title">파티이름 : ${party.pname}</h5>
         	<p class="card-text">
        
