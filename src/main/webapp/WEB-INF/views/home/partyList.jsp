@@ -73,7 +73,7 @@
 <a href="<c:url value='/party/createParty'/>">파티등록</a><br/>
 <a href="<c:url value='/home'/>">홈으로</a>
 <div id="mapBtn">
-	<a href="#">지도보기</a>
+	<a href="<c:url value='/location/map'/>">지도보기</a>
 </div>
 <hr/>
 	<div id="partyListContainer" >
