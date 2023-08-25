@@ -44,10 +44,9 @@
     </div>
   </div>
   
+	<%@ include file="partyAdmin.jsp" %>
 	
-	<div>파티원 관리</div>
-	<div>파티끝</div>
-	
+	<!-- 파티 강퇴자를 위한 알림 -->
 	<script>
 	var result = '${result}';
 	if(result != null && result != ''){
