@@ -90,7 +90,7 @@
 		<h1>detailOfParty.jsp</h1>
 		<nav>
 			<ul>
-				<li>홈</li>
+				<li><a href="<c:url value='/'/>">홈</a></li>
 				<li><a href="<c:url value='/partyBoard/listPage?pnum=${vo.pnum}'/>">게시판</a></li>
 				<li><a href="<c:url value='/chat?pnum=${vo.pnum}'/>">채팅창</a></li>
 			</ul>	

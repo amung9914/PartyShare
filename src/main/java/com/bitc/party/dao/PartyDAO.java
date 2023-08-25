@@ -59,7 +59,11 @@ public interface PartyDAO {
 	 */
 	 @Select("SELECT category FROM partycategory")
 	List<String> category() throws Exception;
-	 
-	 
+	
+	/**
+	 * 파티 참여 맴버 목록
+	 */
+	@Select("SELECT * FROM member WHERE mnum IN (SELECT mnum FROM joinmember WHERE pnum=#{pnum})")
+	public List<MemberVO> getJoinPartyMember(int pnum) throws Exception; 
 	
 }

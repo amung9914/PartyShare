@@ -18,7 +18,9 @@
 		width: 20%;
 	}
 </style>
+
 <a href="<c:url value='/home'/>">home으로</a>
+
 <c:if test="${!empty message}">
 	<script>
 		alert('${message}');

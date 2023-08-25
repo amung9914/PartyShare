@@ -24,8 +24,6 @@ public interface CreatePartyService {
 	
 	public List<String> getCategoryList() throws Exception;
 	
-	public List<MemberVO> getJoinPartyMemberList(int pnum) throws Exception;
-	
 	public String partyMemberBan(int pnum, int mnum) throws Exception;
 	
 	public String setPartyFinish(int pnum) throws Exception;

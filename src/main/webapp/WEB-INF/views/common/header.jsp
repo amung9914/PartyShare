@@ -4,15 +4,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
 <style>
 /* 헤더정보 시작 */
 *{margin:0 auto;
 	padding:0}
-header{
+	
+#headerHeader{
     width: 100%;
-    height:100px;
-    background: #FF385C;
-	}
+    /* background: #FF385C; */
+}
 #headerDiv{
 	width : 100%;
 	height : 70px;
@@ -64,13 +68,13 @@ header{
 
 /* 헤더정보 끝 */
 </style>
-<meta charset="UTF-8">
 <title>헤더</title>
-<header>
+</head>
+<body>
+<header id="headerHeader">
 <hr/>
-
 	<div id="userMenu">
-	<div id="menuBox"><a href="<c:url value='home'/>"> 홈ㅋ</a></div> 
+	<div id="menuBox"><a href="<c:url value='/'/>"> 홈ㅋ</a></div> 
 	</div>
 	<hr/>
 	<div id="headerDiv">
@@ -81,8 +85,6 @@ header{
 <!-- 중  -->	<div id="centerHd">
 				<div id="centerDivBox">
 			 	
-			<div class="divC"><a href="<c:url value='/party/partyHost?pnum=496'/>">partyMemberList</a></div>
-			<div class="divC"><a href="<c:url value='/party/partyList'/>">partyList</a></div>
 			<div class="divC"><a href="<c:url value='/friend'/>">친구리스트</a></div>
 			
 		</div>

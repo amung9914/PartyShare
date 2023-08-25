@@ -39,9 +39,6 @@ public interface CreatePartyDAO {
 	@Select("SELECT category FROM partycategory")
 	public List<String> getCategoryList() throws Exception;
 	
-	@Select("SELECT * FROM member WHERE mnum IN (SELECT mnum FROM joinmember WHERE pnum=#{pnum})")
-	public List<MemberVO> getJoinPartyMember(int pnum) throws Exception;
-	
 	@Delete("Delete FROM joinmember WHERE pnum=#{pnum} AND mnum=#{mnum}")
 	public int partyMemberBan(Map<String, Integer> map) throws Exception;
 	

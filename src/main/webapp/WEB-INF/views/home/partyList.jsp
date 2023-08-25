@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="realPath" value="${pageContext.request.contextPath}/upload/party/"/>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
@@ -42,16 +41,10 @@
 	}
 	
 	#mapBtn{
-		background-color: lightgrey;
 		position: absolute;
 		bottom: 50px;
 		position: fixed;
 		left:48%;
-		border: 1px black solid;
-	}
-	#mapBtn a{
-		color:black;
-		text-decoration: none;
 	}
 	
 </style>
@@ -63,9 +56,8 @@
 </c:if>
 <!-- partyList 필요 -->
 <a href="<c:url value='/party/createParty'/>">파티등록</a><br/>
-<a href="<c:url value='/home'/>">홈으로</a>
 <div id="mapBtn">
-	<a href="<c:url value='/location/map'/>">지도보기</a>
+	<button onclick="location.href='${contextPath}/location/map';" class="btn btn-dark">지도보기</button>
 </div>
 <hr/>
 	<div id="partyListContainer" >
@@ -102,7 +94,7 @@
 			
 			str += '<li>';
 			// wishList 받아서 fullHeart.png로 출력
-			str += "<img src='"+contextPath+"/resources/img/emptyHeart.png' class='likeBtn'/>"
+			str += "<img src='"+contextPath+"/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>"
 			str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
 			str += "<hr/>";
 			str += "<strong onclick='partyDetail("+pnum+");' style='cursor: pointer;'>"+pname+"</strong><br/>";
@@ -141,5 +133,34 @@
 			listPage(page);
 		}	
 	});
-	
+	function toggleHeart(heartElement) {
+        if (heartElement.src.includes("${contextPath}/resources/img/redHeart.png")) {
+            heartElement.src = "${contextPath}/resources/img/emptyHeart.png"; // 빈 하트 이미지 경로로 변경
+            var pNum = $(heartElement).attr("id");
+            // dao.deleteWishList() 호출
+            $.ajax({
+                type: "POST",
+                url: "${contextPath}/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
+                data: {pNum : pNum},
+                success: function(data) {
+                    console.log("Wish List deleted");
+                }
+            });
+        } else {
+            heartElement.src = "${contextPath}/resources/img/redHeart.png"; // 빨간 하트 이미지 경로로 변경
+            var pNum = $(heartElement).attr("id");
+            // dao.addWishList() 호출
+            $.ajax({
+                type: "POST",
+                url: "${contextPath}/wishlist/addWishlist", // addWishlist에 해당하는 컨트롤러 URL
+                data: {
+                	pNum : pNum,
+                	alias : "party"
+                },
+                success: function(data) {
+                    console.log("Wish List added");
+                }
+            });
+        }
+    }
     </script>

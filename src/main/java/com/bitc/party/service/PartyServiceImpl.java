@@ -37,7 +37,7 @@ public class PartyServiceImpl implements PartyService{
 	}
 
 	@Override
-	public PartyVO read(int pnum,Model model) throws Exception {
+	public PartyVO read(int pnum) throws Exception {
 		PartyVO vo = dao.read(pnum);
 		return vo;
 	}
@@ -62,7 +62,10 @@ public class PartyServiceImpl implements PartyService{
 		return dao.category();
 	}
 
-	
+	@Override
+	public List<MemberVO> getJoinPartyMemberList(int pnum) throws Exception{
+		return dao.getJoinPartyMember(pnum);
+	}
 
 	
 
