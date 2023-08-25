@@ -5,14 +5,8 @@
 <head>
 	<title>Home</title>
 </head>
-
-
-
-
-
 <%@ include file="common/header.jsp" %>
 <%@ include file="common/search.jsp" %>
-
 <%@ include file="home/partyList.jsp" %>
 </body>
 </html>

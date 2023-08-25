@@ -114,7 +114,7 @@
 </style>
 </head>
 <body>
-<a href="<c:url value='/home'/>">home으로</a>
+<a href="<c:url value='/'/>">home으로</a>
 	<h1 id="title">계정 정보</h1>
 	<div class="profile_img_wrap">
 		<img id="profile_img" class="profile_img" src="<c:url value='/image/printProfileImage?fileName=${loginMember.profileImageName}'/>"/>
@@ -128,7 +128,7 @@
 		</div>
 	</div>
 	
-	<form action="modify" method="post" enctype="multipart/form-data">
+	<form action="${path}/member/modify" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="mnum" value="${loginMember.mnum}"/>
 		<input type="hidden" name="mbanCnt" value="${loginMember.mbanCnt}"/>
 		<input type="hidden" name="mjoinCnt" value="${loginMember.mjoinCnt}"/>

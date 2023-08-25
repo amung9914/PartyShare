@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>성공</h1>
-${loginMember}
-<h2>===================================================</h2>
-${loginMember.profileImageName }
-
-
+	
 </body>
 </html>
