@@ -318,7 +318,7 @@
 	var contextPath = '${pageContext.request.contextPath}';
 	
 	function partyDetail(pnum){
-		location.href=''+contextPath+'/party/partyDetail?pnum='+pnum;
+		location.href=''+contextPath+'/partyDetail/detailOfParty?pNum='+pnum;
 	}
 </script>
 </body>

@@ -96,21 +96,18 @@ public class CreatePartyController {
 		
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
-		System.out.println("addr : "+ map);
 		return "createParty/period";
 	}
 	
 	@PostMapping("/choosePeriod")
 	public String choosePeriod(PartyVO vo, Model model, MapVO map, String period) {
-		if(period.equals("짜릿한 일회성 만남")) {
-			
-		}else {
-			
-		}
 		model.addAttribute(map);
 		model.addAttribute("vo", vo);
-		System.out.println("per : "+ map);
-		return "createParty/date";
+		if(period.equals("짜릿한 일회성 만남")) {
+			return "createParty/dateOne";
+		}else {
+			return "createParty/date";
+		}
 	}
 	
 	// 파티 생성 - 파티 날짜
@@ -118,7 +115,6 @@ public class CreatePartyController {
 	public String createDate(PartyVO vo, Model model, MapVO map) {
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
-		System.out.println("date : "+ map);
 		return "createParty/name";
 	}
 	
@@ -127,7 +123,6 @@ public class CreatePartyController {
 	public String createName(PartyVO vo, Model model, MapVO map) {
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
-		System.out.println("name : "+ map);
 		return "createParty/context";
 	}
 	
@@ -136,7 +131,6 @@ public class CreatePartyController {
 	public String createContext(PartyVO vo, Model model, MapVO map) {
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
-		System.out.println("cont : "+ map);
 		return "createParty/image";
 	}
 	
@@ -178,7 +172,6 @@ public class CreatePartyController {
 			
 			ps.joinPartyMember(pnum, vo.getHost());
 			ps.setLocation(map);
-			System.out.println("img : "+ map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

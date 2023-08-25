@@ -109,7 +109,7 @@
     	<input type="hidden" name="startDate" value="${vo.startDate}" />
 		<input type="hidden" name="endDate" value="${vo.endDate}" />
 		<input type="hidden" name="pname" value="${vo.pname}" />
-		<input type="hidden" name="pcontext" value="${vo.pcontext}" />
+		<input type="hidden" name="pcontext" value='${vo.pcontext}' />
 
 		<div id="imgBox">
 			<div class="img_wrap mainImage">
