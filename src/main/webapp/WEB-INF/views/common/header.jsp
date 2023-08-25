@@ -12,22 +12,19 @@
 *{margin:0 auto;
 	padding:0}
 header{
-    position:fixed;
     width: 100%;
     height:100px;
     background: #FF385C;
-    z-index:999;
-    top:0;left:0;
 	}
 #headerDiv{
 	width : 100%;
 	height : 70px;
 	margin :1px 0 0 0 ;
-	background: #FF385C;
+/* 	background: #FF385C; */
 }
   div{	
   	display: flex; 
-	background: gray;
+	/* background: gray; */
 	width : 610px;
 	height : 35px;
 	display: inline-block;
@@ -78,25 +75,32 @@ header{
 <hr/>
 
 	<div id="userMenu">
-	<div id="menuBox">ㅇ</div> 
+	<div id="menuBox"><a href="<c:url value='home'/>"> 홈ㅋ</a></div> 
 	</div>
 	<hr/>
 	<div id="headerDiv">
 <!-- 좌 -->	<div id="leftHd">
-			<div>여기도 하나</div>
+			<div><a href="<c:url value='/freeBoard/freeBoard'/>">자유게시판</a></div>
 			</div>
 	
 <!-- 중  -->	<div id="centerHd">
 				<div id="centerDivBox">
 			 	
-			<div class="divC">아니</div><div class="divC">이렇게</div><div class="divC">하면</div>
+			<div class="divC"><a href="<c:url value='/party/partyHost?pnum=496'/>">partyMemberList</a></div>
+			<div class="divC"><a href="<c:url value='/party/partyList'/>">partyList</a></div>
+			<div class="divC"><a href="<c:url value='/friend'/>">친구리스트</a></div>
 			
 		</div>
 	</div>					<!-- -->
 	
 <!-- 우 -->		<div id="rightHd">
-					<div id="rightBox">글자를 넣으면?</div>
-					<div id="rightBox"><div id="menuBox">ㅇ</div> 
+					<div id="rightBox">
+					<%@ include file="../member/login.jsp" %></div>
+					<div id="rightBox">
+					
+					<div id="menuBox">
+					<a href="<c:url value='/member/profileModify?page=1'/>">프로필modify</a>
+					</div> 
 					<!-- 
 					<select class="form-select" size="3" aria-label="size 3 select example">
 					  <option selected>Open this select menu</option>
@@ -113,7 +117,7 @@ header{
 
 <hr/>
 </header>
-<a href="<c:url value='home'/>"> 홈ㅋ</a>
+
 <!-- 부트스트랩CSS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script>

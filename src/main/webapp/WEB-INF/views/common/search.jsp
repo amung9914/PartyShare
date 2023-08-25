@@ -31,12 +31,10 @@
     }
   /* 헤더부분 시작 */  
     header{
-    
     width: 100%;
     height:180px;
-    background: gray;
-    z-index:999;
-    top:0;left:0;
+    background: transparent;
+   	margin-top:10%;
   	}
   	
   	#userMenu{
@@ -100,9 +98,9 @@
       padding: 5px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      position: absolute;
+      /* position: absolute;
       top:100px;
-      left:300px;
+      left:300px; */
     }
 
     /* 버튼과 검색창을 감싸는 부모 컨테이너 스타일 */
@@ -140,7 +138,7 @@
     
     }
     #barContatiner{
-    display:fixed;
+    display:block;
     display:flex;
     }
     .barItem{
@@ -151,7 +149,7 @@
     border: 1px solid gray;
     }
     #keywordBtn {
-    position: fixed;
+    position: block;
     top:100px;
     left:300px;
      }
@@ -180,9 +178,9 @@
 <header>	
   
   <div id="userMenu">
-  <a href="admin/admin">관리자페이지 </a>
-  <a href="member/report"> 신고페이지</a>
-  <a href="<c:url value='/member/post'/>">post</a>
+  <a href="${path}/admin/admin">관리자페이지 </a>
+  <a href="${path}/member/report"> 신고페이지</a>
+  <a href="${path}/member/post">post</a>
   </div>
   <div id="barContatiner"></div>
   <div class="searchBtnContainer">

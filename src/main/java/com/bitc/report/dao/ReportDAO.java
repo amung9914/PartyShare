@@ -64,6 +64,7 @@ public interface ReportDAO {
 	@Update("UPDATE partyboard_report SET readed ='Y' WHERE no = #{no}")
 	void readPBR(PbReportVO vo) throws Exception;
 	
+	
 	@Update("UPDATE freeboard_comment SET reported = 'B' WHERE reported = 'N' AND cno = #{cno}")
 	void blindComment(ReportVO vo) throws Exception;
 	
