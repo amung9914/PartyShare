@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.bitc.map.vo.MapVO;
 import com.bitc.member.vo.MemberVO;
 import com.bitc.party.vo.PartyVO;
-import com.bitc.partyDetail.vo.MapVO;
 
 public interface partyDetailMapper {
 
