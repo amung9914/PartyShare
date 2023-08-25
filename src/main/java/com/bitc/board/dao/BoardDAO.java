@@ -19,57 +19,57 @@ public interface BoardDAO {
 	/**
 	 * 댓글VO 찾기
 	 * */
-	@Select("SELECT * FROM freeBoardComment WHERE cno = #{cno}")
+	@Select("SELECT * FROM freeboard_comment WHERE cno = #{cno}")
 	FreeBoardCommentVO freeBoardComment (int cno) throws Exception;
 	
 	/**
 	 * 원본VO -> 원본 번호로
 	 * */ 
-	@Select("SELECT * FROM freeBoard WHERE bno = #{bno}")
+	@Select("SELECT * FROM freeboard WHERE bno = #{bno}")
 	FreeBoardVO freeBoard(int bno) throws Exception;
 	/**
 	 * 원본VO -> 댓번으로
 	 * */ 
-	@Select ("SELECT * FROM freeBoard WHERE bno = " 
-			+ " (SELECT bno FROM freeBoardComment WHERE cno = #{cno}) ")
+	@Select ("SELECT * FROM freeboard WHERE bno = " 
+			+ " (SELECT bno FROM freeboard_comment WHERE cno = #{cno}) ")
 	FreeBoardVO originalBoard (int cno) throws Exception;
 	
 	/**
 	 * 파티댓글VO 찾기
 	 * */
-	@Select("SELECT * FROM partyBoard_Comment WHERE cno = #{cno} ")
+	@Select("SELECT * FROM partyboard_comment WHERE cno = #{cno} ")
 	PartyCommentVO partyComment (int cno) throws Exception;
 	
 	/**
 	 * 파티댓글VO -> 원본 번호로
 	 * */
-	@Select("SELECT * FROM partyBoard WHERE bno = #{bno}")
+	@Select("SELECT * FROM partyboard WHERE bno = #{bno}")
 	PartyBoardVO partyBoard(int bno) throws Exception;
 	
 	/**
 	 * 파티댓글VO -> 댓글 번호로
 	 * */
-	@Select("SELECT * FROM partyBoard WHERE bno = "
+	@Select("SELECT * FROM partyboard WHERE bno = "
 			+ " (SELECT bno FROM partyboard_comment  WHERE cno = #{cno})")
 	PartyBoardVO originalPartyBoard(int cno) throws Exception;
 	
-	@Update("UPDATE freeBoard SET showBoard = 'N' WHERE bno = #{bno} ")
+	@Update("UPDATE freeboard SET showboard = 'N' WHERE bno = #{bno} ")
 	void blindBoard(int bno) throws Exception;
 	
-	@Update("UPDATE freeBoardComment SET showBoard = 'N' WHERE cno = #{cno} ")
+	@Update("UPDATE freeboard_comment SET showboard = 'N' WHERE cno = #{cno} ")
 	void blindComment(int cno)throws Exception;
 	
-	@Update("UPDATE partyBoard SET showBoard = 'N' WHERE bno = #{bno}")
+	@Update("UPDATE partyboard SET showboard = 'N' WHERE bno = #{bno}")
 	void blindPartyBoard (int bno) throws Exception;
 	
-	@Update("UPDATE partyboard_comment SET showBoard ='N' WHERE bno = #{bno}")
+	@Update("UPDATE freeboard_comment SET showboard ='N' WHERE bno = #{bno}")
 	void blindPartyComment (int cno)throws Exception;
 	
 	
 	
 	/**
-	 * partyBoardVO 
-	 * partyBoardCommentVO 받아오기 
+	 * partyboardVO 
+	 * partyboardCommentVO 받아오기 
 	 * */
 //	@Select
 	

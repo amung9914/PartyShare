@@ -18,14 +18,14 @@ public interface AdminDAO {
 	 * */
 //	@Insert("INSERT INTO category (category) VALUES (#{category}")
 //	public int addCategory(CategoryVO vo) throws Exception;
-	@Select("SELECT * FROM member ORDER BY mNum ")
+	@Select("SELECT * FROM member ORDER BY mnum ")
 	public List<MemberVO> memberList() throws Exception;	// adminDAO
 	
-	@Select("SELECT * FROM member WHERE mId = #{id}")
+	@Select("SELECT * FROM member WHERE mid = #{id}")
 	public MemberVO selectMember(String id) throws Exception;	// adminDAO
 	
 
-	@Update("UPDATE member SET mBlackYN = 'Y' WHERE mId = #{targetId}")
+	@Update("UPDATE member SET mblackYN = 'Y' WHERE mid = #{targetId}")
 	public int blackMember(String targetId);	// adminDAO
 	
 

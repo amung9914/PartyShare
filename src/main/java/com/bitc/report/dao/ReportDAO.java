@@ -23,10 +23,10 @@ public interface ReportDAO {
 	@Select("SELECT * FROM report WHERE no = #{no}")
 	public ReportVO selectReport(int no) throws Exception;	//reportDAO
 	
-	@Update("UPDATE freeBoard reported = 'Y' WHERE bno = #{bno}")
-	public void reportBoard(int bno) throws Exception;	//reportDAO
+//	@Update("UPDATE freeboard reported = 'Y' WHERE bno = #{bno}")
+//	public void reportBoard(int bno) throws Exception;	//reportDAO
 	
-	@Update("UPDATE freeBoardComment reported = 'Y' WHERE cno = #{cno}")
+	@Update("UPDATE partyboard_comment reported = 'Y' WHERE cno = #{cno}")
 	public void reportComment(int cno) throws Exception;	//reportDAO
 	
 	// INSERT 반환타입 확인하러 == void
@@ -37,10 +37,10 @@ public interface ReportDAO {
 	@Select("SELECT * FROM report WHERE fromMid = #{mId} ")
 	List<ReportVO> reportReview(MemberVO vo) throws Exception;	// reportDAO
 	
-	@Update("UPDATE member SET mBanCnt = mBanCnt+1 WHERE mId = #{target} ")
+	@Update("UPDATE member SET mbanCnt = mbanCnt+1 WHERE mId = #{target} ")
 	void addReportCnt (String target) throws Exception;	// reportDAO
 	
-	@Update("UPDATE member SET mBlackYN = 'Y' , mBanCnt = 0  WHERE mBanCnt = 10")
+	@Update("UPDATE member SET mblackYN = 'Y' , mbanCnt = 0  WHERE mbanCnt = 10")
 	int cntOut() throws Exception;	// reportDAO
 	
 	
@@ -64,10 +64,10 @@ public interface ReportDAO {
 	@Update("UPDATE partyboard_report SET readed ='Y' WHERE no = #{no}")
 	void readPBR(PbReportVO vo) throws Exception;
 	
-	@Update("UPDATE freeBoardComment SET reported = 'B' WHERE reported = 'N' AND cno = #{cno}")
+	@Update("UPDATE freeboard_comment SET reported = 'B' WHERE reported = 'N' AND cno = #{cno}")
 	void blindComment(ReportVO vo) throws Exception;
 	
-	@Update("UPDATE freeBoard SET reported = 'B' WHERE reported = 'N' AND bno = #{bno}")
+	@Update("UPDATE freeboard SET reported = 'B' WHERE reported = 'N' AND bno = #{bno}")
 	void blindBoard(ReportVO vo) throws Exception;
 	
 

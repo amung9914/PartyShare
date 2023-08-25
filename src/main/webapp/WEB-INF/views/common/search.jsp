@@ -169,11 +169,7 @@
   	 top:50px;
    	 left:1800px;
      }
-     .one{
-     width : 50px;
-     height: 300vh;
-     position: sticky;
-     }
+  
   </style>
 </head>
 
@@ -222,7 +218,6 @@
     </div>
   </div>
   <!-- 모달창이 위치합니다 끝 searchModal -->
-	 <div class="one">sticky</div>
   <script>
   //	<div><a href=''><img src='샘플이미지' /></a></div class="categoryImgDiv">
   		var countDescription = 1;
