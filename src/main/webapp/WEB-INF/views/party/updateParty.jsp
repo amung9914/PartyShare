@@ -6,20 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+ <!-- Editor's Style -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
 </head>
 <body>
 
-<h2>파티 정보 수정</h2>
 <!-- 수정되는 객체 -->
- <form method="POST" enctype="multipart/form-data">
+ <form method="POST" enctype="multipart/form-data" id="updateForm">
 		<input type="hidden" name="pnum" value="${party.pnum}"/> 
 		파티이름 : <input type="text" name="pname" value="${party.pname}"/><br/>
-		
 		주소수정하기 : <br/>
-		<input type="button" onclick="execDaumPostcode()" value="주소찾기"><br>
+		<input type="button" onclick="cDaumPostcode()" value="주소찾기"><br>
 		<input type="text" name="address" id="address" value="${party.address}"/><br>
 		<input type="text" name="detailAddress" id="detailAddress" value="${party.detailAddress}"/>
 		<input type="text" id="extraAddress" placeholder="참고항목"><br/>
+		<!-- 우편번호프로그램으로 얻어지늗 값 -->
 		<input type="hidden" id="sido" name="sido" value="${party.address}"/>
 		<input type="hidden" id="sigungu" name="sigungu" value="${party.sigungu}"/>
 		<input type="hidden" id="lat" name="lat" value="${map.lat}"/>
@@ -45,12 +48,14 @@
 		</select>
 		<br/>
 		
-		파티소개 : <textarea name="pcontext" rows="10" >${party.pcontext}</textarea><br/>
+		파티소개 : <textarea name="pcontext" id="content">${party.pcontext}</textarea><br/>
 	<br/><hr/><br/>
+	
 	<!-- 파티 사진 수정 페이지 -->
 	<%@ include file="partyimg.jsp" %>
 	<br/>
-	<button>저장</button> <button onclick="goBack()">취소</button>
+	<input type="button" id="saveBtn" value="완료"/>
+	<input type="button" onclick="goBack();" value="뒤로가기"/>
 	</form>
 	
 <script>
@@ -62,11 +67,12 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
 <script>
-    function execDaumPostcode() {
+//사용자가 선택한 주소로 위도와 경도를 구해와서 지도에 추가해줍니다.
+    function cDaumPostcode() {
         new daum.Postcode({
         	oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
+               
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 let addr = ''; // 주소 변수
@@ -119,15 +125,12 @@
                 document.getElementById("detailAddress").focus();
                 
              // 주소로 좌표를 검색합니다
-                
                 geocoder.addressSearch(addr, function(result, status) {
-                	
 
                     // 정상적으로 검색이 완료됐으면 
                      if (status === kakao.maps.services.Status.OK) {
 
                         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                       
                         
                         document.getElementById('lat').value = result[0].y;
                         document.getElementById('lng').value = result[0].x;
@@ -138,5 +141,70 @@
         }).open();
     }
 </script>
+<script src="https://cdn.tiny.cloud/1/ogpnruhgbsh51awvrblkrooy38miyp3g61qzu5jw81jnacn6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>		
+<script>
+	let plugins = ["link","image"];
+	let edit_toolbar = "link image forecolor backcolor"
+    tinymce.init({
+		language: "ko_KR",
+      	selector: '#content',
+      	width : 600,
+      	height : 500,
+      	menubar : false,
+      	 plugins: plugins,
+      	  toolbar: edit_toolbar,
+      	  /* enable title field in the Image dialog*/
+      	  image_title: true,
+      	  /* enable automatic uploads of images represented by blob or data URIs*/
+      	  automatic_uploads: true,
+      	  /*
+      	    URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
+      	    images_upload_url: 'postAcceptor.php',
+      	    here we add custom filepicker only to Image dialog
+      	  */
+      	  file_picker_types: 'image',
+      	  /* and here's our custom image picker*/
+      	  file_picker_callback: (cb, value, meta) => {
+      	    const input = document.createElement('input');
+      	    input.setAttribute('type', 'file');
+      	    input.setAttribute('accept', 'image/*');
+
+      	    input.addEventListener('change', (e) => {
+      	      const file = e.target.files[0];
+
+      	      const reader = new FileReader();
+      	      reader.addEventListener('load', () => {
+      	        /*
+      	          Note: Now we need to register the blob in TinyMCEs image blob
+      	          registry. In the next release this part hopefully won't be
+      	          necessary, as we are looking to handle it internally.
+      	        */
+      	        const id = 'blobid' + (new Date()).getTime();
+      	        const blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+      	        const base64 = reader.result.split(',')[1];
+      	        const blobInfo = blobCache.create(id, file, base64);
+      	        blobCache.add(blobInfo);
+
+      	        /* call the callback and populate the Title field with the file name */
+      	        cb(blobInfo.blobUri(), { title: file.name });
+      	      });
+      	      reader.readAsDataURL(file);
+      	    });
+
+      	    input.click();
+      	  },
+      	  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+      	});
+  </script>		
+<script>
+
+$("#saveBtn").click(function(){
+			let content = tinymce.activeEditor.getContent();
+			console.log(content);
+			$("#updateForm").submit();
+			
+		});
+</script>		
+		
 </body>
 </html>
