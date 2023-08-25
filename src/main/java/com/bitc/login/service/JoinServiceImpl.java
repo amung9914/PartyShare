@@ -53,7 +53,7 @@ public class JoinServiceImpl implements JoinService{
 				if(m.getMblackYN().equals("Y")) {	
 					return "member/blackList";
 				}
-				return "member/loginSuccess";
+				return "redirect:/";
 			}
 			return "member/loginFailed";
 			

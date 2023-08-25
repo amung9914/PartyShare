@@ -69,15 +69,13 @@ public class LoginHomeController {
                 if (fileExtension.equalsIgnoreCase(allowedExtension)) {
                     // 파일 처리 로직 추가
                 	 try {
-						String savedName = FileUtils.uploadOriginalImage(realPath, file);
-               vo.setProfileImageName(savedName);
-               js.Join(vo);
+                		 String savedName = FileUtils.uploadOriginalImage(realPath, file);
+			             vo.setProfileImageName(savedName);
+			             js.Join(vo);
 					} catch (Exception e) {
 						return "error500";
 					}
-                   
                    // 8 23 수정
-                                      
                    return "redirect:/member/login";
                 }
             }
@@ -86,11 +84,8 @@ public class LoginHomeController {
 		try {
 			js.Join(vo);
 		} catch (Exception e) {
-			
 			return "error500";
-			
 		}
-		 
        return "redirect:/member/login"; // 여기서 이미지 넣어야함
     }
     

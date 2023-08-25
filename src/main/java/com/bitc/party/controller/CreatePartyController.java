@@ -185,7 +185,7 @@ public class CreatePartyController {
 	// 파티 리스트로
 	@GetMapping("/partyList")
 	public String partyList() {
-		return "home/partyList";
+		return "redirect:/";
 	}
 	
 	// 파일의 경로를 리스트 내에 객체에 담아서 ${list.URL}

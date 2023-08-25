@@ -4,9 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<!DOCTYPE html>
-<html>
-<head>
 <style>
 /* 헤더정보 시작 */
 *{margin:0 auto;
@@ -69,8 +66,6 @@ header{
 </style>
 <meta charset="UTF-8">
 <title>헤더</title>
-</head>
-<body>
 <header>
 <hr/>
 
@@ -126,5 +121,3 @@ header{
 	}
 </script>
 
-</body>
-</html>
