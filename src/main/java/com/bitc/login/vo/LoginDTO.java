@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class LoginDTO {
-	private String mId;
-	private String mPw;
+	private String mid;
+	private String mpw;
 	private boolean cookie;
 	
 }
