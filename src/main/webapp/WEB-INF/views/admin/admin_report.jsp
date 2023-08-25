@@ -171,43 +171,50 @@
 			 	let originalBoardNum = 0;
 			 	let originalText = "없음";
 			 	let originalWriter = "없음";
+			 	
+			 	let str = ""; // 이전으로 뺐음 (1ajax와 2ajax를 사용)
+			 	$("#detailDiv").html(str);	//가장 먼저 없애고
+			 	//원본추출
+			 		$.ajax({
+				url : '${path}/report/PbReportOriginal/'+no,
+				method : 'post',
+				data:{},
+				dataType:'json',
+				success : function (original) {
+					console.log(original);
+					console.log('원본 추출이 먼저');
+					str += `원본 글 번호: \${original.bno}<br/>`;
+					str += `원본 글 작성자: \${original.writer}<br/>`;
+					str += `원본 글 내용: \${original.content}<br/>`;
+					$("#detailDiv").html(str);
+				},
+				error : function(error){
+					alert('아나');
+				}
+			}) 
+			console.log(str + "원본 이후");
+			 	//원본추출 끝
+			
 	    	$.ajax({
 	    		url:'${path}/report/PbReportComment/'+no,	// cno 
 	    		method : 'post',
 	    		data : {},
 	    		dataType:'json',
 	    		success : function (comment){
-	    			// getJson으로 수정
-	    			$.ajax({
-	    				url : '${path}/report/PbReportOriginal/'+no,
-	    				method : 'post',
-	    				data:{},
-	    				dataType:'json',
-	    				success : function (original) {
-	    					console.log(${original} + " < original success함");		//object object
-	    					originalBoardNum = original.bno;
-	    					console.log(originalBoardNum + "num");
-	    					originalText = original.content;
-	    					originalWriter = original.writer;
-	    					console.log(originalText + "내용");
-	    					console.log(originalWriter + "작성자");
-						},
-						error : function(error){
-							alert('아나');
-						}
-	    			})// 댓글로 원본 추출 
-	    			//getJson으로 수정
-	    			console.log(comment +" < 댓글");
 	    			let str = "";
-	    			$("#detailDiv").html(str);	//비워주고
+	    			console.log('댓글 추출이 먼저');
+	//    			console.log(comment +" < 댓글");
+	    			
+//	    			$("#detailDiv").html(str);	원본 이후에 그대로 누적
 	    			str += `<div>`;
 	    		//	str += `순번: \${}`;
-	    			str += "원본 글 작성자:" +originalWriter+"<br/>";
+	  //  			str += `원본 글 작성자: \${originalWriter}<br/>`;
 	    			
-	    			str += "원본 글 번호:<span id='spanOriginalBoard'>originalBoardNum</span><br/>";
-	    			str += "원본 글 내용:"+ originalText +"<br/>";
+	  //  			str += `원본 글 번호: \${originalBoardNum}<br>`;
+	  //  			str += `원본 글 내용: \${originalText} <br/>`;
 	    			str += `댓글 번호: \${comment.cno}<br/>`;
 	    			str += `댓글 내용:\${comment.commentText}<br/>`;
+	//    			console.log(originalWriter + "작성자 2");
 	    			str += `<div id='black_or_ok'>`;
 	    			str += `<button id='blindPartyComment' class='confirm' data-target='\${no}'>댓글 블라인드</button>`;
 	    			str += `<button id='black' class='confirm' data-target='\${comment.cno}'>댓글 작성자 블랙리스트</button>`;
@@ -222,7 +229,9 @@
 	    		error : function (error) {
 					alert(error);
 				}
-	    	}); // ajax
+	    	}); // ajax 코멘트절
+	    			
+	    
 					
 		}else if(no.startsWith("b")){						//원본글						
 			no = no.substring(1);
@@ -342,7 +351,7 @@
 	    		success : function (reportVO){ // 컨트롤러 가서 
 	    			console.log(reportVO)
 	    			let str = "";
-	    			if()
+	    			//if()
 	    			$("#detailDiv").html(str);
 	    			str += `<div>`;
 	    			str += `번호: \${reportVO.no}<br/>`;
