@@ -101,14 +101,11 @@ header{
 					<div id="menuBox">
 					<a href="<c:url value='/member/profileModify?page=1'/>">프로필modify</a>
 					</div> 
-					<!-- 
-					<select class="form-select" size="3" aria-label="size 3 select example">
-					  <option selected>Open this select menu</option>
-					  <option value="1">One</option>
-					  <option value="2">Two</option>
-					  <option value="3">Three</option>
-					</select>
-					-->
+						  <div id="admin">
+ 								 <a href="${path}/admin/admin">관리자페이지 </a>
+  								<a href="${path}/member/report"> 신고페이지</a>
+  								<a href="${path}/member/post">post</a>
+						  </div>
 					</div>
 				</div>
 	</div>
