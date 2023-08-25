@@ -55,7 +55,7 @@
 		</table>
 	</div>
 	<div id="partyFinishBox">
-		<button type="button" class="btn btn-primary btn-lg btn-dark" onclick="partyFinish(${pnum});">파티종료</button>
+		<button type="button" class="btn btn-primary btn-lg btn-dark" onclick="partyFinish(${party.pnum});">파티종료</button>
 	</div>
 	<script>
 		function partyFinish(pnum){
@@ -66,7 +66,7 @@
 
 		function banMember(mnum, mname){
 			if(confirm(mname+'님을 강퇴 하시겠습니까?')){
-				location.href="<c:url value='/party/partyMemberBan?mnum="+mnum+"&pnum=${pnum}'/>";	
+				location.href="<c:url value='/party/partyMemberBan?mnum="+mnum+"&pnum=${party.pnum}'/>";	
 			}
 		}
 		
