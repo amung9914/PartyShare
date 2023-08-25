@@ -22,7 +22,7 @@ public interface partyDetailMapper {
 	@Select("SELECT COUNT(*) FROM joinmember WHERE pNum = #{pNum}")
 	public int NumberOfJoinMember(int pNum) throws Exception;
 
-	@Select("SELECT * FROM member WHERE mNum IN (SELECT mNum FROM joinMember WHERE pNum = #{pNum})")
+	@Select("SELECT * FROM member WHERE mNum IN (SELECT mNum FROM joinmember WHERE pNum = #{pNum})")
 	public List<MemberVO> readJoinMember(int pNum) throws Exception;
 
 	@Select("SELECT * FROM map WHERE pNum = #{pNum}")
