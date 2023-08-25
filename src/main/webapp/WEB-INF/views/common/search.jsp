@@ -177,11 +177,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <header>	
   
-  <div id="userMenu">
-  <a href="${path}/admin/admin">관리자페이지 </a>
-  <a href="${path}/member/report"> 신고페이지</a>
-  <a href="${path}/member/post">post</a>
-  </div>
+
   <div id="barContatiner"></div>
   <div class="searchBtnContainer">
     <div class="searchContainer">
@@ -285,7 +281,7 @@
   				$("#barContatiner").html(str);
   			},
   			error : function(error){
-  				alert(error);
+  	//			alert(error);
   			}
   		})	
   	}
@@ -340,7 +336,7 @@
  	            
  	        },
 			error: function(count){
-				alert("씨발");
+
 			}
  			
  		});
@@ -412,7 +408,7 @@
 				})				
   			},
   			error : function(error){
-  				alert('아씨발');
+
   			}
   			
   		})
@@ -564,7 +560,7 @@
   				console.log(partyList);
   			},
   			error : function(error){
-  				alert(error);
+  		//		alert(error);
   			}
   			
   		}) 

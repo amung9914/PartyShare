@@ -30,26 +30,26 @@
 	<%-- <a href="<c:url value='/admin/notice'/>">SIGN UP </a> <br/>
 	<a href="<c:url value='/admin/notice'/>"> 공지 쓰러가기 </a> <br/>
 	<a href="/project/admin/notice">이걸로 공지 쓰러가기</a> --%>
-	<a href="<c:url value='/admin/admin_notice'/>">공지쓰러가기</a>
+	<%-- <a href="<c:url value='/admin/admin_notice'/>">공지쓰러가기</a> --%>
 	<div id="dateModal">나중에 date관리창이 modal로 출력됨</div>
 	
-	<div><br/>
+	<div>
 	<button id="modifySearchOpt">검색엔진 관리하기</button>
 	</div>
-	 <br/>
-	<div>  <br/>
+	
+	<div>  
 	<button id="reportPage">신고 페이지</button>
 	</div>
-	 <br/>
+
 	 
-	<div> <br/>
+	<div> 
 	<button id="modifyInterval">날짜단위 수정</button> 
 	</div> 
-	<br/>
-	<div> <br/>
+
+	<div> 
 	<button id="map">지도수정</button>
 	
-	</div> <br/>
+	</div>
 	<div> <br/>
 	<button id="memberList">모든 유저 목록</button>
 	<button id="home">홈화면</button>
