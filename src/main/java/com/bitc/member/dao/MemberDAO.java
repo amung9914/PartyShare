@@ -26,10 +26,10 @@ public interface MemberDAO {
 		@Update("UPDATE member SET mpw=#{mpw}, mname=#{mname}, mage=#{mage}, mgender=#{mgender}, maddr=#{maddr}, profileImageName=#{profileImageName} WHERE mnum=#{mnum}")
 		public int modifyMember(MemberVO member) throws Exception;
 		
-		@Select("SELECT * FROM party WHERE pnum IN (SELECT pnum FROM joinMember WHERE mnum=#{mnum}) ORDER BY pnum DESC limit #{cri.startRow}, #{cri.perPageNum}")
+		@Select("SELECT * FROM party WHERE pnum IN (SELECT pnum FROM joinmember WHERE mnum=#{mnum}) ORDER BY pnum DESC limit #{cri.startRow}, #{cri.perPageNum}")
 		public List<PartyVO> joinPartyList(@Param("mnum") int mnum, @Param("cri") Criteria cri) throws Exception;
 		
-		@Select("SELECT count(*) FROM joinMember WHERE mnum=#{mnum}")
+		@Select("SELECT count(*) FROM joinmember WHERE mnum=#{mnum}")
 		public int joinCnt(int mnum) throws Exception; 
 	
 }

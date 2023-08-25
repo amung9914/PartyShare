@@ -39,15 +39,15 @@ public interface FriendDAO {
 	 * 진행중인 파티 정보를 가져온다. 
 	 * mnum으로 -> joinparty & party -> partyVO
 	 */
-	@Select("SELECT p.* FROM joinMember J, party P "
-			+"WHERE J.pNum = P.pNum AND finish='N' AND mNum = #{mnum}")
+	@Select("SELECT p.* FROM joinmember J, party P "
+			+"WHERE J.pnum = P.pnum AND finish='N' AND mnum = #{mnum}")
 	List<PartyVO> ongoingParty(int mnum) throws Exception;
 	
 	/**
 	 * 참여했었던 파티 정보를 가져온다.
 	 */
-	@Select("SELECT p.* FROM joinMember J, party P "
-			+"WHERE J.pNum = P.pNum AND finish='Y' AND mNum = #{mnum}")
+	@Select("SELECT p.* FROM joinmember J, party P "
+			+"WHERE J.pnum = P.pnum AND finish='Y' AND mnum = #{mnum}")
 	List<PartyVO> previousParty(int mnum) throws Exception;
 	
 	/**
