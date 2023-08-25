@@ -24,9 +24,6 @@ public class partyDetailController {
 	
 	private final partyDetailService ps;
 	
-	
-	
-	
 	@GetMapping("/detailOfParty")
 	public void detailOfParty(HttpSession session, HttpServletRequest request, Model model) {
 		

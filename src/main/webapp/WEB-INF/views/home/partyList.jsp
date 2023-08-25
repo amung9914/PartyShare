@@ -99,7 +99,7 @@
 			let pnum = this.pnum;
 			let path = this.partyImage1;
 			let detailAddress = this.detailAddress;
-
+			
 			str += '<li>';
 			// wishList 받아서 fullHeart.png로 출력
 			str += "<img src='"+contextPath+"/resources/img/emptyHeart.png' class='likeBtn'/>"
@@ -114,8 +114,7 @@
 	}
 	
 	function partyDetail(pnum){
-		location.href=contextPath+'/partyDetail/detailOfParty?pNum='+pnum;
-	
+		location.href="<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
 	}
 	
 	// wishList

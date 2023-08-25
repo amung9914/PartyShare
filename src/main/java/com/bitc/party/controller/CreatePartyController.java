@@ -96,6 +96,7 @@ public class CreatePartyController {
 		
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
+		System.out.println("addr : "+ map);
 		return "createParty/period";
 	}
 	
@@ -108,6 +109,7 @@ public class CreatePartyController {
 		}
 		model.addAttribute(map);
 		model.addAttribute("vo", vo);
+		System.out.println("per : "+ map);
 		return "createParty/date";
 	}
 	
@@ -116,6 +118,7 @@ public class CreatePartyController {
 	public String createDate(PartyVO vo, Model model, MapVO map) {
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
+		System.out.println("date : "+ map);
 		return "createParty/name";
 	}
 	
@@ -124,6 +127,7 @@ public class CreatePartyController {
 	public String createName(PartyVO vo, Model model, MapVO map) {
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
+		System.out.println("name : "+ map);
 		return "createParty/context";
 	}
 	
@@ -132,13 +136,13 @@ public class CreatePartyController {
 	public String createContext(PartyVO vo, Model model, MapVO map) {
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
-		
+		System.out.println("cont : "+ map);
 		return "createParty/image";
 	}
 	
 	// 파티 생성 - 파티 이미지 등록
 	@PostMapping("/createImage")
-	public String createParty(MultipartHttpServletRequest request, PartyVO vo, MapVO mapVO) {
+	public String createParty(MultipartHttpServletRequest request, PartyVO vo, MapVO map) {
 		MultipartFile file1 = request.getFile("image1");
 		MultipartFile file2 = request.getFile("image2");
 		MultipartFile file3 = request.getFile("image3");
@@ -170,11 +174,11 @@ public class CreatePartyController {
 			}
 			
 			int pnum = ps.createParty(vo);
-			mapVO.setPnum(pnum);		
-
+			map.setPnum(pnum);		
+			
 			ps.joinPartyMember(pnum, vo.getHost());
-			ps.setLocation(mapVO);
-
+			ps.setLocation(map);
+			System.out.println("img : "+ map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
