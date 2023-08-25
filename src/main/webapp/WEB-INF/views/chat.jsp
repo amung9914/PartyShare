@@ -9,19 +9,54 @@
 <title>home</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
+	nav{
+		width : 100%;
+	}
+	
+	#navUl{
+		display: flex;
+		justify-content: space-evenly;
+		list-style : none;
+	}
+	
+	#top{
+		background-color : beige;
+		height : 100px;
+		line-height:100px;
+		margin-top:2%;
+	}
+	
+	#chatMain{
+		width: 100%;
+		max-height: 100%;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	#chatSection{
+		width: 70%;
+		max-height: 100%;
+			
+	}
+	#infoSection{
+		width: 30%;
+		max-height: 100%;
+	}
 	#chat_container{
-		width : 45%;
+		width : 100%;
 		font-size: 20px;
 		border-radius: 20px;
 		border:1px solid lightgrey;
 		box-shadow: 1px 1px 1px;
-		float:left;
-		margin-top: 5%;
-		margin-left: 5%;
+	}
+	#partyInfoContainer{
+		width: 100%;
+		background-color:white;
+		overflow-y: scroll;
+		height:820px;		
 	}
 	
 	.chatcontent {
-		height: 600px;
+		height: 680px;
 		width : 95%;
 		overflow-y: scroll;
 	}
@@ -99,14 +134,7 @@
 		height: 30px;
 	}
 	
-	#partyInfoContainer{
-		width : 500px;
-		height: 700px;
-		background-color:white;
-		float:left;
-		margin-left: 5%;
-		margin-top: 5%;
-	}
+	
 	#partyInfoContainer img{
 		text-align:center;
 		width : 350px;
@@ -125,72 +153,86 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
-<a href="<c:url value='/'/>">home으로</a>
-<a href="<c:url value='/party/partyList'/>">List화면으로 이동</a><br/>
-<div id="chat_container">
-	<div class="chatWrap">
-		<div class="content chatcontent">
-			<div id="chatList">
-				<c:forEach var="chat" items="${firstList}" >
-					<!-- 내 채팅일 경우 -->
-					<c:if test="${loginMember.mnum eq chat.mnum}">
-						<li class="me" data-no="${chat.cnum}">
-							<img src="<c:url value='/image/printProfileImage?fileName=${loginMember.profileImageName}'/>"/>
-							<div class="me">
-								<p class="myChat">${chat.content}</p> 
-							</div>
-						</li>
-					</c:if>
-					
-					<!-- 다른사람의 채팅일 경우 -->
-					<c:if test="${loginMember.mnum ne chat.mnum}">
-						<li id="otherChat" data-no="${chat.cnum}">
-							<c:forEach var="joinMember" items="${joinMemberList}">
-								<c:if test="${chat.mnum eq joinMember.mnum}">
-									<img src="<c:url value='/image/printProfileImage?fileName=${joinMember.profileImageName}'/>" /><span>${joinMember.mnick}</span>
-								</c:if>
-							</c:forEach>
-							<div>
-								<p class="otherChat">${chat.content}</p>
-							</div> 
-						</li>
-					</c:if>
-				</c:forEach>
-			</div>
-		</div>
-		<div class="chat-fixK">
-			<div class="fix_btn">
-				<textarea name="msg" id="msgi" rows="3"></textarea>
-				<button type="button" id="sendBtn" class="send btn btn-outline-dark">보내기</button>
-			</div>
-		</div>
+<div id=top>
+		<nav>
+			<ul id="navUl">
+				<li><a href="<c:url value='/'/>">홈</a></li>
+				<li><a href="<c:url value='/partyBoard/listPage?pnum=${party.pnum}'/>">게시판</a></li>
+				<li><a href="<c:url value='/partyDetail/detailOfParty?pNum=${party.pnum}'/>">파티창</a></li>
+			</ul>	
+		</nav>
 	</div>
-</div>
-<div id="partyInfoContainer">
-	<table class="table table-bordered border-black">
-		<tr>
-			<th colspan="2" style="text-align: center;">
-				<img src="<c:url value='/image/printPartyImage?fileName=${fn:replace(party.partyImage1, "s_", "")}'/>"/>
-			</th>
-		</tr>
-		<tr>
-			<td>파티이름</td>
-			<td>${party.pname}</td>
-		</tr>
-		<tr>
-			<td>파티날짜</td>
-			<td>${party.formatStartDate} ~ ${party.formatEndDate}</td>
-		</tr>
-		<tr>
-			<td>파티장소</td>
-			<td>${party.address}</td>
-		</tr>
-		<tr>
-			<td>파티소개</td>
-			<td>${party.pcontext}</td>
-		</tr>
-	</table>
-</div>
+
+<main id="chatMain">
+	<section id="chatSection">
+		<div id="chat_container">
+			<div class="chatWrap">
+				<div class="content chatcontent">
+					<div id="chatList">
+						<c:forEach var="chat" items="${firstList}" >
+							<!-- 내 채팅일 경우 -->
+							<c:if test="${loginMember.mnum eq chat.mnum}">
+								<li class="me" data-no="${chat.cnum}">
+									<img src="<c:url value='/image/printProfileImage?fileName=${loginMember.profileImageName}'/>"/>
+									<div class="me">
+										<p class="myChat">${chat.content}</p> 
+									</div>
+								</li>
+							</c:if>
+							
+							<!-- 다른사람의 채팅일 경우 -->
+							<c:if test="${loginMember.mnum ne chat.mnum}">
+								<li id="otherChat" data-no="${chat.cnum}">
+									<c:forEach var="joinMember" items="${joinMemberList}">
+										<c:if test="${chat.mnum eq joinMember.mnum}">
+											<img src="<c:url value='/image/printProfileImage?fileName=${joinMember.profileImageName}'/>" /><span>${joinMember.mnick}</span>
+										</c:if>
+									</c:forEach>
+									<div>
+										<p class="otherChat">${chat.content}</p>
+									</div> 
+								</li>
+							</c:if>
+						</c:forEach>
+					</div>
+				</div>
+				<div class="chat-fixK">
+					<div class="fix_btn">
+						<textarea name="msg" id="msgi" rows="3"></textarea>
+						<button type="button" id="sendBtn" class="send btn btn-outline-dark">보내기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="infoSection">
+		<div id="partyInfoContainer">
+			<table class="table table-bordered border-black">
+				<tr>
+					<th colspan="2" style="text-align: center;">
+						<img src="<c:url value='/image/printPartyImage?fileName=${fn:replace(party.partyImage1, "s_", "")}'/>"/>
+					</th>
+				</tr>
+				<tr>
+					<td>파티이름</td>
+					<td>${party.pname}</td>
+				</tr>
+				<tr>
+					<td>파티날짜</td>
+					<td>${party.formatStartDate} ~ ${party.formatEndDate}</td>
+				</tr>
+				<tr>
+					<td>파티장소</td>
+					<td>${party.address}</td>
+				</tr>
+				<tr>
+					<td>파티소개</td>
+					<td>${party.pcontext}</td>
+				</tr>
+			</table>
+		</div>
+	</section>
+</main>
 </body>
 <script type="text/javascript">
 	var contextPath = '${pageContext.request.contextPath}';

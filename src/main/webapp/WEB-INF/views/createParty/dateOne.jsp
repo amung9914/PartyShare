@@ -31,7 +31,7 @@
 </head>
 <body>
 	
-	<h1 id="title">날짜를 선택하세요</h1>
+	<h1 id="title">짜릿한 하루를 선택해주세요</h1>
 	<div id="dateBox">
 		<form action="createDate" method="post">
 			<input type="hidden" name="host" value="${loginMember.mnum}"/>
@@ -52,23 +52,18 @@
 	$('h1').daterangepicker({
 	    "locale": {
 	        "format": "YYYY-MM-DD",
-	        "separator": " ~ ",
 	        "applyLabel": "확인",
 	        "cancelLabel": "취소",
-	        "fromLabel": "From",
-	        "toLabel": "To",
-	        "customRangeLabel": "Custom",
 	        "weekLabel": "W",
 	        "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
 	        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 	    },
+	    "singleDatePicker": true,
 	    "startDate": new Date(),
-	    "endDate": new Date(),
 	    "drops": "down"
-	}, function (start, end, label) {
-	    console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+	}, function (start) {
 	    $("#startDate").val(start.format('YYYY-MM-DD'));
-	    $("#endDate").val(end.format('YYYY-MM-DD'));
+	    $("#endDate").val(start.format('YYYY-MM-DD'));
 	});
 	$("h1").click();
 	</script>
