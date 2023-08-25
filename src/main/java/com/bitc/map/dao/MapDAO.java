@@ -15,7 +15,7 @@ public interface MapDAO {
 	/**
 	 * 전체 파티목록
 	 */
-	@Select("SELECT * FROM map ORDER BY pnum DESC")
+	@Select("SELECT M.* FROM map M JOIN party USING (pnum) WHERE finish ='N' ORDER BY pnum DESC")
 	List<MapVO> mapList()throws Exception;
 	
 	/**

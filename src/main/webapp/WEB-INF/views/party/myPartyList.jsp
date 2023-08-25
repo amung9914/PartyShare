@@ -14,41 +14,69 @@
 </script>
 
 <style>
+body{
+	text-align: -webkit-center;
+}
+
  img{
- 	height: 100px;
     width: fit-content;
+ }
+ .card.mb-3{
+ cursor: pointer;
+ text-align: left;
+ }
+ .endParty{
+ 	color:red;
+ }
+ .img-fluid.rounded-start{
+ 	height:100%;
+ }
+ #menu{
+ 	float : left;
+ 	margin: 0px 30px;
  }
 </style>
 </head>
 <body>
-<div id="menu"> 현재 참여중인 파티 목록 | <a href="<c:url value='/party/calender'/>">내 일정 보기</a>	
-</div>
-	
-<div class="row row-cols-1 row-cols-md-2 g-4">
-
+<div id="menu"> 	
+	<h3>참여 중인 파티</h3>
 <c:forEach items="${list}" var="party">
-  <div class="col">
-    <div class="card">
-     <img src="${path}/party/printImg?fileName=${party.partyImage1}" />
+<div class="card mb-3" data-pnum="${party.pnum}" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${path}/party/printImg?fileName=${party.partyImage1}" class="img-fluid rounded-start" >
+    </div>
+    <div class="col-md-8">
       <div class="card-body">
-      
-      	<a href="<c:url value='/partyDetail/detailOfParty?pNum=${party.pnum}'/>">
-        <h5 class="card-title">파티이름 : ${party.pname}</h5>
-        	<p class="card-text">
-       
-        	날짜 : 
-        	${party.formatStartDate} ~ ${party.formatEndDate} <br/>
-        	장소 : ${party.address}
+	        <h5 class="card-title">
+	        ${party.pname}
+	        <c:if test="${party.finish eq 'Y'}">
+	        <div class="endParty"><small>(종료)</small></div>
+	        </c:if>
+	        </h5>
+	        <p class="card-text">${party.address}
         	<c:if test="${!empty party.detailAddress}">
         	,${party.detailAddress}
         	</c:if>
-        	
         	</p>
-        </a>
+	        <p class="card-text"><small class="text-body-secondary">${party.formatStartDate} ~ ${party.formatEndDate} </small></p>
+	      
+	      <a href="<c:url value='/party/partyHost?pnum=${party.pnum}'/>" class="btn btn-dark">파티관리</a>
+        <a href="<c:url value='/partyBoard/listPage?pnum=${party.pnum}'/>" class="btn btn-dark">팀게시판</a>
       </div>
     </div>
   </div>
-  </c:forEach>
-</div>	
+</div>
+</c:forEach>
+</div>
+<%@ include file="calender.jsp" %>
+<script>
+$(".card.mb-3").on("click",function(){
+	const pnum = $(this).attr("data-pnum");
+	location.href="<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
+});
+
+$(".endParty").closest(".card.mb-3").css("background-color","lightgray");
+</script>
 </body>
 </html>

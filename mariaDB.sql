@@ -9,6 +9,13 @@ select * from map;
 select * from wishlist;
 select * from party;
 
-select * from chat;
+delete from party where pnum = 5;
 
-select * from partyboard;
+desc party; pContext
+
+ALTER TABLE party MODIFY COLUMN pContext LONGTEXT;
+SELECT * FROM party WHERE finish ='N' ;
+
+SELECT M.* FROM map M JOIN party USING (pnum) WHERE finish ='N' ORDER BY pnum DESC;
+
+
