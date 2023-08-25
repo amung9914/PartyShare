@@ -13,39 +13,49 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
 <style>
- img{
- 	height: 100px;
-    width: fit-content;
+body{
+	text-align: -webkit-center;
+	margin:30px;
+}
+.card.mb-3{
+ cursor: pointer;
+ text-align: left;
+ }
+.img-fluid.rounded-start{
+ 	height:100%;
  }
 </style>
+
 </head>
 <body>
-	<h3>파티 관리</h3>
-	
-	<div class="col">
-    <div class="card">
-      <img src="${path}/party/printImg?fileName=${party.partyImage1}" />
+  
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${path}/party/printImg?fileName=${party.partyImage1}" class="img-fluid rounded-start" >
+    </div>
+    <div class="col-md-8">
       <div class="card-body">
-     
-        <h5 class="card-title">파티이름 : ${party.pname}</h5>
-        	<p class="card-text">
-       
-        	날짜 : 
-        	${party.formatStartDate} ~ ${party.formatEndDate} <br/>
-        	장소 : ${party.address}
+	        <h5 class="card-title">
+	        ${party.pname}
+	        <c:if test="${party.finish eq 'Y'}">
+	        <div class="endParty"><small>(종료)</small></div>
+	        </c:if>
+	        </h5>
+	        <p class="card-text">${party.address}
         	<c:if test="${!empty party.detailAddress}">
         	,${party.detailAddress}
         	</c:if>
-        	
         	</p>
-        	
-        <a href="<c:url value='/party/updateParty?pnum=${party.pnum}'/>">파티 정보 수정</a>
+	        <p class="card-text"><small class="text-body-secondary">${party.formatStartDate} ~ ${party.formatEndDate} </small></p>
+	      
+	      <a href="<c:url value='/party/updateParty?pnum=${party.pnum}'/>" class="btn btn-dark">파티 정보 수정</a>
       </div>
     </div>
   </div>
-  
+</div>
 	<%@ include file="partyAdmin.jsp" %>
-	
+
 	<!-- 파티 강퇴자를 위한 알림 -->
 	<script>
 	var result = '${result}';
