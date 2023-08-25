@@ -69,9 +69,9 @@
         <span class="close" id="closeModal">&times;</span> <!-- &times;는 X 문자 -->
         <h2>로그인</h2>
         <hr/>
-        <form action="loginCheck" method="post">
-            <input type="text" name="mId" placeholder="아이디를 입력해주세요" required><br/>
-            <input type="password" name="mPw" placeholder="비밀번호를 입력해주세요" required><br/>
+        <form action="${pageContext.request.contextPath}/member/loginCheck" method="post">
+            <input type="text" name="mid" placeholder="아이디를 입력해주세요" required><br/>
+            <input type="password" name="mpw" placeholder="비밀번호를 입력해주세요" required><br/>
             로그인 상태 유지 : <input type="checkbox" name="cookie"><br/>
             <input type="submit" value="로그인">
         </form>
