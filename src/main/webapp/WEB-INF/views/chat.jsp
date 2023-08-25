@@ -125,7 +125,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
-<a href="<c:url value='/home'/>">home으로</a>
+<a href="<c:url value='/'/>">home으로</a>
 <a href="<c:url value='/party/partyList'/>">List화면으로 이동</a><br/>
 <div id="chat_container">
 	<div class="chatWrap">
