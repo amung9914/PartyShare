@@ -4,91 +4,76 @@
 <head>
 <meta charset="UTF-8">
 <title>join</title>
+<!-- 부트스트랩 CSS 포함 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-    /* 모달 스타일링 */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.4);
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin: 10% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 20%;
-        height : 50%;
-        position: relative; /* 모달 내부 요소의 위치를 상대적으로 설정 */
-    }
-
-    .close {
-        position: absolute;
-        top: -11px;
-        right: 4px;
-        padding: 5px;
-        cursor: pointer;
-        font-size : 33px;
-    }
-
     /* 아이디 입력칸 스타일 */
-    input[type="text"] {
-        width: 50%; /* 100% 폭으로 설정하여 모달 창의 너비에 맞게 크기 조정 */
-        padding: 10px; /* 내부 여백 설정 */
-        font-size: 16px; /* 폰트 크기 설정 */
+    .custom-input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px; /* 아래쪽 간격 추가 */
     }
-    input[type="password"] {
-        width: 50%; /* 100% 폭으로 설정하여 모달 창의 너비에 맞게 크기 조정 */
-        margin-top: 10px;
-        padding: 10px; /* 내부 여백 설정 */
-        font-size: 16px; /* 폰트 크기 설정 */
+
+    .custom-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
     }
-    input[type="submit"] {
-        width: 80%; /* 100% 폭으로 설정하여 모달 창의 너비에 맞게 크기 조정 */
-        padding: 10px; /* 내부 여백 설정 */
-        font-size: 16px; /* 폰트 크기 설정 */
+
+    /* 모달 내부 "X" 버튼 스타일 */
+    .closeModal {
+        background-color: transparent;
+        border: none; /* 태두리 없애기 */
+        font-size : 30px;
     }
 </style>
+
 </head>
 <body>
 
-<button id="loginButton">로그인</button>
+<button id="loginButton" class="btn btn-primary">로그인</button>
 <form action="${pageContext.request.contextPath}/member/goJoin">
-	<button>회원가입</button>
+   <button class="btn btn-secondary">회원가입</button>
 </form>
 
-<!-- 모달 창 -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span> <!-- &times;는 X 문자 -->
-        <h2>로그인</h2>
-        <hr/>
-        <form action="${pageContext.request.contextPath}/member/loginCheck" method="post">
-            <input type="text" name="mid" placeholder="아이디를 입력해주세요" required><br/>
-            <input type="password" name="mpw" placeholder="비밀번호를 입력해주세요" required><br/>
-            로그인 상태 유지 : <input type="checkbox" name="cookie"><br/>
-            <input type="submit" value="로그인">
-        </form>
+<!-- 부트스트랩 모달 -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"> <!-- 가운데 정렬 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+                <button type="button" class="closeModal" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="${pageContext.request.contextPath}/member/loginCheck" method="post">
+                    <input type="text" name="mid" class="custom-input" placeholder="아이디를 입력해주세요" required><br>
+                    <input type="password" name="mpw" class="custom-input" placeholder="비밀번호를 입력해주세요" required><br>
+                    로그인 상태 유지 : <input type="checkbox" name="cookie"><br>
+                    <input type="submit" value="로그인" class="btn btn-primary custom-button">
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- 부트스트랩 JS와 jQuery 포함 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
     const loginButton = document.getElementById("loginButton");
-    const loginModal = document.getElementById("loginModal");
-    const closeModal = document.getElementById("closeModal");
+    const closeModal = document.getElementsByClassName("closeModal")[0];
 
     loginButton.addEventListener("click", () => {
-        loginModal.style.display = "block";
+        $('#loginModal').modal('show');
     });
 
     closeModal.addEventListener("click", () => {
-        loginModal.style.display = "none";
+        $('#loginModal').modal('hide');
     });
 </script>
 
