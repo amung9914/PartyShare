@@ -46,6 +46,8 @@ public class HomeController {
 */
 		// 계정관리 메뉴로 이동
 		@GetMapping("account")
-		public void account() {}
+		public String account() {
+			return "member/account";
+		}
 		
 }

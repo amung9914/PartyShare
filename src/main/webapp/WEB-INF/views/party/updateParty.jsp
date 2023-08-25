@@ -9,53 +9,88 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <!-- Editor's Style -->
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
+</script>
+<style>
+body{
+margin:30px;
+}
+.card{
+width:600px;}
+</style>
 </head>
 <body>
-
-<!-- 수정되는 객체 -->
- <form method="POST" enctype="multipart/form-data" id="updateForm">
-		<input type="hidden" name="pnum" value="${party.pnum}"/> 
-		파티이름 : <input type="text" name="pname" value="${party.pname}"/><br/>
-		주소수정하기 : <br/>
-		<input type="button" onclick="cDaumPostcode()" value="주소찾기"><br>
-		<input type="text" name="address" id="address" value="${party.address}"/><br>
-		<input type="text" name="detailAddress" id="detailAddress" value="${party.detailAddress}"/>
-		<input type="text" id="extraAddress" placeholder="참고항목"><br/>
-		<!-- 우편번호프로그램으로 얻어지늗 값 -->
-		<input type="hidden" id="sido" name="sido" value="${party.address}"/>
-		<input type="hidden" id="sigungu" name="sigungu" value="${party.sigungu}"/>
-		<input type="hidden" id="lat" name="lat" value="${map.lat}"/>
-    	<input type="hidden" id="lng" name="lng" value="${map.lng}">
-		
-		시작일 : <input type="date" name="startDate" value="${party.startDate}" id="startDateInput"/><br/>
-		종료일 : <input type="date" name="endDate" value="${party.endDate}"/><br/>
-		카테고리1 :
-		<select name="description" >
-		    <option value="${party.description}">${party.description}</option>
-		
-			<c:forEach items="${description}" var="description">    
-		    <option value="${description}">${description}</option>
-		    </c:forEach>
-	  	</select>
-		<br/>
-		카테고리2 : 
+<h3>파티정보</h3>
+<hr/>
+<form method="POST" enctype="multipart/form-data" id="updateForm">
+<input type="hidden" name="pnum" value="${party.pnum}"/> 
+<table class="table">
+	<tr>
+		<td>파티명</td>
+		<td><input type="text" name="pname" value="${party.pname}"/></td>
+	</tr>
+	<tr>
+		<td rowspan="2">파티장소</td>
+		<td><input type="text" onclick="cDaumPostcode()" name="address" id="address" value="${party.address}"/></td>
+	</tr>
+	<tr>
+		<td>
+			<input type="text" name="detailAddress" id="detailAddress" value="${party.detailAddress}"/>
+			<input type="text" id="extraAddress" placeholder="참고항목"><br/>
+			<div class="form-text" id="basic-addon4">상세주소</div>
+		</td>
+	<tr>
+		<td>시작일</td>
+		<td><input type="date" name="startDate" value="${party.startDate}" id="startDateInput"/></td>
+	</tr>
+	<tr>
+		<td>종료일</td>
+		<td><input type="date" name="endDate" value="${party.endDate}"/></td>
+	</tr>
+	<tr>
+		<td>주제</td>
+		<td>
+			<select name="description" >
+			    <option value="${party.description}">${party.description}</option>
+			
+				<c:forEach items="${description}" var="description">    
+			    <option value="${description}">${description}</option>
+			    </c:forEach>
+		  	</select>
+		  	<div class="form-text" id="basic-addon4">이 파티와 어울리는 주제를 선택해주세요</div>
+		</td>
+	</tr>
+	<tr>
+		<td>카테고리</td>
+		<td>
 		<select name="category" >
 			<option value="${party.category}">${party.category}</option>
 			<c:forEach items="${category}" var="category">    
 		    <option value="${category}">${category}</option>
 		    </c:forEach>
 		</select>
-		<br/>
-		
-		파티소개 : <textarea name="pcontext" id="content">${party.pcontext}</textarea><br/>
-	<br/><hr/><br/>
+		</td>
+	</tr>
+	<tr>
+		<td>소개글</td>
+		<td><textarea name="pcontext" id="content">${party.pcontext}</textarea></td>
+	</tr>	
 	
 	<!-- 파티 사진 수정 페이지 -->
 	<%@ include file="partyimg.jsp" %>
+</table>
+<!-- 우편번호프로그램으로 얻어지늗 값 -->
+		<input type="hidden" id="sido" name="sido" value="${party.address}"/>
+		<input type="hidden" id="sigungu" name="sigungu" value="${party.sigungu}"/>
+		<input type="hidden" id="lat" name="lat" value="${map.lat}"/>
+    	<input type="hidden" id="lng" name="lng" value="${map.lng}">
+
+	
 	<br/>
-	<input type="button" id="saveBtn" value="완료"/>
-	<input type="button" onclick="goBack();" value="뒤로가기"/>
+	<input type="button" class="btn btn-dark" id="saveBtn" value="완료"/>
+	<input type="button" class="btn btn-light" onclick="goBack();" value="뒤로가기"/>
 	</form>
 	
 <script>
