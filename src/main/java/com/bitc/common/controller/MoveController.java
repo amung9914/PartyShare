@@ -54,7 +54,7 @@ public class MoveController {
  		return "/admin/start";
  	}
  	
- 	@GetMapping("notice/post")
+ 	@GetMapping("member/post")
  	public String post() {
 		return "/member/post";
  	}

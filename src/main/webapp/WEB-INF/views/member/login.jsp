@@ -59,7 +59,7 @@
 <body>
 
 <button id="loginButton">로그인</button>
-<form action="goJoin">
+<form action="${pageContext.request.contextPath}/member/goJoin">
 	<button>회원가입</button>
 </form>
 
