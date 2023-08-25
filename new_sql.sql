@@ -64,6 +64,7 @@ CREATE TABLE freeboard  -- --자유게시판--
 );
 
 
+
 CREATE TABLE partyboard(
 	bno INT PRIMARY KEY auto_increment, 	-- 게시글 번호
     pnum INT NOT NULL, 						-- 파티 번호
@@ -402,3 +403,6 @@ VALUES
   (1, 6), (2, 6), (3, 6), (4, 6);
 
 commit;
+
+
+

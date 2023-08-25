@@ -71,6 +71,7 @@ header{
 <title>헤더</title>
 </head>
 <body>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <header>
 <hr/>
 
@@ -80,7 +81,9 @@ header{
 	<hr/>
 	<div id="headerDiv">
 <!-- 좌 -->	<div id="leftHd">
-			<div><a href="<c:url value='/freeBoard/freeBoard'/>">자유게시판</a></div>
+			<div><a href="<c:url value='/freeBoard/freeBoard'/>">자유게시판</a>&nbsp;&nbsp;&nbsp; <a href="${path}/admin/admin">관리자페이지 </a>
+  								<a href="${path}/member/report"> 신고페이지</a>
+  								<a href="${path}/member/post">post</a></div>
 			</div>
 	
 <!-- 중  -->	<div id="centerHd">
@@ -88,7 +91,7 @@ header{
 			 	
 			<div class="divC"><a href="<c:url value='/party/partyHost?pnum=496'/>">partyMemberList</a></div>
 			<div class="divC"><a href="<c:url value='/party/partyList'/>">partyList</a></div>
-			<div class="divC"><a href="<c:url value='/friend'/>">친구리스트</a></div>
+			<div class="divC"><a href="<c:url value='/friend'/>">친구리스트</a>&nbsp;<a href="<c:url value='/account'/>">계정관리</a></div>
 			
 		</div>
 	</div>					<!-- -->
@@ -101,11 +104,6 @@ header{
 					<div id="menuBox">
 					<a href="<c:url value='/member/profileModify?page=1'/>">프로필modify</a>
 					</div> 
-						  <div id="admin">
- 								 <a href="${path}/admin/admin">관리자페이지 </a>
-  								<a href="${path}/member/report"> 신고페이지</a>
-  								<a href="${path}/member/post">post</a>
-						  </div>
 					</div>
 				</div>
 	</div>
