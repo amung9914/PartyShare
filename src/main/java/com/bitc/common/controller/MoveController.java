@@ -14,13 +14,21 @@ public class MoveController {
 	 * */
 	
 
+	@GetMapping("admin/notice")
+	public String notice() {
+		
+		return "/admin/admin_notice";
+	}
 	
 	@GetMapping("home")
 	public String home() {
 		return "redirect:/project";
 	}
 	
-	
+	@GetMapping("admin/user_list")
+	public String user_list() {
+		return "admin/user_list";
+	}
 	
 	@GetMapping("search/modifySearchOpt")
 	public String modifyCategory() {

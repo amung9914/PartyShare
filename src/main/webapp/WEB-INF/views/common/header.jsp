@@ -76,7 +76,7 @@ header{
 <hr/>
 
 	<div id="userMenu">
-	<div id="menuBox"><a href="<c:url value='home'/>"> 홈ㅋ</a></div> 
+	<div id="menuBox"><a href="<c:url value='/'/>"> 홈ㅋ</a></div> 
 	</div>
 	<hr/>
 	<div id="headerDiv">

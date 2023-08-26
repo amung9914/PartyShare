@@ -62,6 +62,11 @@ CREATE TABLE freeboard  -- --자유게시판--
     viewCnt   int ,
     FOREIGN KEY (mNick) REFERENCES member(mNick) ON UPDATE CASCADE
 );
+ALTER TABLE freeboard
+ADD COLUMN mid varchar(20),
+ADD CONSTRAINT fk_freeboard_member
+FOREIGN KEY (mid) REFERENCES member(mid)
+ON UPDATE CASCADE;
 
 
 
@@ -402,7 +407,51 @@ VALUES
   (1, 5), (2, 5), (3, 5), (4, 5),
   (1, 6), (2, 6), (3, 6), (4, 6);
 
+commit; -------------------------------------------------
+
+CREATE TABLE dateIndex ( 
+date int 
+);
+SELECT * FROM dateIndex ;
+
+CREATE TABLE partyCategory (
+category varchar(20),
+no int primary key AUTO_INCREMENT
+);
+
+CREATE TABLE partyDescription (
+description varchar(20),
+no int primary key AUTO_INCREMENT
+);
+
+INSERT INTO member (mId,      mPw     ,mName ,mNick,mAge,mGender,mEmail,mAddr) 	
+VALUES 			('reporter2','1234','reporter2','reporter2',1 ,   'm','reporter2',  'house');
+
+INSERT INTO report (fromMid ,     toMid    , category , context ,   bno ,  cno)	VALUES 
+					('target', 'reporter2' , '광고성 댓글입니다', '나빠요' ,   1,   6   );
+					
+INSERT INTO report (fromMid ,     toMid    , category , context ,   bno )	VALUES 
+					('reporter2', 'target' , '그냥 나쁨', '나빠요' ,   4   );
+select * FROM freeBoardComment;
+select * from freeBoard;
+select * from partyboard_comment;
+select * from partyboard;
+desc freeboard;		
+desc freeBoardComment;
+INSERT INTO freeboard(category , title , context, mNick , mid ) VALUES 
+					('기타' , '네번째' , '제곧내' , 'reporter2' , 'reporter2');
+					
+INSERT INTO freeboard_comment
+					(commentText , mnick , mid ,bno) VALUES 
+					('3번 board의 2번째 댓글' , 'reporter2' , 'reporter2' ,3 );
+
+	select * from partycategory;					
+select * from member;			
+select * FROM freeboard_comment;
+select * from partyboard_report;
+
 commit;
+desc partyboard_comment;
 
 
-
+--------------------------------------------------------------------------

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bitc.admin.service.AdminService;
+import com.bitc.common.utils.Criteria;
 import com.bitc.member.vo.MemberVO;
 import com.bitc.notice.service.NoticeService;
 import com.bitc.notice.vo.NoticeVO;
@@ -120,11 +121,12 @@ public class AdminController {
  	
 	
  	@GetMapping("admin/memberList")
- 	public ResponseEntity<List<MemberVO>> memberList(){
+ 	public ResponseEntity<List<MemberVO>> memberList(Criteria cri){
  		ResponseEntity<List<MemberVO>> entity = null;
  		
  		try {
-			List<MemberVO> list = as.memberList();
+ 			cri.setPerPageNum(15);
+			List<MemberVO> list = as.memberList(cri);
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(MediaType.APPLICATION_JSON);
 			entity = new ResponseEntity<>(list,header,HttpStatus.OK);

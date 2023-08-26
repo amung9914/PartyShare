@@ -33,8 +33,17 @@
 <body>
 
 	<form>						
-		신고자<input type="text" id="fromMid" value="reporter" disabled="disabled" class="reportInput"/>
-		상대방<input type="text" id="toMid" class="reportInput"/><br/>
+		신고자<input type="text" id="fromMid" value="reporter" disabled="disabled" class="reportInput"/>	<br/>
+		검색 <input type="text" id="searchId"  oninput="searchId()">
+		
+			<div id="result"></div>
+			<!-- 검색된 유저가 나타날 창  -->
+			<!--  mid로 검색하기 만들어야 함 DAO  -->
+			<div id ="resultProfile"><img src="#"> </div>
+			<!-- 검색 완료된 유저 프로필 이미지  -->
+			
+			
+			<input type="hidden" id="toMid" class="reportInput"/><br/>
 		<input type="hidden" id="date"/><br/>
 		<!-- 사유<input type="text" id="category" class="reportInput"/><br/> -->
 		사유<select id="category" class="reportInput" >
@@ -59,10 +68,48 @@
 	</form>
 	
 		<script type="text/javascript">
+		var searchIdValue = "";
 		
 		function hideList(){
 			$("#printTarget").toggle("fast");
 		}
+		
+		
+		function searchId() {
+		     searchIdValue = $("#searchId").val(); // 전역변수 저장
+		    
+		    $.ajax({
+		        url: "${path}/report/searchId", 
+		        method: "post",
+		        data: {
+		            mnick: searchIdValue
+		        },
+		        dataType: "json",
+		        success: function(result) {
+		        	let str ="";
+		            	str += "<ul>";
+		            $(result).each(function() {
+		                console.log(this);
+		          //      str += `<li> onclick="pick('\${this}')">\${this.mnick}</li>`;
+		            }); // 반복문
+		            str += "</ul>";
+		            
+		            $("#result").html(str);
+		        },
+		        error: function(error) {
+		            // 에러 처리
+		        }
+		    }); // ajax
+		}
+		
+		
+		
+		function pick(profile){
+			$("#resultProfile").attr("src" , profile);	//프로필 이미지 변경
+			//$("#toMid").val
+			
+		}
+		
 		
 		function reportReview() {
 			   
@@ -89,11 +136,6 @@
 		    			$("#printTarget").append(str);
 		    			$("#reportReview").toggle("fast");
 		    			$("#hideList").toggle("fast");
-		    			/*
-		    			$("#reportReview").click(function(e){
-		    				e.preventDefault();
-		    			})
-		    			*/
 		    			},
 		    			
 		    		
@@ -128,6 +170,8 @@
 			    $("#hideList").click(function(){
 			    	hideList()
 			    });
+			    
+			 
 				
 			
 			

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bitc.admin.service.AdminService;
 import com.bitc.board.service.BoardService;
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
@@ -31,6 +32,7 @@ public class ReportController {
 	
 	private final ReportService rs;
 	private final BoardService bs;
+	private final AdminService as;
 	
 	@GetMapping("report/reportList")
  	@ResponseBody
@@ -243,6 +245,24 @@ ResponseEntity<PartyBoardVO> entity = null;
 				entity = new ResponseEntity<>(header,HttpStatus.BAD_REQUEST);
 			}
 	 		System.out.println("original추출:" +entity);
+	 		return entity;
+	 	}
+	 	
+	 	@PostMapping("report/searchId")
+	 	public ResponseEntity<List<MemberVO>> searchId (String mnick){
+	 		ResponseEntity<List<MemberVO>> entity = null; 
+	 		
+	 		try {
+				List<MemberVO> list = as.memberNick(mnick);
+				HttpHeaders hd = new HttpHeaders();
+				hd.setContentType(MediaType.APPLICATION_JSON);
+				entity = new ResponseEntity<>(list,hd,HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				System.out.println("searchID 망함");
+			}
+	 		System.out.println(entity);
+	 		
 	 		return entity;
 	 	}
 			 

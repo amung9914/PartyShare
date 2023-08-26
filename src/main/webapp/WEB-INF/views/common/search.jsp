@@ -345,7 +345,7 @@
   
   
   	function printCategory(list){ 
-  		   
+//  		console.log('작동');
   				let str="";
   				str += '<div id="selectedCategory"></div><hr/>';
   		$("#responsed").html(str);
@@ -355,6 +355,7 @@
   	  			// categoryVO
 			   	str += `<div onclick='select("category"+"\${this.category}")' 
 			   	class='items' class='close'>\${this.category}</div> `;
+			   	console.log('ㅇ');
   	  	})
   		
   					    //	console.log(str); 주르륵 나오는거
