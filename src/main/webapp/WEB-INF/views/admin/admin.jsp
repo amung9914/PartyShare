@@ -55,11 +55,7 @@
 	<br/>
 	
 	<!-- 유저목록 테이블 생성  -->
-	<h5>공지 쓰기  현재 시간:<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="formattedTime" /> </h5> <br/>
-	<form>
-		<textarea id="context"></textarea> <br/>
-		<button type="button" id="registPost">공지 올리기</button>
-	</form>
+	
 	
 	
 	<script>

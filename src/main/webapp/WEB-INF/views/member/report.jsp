@@ -34,14 +34,15 @@
 
 	<form>						
 		신고자<input type="text" id="fromMid" value="reporter" disabled="disabled" class="reportInput"/>	<br/>
-		검색 <input type="text" id="searchId"  oninput="searchId()">
-		
-			<div id="result"></div>
+		검색 <input type="text" id="searchId"  oninput="searchNick()">
+			
+			<div id="result">
+			<div id="resultNick"></div>
 			<!-- 검색된 유저가 나타날 창  -->
 			<!--  mid로 검색하기 만들어야 함 DAO  -->
 			<div id ="resultProfile"><img src="#"> </div>
 			<!-- 검색 완료된 유저 프로필 이미지  -->
-			
+			</div>
 			
 			<input type="hidden" id="toMid" class="reportInput"/><br/>
 		<input type="hidden" id="date"/><br/>
@@ -69,13 +70,16 @@
 	
 		<script type="text/javascript">
 		var searchIdValue = "";
+		var profileNick = "";
+		var imgsrc = "";
+		var obj = {};
 		
 		function hideList(){
 			$("#printTarget").toggle("fast");
 		}
 		
 		
-		function searchId() {
+		function searchNick() {
 		     searchIdValue = $("#searchId").val(); // 전역변수 저장
 		    
 		    $.ajax({
@@ -89,8 +93,15 @@
 		        	let str ="";
 		            	str += "<ul>";
 		            $(result).each(function() {
+//		            	profileNick = ${this.mnick};
+//		            	imgsrc = `${this.profileImageName}`;
+		                console.log(profileNick);
+		                console.log(profileNick);
+		                console.log(profileNick);
+		                console.log(imgsrc);
+//		                console.log(`${obj.mnick}+ obj`);
 		                console.log(this);
-		          //      str += `<li> onclick="pick('\${this}')">\${this.mnick}</li>`;
+		                str += `<li onclick="pick('\${obj}')"> \${this.mnick} </li>`;
 		            }); // 반복문
 		            str += "</ul>";
 		            
@@ -105,9 +116,16 @@
 		
 		
 		function pick(profile){
-			$("#resultProfile").attr("src" , profile);	//프로필 이미지 변경
-			//$("#toMid").val
+		console.log(profile);
+		console.log(profile.mnick);	// un
+		console.log(profile.profileImageName);	 // un
+		let str ="";
+//		str += `<div>\${profile.mnick}아니</div>`;
+		str += `<div>엥</div>`;
+			$("#resultProfile").attr("src" , profile.profileImageName);	//프로필 이미지 변경
 			
+			$("#resultNick").html(str);
+				
 		}
 		
 		
