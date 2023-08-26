@@ -27,7 +27,7 @@ public interface PartyBoardDAO{
 	void updateOrigin() throws Exception;
 	
 	// 게시글 상세보기
-	@Select("SELECT M.mid, p.* FROM partyboard P, member M "
+	@Select("SELECT M.mid, P.* FROM partyboard P, member M "
 			+ "WHERE P.writer = M.mnick AND bno = #{bno} AND pnum = #{pnum}")
 	PartyBoardVO read(PartyBoardVO vo)throws Exception;
 	
@@ -49,7 +49,7 @@ public interface PartyBoardDAO{
 	
 
 	// 전체 게시물 개수
-	@Select("SELECT count(*) FROM partyboard WHERE pnum = #{pnum}")
+	@Select("SELECT count(*) FROM partyboard WHERE category != 'notice' AND pnum = #{pnum}")
 	int totalCount(int pnum) throws Exception;
 	
 	//검색 기능을 가진 게시글 목록

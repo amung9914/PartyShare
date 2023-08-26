@@ -2,51 +2,73 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>listPage.jsp</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
+</script>
+<style>
+	a{
+	text-decoration:none;
+	color:black;
+	}
+	a:hover{
+	text-decoration:underline;
+	}
+	.control{
+		display:flex;
+		margin:10px;
+	}
+	.searchForm{
+		width : 50%;
+		margin : 20px;
+	}
+	.title{
+		width: 50%;
+	}
+	table{
+		text-align: left;
+	}
+	.tableBox{
+		text-align: -webkit-center;
+	}
+	
+</style>
 </head>
 <body>
-	<button onclick="location.href='register?pnum=${pnum}';">글쓰기</button>
-	<h3> LIST </h3>
+	<div class="tableBox">
+	<div class="control">
 	<form name="changeCri" action="listPage" method="GET">
 		<input type="hidden" name="pnum" value="${pnum}"/>
-		<select name="perPageNum" onchange="changeCri.submit();">
+		<select name="perPageNum" class="form-select" onchange="changeCri.submit();">
 			<c:forEach var="i" begin="5" end="20" step="5">
 				<option value="${i}"${pm.cri.perPageNum eq i?'selected':''}>${i}개씩 보기</option> 
 			</c:forEach>
 		</select>
 	</form>
-	<br/>
-	<form action="listPage" method="GET">
-			<input type="hidden" name="pnum" value="${pnum}"/>
-			<select name="searchType">
-				<option value="n">--------------------------</option>
-				<option value="t">제목</option>
-				<option value="c">내용</option>
-				<option value="w">작성자</option>
-				<option value="tc">제목 &amp; 내용</option>
-				<option value="cw">내용 &amp; 작성자</option>
-				<option value="tcw">제목 &amp; 내용 &amp; 작성자</option>
-			</select>
-			<input type="text" name="keyword" />
-			<input type="submit" value="검색" />
-		</form>
-	<br/>
+	<button class="btn btn-outline-secondary" onclick="location.href='register?pnum=${pnum}';">
+	<img src="${path}/resources/img/write.png"/>
+	글쓰기
+	</button>	
+	</div>
 	
-	<table id="boardList" border=1>
-		<tr>
-			<th>글번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>날짜</th>
-			<th>조회수</th>
-			<th>신고</th>
-		</tr>
-		
+	<table class="table" id="boardList">
+		<thead>
+			<tr>
+				<th>글번호</th>
+				<th class="title">제목</th>
+				<th>작성자</th>
+				<th>날짜</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		 <tbody class="table-group-divider">
 		<!-- 공지글 출력 -->
 		<c:if test="${!empty notice}">
 			<c:forEach var="board" items="${notice}">
@@ -54,7 +76,7 @@
 						<c:when test="${board.showboard == 'y'}">
 							<tr>
 								<td>${board.bno}</td>
-								<td>
+								<td style="color: #FF385C;">
 									[공지]<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>">${board.title}</a>
 								</td>
 								<td>${board.writer}</td>
@@ -71,7 +93,6 @@
 									</c:choose>
 								</td>
 								<td>${board.viewCnt}</td>
-								<td><button class="reportBtn" data-bno="${board.bno}">신고하기</button></td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -131,7 +152,6 @@
 									</c:choose>
 								</td>
 								<td>${board.viewCnt}</td>
-								<td><button class="reportBtn" data-bno="${board.bno}">신고하기</button></td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -159,21 +179,21 @@
 			<tr>
 				<th colspan="5">
 					<c:if test="${pm.first}">
-						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=1'/>">[&laquo;]</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=1&perPageNum=${pm.cri.perPageNum}'/>">&laquo;</a>
 					</c:if>
 					<c:if test="${pm.prev}">
-						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.startPage-1}'/>">[&lt;]</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.startPage-1}&perPageNum=${pm.cri.perPageNum}'/>">&lt;</a>
 					</c:if>
 					<c:forEach var="i" 
 							   begin="${pm.startPage}" 
 							   end ="${pm.endPage}">
-						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${i}'/>">[${i}]</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${i}&perPageNum=${pm.cri.perPageNum}'/>">${i}</a>
 					</c:forEach>
 					<c:if test="${pm.next}">
-						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.endPage+1}'/>">[&gt;]</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.endPage+1}&perPageNum=${pm.cri.perPageNum}'/>">&gt;</a>
 					</c:if>
 					<c:if test="${pm.last}">
-						<a href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.maxPage}'/>">[&raquo;]</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.maxPage}&perPageNum=${pm.cri.perPageNum}'/>">&raquo;</a>
 					</c:if>
 				</th>
 			</tr>
@@ -184,22 +204,31 @@
 				<tr>
 					<td colspan="5">등록된 게시물이 없습니다.</td>
 				</tr>
+				
 			</c:otherwise>
 		</c:choose>
 	</table>
-	<script>
+	
+	<form action="listPage" method="GET" class="searchForm">
+			<input type="hidden" name="pnum" value="${pnum}"/>
+			<div class="input-group">
+				<select class="form-select" name="searchType">
+					<option value="n">--------------------------</option>
+					<option value="t">제목</option>
+					<option value="c">내용</option>
+					<option value="w">작성자</option>
+					<option value="tc">제목 &amp; 내용</option>
+					<option value="cw">내용 &amp; 작성자</option>
+					<option value="tcw">제목 &amp; 내용 &amp; 작성자</option>
+				</select>
+				<input type="text" class="form-control" name="keyword" placeholder="검색어를 입력하세요" />
+				<input type="submit" class="btn btn-dark" value="검색" />
+			</div>
+			
+	</form>
 	
 	
-	$("#boardList").on("click",".reportBtn",function(){
-		const bno = $(this).attr("data-bno");
-		report();
-		function report(){
-			window.open("/partyshare/partyBoard/report?pnum="+${pnum}+"&bno="+bno,"Pop","width=500,height=600");
-		}
-	})
-	
-	
-	</script>
+	</div>
 </body>
 </html>
 

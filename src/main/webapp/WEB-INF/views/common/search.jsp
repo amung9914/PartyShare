@@ -329,7 +329,7 @@
   
   
   	function printCategory(list){ 
-  		   
+//  		console.log('작동');
   				let str="";
   				str += '<div id="selectedCategory"></div><hr/>';
   		$("#responsed").html(str);
@@ -339,6 +339,7 @@
   	  			// categoryVO
 			   	str += `<div onclick='select("category"+"\${this.category}")' 
 			   	class='items' class='close'>\${this.category}</div> `;
+			   	console.log('ㅇ');
   	  	})
   		
   					    //	console.log(str); 주르륵 나오는거
@@ -386,7 +387,7 @@
   			dataType : "json",
   			success : function(sigungu){	// List<LocationVO>
   					str += `<div class='itemsNO' class='close' onclick='select("sigungu")'>선택하지 않음</div>`;
-				$(sigungu).each(function(){
+  					$(sigungu).each(function(){
 					str += `<div class='items' class='close' onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</div>`;
 					$("#responsed").html(str);  //셀렉트 기능 구현 아직 안함
 				})				
@@ -540,6 +541,7 @@
   				resultQuery : resultQuery
   			},
   			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
+
   			success :  function(partyList){
   				let str = "";
   				$(partyList).each(function(){
@@ -561,12 +563,13 @@
   					str += "</li>";
   				});
   				$("#partys").html(str);
+
   			},
   			error : function(error){
   		//		alert(error);
   			}
   			
-  		}) 
+  		}); 
   	} // select(factor)
   	
   	

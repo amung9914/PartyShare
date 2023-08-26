@@ -46,7 +46,7 @@ public class NoticeProvider {
 		String values = " VALUES ";
 		System.out.println(values);
 		sql.INSERT_INTO("notice"); 
-		sql.INTO_COLUMNS("mId" , "context" );	
+		sql.INTO_COLUMNS("mid" , "context" );	
 		for(MemberVO vo : list) {
 			if(count != list.size()) {  //size가 5일때
 				System.out.println("cnt="+count +"/ size=" +list.size());
@@ -68,7 +68,7 @@ public class NoticeProvider {
 		
 		vo.setContext("회원님은 블랙리스트 처리되셨습니다");
 		sql.INSERT_INTO("notice");
-		sql.INTO_COLUMNS("mId","context");
+		sql.INTO_COLUMNS("mid","context");
 		
 		sql.INTO_VALUES("\""+mId+"\"", "\""+vo.getContext()+"\"");
 		String query = sql.toString();

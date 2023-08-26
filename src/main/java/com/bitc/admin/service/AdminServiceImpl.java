@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bitc.admin.dao.AdminDAO;
+import com.bitc.common.utils.Criteria;
 import com.bitc.member.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,8 @@ public class AdminServiceImpl implements AdminService {
 	}	//asi
 
 	@Override
-	public List<MemberVO> memberList() throws Exception {
-		return dao.memberList();
+	public List<MemberVO> memberList(Criteria cri) throws Exception {
+		return dao.memberList(cri);
 	}	//asi
 
 
@@ -30,7 +31,12 @@ public class AdminServiceImpl implements AdminService {
 	public int blackMember(String targetId) throws Exception {
 		
 		return dao.blackMember(targetId);
-	}	//asi
+	}
+
+	@Override
+	public List<MemberVO> memberNick(String mnick) throws Exception {
+		return dao.memberNick(mnick);
+	}	
 	
 	/*
 	@Override
