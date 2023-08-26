@@ -18,4 +18,7 @@ SELECT * FROM party WHERE finish ='N' ;
 update party set finish='N';
 SELECT M.* FROM map M JOIN party USING (pnum) WHERE finish ='N' ORDER BY pnum DESC;
 
+SELECT * FROM partyboard WHERE pnum = 1;
 
+INSERT INTO partyboard(category,pnum,title,content,writer,mnum) 
+SELECT category,pnum,title,content,writer,mnum FROM partyboard WHERE pnum = 1;

@@ -17,8 +17,7 @@
 body{
 margin:30px;
 }
-.card{
-width:600px;}
+
 </style>
 </head>
 <body>
@@ -29,16 +28,18 @@ width:600px;}
 <table class="table">
 	<tr>
 		<td>파티명</td>
-		<td><input type="text" name="pname" value="${party.pname}"/></td>
+		<td><input type="text" class="form-control" name="pname" value="${party.pname}"/></td>
 	</tr>
 	<tr>
 		<td rowspan="2">파티장소</td>
-		<td><input type="text" onclick="cDaumPostcode()" name="address" id="address" value="${party.address}"/></td>
+		<td><input type="text" class="form-control"  onclick="cDaumPostcode()" name="address" id="address" value="${party.address}"/></td>
 	</tr>
 	<tr>
 		<td>
-			<input type="text" name="detailAddress" id="detailAddress" value="${party.detailAddress}"/>
-			<input type="text" id="extraAddress" placeholder="참고항목"><br/>
+			<div class="input-group">
+				<input type="text" class="form-control" aria-label="First name"  name="detailAddress" id="detailAddress" value="${party.detailAddress}"/>
+				<input type="text" class="form-control" aria-label="Last name" id="extraAddress" placeholder="참고항목"><br/>
+			</div>
 			<div class="form-text" id="basic-addon4">상세주소</div>
 		</td>
 	<tr>
@@ -52,7 +53,7 @@ width:600px;}
 	<tr>
 		<td>주제</td>
 		<td>
-			<select name="description" >
+			<select class="form-select" name="description" >
 			    <option value="${party.description}">${party.description}</option>
 			
 				<c:forEach items="${description}" var="description">    
@@ -65,7 +66,7 @@ width:600px;}
 	<tr>
 		<td>카테고리</td>
 		<td>
-		<select name="category" >
+		<select class="form-select" name="category" >
 			<option value="${party.category}">${party.category}</option>
 			<c:forEach items="${category}" var="category">    
 		    <option value="${category}">${category}</option>
@@ -183,8 +184,6 @@ width:600px;}
     tinymce.init({
 		language: "ko_KR",
       	selector: '#content',
-      	width : 600,
-      	height : 500,
       	menubar : false,
       	 plugins: plugins,
       	  toolbar: edit_toolbar,
