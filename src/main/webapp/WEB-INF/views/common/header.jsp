@@ -68,7 +68,7 @@
 
 /* 헤더정보 끝 */
 </style>
-<title>헤더</title>
+<title>partyShare</title>
 </head>
 <body>
 <header id="headerHeader">

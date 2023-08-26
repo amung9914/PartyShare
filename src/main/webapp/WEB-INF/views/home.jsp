@@ -5,5 +5,6 @@
 <%@ include file="common/header.jsp" %>
 <%@ include file="common/search.jsp" %>
 <%@ include file="home/partyList.jsp" %>
+<%@ include file="common/fixFooter.jsp" %>
 </body>
 </html>
