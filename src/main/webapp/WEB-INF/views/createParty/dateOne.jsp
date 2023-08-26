@@ -19,12 +19,12 @@
 		margin-top:5%;
 		cursor: pointer;
 	}
-	#startDate, #endDate{
+	#startDate{
 		border:none;
 		outline: none;
 		border-bottom: 2px solid black;
 		text-align: center;
-		width: 300px;
+		width: 600px;
 		font-size: 30px;
 	}
 </style>
@@ -43,29 +43,39 @@
 			<input type="hidden" name="detailAddress" value="${vo.detailAddress}">
 			<input type="hidden" id="lat" name="lat" value="${mapVO.lat}">
 	    	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
-	    	<input type="text" name="startDate" id="startDate" /> ~
-	    	<input type="text" name="endDate" id="endDate" />
+	    	<input type="text" name="startDate" id="startDate" /> 
+	    	<input type="hidden" name="endDate" id="endDate" />
 		</form>
 		
 	</div>
 	<script>
-	$('h1').daterangepicker({
-	    "locale": {
-	        "format": "YYYY-MM-DD",
-	        "applyLabel": "확인",
-	        "cancelLabel": "취소",
-	        "weekLabel": "W",
-	        "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
-	        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-	    },
-	    "singleDatePicker": true,
-	    "startDate": new Date(),
-	    "drops": "down"
-	}, function (start) {
-	    $("#startDate").val(start.format('YYYY-MM-DD'));
-	    $("#endDate").val(start.format('YYYY-MM-DD'));
-	});
+	
+	 $('h1').daterangepicker({
+		 	"locale": {
+		        "format": "YYYY-MM-DD",
+		        "applyLabel": "확인",
+		        "cancelLabel": "취소",
+		        "weekLabel": "W",
+		        "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+		        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+		    },
+		    singleDatePicker: true,
+		  }, function(start, end, label) {
+			  $("#startDate").val(start.format('YYYY-MM-DD'));
+			  $("#endDate").val(start.format('YYYY-MM-DD'));
+		  });
+	$("#startDate").val(today());
+	$("#endDate").val(today());
 	$("h1").click();
+	function today(){
+		let date = new Date();
+		let yyyy = date.getFullYear();
+		let mm = date.getMonth() + 1;
+		mm = mm >= 10 ? mm : '0'+mm;
+		let dd = date.getDate();
+		dd = dd >= 10 ? dd : '0'+dd;
+		return yyyy+'-'+mm+'-'+dd;
+	}
 	</script>
 	<%@ include file="partyCreateFooter.jsp" %>
 </body>

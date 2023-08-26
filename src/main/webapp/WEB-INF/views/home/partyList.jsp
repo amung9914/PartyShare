@@ -42,11 +42,14 @@
 	
 	#mapBtn{
 		position: absolute;
-		bottom: 50px;
+		bottom: 120px;
 		position: fixed;
 		left:48%;
 	}
-	
+	#createPartyBtn{
+		position: relative;
+		left:87%;
+	}
 </style>
 
 <c:if test="${!empty message}">
@@ -55,11 +58,12 @@
 	</script>
 </c:if>
 <!-- partyList 필요 -->
-<a href="<c:url value='/party/createParty'/>">파티등록</a><br/>
+<hr/>
+<button id="createPartyBtn" class="btn btn-dark" onclick="loacation.href='${contextPath}/party/createParty';">파티 생성</button>
 <div id="mapBtn">
 	<button onclick="location.href='${contextPath}/location/map';" class="btn btn-dark">지도보기</button>
 </div>
-<hr/>
+
 	<div id="partyListContainer" >
 		
 		<ul id="partys">

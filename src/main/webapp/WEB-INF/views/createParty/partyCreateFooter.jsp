@@ -15,6 +15,7 @@
 		bottom: 0;
 		border-top: 2px black solid;
 		padding:20px;
+		background-color: white;
 	}
 	#footerDiv button{
 		width: 150px;

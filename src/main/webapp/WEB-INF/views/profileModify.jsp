@@ -123,6 +123,7 @@
 	}
 </style>
 <a href="<c:url value='/'/>">home으로</a>
+<div id="wrap">
 	<h1 id="title">계정 정보</h1>
 	<div class="profile_img_wrap">
 		<img id="profile_img" class="profile_img" src="<c:url value='/image/printProfileImage?fileName=${loginMember.profileImageName}'/>"/>
@@ -247,9 +248,6 @@
 							</c:if>
 						</td>
 					</tr>
-						<tr>
-							<td colspan="3" style="text-align: center;"><a href="" id="reportBtn">신고하기</a></td>
-						</tr>
 				</c:when>
 				<c:otherwise>
 					<tr>
@@ -259,7 +257,7 @@
 			</c:choose>
 		</table>
 	</div>
-	
+</div>	
 
 		
 	

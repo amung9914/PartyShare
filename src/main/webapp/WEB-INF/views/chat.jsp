@@ -9,6 +9,16 @@
 <title>home</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
+	html, body {
+	    height: 100%
+	}
+
+	#wrap {
+	    min-height: 100%;
+	    position: relative;
+	    padding-bottom: 60px;
+	}
+
 	nav{
 		width : 100%;
 	}
@@ -92,9 +102,9 @@
 		border-radius: 10px;
 	}
 	.me img{
-		width:60px;
-		height:60px;
-		border-radius: 30px;
+		width:100px;
+		height:100px;
+		border-radius: 50px;
 	}
 	
 	.myChat{
@@ -121,9 +131,9 @@
 		
 	}
 	#otherChat img{
-		width:60px;
-		height:60px;
-		border-radius: 30px;
+		width:100px;
+		height:100px;
+		border-radius: 50px;
 		
 	}
 	#otherChat span{
@@ -153,6 +163,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
+<div id="wrap">
 <div id=top>
 		<nav>
 			<ul id="navUl">
@@ -233,6 +244,7 @@
 		</div>
 	</section>
 </main>
+</div>
 </body>
 <script type="text/javascript">
 	var contextPath = '${pageContext.request.contextPath}';
