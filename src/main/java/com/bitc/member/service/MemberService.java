@@ -21,13 +21,6 @@ public interface MemberService {
 	public void modifyMember(MemberVO member) throws Exception;
 	
 	/**
-	 * @param member - id, pw 로그인 객체
-	 * @return 회원 객체
-	 * 로그인
-	 */
-	public MemberVO login(MemberVO member) throws Exception;
-	
-	/**
 	 * @param mnum - 회원번호로 참여했던 파티 리스트 검색
 	 * @return - 참여 파티 목록
 	 */

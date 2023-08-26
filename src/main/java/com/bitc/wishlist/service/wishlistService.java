@@ -3,6 +3,7 @@ package com.bitc.wishlist.service;
 import java.util.List;
 
 import com.bitc.party.vo.PartyVO;
+import com.bitc.wishlist.vo.WishListDTO;
 import com.bitc.wishlist.vo.WishlistVO;
 
 public interface wishlistService {
@@ -18,5 +19,8 @@ public interface wishlistService {
 	
 	// 위시리스트에서 파티 삭제하기
 	public int deleteWishlist(int mNum, int pNum) throws Exception;
+	
+	// 위시리스트에서 별칭 목록 및 대표사진이름 가져오기
+	public List<WishListDTO> getWishList(int mnum) throws Exception;
 	
 }

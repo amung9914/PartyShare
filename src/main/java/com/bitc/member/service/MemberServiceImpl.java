@@ -18,11 +18,6 @@ public class MemberServiceImpl implements MemberService {
 	private final MemberDAO dao;
 	
 	@Override
-	public MemberVO login(MemberVO member) throws Exception {
-		return dao.login(member);
-	}
-	
-	@Override
 	public MemberVO selectMember(int mnum) throws Exception{
 		MemberVO member= dao.selectMember(mnum);
 		return member;

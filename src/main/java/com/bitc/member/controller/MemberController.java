@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 	
 	private final MemberService ms;
-	
+	// 프로필 이미지 폴더 경로
 	private final String uploadDir;
 	private final ServletContext context;	
 	private String realPath;
@@ -47,11 +47,13 @@ public class MemberController {
 	// 개인정보 수정 페이지 이동
 	@GetMapping("/profileModify")
 	public String profileModify(Model model, HttpSession session, String page) {
+		// 현재 로그인 사용자 정보
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		List<PartyVO> list = null;
 		if(page == null) {
 			page = "1";
 		}
+		// 참여했던 파티 목록 페이징을 위한 criteria 
 		Criteria cri = new Criteria(Integer.parseInt(page), 5);
 		int joinCnt = 0;
 		
@@ -79,6 +81,7 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// 수정한 내용을 세션에 업데이트 함
 		session.setAttribute("loginMember", member);
 		return "redirect:profileModify";
 	}
