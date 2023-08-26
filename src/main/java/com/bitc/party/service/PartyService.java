@@ -26,7 +26,7 @@ public interface PartyService {
 	/**
 	 * 파티 상세정보 출력 
 	 */
-	PartyVO read(int pnum, Model model) throws Exception;
+	PartyVO read(int pnum) throws Exception;
 	
 	/**
 	 * 파티 정보 수정
@@ -49,5 +49,8 @@ public interface PartyService {
 	 */
 	List<String> category() throws Exception;
 	
-
+	/**
+	 * 파티 참여 맴버 리스트 
+	 */
+	public List<MemberVO> getJoinPartyMemberList(int pnum) throws Exception;
 }

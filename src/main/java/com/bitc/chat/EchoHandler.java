@@ -64,6 +64,7 @@ public class EchoHandler extends TextWebSocketHandler{
 		String lastChatNum = "";
 		try {
 			lastChatNum += cs.insertChat(chat);
+			System.out.println("cnum : " + lastChatNum);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

@@ -7,29 +7,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <style>
 /* 헤더정보 시작 */
 *{margin:0 auto;
 	padding:0}
-header{
+
+#headerHeader{
     width: 100%;
-    height:100px;
-    background: #FF385C;
-	}
+    /* background: #FF385C; */
+}
 #headerDiv{
 	width : 100%;
 	height : 70px;
 	margin :1px 0 0 0 ;
 /* 	background: #FF385C; */
 }
-  div{	
+    div{	
   	display: flex; 
 	/* background: gray; */
 	width : 610px;
 	height : 35px;
 	display: inline-block;
 	margin : 5px 0 0 0; 
-	  }
+	  }  
 #userMenu{
  /* 우측 : 선택바 위치 */
  	background: white;
@@ -67,14 +68,15 @@ header{
 
 /* 헤더정보 끝 */
 </style>
-<meta charset="UTF-8">
-<title>헤더</title>
+<title>partyShare</title>
 </head>
 <body>
-<c:set var="path" value="${pageContext.request.contextPath}" />
-<header>
-<hr/>
 
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
+<header id="headerHeader">
+
+<hr/>
 	<div id="userMenu">
 	<div id="menuBox"><a href="<c:url value='/'/>"> 홈ㅋ</a></div> 
 	</div>
@@ -89,9 +91,9 @@ header{
 <!-- 중  -->	<div id="centerHd">
 				<div id="centerDivBox">
 			 	
-			<div class="divC"><a href="<c:url value='/party/partyHost?pnum=496'/>">partyMemberList</a></div>
-			<div class="divC"><a href="<c:url value='/party/partyList'/>">partyList</a></div>
-			<div class="divC"><a href="<c:url value='/friend'/>">친구리스트</a>&nbsp;<a href="<c:url value='/account'/>">계정관리</a></div>
+
+			<div class="divC"><a href="<c:url value='/friend'/>">친구리스트</a></div>
+
 			
 		</div>
 	</div>					<!-- -->
@@ -124,5 +126,3 @@ header{
 	}
 </script>
 
-</body>
-</html>

@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#title{
 		margin-left: 10%;
@@ -26,9 +18,9 @@
 		width: 20%;
 	}
 </style>
-</head>
-<body>
+
 <a href="<c:url value='/home'/>">home으로</a>
+
 <c:if test="${!empty message}">
 	<script>
 		alert('${message}');
@@ -55,7 +47,7 @@
 		</table>
 	</div>
 	<div id="partyFinishBox">
-		<button type="button" class="btn btn-primary btn-lg btn-dark" onclick="partyFinish(${pnum});">파티종료</button>
+		<button type="button" class="btn btn-primary btn-lg btn-dark" onclick="partyFinish(${party.pnum});">파티종료</button>
 	</div>
 	<script>
 		function partyFinish(pnum){
@@ -66,10 +58,8 @@
 
 		function banMember(mnum, mname){
 			if(confirm(mname+'님을 강퇴 하시겠습니까?')){
-				location.href="<c:url value='/party/partyMemberBan?mnum="+mnum+"&pnum=${pnum}'/>";	
+				location.href="<c:url value='/party/partyMemberBan?mnum="+mnum+"&pnum=${party.pnum}'/>";	
 			}
 		}
 		
 	</script>
-</body>
-</html>

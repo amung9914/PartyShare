@@ -1,42 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-</head>
-<body>
 <!-- form태그 내부입니다. -->
 	<!-- 사진 선택 안했을 경우 이전값 전달 -->
 	<input type="hidden" name="partyImage1" value="${party.partyImage1}"> 
 	<input type="hidden" name="partyImage2" value="${party.partyImage2}"> 
 	<input type="hidden" name="partyImage3" value="${party.partyImage3}"> 
-	<h2>파티 사진 수정</h2>
-		<div>
-			<img src="${path}/party/printImg?fileName=${party.partyImage1}" id="img1"/>
-			<br/>
-			<input type="file" name="image1" id="partyImage1" accept=".gif, .jpg, .jpeg, .png"/>
-			<button id="reset1">reset</button>
-			
-		</div>
-		<div>
-			<img src="${path}/party/printImg?fileName=${party.partyImage2}" id="img2"/>
-			<br/>
-			<input type="file" name="image2" id="partyImage2" accept=".gif, .jpg, .jpeg, .png"/>
-			<button id="reset2">reset</button>
-		</div>
-		<div>
-			<img src="${path}/party/printImg?fileName=${party.partyImage3}" id="img3"/>
-			<br/>
-			<input type="file" name="image3" id="partyImage3" accept=".gif, .jpg, .jpeg, .png"/>
-			<button id="reset3">reset</button>
-		</div> 
-		
 	
+	
+	
+		<tr>
+			<td rowspan="2">대표사진</td>
+			<td><img src="${path}/party/printImg?fileName=${party.partyImage1}" id="img1"/></td>
+		</tr>
+		<tr>
+			<td>
+			<div class="input-group">
+			  <input type="file" class="form-control" name="image1" accept=".gif, .jpg, .jpeg, .png" id="partyImage1" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+			  <button class="btn btn-outline-secondary" type="button" id="reset1">reset</button>
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="2">사진1</td>
+			<td><img src="${path}/party/printImg?fileName=${party.partyImage2}" id="img2"/></td>
+		</tr>
+		<tr>
+			<td>
+			<div class="input-group">
+			  <input type="file" class="form-control" name="image2" accept=".gif, .jpg, .jpeg, .png" id="partyImage2" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+			  <button class="btn btn-outline-secondary" type="button" id="reset2">reset</button>
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="2">사진2</td>
+			<td><img src="${path}/party/printImg?fileName=${party.partyImage3}" id="img3"/></td>
+		</tr>
+		<tr>
+			<td>
+			<div class="input-group">
+			  <input type="file" class="form-control" name="image3" accept=".gif, .jpg, .jpeg, .png" id="partyImage3" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+			  <button class="btn btn-outline-secondary" type="button" id="reset3">reset</button>
+			</div>
+			</td>
+		</tr>
+		
 <script>
 	// 사진 미리보기 구현
 	<c:forEach var="i" begin="1" end="3">
@@ -72,5 +81,3 @@
 	}); 
 		
 </script>
-</body>
-</html>

@@ -30,7 +30,7 @@ public interface CreatePartyDAO {
 	@Select("SELECT count(*) FROM party WHERE finish = 'N'")
 	public int totalCount() throws Exception;
 	
-	@Insert("INSERT INTO joinMember(pnum, mnum) VALUES(#{pnum}, #{mnum})")
+	@Insert("INSERT INTO joinmember(pnum, mnum) VALUES(#{pnum}, #{mnum})")
 	public int joinPartyMember(Map<String, Integer> map) throws Exception;
 	
 	@Select("SELECT description FROM partydescription")
@@ -39,10 +39,7 @@ public interface CreatePartyDAO {
 	@Select("SELECT category FROM partycategory")
 	public List<String> getCategoryList() throws Exception;
 	
-	@Select("SELECT * FROM member WHERE mnum IN (SELECT mnum FROM joinmember WHERE pnum=#{pnum})")
-	public List<MemberVO> getJoinPartyMember(int pnum) throws Exception;
-	
-	@Delete("Delete FROM joinMember WHERE pnum=#{pnum} AND mnum=#{mnum}")
+	@Delete("Delete FROM joinmember WHERE pnum=#{pnum} AND mnum=#{mnum}")
 	public int partyMemberBan(Map<String, Integer> map) throws Exception;
 	
 	@Update("UPDATE party SET finish='Y' WHERE pnum=#{pnum}")

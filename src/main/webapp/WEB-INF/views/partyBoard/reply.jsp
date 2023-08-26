@@ -9,10 +9,13 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <!-- Editor's Style -->
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
+</script>
 <style>
-#title{
-    border: 1px solid white;
-    border-bottom: 1px solid black;
+body{
+margin:30px;
 }
 
 </style>
@@ -29,24 +32,22 @@
 		<input type="hidden" name="depth" value="${board.depth}"/>
 		<input type="hidden" name="seq" value="${board.seq}"/>
 		
-		<table>
-		<tr>
-			<td>제목</td>
-			<td>
-				<input type="text" name="title" id="title"/>
-			</td>
-		</tr>
-		<tr>
-		 	<td>CONTENT</td>
-			<td><textarea name="content" id="content"></textarea></td> 
-		</tr>		
-		<tr>
-			<th colspan="2">		
-				<input type="button" id="saveBtn" value="완료"/>
-				<input type="button" onclick="goBack();" value="뒤로가기"/>
-			</th>
-			</table>	
-		</form>
+		<table class="table">
+			<tr>
+				<td>제목</td>
+				<td>
+					<input type="text" class="form-control" name="title" id="title" placeholder="답글 제목을 입력하세요"/>
+				</td>
+			</tr>
+			<tr>
+			 	<td>CONTENT</td>
+				<td><textarea name="content" id="content"></textarea></td> 
+			</tr>		
+				
+		</table>	
+		<input type="button" class="btn btn-dark" id="saveBtn" value="완료"/>
+		<input type="button" class="btn btn-light" onclick="goBack();" value="뒤로가기"/>
+	</form>
 <script src="https://cdn.tiny.cloud/1/ogpnruhgbsh51awvrblkrooy38miyp3g61qzu5jw81jnacn6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>		
 <script>
 	let plugins = ["link","image"];
@@ -54,8 +55,6 @@
     tinymce.init({
 		language: "ko_KR",
       	selector: '#content',
-      	width : 600,
-      	height : 500,
       	menubar : false,
       	 plugins: plugins,
       	  toolbar: edit_toolbar,

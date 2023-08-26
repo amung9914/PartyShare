@@ -10,7 +10,7 @@ import com.bitc.chat.vo.ChatVO;
 
 public interface ChatDAO {
 
-	@Select("SELECT * FROM chat WHERE pnum=#{pnum} AND cNum <= #{endNo} ORDER BY cNum desc limit 0, 10")
+	@Select("SELECT * FROM chat WHERE pnum=#{pnum} AND cnum <= #{endNo} ORDER BY cnum desc limit 0, 10")
 	public List<ChatVO> getChatList(@Param("pnum") int pnum, @Param("endNo") int endNo) throws Exception;
 
 	@Select("SELECT * FROM chat WHERE pnum=#{pnum} AND finish='N' ORDER BY cNum asc limit #{totalCount}, 20")
@@ -22,6 +22,6 @@ public interface ChatDAO {
 	@Select("SELECT count(*) FROM chat WHERE pnum=#{pnum}")
 	public int getTotalCount(int pnum) throws Exception;
 	
-	@Select("SELECT cNum FROM chat WHERE cNum=LAST_INSERT_ID()")
+	@Select("SELECT cnum FROM chat WHERE cnum=LAST_INSERT_ID()")
 	public int getLastChatNum() throws Exception;
 }

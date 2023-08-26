@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
   rel="stylesheet" 
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
   crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <meta charset="UTF-8">
   <title>검색 구현</title>
 
   <style>
@@ -30,11 +26,11 @@
       background-color: aqua;
     }
   /* 헤더부분 시작 */  
-    header{
+    #searchHeader{
     width: 100%;
     height:180px;
     background: transparent;
-   	margin-top:10%;
+    margin-top: 3%;
   	}
   	
   	#userMenu{
@@ -158,24 +154,18 @@
      }
      #previous{
      float:left;
-     position: fixed;
   	 top:50px;
      }
      #next{
      float:right;
-     position: fixed;
   	 top:50px;
    	 left:1800px;
      }
   
   </style>
-</head>
 
-
-
-<body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<header>	
+<header id="searchHeader">	
   
 
   <div id="barContatiner"></div>
@@ -669,5 +659,3 @@
     }); // ready
     
   </script>
-</body>
-</html>

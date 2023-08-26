@@ -10,17 +10,17 @@
 <body>
 <h2>회원가입</h2>
 <form action="<c:url value='/member/join' />" method="POST" id="passwordForm" enctype="multipart/form-data">
-    아이디:<input type="text" name="mId" id="mId" placeholder="아이디를 입력하세요" required ><br/>
-    비밀번호:<input type="password" name="mPw" id="password" placeholder="비밀번호를 8자리 이상 입력해주세요" required><br/>
+    아이디:<input type="text" name="mid" id="mId" placeholder="아이디를 입력하세요" required ><br/>
+    비밀번호:<input type="password" name="mpw" id="password" placeholder="비밀번호를 8자리 이상 입력해주세요" required><br/>
     <!-- 비밀번호 확인: <input type="password" name="repw" placeholder="비밀번호를 다시확인해주세요"> -->
-    이름:<input type="text" name="mName"placeholder="이름"  required><br/>
-    닉네임:<input type="text" name="mNick" placeholder="닉네임"  required> <br/>
-    나이:<input type="number" name="mAge" placeholder="나이를 입력하세요"  required><br/>
+    이름:<input type="text" name="mname"placeholder="이름"  required><br/>
+    닉네임:<input type="text" name="mnick" placeholder="닉네임"  required> <br/>
+    나이:<input type="number" name="mage" placeholder="나이를 입력하세요"  required><br/>
     <br/>
-    <input type="radio" name="mGender" value="m" checked>남자
-    <input type="radio" name="mGender" value="f">여자<br/>
-    이메일 :<input type="email" name="mEmail" placeholder="이메일을 입력하세요"  required><br/>
-    주소 : <input type="text" name="mAddr" placeholder="주소를 입력하세요"  required> <br/>
+    <input type="radio" name="mgender" value="m" checked>남자
+    <input type="radio" name="mgender" value="f">여자<br/>
+    이메일 :<input type="email" name="memail" placeholder="이메일을 입력하세요"  required><br/>
+    주소 : <input type="text" name="maddr" placeholder="주소를 입력하세요"  required> <br/>
     프로필 사진 :<input type="file" name="file" accept=".jpg, .jpeg, .png"/> <br/>
     <input type="submit" value="가입">
 </form>

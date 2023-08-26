@@ -101,14 +101,13 @@ public class CreatePartyController {
 	
 	@PostMapping("/choosePeriod")
 	public String choosePeriod(PartyVO vo, Model model, MapVO map, String period) {
-		if(period.equals("짜릿한 일회성 만남")) {
-			
-		}else {
-			
-		}
 		model.addAttribute(map);
 		model.addAttribute("vo", vo);
-		return "createParty/date";
+		if(period.equals("짜릿한 일회성 만남")) {
+			return "createParty/dateOne";
+		}else {
+			return "createParty/date";
+		}
 	}
 	
 	// 파티 생성 - 파티 날짜
@@ -132,13 +131,12 @@ public class CreatePartyController {
 	public String createContext(PartyVO vo, Model model, MapVO map) {
 		model.addAttribute("vo", vo);
 		model.addAttribute(map);
-		
 		return "createParty/image";
 	}
 	
 	// 파티 생성 - 파티 이미지 등록
 	@PostMapping("/createImage")
-	public String createParty(MultipartHttpServletRequest request, PartyVO vo, MapVO mapVO) {
+	public String createParty(MultipartHttpServletRequest request, PartyVO vo, MapVO map) {
 		MultipartFile file1 = request.getFile("image1");
 		MultipartFile file2 = request.getFile("image2");
 		MultipartFile file3 = request.getFile("image3");
@@ -170,11 +168,10 @@ public class CreatePartyController {
 			}
 			
 			int pnum = ps.createParty(vo);
-			mapVO.setPnum(pnum);		
-
+			map.setPnum(pnum);		
+			
 			ps.joinPartyMember(pnum, vo.getHost());
-			ps.setLocation(mapVO);
-
+			ps.setLocation(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -185,7 +182,7 @@ public class CreatePartyController {
 	// 파티 리스트로
 	@GetMapping("/partyList")
 	public String partyList() {
-		return "home/partyList";
+		return "redirect:/";
 	}
 	
 	// 파일의 경로를 리스트 내에 객체에 담아서 ${list.URL}
@@ -207,19 +204,6 @@ public class CreatePartyController {
 		return map;
 	}
 	
-	@GetMapping("/partyAdmin")
-	public String partyManagement(Model model, int pnum) {
-		List<MemberVO> list = null;
-		try {
-			list = ps.getJoinPartyMemberList(pnum);
-			model.addAttribute("partyJoinMember",list);
-			model.addAttribute("pnum", pnum);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "party/partyAdmin";
-	}
-	
 	@GetMapping("/partyMemberBan")
 	public String partyMemberBan(Model model, int mnum, int pnum, RedirectAttributes rttr) {
 		try {
@@ -229,7 +213,7 @@ public class CreatePartyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/party/partyAdmin";
+		return "redirect:/party/partyHost";
 	}
 	
 	@GetMapping("/partyFinish")
@@ -242,7 +226,7 @@ public class CreatePartyController {
 			e.printStackTrace();
 		}
 
-		return "redirect:partyList";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/partyDetail")

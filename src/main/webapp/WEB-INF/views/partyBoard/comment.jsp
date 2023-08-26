@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- 부트스트랩 추가 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
-</script>
+
 <c:if test="${!empty loginMember}"> <!-- 로그인한 사용자만 댓글작성가능 -->
 	<!-- 댓글 등록 폼 -->
 	<div class="mb-3">
-	  <label for="exampleFormControlTextarea1" class="form-label">의견쓰기</label>
 	  <textarea class="form-control" id="cText" rows="3" placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
 	  <div class="col-auto">
-	    <button type="button" id="addBtn" class="btn btn-primary mb-3">댓글달기</button>
+	    <button type="button" id="addBtn" class="btn btn-dark" >댓글달기</button>
 	  </div>
 	</div>
 </c:if>
@@ -20,12 +16,12 @@
 	<!-- 수정할 댓글 번호 저장 -->
 	<div id="modCno"></div>
 	<div>
-		<input type="text" id="modMid" readonly/>
-		<input type="text" id="modMnick" readonly/>
+		<input type="hidden" id="modMid" readonly/>
+		<input type="hidden" id="modMnick" readonly/>
 		<!-- 댓글 내용 수정 -->
 		<textarea class="form-control" id="modText" rows="3" ></textarea>
 	</div>
-	<div>
+	<div class="control">
 		<button id="modBtn">저장</button>
 		<button id="delBtn">삭제</button>
 		<button id="closeBtn">닫기</button>
@@ -75,16 +71,19 @@
 			const updateDate = koDF.format(updateStr);
 			
 			str += "<li class='commentLi'>";
-			str += cno+"-"+cMnick;
+			str += "<div class='commentInfo'>";
+			str += cMnick+"&nbsp";
 			str += updateDate;
 			// 수정할 댓글 번호, text, auth
-			
+			str +="<div class='control'>";
 			// 글쓴이만 수정버튼 볼 수 있음
 			if(mnick==cMnick){
-				str += ` - <button data-cno='\${cno}' data-text='\${cText}' data-mnick='\${cMnick}' data-mid='\${cMid}'>수정</button>`;	
+				str += ` &nbsp <button class='cmodify' data-cno='\${cno}' data-text='\${cText}' data-mnick='\${cMnick}' data-mid='\${cMid}'>수정</button>`;	
 			}
-			str += "<input type='button' data-cno='"+cno+"' class='reportBtn' value='신고'/>";
-			str += "<br/><hr/>"+"<pre>"+cText+"</pre>";
+			str += "<button data-cno='"+cno+"' class='reportBtn' >신고</button>";
+			str += "</div>";
+			str +="</div>";// end commentInfo
+			str += "<pre>"+cText+"</pre>";
 			str += "</li>";
 		});
 		$("#comments").append(str); 
@@ -120,7 +119,7 @@
 	});
 	
 	// 수정 창 열기
-	$("#comments").on("click","li button",function(){
+	$("#comments").on("click",".cmodify",function(){
 		let cno = $(this).attr('data-cno');
 		let text = $(this).attr('data-text');
 		let cMnick = $(this).attr('data-mnick');
@@ -130,8 +129,9 @@
 		$("#modMnick").val(cMnick);
 		$("#modMid").val(cMid);
 		
-		$(this).parent().after($("#modDiv"));
+		$(this).parent().parent().parent().after($("#modDiv"));
 		$("#modDiv").toggle();
+		
 	});
 	
 	// 수정창 닫기
@@ -208,8 +208,13 @@
 			if($("#comments li").size() <= 1){
 				 return false;
 			}
-			page++;
-			listPage(page);
+			//수정창을 열지 않은 경우() 무한페이지 실행
+			const status = $("#modDiv").css("display");
+			if(status == 'none'){
+				page++;
+				listPage(page);	
+			}
+			
 		}
 	});
 	

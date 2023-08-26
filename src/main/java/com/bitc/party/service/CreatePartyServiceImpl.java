@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
 import com.bitc.map.vo.MapVO;
-import com.bitc.member.vo.MemberVO;
 import com.bitc.party.dao.CreatePartyDAO;
 import com.bitc.party.vo.PartyVO;
 
@@ -69,11 +68,6 @@ public class CreatePartyServiceImpl implements CreatePartyService {
 	}
 
 	@Override
-	public List<MemberVO> getJoinPartyMemberList(int pnum) throws Exception{
-		return dao.getJoinPartyMember(pnum);
-	}
-
-	@Override
 	public String partyMemberBan(int pnum, int mnum) throws Exception{
 		Map<String, Integer> map = new HashMap<>();
 		map.put("pnum", pnum);
@@ -101,6 +95,4 @@ public class CreatePartyServiceImpl implements CreatePartyService {
 		dao.setLocation(map);
 	}
 
-	
-	
 }

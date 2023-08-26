@@ -10,6 +10,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <title>Insert title here</title>
 <style type="text/css">
+	html, body {
+	    height: 100%
+	}
+
+	#wrap {
+	    min-height: 100%;
+	    position: relative;
+	    padding-bottom: 93px;
+	}
+	
 	#title{
 		margin-left: 41%;
 	}
@@ -112,9 +122,8 @@
 		outline: none;
 	}
 </style>
-</head>
-<body>
-<a href="<c:url value='/home'/>">home으로</a>
+<a href="<c:url value='/'/>">home으로</a>
+<div id="wrap">
 	<h1 id="title">계정 정보</h1>
 	<div class="profile_img_wrap">
 		<img id="profile_img" class="profile_img" src="<c:url value='/image/printProfileImage?fileName=${loginMember.profileImageName}'/>"/>
@@ -128,7 +137,7 @@
 		</div>
 	</div>
 	
-	<form action="modify" method="post" enctype="multipart/form-data">
+	<form action="${path}/member/modify" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="mnum" value="${loginMember.mnum}"/>
 		<input type="hidden" name="mbanCnt" value="${loginMember.mbanCnt}"/>
 		<input type="hidden" name="mjoinCnt" value="${loginMember.mjoinCnt}"/>
@@ -239,9 +248,6 @@
 							</c:if>
 						</td>
 					</tr>
-						<tr>
-							<td colspan="3" style="text-align: center;"><a href="" id="reportBtn">신고하기</a></td>
-						</tr>
 				</c:when>
 				<c:otherwise>
 					<tr>
@@ -251,7 +257,7 @@
 			</c:choose>
 		</table>
 	</div>
-	
+</div>	
 
 		
 	
@@ -318,8 +324,7 @@
 	var contextPath = '${pageContext.request.contextPath}';
 	
 	function partyDetail(pnum){
-		location.href=''+contextPath+'/party/partyDetail?pnum='+pnum;
+		location.href=''+contextPath+'/partyDetail/detailOfParty?pNum='+pnum;
 	}
 </script>
-</body>
-</html>
+<%@ include file="common/footer.jsp" %>
