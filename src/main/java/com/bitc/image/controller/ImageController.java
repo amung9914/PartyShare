@@ -30,12 +30,15 @@ public class ImageController {
 
 	private final MemberService ms;
 	
+	// 프로필 이미지 폴더 경로
 	private final String uploadDir;
+	// 피티 이미지 폴더 경로
 	private final String uploadPartyDir;
 	private final ServletContext context;	
 	private String profileRealPath;
 	private String partyRealPath;
 	
+	// 프로필 이미지 경로와 파티 이미지 경로 폴더 생성
 	@PostConstruct
 	public void init() {
 		profileRealPath = context.getRealPath(File.separator+uploadDir);
@@ -53,57 +56,60 @@ public class ImageController {
 	}
 	
 	// 프로필 이미지 출력
-		@GetMapping("/printProfileImage")
-		public ResponseEntity<byte[]> printProfileImage(String fileName) throws Exception{
-			return new ResponseEntity<>(
-					FileUtils.getBytes(profileRealPath, fileName),
-					FileUtils.getHeaders(fileName),
-					HttpStatus.OK
-					);
-		}
-		
-		@GetMapping("/printProfileImageNum")
-		public ResponseEntity<byte[]> printProfileImageNum(int mnum) throws Exception{
-			MemberVO member = ms.selectMember(mnum);
-			String fileName = member.getProfileImageName();
-			return new ResponseEntity<>(
-					FileUtils.getBytes(profileRealPath, fileName),
-					FileUtils.getHeaders(fileName),
-					HttpStatus.OK
-					);
-		}
-		
-		@GetMapping("/printPartyImage")
-		public ResponseEntity<byte[]> printPartyImage(String fileName) throws Exception{
-			return new ResponseEntity<>(
-					FileUtils.getBytes(partyRealPath, fileName),
-					FileUtils.getHeaders(fileName),
-					HttpStatus.OK
-					);
-		}
-		
-		
-		@PostMapping("uploadAjax")
-		@ResponseBody
-		public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception{
-			String savedName = FileUtils.uploadOriginalImage(profileRealPath, file);
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Content-Type", "text/plain;charset=utf-8");
-			return new ResponseEntity<>(savedName, headers, HttpStatus.OK);
-		}
+	@GetMapping("/printProfileImage")
+	public ResponseEntity<byte[]> printProfileImage(String fileName) throws Exception{
+		return new ResponseEntity<>(
+				FileUtils.getBytes(profileRealPath, fileName),
+				FileUtils.getHeaders(fileName),
+				HttpStatus.OK
+				);
+	}
+	
+	// 프로필 이미지를 맴버 번호를 이용해 출력
+	@GetMapping("/printProfileImageNum")
+	public ResponseEntity<byte[]> printProfileImageNum(int mnum) throws Exception{
+		MemberVO member = ms.selectMember(mnum);
+		String fileName = member.getProfileImageName();
+		return new ResponseEntity<>(
+				FileUtils.getBytes(profileRealPath, fileName),
+				FileUtils.getHeaders(fileName),
+				HttpStatus.OK
+				);
+	}
+	
+	// 파티 이미지 출력
+	@GetMapping("/printPartyImage")
+	public ResponseEntity<byte[]> printPartyImage(String fileName) throws Exception{
+		return new ResponseEntity<>(
+				FileUtils.getBytes(partyRealPath, fileName),
+				FileUtils.getHeaders(fileName),
+				HttpStatus.OK
+				);
+	}
+	
+	// 프로필 이미지 업로드
+	@PostMapping("uploadAjax")
+	@ResponseBody
+	public ResponseEntity<String> profileImageUpload(MultipartFile file) throws Exception{
+		String savedName = FileUtils.uploadOriginalImage(profileRealPath, file);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/plain;charset=utf-8");
+		return new ResponseEntity<>(savedName, headers, HttpStatus.OK);
+	}
 
-		@DeleteMapping(value="deleteFile", produces="text/plain;charset=utf-8")
-		@ResponseBody
-		public ResponseEntity<String> deleteFile(@RequestBody String fileName) throws Exception{
-			ResponseEntity<String> entity = null;
-			System.out.println(fileName);
-			boolean isDeleted = FileUtils.deleteOriginalImage(profileRealPath, fileName);
-			
-			if(isDeleted) {
-				entity = new ResponseEntity<>("삭제성공",HttpStatus.OK);
-			}else {
-				entity = new ResponseEntity<>("삭제실패",HttpStatus.CREATED);
-			}
-			return entity;
+	// 이미지 삭제
+	@DeleteMapping(value="deleteFile", produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<String> deleteFile(@RequestBody String fileName) throws Exception{
+		ResponseEntity<String> entity = null;
+		System.out.println(fileName);
+		boolean isDeleted = FileUtils.deleteOriginalImage(profileRealPath, fileName);
+		
+		if(isDeleted) {
+			entity = new ResponseEntity<>("삭제성공",HttpStatus.OK);
+		}else {
+			entity = new ResponseEntity<>("삭제실패",HttpStatus.CREATED);
 		}
+		return entity;
+	}
 }

@@ -12,6 +12,7 @@ import com.bitc.common.utils.PageMaker;
 import com.bitc.map.vo.MapVO;
 import com.bitc.party.dao.CreatePartyDAO;
 import com.bitc.party.vo.PartyVO;
+import com.bitc.wishlist.vo.WishlistVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -93,6 +94,11 @@ public class CreatePartyServiceImpl implements CreatePartyService {
 	@Override
 	public void setLocation(MapVO map) throws Exception {
 		dao.setLocation(map);
+	}
+
+	@Override
+	public List<WishlistVO> getWishlist(int mnum) {
+		return dao.getWishlist(mnum);
 	}
 
 }

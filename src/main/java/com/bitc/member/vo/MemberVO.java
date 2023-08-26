@@ -32,7 +32,8 @@ public class MemberVO {
 		this.mid = mid;
 		this.mpw = mpw;
 	}
-
+	
+	// 맴버 번호가 같으면 같은 객체라 판단
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof MemberVO) {

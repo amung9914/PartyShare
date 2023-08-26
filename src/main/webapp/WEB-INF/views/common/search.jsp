@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
-  rel="stylesheet" 
-  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
-  crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <title>검색 구현</title>
-
   <style>
     /*모달 제어*/
     /* 모달 스타일 */
@@ -203,6 +196,7 @@
   </div>
   <!-- 모달창이 위치합니다 끝 searchModal -->
   <script>
+  	var contextPath="${pageContext.request.contextPath}";
   //	<div><a href=''><img src='샘플이미지' /></a></div class="categoryImgDiv">
   		var countDescription = 1;
   		var lastPage = 10;
@@ -547,7 +541,26 @@
   			},
   			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
   			success :  function(partyList){
-  				console.log(partyList);
+  				let str = "";
+  				$(partyList).each(function(){
+  					let pname = this.pname;
+  					let address = this.address;
+  					let date = this.formatStartDate +"~"+ this.formatEndDate;		
+  					let pnum = this.pnum;
+  					let path = this.partyImage1;
+  					let detailAddress = this.detailAddress;
+  					
+  					str += '<li>';
+  					// wishList 받아서 fullHeart.png로 출력
+  					str += "<img src='"+contextPath+"/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>"
+  					str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
+  					str += "<hr/>";
+  					str += "<strong onclick='partyDetail("+pnum+");' style='cursor: pointer;'>"+pname+"</strong><br/>";
+  					str += address+" "+detailAddress+"<br/>";
+  					str += date;
+  					str += "</li>";
+  				});
+  				$("#partys").html(str);
   			},
   			error : function(error){
   		//		alert(error);

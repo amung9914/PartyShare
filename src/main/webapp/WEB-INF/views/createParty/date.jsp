@@ -16,7 +16,6 @@
 	}
 	#title{
 		margin-left:32%;
-		margin-top:5%;
 		cursor: pointer;
 	}
 	#startDate, #endDate{
