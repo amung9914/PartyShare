@@ -27,7 +27,7 @@ public interface PartyBoardDAO{
 	void updateOrigin() throws Exception;
 	
 	// 게시글 상세보기
-	@Select("SELECT M.mid, p.* FROM partyboard P, member M "
+	@Select("SELECT M.mid, P.* FROM partyboard P, member M "
 			+ "WHERE P.writer = M.mnick AND bno = #{bno} AND pnum = #{pnum}")
 	PartyBoardVO read(PartyBoardVO vo)throws Exception;
 	
