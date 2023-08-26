@@ -58,7 +58,7 @@
 	</button>	
 	</div>
 	
-	<table class="table" id="boardList" border=1>
+	<table class="table" id="boardList">
 		<thead>
 			<tr>
 				<th>글번호</th>
@@ -76,7 +76,7 @@
 						<c:when test="${board.showboard == 'y'}">
 							<tr>
 								<td>${board.bno}</td>
-								<td>
+								<td style="color: #FF385C;">
 									[공지]<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>">${board.title}</a>
 								</td>
 								<td>${board.writer}</td>
@@ -204,6 +204,27 @@
 				<tr>
 					<td colspan="5">등록된 게시물이 없습니다.</td>
 				</tr>
+				<tr>
+				<th colspan="5">
+					<c:if test="${pm.first}">
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=1'/>">&laquo;</a>
+					</c:if>
+					<c:if test="${pm.prev}">
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.startPage-1}'/>">&lt;</a>
+					</c:if>
+					<c:forEach var="i" 
+							   begin="${pm.startPage}" 
+							   end ="${pm.endPage}">
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${i}'/>">${i}</a>
+					</c:forEach>
+					<c:if test="${pm.next}">
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.endPage+1}'/>">&gt;</a>
+					</c:if>
+					<c:if test="${pm.last}">
+						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.maxPage}'/>">&raquo;</a>
+					</c:if>
+				</th>
+			</tr>
 			</c:otherwise>
 		</c:choose>
 	</table>
