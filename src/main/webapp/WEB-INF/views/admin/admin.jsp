@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <meta charset="UTF-8">
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,9 @@
 	overflow: auto;
 	}
 	
-	#memberModal{
-	display: none;
-	position: fixed;
-	overflow: auto;
+	
+	div{
+	display: inline-block;
 	}
 </style>
 </head>
@@ -38,27 +38,19 @@
 	</div>
 	
 	<div>  
+	<button id="notice">알림 페이지</button>
+	</div>
+	
+	<div>  
 	<button id="reportPage">신고 페이지</button>
 	</div>
-
 	 
-	<div> 
-	<button id="modifyInterval">날짜단위 수정</button> 
-	</div> 
 
-	<div> 
-	<button id="map">지도수정</button>
-	
-	</div>
 	<div> <br/>
-	<button id="memberList">모든 유저 목록</button>
 	<button id="home">홈화면</button>
+	<button id="user_list">모든 유저 목록</button>
 	
-	</div> <br/>
-	<div id="memberModal">
-	<ul id="memberUl">
 	
-	</ul>
 	</div>
 	<br/>
 	
@@ -73,22 +65,12 @@
 	<script>
 	/* READY OPTION */
 	$(document).ready(function () {
-		$("#registPost").click(function () {
-			let context = $("#context").val();
-			$.ajax({
-				url:'${path}/notice/sendPost',
-				type: 'post',
-				data:{context : context},
-				dataType: 'text',
-				success: function (response) {
-					alert(response);
-					 $("#context").val("");
-				},
-				error: function (err) {
-					alert(err);
-				}
-				
-			});
+	
+		
+		$("#user_list").click(function () {
+			console.log('되는데?');
+			location.href = '<c:url value="/admin/user_list"/>';
+			console.log('안되노?');
 		});
 		
 		$("#home").click(function(){
@@ -98,6 +80,12 @@
 		$("#modifySearchOpt").click(function () {
 			console.log('되는데?');
 			location.href = '<c:url value="/search/modifySearchOpt"/>';
+			console.log('안되노?');
+		});
+		
+		$("#notice").click(function () {
+			console.log('되는데?');
+			location.href = '<c:url value="/admin/notice"/>';
 			console.log('안되노?');
 		});
 		
@@ -114,26 +102,7 @@
 			console.log('안되노?');
 		});
 		
-		$("#memberList").click(function () {
-			$("#memberModal").toggle("slow");
-			 $.getJSON("${path}/admin/memberList", function(data) {
-			        // data는 JSON으로 받은 멤버 리스트
-			        console.log(data);
-			        let str = "";
-			        
-			        // 받은 JSON을 객체로 사용하기 위한 처리
-			        // 예를 들어, 각 멤버의 이름을 출력하는 예제
-			        data.forEach(function(member) {
-			        	// 페이지 number는 각 멤버가 가진 mNum과 통일할 것
-			        	str += `<li>NO:\${member.mnum}|ID:\${member.mid}|pw:\${member.mpw}|이름:\${member.mname}|`;
-			        	str += `닉네임:\${member.mnick}|나이:\${member.mage}|성별:\${member.mgender}|`;
-			        	str += `email:\${member.memail}|신고횟수:\${member.mbanCnt}|주소:\${member.maddr}|참여:\${member.mjoinCnt}`;
-			        	str += `블랙리스트:|\${member.mblackYN}|탈퇴:\${member.withdraw}</li>`;
-			            console.log("id: " + member.mid);
-			        });
-			        $("#memberUl").html(str);
-			    });
-		});
+	
 	}); // docu
 	</script>
 </body>

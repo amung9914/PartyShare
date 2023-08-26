@@ -180,6 +180,7 @@
 				method : 'post',
 				data:{},
 				dataType:'json',
+				async : false ,
 				success : function (original) {
 					console.log(original);
 					console.log('원본 추출이 먼저');
@@ -200,6 +201,7 @@
 	    		method : 'post',
 	    		data : {},
 	    		dataType:'json',
+	    		async : false ,
 	    		success : function (comment){
 	    			let str = "";
 	    			console.log('댓글 추출이 먼저');

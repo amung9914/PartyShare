@@ -15,9 +15,9 @@
 	<style>
 	#bottle{
 	display:none;
-	position: absolute; 
-	left : 400px; 
-	top : 400px;
+	position: fixed; 
+	left : 200px; 
+	top : 200px;
   	width: 20px;
 	height: 20px;
 	border-radius:50%;
@@ -32,9 +32,9 @@
 	}
 	#tooltip {
    	display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
+    position: fixed;
+    top: 200px;
+    left: 110px;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
@@ -44,36 +44,79 @@
 	}
 	#post{
 	display:none;
-	position: absolute; 
-	left : 430px; 
+	position: fixed; 
+	left : 230px; 
 	top : 100px;
 	}
 	#postTable{
 	border : 1px solid black;
 	}
+	
+	
+	#bottle2 {
+	 position: fixed;
+    top: 55px;
+    left: 110px;		/*  */
+  width: 30px;
+  height: 20px;
+  display: none;
+}
+
+/* 편지통 CSS  */
+
+	#postTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+#postTable th, #postTable td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+#postTable th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+#checkBtn {
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#checkBtn:hover {
+  background-color: #0056b3;
+}
+</style>
+</head>
+<body>
 	</style>
 	
 	
 </head>
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-나오나? ${path} <br/>
-나오나 ${pageContext.request.contextPath}
+
 <c:set var="fd" value="${formattedDate}" />
 <c:set var="pd" value="${formattedDate}" />
-맞냐	${postDate}
 	<!-- 메시지함 만들기 -->
 	<div id="bottle">
 
 	</div>
-<div id="post" >
-	<div id ="postDate">
-	도착시간이 표시됩니다! ${post.date} }
-	</div>
-	<div id="postContent">
-	내용이 표시됨니다! ${post.context} 
-	</div>
-	<div id="okAndClose">확인버튼입니다.</div>
+	<div id="bottle2"></div>
+<div id="post" ><%-- 
+												<div id ="postDate">
+												도착시간이 표시됩니다! ${post.date} }
+												</div>
+												<div id="postContent">
+												내용이 표시됨니다! ${post.context} 
+												</div>
+												<div id="okAndClose">확인버튼입니다.</div> --%>
  </div>
  
  <button type="button" id="show">show</button>
@@ -136,17 +179,20 @@
 			   if (post.length > 0) {
 				   $("#bottle").css("display","block");
 				   let tooltipMsg = post.length+"개의 알림 읽지 않음";
-				   let bottleStr = `<span id="tooltip"></span>`
+				   let bottleStr = `<span id="tooltip"></span>`;
 //				   console.log(post);
 //			    	console.log('확인하지 않은 내용이 있습니다' + post.length);
 			    	$("#bottle").html(post.length);
-			    	$("#bottle").append(bottleStr);
+			    	$("#bottle2").append(bottleStr);			//
+			    	
 			    	$("#tooltip").html(tooltipMsg);
 			    	$("#bottle").hover(
 					        function() {
+					        	$("#bottle2").css("display","block");	//
 					            $("#tooltip").css("display","block");
 					        },
 					        function() {
+					        	$("#bottle2").css("display","block");	//
 					        	$("#tooltip").css("display","none");
 					        }
 					    );

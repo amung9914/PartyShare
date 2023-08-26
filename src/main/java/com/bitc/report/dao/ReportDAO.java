@@ -26,8 +26,8 @@ public interface ReportDAO {
 //	@Update("UPDATE freeboard reported = 'Y' WHERE bno = #{bno}")
 //	public void reportBoard(int bno) throws Exception;	//reportDAO
 	
-	@Update("UPDATE partyboard_comment reported = 'Y' WHERE cno = #{cno}")
-	public void reportComment(int cno) throws Exception;	//reportDAO
+//	@Update("UPDATE partyboard_comment reported = 'Y' WHERE cno = #{cno}")
+//	public void reportComment(int cno) throws Exception;	//reportDAO
 	
 	// INSERT 반환타입 확인하러 == void
 	@Insert("INSERT INTO report (fromMid, toMid, category, context) "
