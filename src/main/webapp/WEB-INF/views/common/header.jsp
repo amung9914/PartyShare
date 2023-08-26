@@ -12,7 +12,7 @@
 /* 헤더정보 시작 */
 *{margin:0 auto;
 	padding:0}
-	
+
 #headerHeader{
     width: 100%;
     /* background: #FF385C; */
@@ -23,14 +23,14 @@
 	margin :1px 0 0 0 ;
 /* 	background: #FF385C; */
 }
-  div{	
+    div{	
   	display: flex; 
 	/* background: gray; */
 	width : 610px;
 	height : 35px;
 	display: inline-block;
 	margin : 5px 0 0 0; 
-	  }
+	  }  
 #userMenu{
  /* 우측 : 선택바 위치 */
  	background: white;

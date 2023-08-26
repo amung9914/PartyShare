@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- fixFooter.jsp -->
+<!-- footer.jsp -->
 <style>
 	footer{
 		width: 100%;
-		position: fixed;
-		bottom: 0;
-		background-color : white;
+		background-color : #f7f7f7;
+		margin-top: 3%;
+		position : relative;
+  		transform : translateY(-100%);
 	}
 	#footerAtag, #footerPtag{
-		width: 90%;
-		margin-left: 5%;
+		width: 70%;
+		margin-left:15%;
 	}
 	#footerAtag{
 		height: 15px;
@@ -27,7 +28,6 @@
 		font-size: 10px;
 	}
 </style>
-
 <footer>
 	<div id="footerAtag">
 		&copy;2023 PartyShare, Inc. 
@@ -36,7 +36,6 @@
 		<a href="#">사이트맵</a> |
 		<a href="#">이용정책</a> |
 		<a href="#">세부정보</a>
-		
 	</div>
 	<div id="footerPtag">
 		<hr/>
