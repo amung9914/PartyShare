@@ -34,7 +34,7 @@
 
 	<form>						
 		신고자<input type="text" id="fromMid" value="reporter" disabled="disabled" class="reportInput"/>	<br/>
-		검색 <input type="text" id="searchId"  oninput="searchId()">
+		검색 <input type="text" id="searchId"  oninput="searchNick()">
 		
 			<div id="result"></div>
 			<!-- 검색된 유저가 나타날 창  -->
@@ -75,7 +75,7 @@
 		}
 		
 		
-		function searchId() {
+		function searchNick() {
 		     searchIdValue = $("#searchId").val(); // 전역변수 저장
 		    
 		    $.ajax({
@@ -90,7 +90,7 @@
 		            	str += "<ul>";
 		            $(result).each(function() {
 		                console.log(this);
-		          //      str += `<li> onclick="pick('\${this}')">\${this.mnick}</li>`;
+		                str += `<li> onclick="pick('\${this}')">\${this.mnick}</li>`;
 		            }); // 반복문
 		            str += "</ul>";
 		            
@@ -118,11 +118,11 @@
 		    		url:"${path}/report/reportReview",
 		    		method: "POST",
 		    		data:{
-		    			mId:$("#fromMid").val() //로그인한 유저
+		    			mid:$("#fromMid").val() //로그인한 유저
 		    		},   
 		    		dataType: "json" ,
 		    		success: function(response){
-		    	
+		    		console.log(response);
 		    			$(response).each(function(){
 		    				let dateFormat = new Intl.DateTimeFormat("ko" , {dateStyle:"full"});
 		    			    let date = dateFormat.format(this.date);

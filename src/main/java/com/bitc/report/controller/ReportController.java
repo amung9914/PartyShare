@@ -115,6 +115,7 @@ public class ReportController {
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		public ResponseEntity<List<ReportVO>> report(
 			MemberVO fromMid) {
+			//	 System.out.println(fromMid + " review vo");
 		// System.out.println(fromMid +" < 전달");
 		ResponseEntity<List<ReportVO>> entity = null;
 		List<ReportVO> list =null;
@@ -130,6 +131,7 @@ public class ReportController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type","text/plain;charset=utf-8");
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
 		}
 		System.out.println(errorMessage);
 		System.out.println(entity);

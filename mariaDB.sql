@@ -23,3 +23,7 @@ SELECT * FROM partyboard WHERE pnum = 1;
 
 INSERT INTO partyboard(category,pnum,title,content,writer,mnum) 
 SELECT category,pnum,title,content,writer,mnum FROM partyboard WHERE pnum = 1;
+
+
+SELECT * FROM report;
+
