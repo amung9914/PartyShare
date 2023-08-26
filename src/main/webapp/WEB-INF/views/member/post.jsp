@@ -105,6 +105,7 @@
 <c:set var="fd" value="${formattedDate}" />
 <c:set var="pd" value="${formattedDate}" />
 	<!-- 메시지함 만들기 -->
+	<a href="${path}/member/bon_post">이미 본 알림</a>
 	<div id="bottle">
 
 	</div>

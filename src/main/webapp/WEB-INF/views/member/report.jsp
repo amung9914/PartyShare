@@ -35,9 +35,11 @@
 	<form>						
 		신고자<input type="text" id="fromMid" value="reporter" disabled="disabled" class="reportInput"/>	<br/>
 		검색 <input type="text" id="searchId"  oninput="searchNick()">
+
 			
 			<div id="result">
 			<div id="resultNick"></div>
+
 			<!-- 검색된 유저가 나타날 창  -->
 			<!--  mid로 검색하기 만들어야 함 DAO  -->
 			<div id ="resultProfile"><img src="#"> </div>
@@ -101,7 +103,9 @@
 		                console.log(imgsrc);
 //		                console.log(`${obj.mnick}+ obj`);
 		                console.log(this);
-		                str += `<li onclick="pick('\${obj}')"> \${this.mnick} </li>`;
+
+		                str += `<li> onclick="pick('\${this}')">\${this.mnick}</li>`;
+
 		            }); // 반복문
 		            str += "</ul>";
 		            
@@ -136,11 +140,11 @@
 		    		url:"${path}/report/reportReview",
 		    		method: "POST",
 		    		data:{
-		    			mId:$("#fromMid").val() //로그인한 유저
+		    			mid:$("#fromMid").val() //로그인한 유저
 		    		},   
 		    		dataType: "json" ,
 		    		success: function(response){
-		    	
+		    		console.log(response);
 		    			$(response).each(function(){
 		    				let dateFormat = new Intl.DateTimeFormat("ko" , {dateStyle:"full"});
 		    			    let date = dateFormat.format(this.date);

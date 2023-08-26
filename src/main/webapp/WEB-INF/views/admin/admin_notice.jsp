@@ -29,7 +29,7 @@
 	<!-- 유저목록 테이블 생성  -->
 	<h5>알림 보내기  </h5> <br/>
 	<form>
-		<textarea id="context" row=""></textarea> <br/>
+		<textarea id="context" rows="5" cols="50"></textarea>
 		<button type="button" id="registPost">알림 보내기</button>
 	</form>
 	
