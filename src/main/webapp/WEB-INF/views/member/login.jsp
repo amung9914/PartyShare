@@ -37,18 +37,6 @@
         margin-bottom: 15px;
     }
 </style>
-<c:choose>
-	<c:when test="${!empty loginMember}">
-		<a href="${path}/member/profileModify?page=1">${loginMember.mname}</a>님 환영합니다.
-		<a href="${path}/member/logout">logout</a>
-	</c:when>
-	<c:otherwise>
-		<button id="loginButton" class="btn btn-primary">로그인</button>
-		<button class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/member/goJoin'">회원가입</button>
-	</c:otherwise>
-</c:choose>
-	
-
 <!-- 부트스트랩 모달 -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"> <!-- 가운데 정렬 -->
