@@ -16,7 +16,7 @@
 	#wrap {
 	    min-height: 100%;
 	    position: relative;
-	    padding-bottom: 60px;
+	    padding-bottom: 120px;
 	}
 
 	nav{
@@ -111,7 +111,7 @@
 		text-align:left;
 		background-color : yellow;
 		display:inline-block;
-		max-width : 250px;  
+		max-width : 50%;  
 		border-radius: 10px;
 		padding:5px;
 		word-wrap:break-word; 
@@ -120,14 +120,15 @@
 	
 	.otherChat{
 		display:inline-block;
-		max-width : 250px;
+		max-width : 400px;
 		margin-left: 10px;
-		background-color: white;
+		background-color: lightgrey;
 		color:black;
 		border-radius: 10px;
 		padding:5px;
 		word-wrap:break-word; 
 		word-break:break-all;
+		margin-top: 10%;
 		
 	}
 	#otherChat img{
@@ -139,11 +140,16 @@
 	#otherChat span{
 		margin-left: 5px;
 		font-size: 25px;
-		displsy:flex;
-		flex-wrap: wrap;
 		height: 30px;
+		line-height: 30px;
 	}
-	
+	#otherChat{
+		display:flex;
+	}
+	#otherChatBox{
+		display:flex;
+		flex-direction: column;
+	}
 	
 	#partyInfoContainer img{
 		text-align:center;
@@ -196,12 +202,13 @@
 								<li id="otherChat" data-no="${chat.cnum}">
 									<c:forEach var="joinMember" items="${joinMemberList}">
 										<c:if test="${chat.mnum eq joinMember.mnum}">
-											<img src="<c:url value='/image/printProfileImage?fileName=${joinMember.profileImageName}'/>" /><span>${joinMember.mnick}</span>
+											<img src="<c:url value='/image/printProfileImage?fileName=${joinMember.profileImageName}'/>" />
+											<div id="otherChatBox">
+												<span>${joinMember.mnick}</span>
+												<p class="otherChat">${chat.content}</p>
+											</div>
 										</c:if>
 									</c:forEach>
-									<div>
-										<p class="otherChat">${chat.content}</p>
-									</div> 
 								</li>
 							</c:if>
 						</c:forEach>

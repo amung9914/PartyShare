@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!-- 부트스트랩 CSS 포함 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
@@ -35,10 +37,17 @@
         margin-bottom: 15px;
     }
 </style>
-
-
-<button id="loginButton" class="btn btn-primary">로그인</button>
-<button class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/member/goJoin'">회원가입</button>
+<c:choose>
+	<c:when test="${!empty loginMember}">
+		<a href="${path}/member/profileModify?page=1">${loginMember.mname}</a>님 환영합니다.
+		<a href="${path}/member/logout">logout</a>
+	</c:when>
+	<c:otherwise>
+		<button id="loginButton" class="btn btn-primary">로그인</button>
+		<button class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/member/goJoin'">회원가입</button>
+	</c:otherwise>
+</c:choose>
+	
 
 <!-- 부트스트랩 모달 -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">

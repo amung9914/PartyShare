@@ -3,11 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../common/header.jsp" %>
 <style>
+	html, body {
+	    height: 100%
+	}
+
+	#wrap {
+	    min-height: 100%;
+	    position: relative;
+	    padding-bottom: 93px;
+	}
     .container {
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
+        margin-top: -5%;
     }
 
     .form-container {
@@ -59,6 +69,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+<div id="wrap">
 <div class="container">
     <div class="form-container">
         <h2>회원가입</h2>
@@ -105,14 +116,14 @@
                     <td><input type="file" name="file" accept=".jpg, .jpeg, .png"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" align="center">
                         <button type="submit" class="btn btn-primary" style="background-color: #FF385C; border-color: #FF385C; margin-right: 20px;">가입</button>
-                        <a href="<c:url value='/member/login' />">goLogin</a>
                     </td>
                 </tr>
             </table>
         </form>
     </div>
+</div>
 </div>
 <script>
     const passwordInput = document.getElementById('password');

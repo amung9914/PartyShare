@@ -3,22 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ include file="common/header.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<title>Insert title here</title>
+
 <style type="text/css">
 	html, body {
 	    height: 100%
 	}
-
 	#wrap {
 	    min-height: 100%;
 	    position: relative;
-	    padding-bottom: 93px;
+	    padding-bottom: 100px;
 	}
 	
 	#title{
@@ -26,10 +21,10 @@
 	}
 	
 	#modifyContainer{
-		margin-left: 35%;
+		margin-left: 30%;
 	}
 	#modifyBox{
-		width: 40%;
+		width: 50%;
 	}
 	
 	.profile_img_wrap{
@@ -103,8 +98,9 @@
 		margin-top:3%;
 	}
 	
-	table tr th{
+	#modifyBox table tr th{
 		font-size: 30px;
+		text-align: center;
 	}
 	#partyImg{
 		width: 200px;
@@ -118,12 +114,16 @@
 		text-decoration: none;
 		color:black;
 	}
-	table input{
+	#modifyBox table input{
 		border:none;
 		outline: none;
+		text-align: center;
 	}
+	#modifyBox table tr td {
+		text-align: center;
+	}
+	
 </style>
-<a href="<c:url value='/'/>">home으로</a>
 <div id="wrap">
 	<h1 id="title">계정 정보</h1>
 	<div class="profile_img_wrap">
@@ -149,6 +149,10 @@
 		<div id="modifyContainer">
 			<div id="modifyBox">
 				<table class="table">
+					<colgroup>
+						<col width="20%">
+						<col width="80%">
+					</colgroup>
 					<tr>
 						<th colspan="2">계정 수정</th>
 					</tr>
@@ -259,9 +263,6 @@
 		</table>
 	</div>
 </div>	
-
-		
-	
 
 <script>
 	var contextPath = '${pageContext.request.contextPath}';
