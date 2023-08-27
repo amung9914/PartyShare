@@ -139,6 +139,7 @@ $(".findResult").on("click",".btn.btn-outline-secondary",function(){
 		dataType: "text",
 		success : function(result){
 			alert(result);
+			location.href="${path}/friend";
 		},
 		error : function(res){
 			alert(res.responseText);
