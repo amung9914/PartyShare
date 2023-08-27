@@ -66,7 +66,6 @@
 			let cMnick = this.mnick;
 			let cMid = this.mid;
 			const updateStr = new Date(this.updatedate);
-			
 			const koDF = new Intl.DateTimeFormat("ko", {dateStyle: "long", timeStyle: 'medium'});
 			const updateDate = koDF.format(updateStr);
 			
@@ -80,7 +79,10 @@
 			if(mnick==cMnick){
 				str += ` &nbsp <button class='cmodify' data-cno='\${cno}' data-text='\${cText}' data-mnick='\${cMnick}' data-mid='\${cMid}'>수정</button>`;	
 			}
+			// 본인은 자기 댓글 신고 못하게 막음
+			if(mnick!=cMnick){
 			str += "<button data-cno='"+cno+"' class='reportBtn' >신고</button>";
+			}
 			str += "</div>";
 			str +="</div>";// end commentInfo
 			str += "<pre>"+cText+"</pre>";
@@ -105,10 +107,9 @@
 			},
 			dataType : "text", // 성공유무에 대한 정보를 text로 전달받겠다.
 			success : function(result){
-				alert(result);
 				page = 1;
 				//초기화 후 다시 목록 받기 
-				$(".commentLi").remove();
+				$(".commentLi").remove(); 
 				listPage(page);
 			},
 			error : function(res,status){
@@ -147,8 +148,6 @@
 		const cMnick = $("#modMnick").val();
 		const cMid = $("#modMid").val();
 		
-		
-		
 		$.ajax({
 			type : "PATCH",
 			url : "comments/"+cno,
@@ -164,10 +163,8 @@
 			dataType : "text",
 			success : function(data){
 				alert(data);
-				$("#modDiv").toggle();
-				//초기화 후 다시 목록 받기 
-				$(".commentLi").remove();
-				listPage(page);
+				$("#modDiv").toggle(); // 수정창 닫기
+				location.href="${path}/partyBoard/read?bno="+bno+"&pnum="+pnum;
 			}
 			
 		}); 
@@ -191,9 +188,7 @@
 			success : function(data){
 				alert(data);
 				$("#modDiv").toggle();
-				//초기화 후 다시 목록 받기 
-				$(".commentLi").remove();
-				listPage(page);
+				location.href="${path}/partyBoard/read?bno="+bno+"&pnum="+pnum;
 			}
 		});
 	});
@@ -205,16 +200,18 @@
 		let wt = $(window).scrollTop();
 		
 		if((wt+wh) >= (dh -10)){
-			if($("#comments li").size() <= 1){
+			 if($("#comments li").size() <= 1){
 				 return false;
-			}
+			} 
 			//수정창을 열지 않은 경우() 무한페이지 실행
+			
 			const status = $("#modDiv").css("display");
+			
 			if(status == 'none'){
 				page++;
 				listPage(page);	
-			}
 			
+			}
 		}
 	});
 	
@@ -227,6 +224,4 @@
 					+pnum+"&bno="+bno+"&cno="+cno,"Pop","width=500,height=600")
 		}
 	})
-	
-	
 </script>

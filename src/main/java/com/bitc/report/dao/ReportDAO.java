@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Update;
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
 import com.bitc.member.vo.MemberVO;
+import com.bitc.partyBoard.vo.PartyBoardVO;
+import com.bitc.partyBoard.vo.PartyCommentVO;
 import com.bitc.report.vo.PbReportVO;
 import com.bitc.report.vo.ReportVO;
 
@@ -29,7 +31,7 @@ public interface ReportDAO {
 //	@Update("UPDATE partyboard_comment reported = 'Y' WHERE cno = #{cno}")
 //	public void reportComment(int cno) throws Exception;	//reportDAO
 	
-	// INSERT 반환타입 확인하러 == void
+	// INSERT 諛섑솚���엯 �솗�씤�븯�윭 == void
 	@Insert("INSERT INTO report (fromMid, toMid, category, context) "
 			+ "VALUES (#{fromMid}, #{toMid}, #{category}, #{context})")  // no AI , date=DF
 	void addReport(ReportVO vo) throws Exception;	// reportDAO
@@ -44,19 +46,19 @@ public interface ReportDAO {
 	int cntOut() throws Exception;	// reportDAO
 	
 	
-	// 인터셉터 전처리로 옮기기
+	// �씤�꽣�뀎�꽣 �쟾泥섎━濡� �삷湲곌린
 	@Select("SELECT * FROM report WHERE fromMid = #{fromMid} "
 			+ "AND ( toMid = #{toMid} "
 			+ "AND (date >= NOW() - INTERVAL 1 month AND date <= NOW()))")
 	List<ReportVO> reportInMonth (ReportVO report) throws Exception;	// reportDAO
 	
-	//신고가 접수된 댓글이나 게시글 목록 출력 
+	//�떊怨좉� �젒�닔�맂 �뙎湲��씠�굹 寃뚯떆湲� 紐⑸줉 異쒕젰 
 	@Select("SELECT * FROM report WHERE  bno IS NOT NULL ORDER BY date DESC limit #{startRow}, #{perPageNum} ")
 	List<ReportVO> reportedBoard(Criteria cri) throws Exception;
 //	reported = 'R' AND   WHERE  bno IS NOT NULL
 	
 	/**
-	 * 파티보드
+	 * �뙆�떚蹂대뱶
 	 * */
 	@Select("SELECT * FROM  partyboard_report WHERE readed = 'N' ORDER BY date DESC")
 	List<PbReportVO> reportedPartyBoard()throws Exception;
@@ -65,12 +67,15 @@ public interface ReportDAO {
 	void readPBR(PbReportVO vo) throws Exception;
 	
 	
-	@Update("UPDATE freeboard_comment SET reported = 'B' WHERE reported = 'N' AND cno = #{cno}")
+	@Update("UPDATE freeboard_comment SET showboard = 'B' WHERE showBoard = 'Y' AND cno = #{cno}")
 	void blindComment(ReportVO vo) throws Exception;
-	
-	@Update("UPDATE freeboard SET reported = 'B' WHERE reported = 'N' AND bno = #{bno}")
+	//파티 
+	@Update("UPDATE freeboard SET showBoard = 'B' WHERE showBoard = 'Y' AND bno = #{bno}")
 	void blindBoard(ReportVO vo) throws Exception;
-	
-
-	
+	//파티 원본
+	@Update("UPDATE partyboard SET showBoard = 'B' WHERE showBoard = 'Y' AND bno = #{bno}")
+	void blindPartyBoard(PartyBoardVO vo) throws Exception;
+	// 파티 코멘트
+	@Update("UPDATE partyboard_comment SET showBoard = 'B' WHERE showBoard = 'Y' AND cno = #{cno}")
+	void blindPartyBoardComment(PartyCommentVO vo) throws Exception;
 }

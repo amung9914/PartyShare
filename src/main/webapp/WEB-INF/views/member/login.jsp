@@ -52,6 +52,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+
             </div>
             <div class="modal-body">
                 <form action="${pageContext.request.contextPath}/member/loginCheck" method="post">
@@ -66,8 +67,8 @@
                         <label class="form-check-label" for="cookie">로그인 상태 유지</label>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">로그인</button>
-                        <button type="button" onclick="location.href='${pageContext.request.contextPath}/member/goJoin';" class="btn btn-primary">회원가입</button>
+                        <button type="submit" class="btn btn-primary" style="background-color: #FF385C; border-color: #FF385C; margin-right : 20px;">로그인</button>
+                        <button type="button" onclick="location.href='${pageContext.request.contextPath}/member/goJoin';" class="btn btn-dark">회원가입</button>
                     </div>
                 </form>
             </div>
