@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- 부트스트랩 추가 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
-</script>
+
 <style type="text/css">
 	.findResult{
 		display: none;
@@ -25,8 +16,8 @@
 		border:none;
 	}
 </style>
-</head>
-<body>
+
+
 <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasfind" role="button" aria-controls="offcanvasExample">
   친구찾기
 </a>
@@ -159,6 +150,3 @@ $(".findResult").on("click",".btn.btn-outline-secondary",function(){
 	
 
 </script>
-
-</body>
-</html>
