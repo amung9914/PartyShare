@@ -158,7 +158,7 @@ public class FriendAjaxController {
 		 HttpHeaders header = new HttpHeaders();
 		 header.add("Content-Type", "text/plain;charset=utf-8");
 		 try {
-			result = fs.deleteRequest(session, ffrom);
+			result = fs.reject(session, ffrom);
 			System.out.println(ffrom);
 		} catch (Exception e) {
 			e.printStackTrace();
