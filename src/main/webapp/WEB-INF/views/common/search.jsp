@@ -209,7 +209,7 @@
   		var lastPage = 10;
   		var descriptionPage = 1;
   		var keyword = "";
-  		select("");
+  		//select("");
   	function keywordSearch(){
   		keyword = $("#searchKeyword").val();
   		
