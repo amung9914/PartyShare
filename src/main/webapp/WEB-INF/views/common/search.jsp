@@ -166,8 +166,6 @@
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <header id="searchHeader">	
-  
-
   <div id="barContatiner"></div>
   <div class="searchBtnContainer">
     <div class="searchContainer">

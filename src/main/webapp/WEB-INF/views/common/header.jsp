@@ -4,119 +4,82 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
-/* 헤더정보 시작 */
-*{margin:0 auto;
-	padding:0}
-
-#headerHeader{
-    width: 100%;
-    /* background: #FF385C; */
-}
-#headerDiv{
-	width : 100%;
-	height : 70px;
-	margin :1px 0 0 0 ;
-/* 	background: #FF385C; */
-}
-   /*  div{	
-  	display: flex; 
-	 background: gray; 
-	width : 610px;
-	height : 35px;
-	display: inline-block;
-	margin : 5px 0 0 0; 
-	  } */  
-#userMenu{
- /* 우측 : 선택바 위치 */
- 	background: white;
- 	display: block;
- 	height:auto;
- 	width :100%;
- 	
-}
-#leftHd{
-	margin : 0 0 0 20px;
-}
-#centerHd{
-/*	display: flex;*/
-}
-.divC{
-	display: inline-block;
-	width: 150px !important;
-	height:30px !important;
-}
-#rightHd{
-	width:610px; 
-	/*margin:100px;*/
-}
-#rightBox{
-	width:270px;	
-}
-
-#menuBox{
-	width:50px;
-	height:30px;
-	background-color: white;
-	border-radius: 25%;
-	
-}
-
-/* 헤더정보 끝 */
+	#headerBox{
+		width: 100%;
+		height: 100px;
+		background-color: lightgrey;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	#logBox{
+		width: 10%;
+		height: 100px;
+		background-color: blue;
+		margin-left: 3%;
+	}
+	#searchBox{
+		width: 20%;
+		height: 100px; 
+		background-color: green;
+		margin-left: 25%;
+	}
+	#header_freeBoardDiv{
+		width: 10%;
+		height: 100px;
+		background-color: yellow;
+		margin-left: 10%;
+	}
+	#header_menuDiv{
+		width:3%;
+		height: 100px;
+		background-color: pink;
+		margin-left: 15%;
+		line-height: 100px;
+	}
+	#menuBtn{
+		width: 100%;
+	}
+	#dropDownBtn{
+		background-color: white;
+	}
 </style>
 <title>partyShare</title>
 </head>
 <body>
-
-<c:set var="path" value="${pageContext.request.contextPath}" />
-
-<header id="headerHeader">
-
-<hr/>
-	<div id="userMenu">
-	<div id="menuBox"><a href="<c:url value='/'/>"> 홈ㅋ</a></div> 
-	</div>
-	<hr/>
-	<div id="headerDiv">
-<!-- 좌 -->	<div id="leftHd">
-			<div><a href="<c:url value='/freeBoard/freeBoard'/>">자유게시판</a>&nbsp;&nbsp;&nbsp; <a href="${path}/admin/admin">관리자페이지 </a>
-  								<a href="${path}/member/report"> 신고페이지</a>
-  								<a href="${path}/member/post">post</a></div>
-			</div>
-	
-<!-- 중  -->	<div id="centerHd">
-				<div id="centerDivBox">
-			 	
-
-			<div class="divC"><a href="<c:url value='/friend'/>">친구리스트</a></div>
-
+	<div id="headerBox">
+		<div id="logBox">
+		
+		</div>
+		<div id="searchBox">
 			
 		</div>
-	</div>					<!-- -->
-	
-<!-- 우 -->		<div id="rightHd">
-					<div id="rightBox">
-					<%@ include file="../member/login.jsp" %></div>
-					<div id="rightBox">
-					
-					<div id="menuBox">
-					<a href="<c:url value='/member/profileModify?page=1'/>">프로필modify</a>
-					</div> 
-					</div>
-				</div>
+		<div id="header_freeBoardDiv">
+			<a href="${path}/freeboard/freeboard">자유게시판</a>
+			<%@ include file="../member/login.jsp" %>
+		</div>
+		<div id="header_menuDiv">
+			<div class="dropdown">
+			  <button class="btn btn-secondary dropdown-toggle" id="dropDownBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			    <img id="menuBtn" src="${path}/resources/img/menu.png"/>
+			  </button>
+			  <ul class="dropdown-menu">
+			  	
+			    <li></li>
+			    <li><a class="dropdown-item" href="#">Another action</a></li>
+			    <li><a class="dropdown-item" href="#">Something else here</a></li>
+			  </ul>
+			</div>
+		</div>
+		
 	</div>
-
-
-
-<hr/>
-</header>
-
-<!-- 부트스트랩CSS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<br/>
 <script>
 	/* 로그인 해제 */
 	const invalidate = '${invalidate}';
