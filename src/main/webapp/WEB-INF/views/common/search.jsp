@@ -30,7 +30,6 @@
     width: 100%;
     height:180px;
     background: transparent;
-    margin-top: 3%;
   	}
   	
   	#userMenu{
@@ -134,6 +133,7 @@
     
     }
     #barContatiner{
+    display:none;
     display:block;
     display:flex;
     }
@@ -161,18 +161,15 @@
   	 top:50px;
    	 left:1800px;
      }
-  
+  	.displayNone{
+  		display:none;
+  	}
   </style>
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<header id="searchHeader">	
-  <div id="barContatiner"></div>
+<header id="searchHeader" class="displayNone">	
+  <div id="barContatiner" ></div>
   <div class="searchBtnContainer">
-    <div class="searchContainer">
-   		<!--검색창  -->
-      <input type="text" id="searchKeyword"  oninput="keywordSearch()">
-     <!--  <button id="keywordBtn">검색</button> -->
-    </div>
     <!-- 버튼창 -->
     <div class="buttonsContainer">
       <button data-targetContents="category" id="categoryBtn" class="searchBtn">카테고리 선택</button>
@@ -186,8 +183,13 @@
 	 <div id="sidoTemplate" class='template'></div>
 	 <div id="sigunguTemplate" class='template'></div>
 	
-	 <a href="<c:url value='/go'/>">간다</a>
 </header>
+<script>
+	const url = window.location.pathname;
+	if(url.endsWith("partyshare/")){
+		$("#searchHeader").removeClass("displayNone");
+	}
+</script>
 <!-- 모달창이 위치합니다 여기가 파란색 박스입니다!   -->
   <div id="searchModal">
     <div class="modalContent">
@@ -215,38 +217,12 @@
   			alert('해당 문자는 사용할 수 없습니다.');
   			$("#searchKeyword").val('');	// factor구분자 제거
   		}
-  	//	alert("다 지우면??" +keyword);
-  		// 지웠을 때 빈 문자열인지 확인  --> 된다 -> 빈 문자열 처리할 필요 없음
-  		// keyword가 검색 조건에 추가되도록 함 6번째 배열 매개변수로 들어감 기본 noValue
-  		// 없을 수도 있으니까
+  	
   		
   		select("㉾"+keyword);
   	}
-  	
-  	
-  	
-  		
-  //	alert(searchFor);
-  //		alert(keyword);
-  		// 키워드가 실시간으로 반영됨 // 문제점 
-  		/*
-  		ajax({
-  			url: "keywordSearch",
-  			method: "post",
-  			data: {keyword : keyword,
-  				  searchFor : searchFor},
-  			dataType:"json",	// partyVO
-  			success: function(data){
-  				
-  			},
-  			error: function (error) {
-				
-			}
-  			
-  		})// ajax
-  		*/
-  	 //keywordSearch
-  	 disableP();
+ 
+ 	 disableP();
   	 disableN();
   	countDesc();
  	printDescription(); 		//버튼이벤트 없이 호출이니까 ready에서 ㄴㄴㄴrmsid aㅓㅁㅌㄹ
@@ -272,7 +248,7 @@
   			error : function(error){
   	//			alert(error);
   			}
-  		})	
+  		});	
   	}
  	// 45개가 있다고 치자 -> 마지막 페이지는 5 lastPage
  	function next(page){

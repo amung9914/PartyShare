@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>join</title>
 <!-- 부트스트랩 CSS 포함 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
     /* 아이디 입력칸 스타일 */
     .custom-input {
@@ -42,13 +42,9 @@
 </style>
 
 </head>
-<body>
 
 <button id="loginButton" class="btn btn-primary">로그인</button>
-
-<form action="${pageContext.request.contextPath}/member/goJoin">
-   <button class="btn btn-secondary">회원가입</button>
-</form>
+<button class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/member/goJoin'">회원가입</button>
 
 <!-- 부트스트랩 모달 -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -56,9 +52,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">로그인</h5>
-                <button type="button" class="closeModal close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
             </div>
             <div class="modal-body">
                 <form action="${pageContext.request.contextPath}/member/loginCheck" method="post">
@@ -85,19 +79,14 @@
 <!-- 부트스트랩 JS와 jQuery 포함 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
     const loginButton = document.getElementById("loginButton");
-    const closeModal = document.getElementsByClassName("closeModal")[0];
 
     loginButton.addEventListener("click", () => {
         $('#loginModal').modal('show');
     });
 
-    closeModal.addEventListener("click", () => {
-        $('#loginModal').modal('hide');
-    });
 </script>
 
 </body>
