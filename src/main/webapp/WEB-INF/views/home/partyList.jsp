@@ -88,6 +88,18 @@
 		margin-left:10%;
 		font-size:20px;
 	}
+	#newAlias{
+		width: 400px;
+		height:50px;
+		border-radius: 10px;
+		border:1px solid black;
+		text-align: center;
+	}
+	#newAliasBtn{
+		width: 400px;
+		height: 50px;
+		
+	}
 	
 </style>
 <div class="modal fade" id="listModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -98,7 +110,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <button type="button" id="newWishList" class="btn btn-outline-dark">새 위시리스트 만들기</button>
+        <button type="button" id="newWishList" class="btn btn-outline-dark" onclick="newAlias();">새 위시리스트 만들기</button>
         <ul id="wishListUl">
         
         </ul>
@@ -116,7 +128,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-		        
+		<input type="text" id="newAlias" /> <br/>최대 50자<br/>
+		<button id="newAliasBtn" class="btn btn-outline-dark" onclick="newAliasBtnClick();">새로 만들기</button>
       </div>
       <div class="modal-footer">
       </div>
@@ -255,6 +268,7 @@
         			$("#wishListUl").html(str);
         		}
         	});
+        	$("#newWishList").attr("data-pnum", pNum);
         	$("#listModal").modal("show");
         }
     }
@@ -275,4 +289,30 @@
             }
         });
     }
+	function newAlias(){
+		$("#listModal").modal("hide");
+		let datapnum = $("#newWishList").attr("data-pnum");
+		$("#newAlias").attr("data-pnum", datapnum);
+		$("#createAliasModal").modal("show");
+	}
+	
+	function newAliasBtnClick(){
+		let inputAlias = $("#newAlias").val();
+		console.log(inputAlias);
+		let pnum = $("#newAlias").attr("data-pnum");
+		$.ajax({
+			type:"POST",
+			url: "${contextPath}/wishlist/addWishlist", // addWishlist에 해당하는 컨트롤러 URL
+            data: {
+            	pNum : pnum,
+            	alias : inputAlias
+            },
+            success: function(data) {
+                $("#createAliasModal").modal("hide");
+            }
+        });
+	}
+		
+		
+	
     </script>

@@ -1,5 +1,7 @@
 Manifest-Version: 1.0
-Built-By: HighTech
-Build-Jdk: 11.0.0.1
+
+Built-By: kimjw
+Build-Jdk: 11.0.19
+
 Created-By: Maven Integration for Eclipse
 

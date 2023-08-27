@@ -166,8 +166,6 @@
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <header id="searchHeader">	
-  
-
   <div id="barContatiner"></div>
   <div class="searchBtnContainer">
     <div class="searchContainer">
@@ -209,7 +207,7 @@
   		var lastPage = 10;
   		var descriptionPage = 1;
   		var keyword = "";
-  		select("");
+  		//select("");
   	function keywordSearch(){
   		keyword = $("#searchKeyword").val();
   		

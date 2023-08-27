@@ -129,6 +129,10 @@ $(".findResult").on("click",".btn.btn-outline-secondary",function(){
 	const target = $(this);
 	let ffrom = loginMnum;
 	let fto = target.attr("data-mnum");
+	
+	if(ffrom==fto){
+		alert("본인은 추가할 수 없습니다.");
+	}else{
 	$.ajax({
 		type : "POST",
 		url : "friend/create",
@@ -139,6 +143,7 @@ $(".findResult").on("click",".btn.btn-outline-secondary",function(){
 		dataType: "text",
 		success : function(result){
 			alert(result);
+			location.href="${path}/friend";
 		},
 		error : function(res){
 			alert(res.responseText);
@@ -146,6 +151,7 @@ $(".findResult").on("click",".btn.btn-outline-secondary",function(){
 		}
 		
 	});
+	}
 });
 
 	

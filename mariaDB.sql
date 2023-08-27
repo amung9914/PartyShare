@@ -6,6 +6,8 @@ select * from joinmember;
 
 select * from map;
 
+desc partyboard_comment;
+
 select * from wishlist;
 select * from party;
 select * from freeboard;
