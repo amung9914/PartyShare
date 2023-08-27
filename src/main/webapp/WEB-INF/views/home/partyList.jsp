@@ -159,13 +159,20 @@
 	var contextPath = '${pageContext.request.contextPath}';
 	var page = 1;
 	
-	listPage(page);
+	//listPage(page);
 	
 	// 파티 리스트를 가져와 출력 
 	function listPage(page){
-		let url = contextPath+"/party/partyList/"+page;
-		$.getJSON(url,function(data){
-			printList(data);
+		const value= $("#searchKeyword").val();
+		$.ajax({
+			type:"GET",
+			url:"${path}/party/searchPartyList/"+page,
+			data:{
+				keyword:value
+			},
+			success: function(data){
+				printList(data);
+			}
 		});
 	}
 	
@@ -207,7 +214,7 @@
 			str += "</li>";
 		});
 		$("#partys").append(str);
-	}
+	} 
 	
 	// 파티 상세 페이지로 이동
 	function partyDetail(pnum){
@@ -232,50 +239,50 @@
 	// wishList
 	
 	function toggleHeart(heartElement) {
-        if (heartElement.src.includes("${contextPath}/resources/img/redHeart.png")) {
-            heartElement.src = "${contextPath}/resources/img/emptyHeart.png"; // 빈 하트 이미지 경로로 변경
-            var pNum = $(heartElement).attr("id");
-            // dao.deleteWishList() 호출
-            $.ajax({
-                type: "POST",
-                url: "${contextPath}/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
-                data: {pNum : pNum},
-                success: function(data) {
-                    console.log("Wish List deleted");
-                }
-            });
-        } else {
-        	heartElement.src = "${contextPath}/resources/img/redHeart.png"; // 빨간 하트 이미지 경로로 변경
-            var pNum = $(heartElement).attr("id");
-        	$.ajax({
-        		type:"GET",
-        		url:"${contextPath}/wishlist/getWishList",
-        		data:{
-        			mnum : ${loginMember.mnum}
-        		},
-        		success:function(list){
-        			let str = "";
-        			$(list).each(function(){
-        				let alias = this.alias;
-            			let partyImage1 = this.partyImage1;
-        				str += "<li id='"+alias+"' class='"+pNum+"' onclick='addWishlist(this);'>";
-            			str += "<div>";
-            			str += "<div>";
-            			str += "<img src='${contextPath}/image/printPartyImage?fileName="+partyImage1+"'/>";
-            			str += "</div>";
-            			str += "<div>";
-            			str += "<strong>"+alias+"</strong>";
-            			str += "</div>";
-            			str += "</div>";
-            			str += "</li>";
-        			});
-        			$("#wishListUl").html(str);
-        		}
-        	});
-        	$("#newWishList").attr("data-pnum", pNum);
-        	$("#listModal").modal("show");
-        }
-    }
+			if (heartElement.src.includes("${contextPath}/resources/img/redHeart.png")) {
+	            heartElement.src = "${contextPath}/resources/img/emptyHeart.png"; // 빈 하트 이미지 경로로 변경
+	            var pNum = $(heartElement).attr("id");
+	            // dao.deleteWishList() 호출
+	            $.ajax({
+	                type: "POST",
+	                url: "${contextPath}/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
+	                data: {pNum : pNum},
+	                success: function(data) {
+	                    console.log("Wish List deleted");
+	                }
+	            });
+	        } else {
+	        	heartElement.src = "${contextPath}/resources/img/redHeart.png";
+	            var pNum = $(heartElement).attr("id");
+	        	$.ajax({
+	        		type:"GET",
+	        		url:"${contextPath}/wishlist/getWishList",
+	        		data:{
+	        			mnum : "${loginMember.mnum}"
+	        		},
+	        		success:function(list){
+	        			let str = "";
+	        			$(list).each(function(){
+	        				let alias = this.alias;
+	            			let partyImage1 = this.partyImage1;
+	        				str += "<li id='"+alias+"' class='"+pNum+"' data-he='"+heartElement+"' onclick='addWishlist(this);'>";
+	            			str += "<div>";
+	            			str += "<div>";
+	            			str += "<img src='${contextPath}/image/printPartyImage?fileName="+partyImage1+"'/>";
+	            			str += "</div>";
+	            			str += "<div>";
+	            			str += "<strong>"+alias+"</strong>";
+	            			str += "</div>";
+	            			str += "</div>";
+	            			str += "</li>";
+	        			});
+	        			$("#wishListUl").html(str);
+	        		}
+	        	});
+	        	$("#newWishList").attr("data-pnum", pNum);
+	        	$("#listModal").modal("show");
+	        }
+	  }
 	
 	function addWishlist(li){
         // dao.addWishList() 호출
@@ -316,7 +323,4 @@
             }
         });
 	}
-		
-		
-	
     </script>

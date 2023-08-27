@@ -40,6 +40,7 @@
 		outline: none;
 		border: 1px solid black;
 		border-radius: 50px;
+		text-align: center;
 	}
 	#searchImg{
 		width: 50px;
@@ -78,6 +79,9 @@
 		right: 12px;
 		bottom: 5px;
 	}
+	#searchImg{
+		cursor: pointer;
+	}
 </style>
 <title>partyShare</title>
 </head>
@@ -88,15 +92,16 @@
 		</div>
 		<div id="header_searchBox">
 			<div class="searchContainer">
-		      <input type="text" id="searchKeyword"  oninput="keywordSearch()">
-		      <img src="${path}/resources/img/search.png" id="searchImg"/>
+			<!-- oninput="keywordSearch()"> -->
+		      <input type="text" id="searchKeyword" />  
+		      <img src="${path}/resources/img/search.png" id="searchImg" onclick="goListPage();"/>
 		    </div>
 		</div>
 		<div id="header_freeBoardDiv">
-			<button type="button" class="btn btn-outline-dark" onclick="location.href='${path}/freeboard/fredboard';">자유게시판</button>
+			<button type="button" class="btn btn-outline-dark" onclick="location.href='${path}/freeBoard/freeBoard';">자유게시판</button>
 		</div>
 		<div id="header_loginBox">
-			
+			<%@ include file="../member/login.jsp" %>	
 		</div>
 		
 		<div id="header_menuDiv">
@@ -105,7 +110,7 @@
 			  		<img src="${path}/resources/img/menu.png"/>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><%@ include file="../member/login.jsp" %></li>
+			    
 			    <li><a class="dropdown-item" href="#">Another action</a></li>
 			    <li><a class="dropdown-item" href="#">Something else here</a></li>
 			  </ul>
@@ -114,5 +119,80 @@
 	</div>
 	<hr/>
 <br/>
+${searchValue}
+<c:if test="${!empty searchValue}">
+	<script>
+		$("#searchKeyword").val('${searchValue}');
+		console.log($("#searchKeyword").val());
+	</script>
+</c:if>
 
+<script>
+	function goListPage(){
+		const keyword = $("#searchKeyword").val();
+		location.href='${path}/party/partyList?keyword='+keyword;
+	}
+	var page = 1;
+	
+	headerSearchTitle(page);
+	
+	function headerSearchTitle(page){
+		const value= $("#searchKeyword").val();
+		console.log(value);
+		$.ajax({
+			type:"GET",
+			url:"${path}/party/searchPartyList/"+page,
+			data:{
+				keyword:value
+			},
+			success: function(data){
+				searchPrintList(data);
+			}
+		});
+	}
+	function searchPrintList(data){
+		let str = "";
+		let wishlistPnum = [];
+		if(data.wishlist != null){
+			$(data.wishlist).each(function(){
+				let wishPnum = this.pnum;
+				wishlistPnum.push(wishPnum);
+			});	
+		}
+		
+		$(data.list).each(function(){
+			let pname = this.pname;
+			let address = this.address;
+			let date = this.formatStartDate +"~"+ this.formatEndDate;		
+			let pnum = this.pnum;
+			let path = this.partyImage1;
+			let detailAddress = this.detailAddress;
+			
+			str += '<li>';
+			// wishList 받아서 fullHeart.png로 출력
+			if(data.wishlist != null){
+				if(wishlistPnum.indexOf(pnum) < 0){
+					str += "<img src='${path}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+				}else{
+					str += "<img src='${path}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+				}
+			}else{
+				str += "<img src='${path}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+			}
+			str += '<img src="${path}/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
+			str += "<hr/>";
+			str += "<strong onclick='partyDetail("+pnum+");' style='cursor: pointer;'>"+pname+"</strong><br/>";
+			str += address+" "+detailAddress+"<br/>";
+			str += date;
+			str += "</li>";
+		});
+		$("#partys").html(str);
+	}
+	$("#searchKeyword").keydown(function(event) {
+	    if (event.which === 13) {
+	        event.preventDefault();
+	        $("#searchImg").click();
+	    }
+	});
+</script>
 <%@ include file="search.jsp" %>

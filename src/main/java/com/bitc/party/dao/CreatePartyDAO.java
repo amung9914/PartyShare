@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -99,4 +100,9 @@ public interface CreatePartyDAO {
 	 */
 	@Select("SELECT * FROM wishlist WHERE mnum=#{mnum}")
 	public List<WishlistVO> getWishlist(int mnum);
+	/**
+	 * title keyword를 이용한 파티리스트 검색 
+	 */
+	@Select("SELECT * FROM party WHERE finish = 'N' AND pname LIKE CONCAT('%', #{keyword}, '%') ORDER BY pnum DESC limit #{cri.startRow}, #{cri.perPageNum}")
+	public List<PartyVO> searchParty(@Param("cri") Criteria cri, @Param("keyword") String keyword);
 }
