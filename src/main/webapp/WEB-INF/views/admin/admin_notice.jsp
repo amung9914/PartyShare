@@ -33,7 +33,7 @@
 		<button type="button" id="registPost">알림 보내기</button>
 	</form>
 	
-	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	/* READY OPTION */
 	$(document).ready(function () {
@@ -54,6 +54,7 @@
 				
 			});
 		});
+	})//ready
 		</script>
 </body>
 </html>
