@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitc.admin.service.AdminService;
 import com.bitc.board.service.BoardService;
+import com.bitc.comment.vo.FreeBoardCommentVO;
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
+import com.bitc.freeboard.vo.FreeBoardVO;
 import com.bitc.member.vo.MemberVO;
 import com.bitc.partyBoard.vo.PartyBoardVO;
 import com.bitc.partyBoard.vo.PartyCommentVO;
@@ -174,23 +176,8 @@ public class ReportController {
 	 		return entity;
 	 	}
 	 	
-	 	@PostMapping("report/reportedPartyBoard")
-	 	public ResponseEntity<List<PbReportVO>> reportedPartyBoard(){
-	 		 ResponseEntity<List<PbReportVO>> entity =null;
-	 		try {
-				List<PbReportVO> list = rs.reportedPartyBoard();
-				//PageMaker pm = rs.getPageMaker(cri);
-				HttpHeaders header = new HttpHeaders();
-				header.setContentType(MediaType.APPLICATION_JSON);
-				entity = new ResponseEntity<List<PbReportVO>>(list,header,HttpStatus.OK);
-			//	model.addAttribute("pm",pm);
-			} catch (Exception e) {
-				entity = new ResponseEntity<List<PbReportVO>>(HttpStatus.BAD_REQUEST);
-			}
-	 		System.out.println(entity);
-	 		return entity;
-	 	}
 	 	
+	 	//freeboard화
 	 	@PostMapping("report/PbReportBoard/{no}")
 	 	public ResponseEntity<PartyBoardVO> PbReportBoard(
 	 			@PathVariable(name="no") int no
@@ -209,6 +196,90 @@ public class ReportController {
 	 		System.out.println(entity);
 	 		return entity;
 	 	}
+	 	
+	 	
+	 	//freeboard화
+	 	
+	 	
+	 	
+	 	
+	 	@PostMapping("report/reportedPartyBoard")
+	 	public ResponseEntity<List<PbReportVO>> reportedPartyBoard(){
+	 		 ResponseEntity<List<PbReportVO>> entity =null;
+	 		try {
+				List<PbReportVO> list = rs.reportedPartyBoard();
+				//PageMaker pm = rs.getPageMaker(cri);
+				HttpHeaders header = new HttpHeaders();
+				header.setContentType(MediaType.APPLICATION_JSON);
+				entity = new ResponseEntity<List<PbReportVO>>(list,header,HttpStatus.OK);
+			//	model.addAttribute("pm",pm);
+			} catch (Exception e) {
+				entity = new ResponseEntity<List<PbReportVO>>(HttpStatus.BAD_REQUEST);
+			}
+	 		System.out.println(entity);
+	 		return entity;
+	 	}
+	 	
+	 	@PostMapping("report/boardReportOriginal/{no}")
+	 	public ResponseEntity<FreeBoardVO> boardReportOriginal(
+	 			@PathVariable(name="no") int no		// cno임
+	 			){
+	 		ResponseEntity<FreeBoardVO> entity = null;
+	 		// no를 가지고 partyBoard반환 
+	 		System.out.println("boardReportOriginal/{no}" + no);
+	 		try {
+	 			FreeBoardVO vo = bs.originalBoard(no);
+				HttpHeaders hd = new HttpHeaders();
+				hd.setContentType(MediaType.APPLICATION_JSON);
+				entity = new ResponseEntity<>(vo,hd,HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+	 		System.out.println(entity);
+	 		return entity;
+	 	}
+	 	
+	 	@PostMapping("report/boardReportBoard/{no}")
+	 	public ResponseEntity<FreeBoardVO> boardReportBoard(
+	 			@PathVariable(name="no") int no
+	 			){
+	 		ResponseEntity<FreeBoardVO> entity = null;
+	 		// no를 가지고 partyBoard반환 
+	 		System.out.println("freeReportBoard/{no}" + no);
+	 		try {
+	 			FreeBoardVO vo = bs.freeBoard(no);
+				HttpHeaders hd = new HttpHeaders();
+				hd.setContentType(MediaType.APPLICATION_JSON);
+				entity = new ResponseEntity<>(vo,hd,HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+	 		System.out.println(entity);
+	 		return entity;
+	 	}
+	 	
+	 	
+	 	@PostMapping("report/boardReportComment/{no}")
+	 	public ResponseEntity<FreeBoardCommentVO> boardReportComment(
+	 			@PathVariable(name="no") int no
+	 			){
+	 		ResponseEntity<FreeBoardCommentVO> entity = null;
+	 		
+	 		try {
+	 			FreeBoardCommentVO vo = bs.freeBoardComment(no);
+				HttpHeaders hd = new HttpHeaders();
+				hd.setContentType(MediaType.APPLICATION_JSON);
+				entity = new ResponseEntity<>(vo,hd,HttpStatus.OK);
+			} catch (Exception e) {
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type","text/plain;charset=utf-8");
+				entity = new ResponseEntity<>(header,HttpStatus.BAD_REQUEST);
+			}
+	 		System.out.println(entity);
+	 		return entity;
+	 	}
+	 	
+	 	
 	 	
 	 	
 	 	@PostMapping("report/PbReportComment/{no}")
@@ -267,6 +338,10 @@ ResponseEntity<PartyBoardVO> entity = null;
 	 		
 	 		return entity;
 	 	}
+	 	
+	 	
+	 	
+	 
 			 
 			 
 }

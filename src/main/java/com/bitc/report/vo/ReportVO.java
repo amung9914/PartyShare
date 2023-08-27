@@ -15,5 +15,5 @@ public class ReportVO {
 	
 	private int bno;  // 신고 대상이 게시글인 경우 	commentVO 
 	private int cno;  // 신고 대상이 댓글인 경우		boardVO
-
+	
 }

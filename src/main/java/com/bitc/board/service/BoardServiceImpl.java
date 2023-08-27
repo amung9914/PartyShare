@@ -53,6 +53,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void blindComment(int cno) throws Exception {
 		dao.blindComment(cno);
+		
 	}
 
 	@Override

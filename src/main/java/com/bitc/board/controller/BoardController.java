@@ -57,5 +57,49 @@ public class BoardController {
 		return entity;
 	}
 	
+	//blindFreeBoard
+	
+	@PostMapping("/board/blindFreeBoard")
+	public ResponseEntity<String> blindFreeBoard(int cno){
+		ResponseEntity<String> entity = null;
+		String message = "";
+		try {
+			bs.blindBoard(cno);
+			message ="성공적으로 처리되었습니다";
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type","text/plain;charset=utf-8");
+			entity = new ResponseEntity<String>(message,header,HttpStatus.OK);
+		} catch (Exception e) {
+			message ="오류가 발생했습니다.";
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type","text/plain;charset=utf-8");
+			entity = new ResponseEntity<String>(message,header,HttpStatus.BAD_REQUEST);
+		}
+		System.out.println(entity);
+		
+		return entity;
+	}
+	
+	//blindBoardComment
+	@PostMapping("/board/blindBoardComment")
+	public ResponseEntity<String> blindBoardComment(int cno){
+		ResponseEntity<String> entity = null;
+		String message = "";
+		try {
+			bs.blindComment(cno);
+			message ="성공적으로 처리되었습니다";
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type","text/plain;charset=utf-8");
+			entity = new ResponseEntity<String>(message,header,HttpStatus.OK);
+		} catch (Exception e) {
+			message ="오류가 발생했습니다.";
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type","text/plain;charset=utf-8");
+			entity = new ResponseEntity<String>(message,header,HttpStatus.BAD_REQUEST);
+		}
+		System.out.println(entity);
+		
+		return entity;
+	}
 	
 }
