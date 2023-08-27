@@ -27,15 +27,22 @@ public class ChatController {
 	private final ChatService sc;
 	private final PartyService ps;
 	
+	/**
+	 * 채팅 창 입장 
+	 */
 	@RequestMapping("/chat")
     public ModelAndView enterChat(@RequestParam int pnum, ModelAndView mav, HttpSession session, RedirectAttributes rttr) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		
+		// 입장시 출력될 채팅 리스트
 		List<ChatVO> firstList = null;
+		
+		// 파티 맴버 목록 
 		List<MemberVO> joinMemberList = null;
 		PartyVO party= null;
 		
 		try {
+			// 파티 맴버가 아닐 시 채팅 창 입장 불가
 			joinMemberList = ps.getJoinPartyMemberList(pnum);
 			if(!joinMemberList.contains(member)) {
 				String message = "파티 맴버만 입장할 수 있습니다.";
@@ -43,6 +50,7 @@ public class ChatController {
 				mav.setViewName("redirect:/partyDetail/detailOfParty?pNum="+pnum);
 				return mav;
 			}
+			
 			firstList = sc.selectFirstChatList(pnum);
 			party = ps.read(pnum);
 		} catch (Exception e) {
@@ -55,7 +63,7 @@ public class ChatController {
     	return mav;
     }
 	
-	
+	// 이전 채팅 리스트 가져오기
 	@GetMapping("/chatList")
 	@ResponseBody
 	public List<ChatVO> selectChatList(@RequestParam int pnum, @RequestParam int endNo) {

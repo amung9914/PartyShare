@@ -55,7 +55,7 @@ public class MakeQuery {
         if(!result[5].equals("noValue")) {
         	finalQuery +=" AND pName Like '%"+result[5]+"%'";
         }
-        finalQuery = finalQuery + ";";
+        finalQuery = finalQuery + "ORDER BY pnum DESC;";
         System.out.println("Makequery addString final :" + finalQuery);
         
 		return finalQuery;

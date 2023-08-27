@@ -26,18 +26,18 @@ public interface ReportDAO {
 //	@Update("UPDATE freeboard reported = 'Y' WHERE bno = #{bno}")
 //	public void reportBoard(int bno) throws Exception;	//reportDAO
 	
-	@Update("UPDATE partyboard_comment reported = 'Y' WHERE cno = #{cno}")
-	public void reportComment(int cno) throws Exception;	//reportDAO
+//	@Update("UPDATE partyboard_comment reported = 'Y' WHERE cno = #{cno}")
+//	public void reportComment(int cno) throws Exception;	//reportDAO
 	
 	// INSERT 반환타입 확인하러 == void
 	@Insert("INSERT INTO report (fromMid, toMid, category, context) "
 			+ "VALUES (#{fromMid}, #{toMid}, #{category}, #{context})")  // no AI , date=DF
 	void addReport(ReportVO vo) throws Exception;	// reportDAO
 	
-	@Select("SELECT * FROM report WHERE fromMid = #{mId} ")
+	@Select("SELECT * FROM report WHERE fromMid = #{mid} ")
 	List<ReportVO> reportReview(MemberVO vo) throws Exception;	// reportDAO
 	
-	@Update("UPDATE member SET mbanCnt = mbanCnt+1 WHERE mId = #{target} ")
+	@Update("UPDATE member SET mbanCnt = mbanCnt+1 WHERE mid = #{target} ")
 	void addReportCnt (String target) throws Exception;	// reportDAO
 	
 	@Update("UPDATE member SET mblackYN = 'Y' , mbanCnt = 0  WHERE mbanCnt = 10")

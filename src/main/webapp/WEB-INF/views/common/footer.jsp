@@ -5,7 +5,7 @@
 	footer{
 		width: 100%;
 		background-color : #f7f7f7;
-		margin-top: 3%;
+		margin-top: 5%;
 		position : relative;
   		transform : translateY(-100%);
 	}

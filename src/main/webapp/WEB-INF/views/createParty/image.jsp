@@ -11,7 +11,6 @@
 <style>
 	#title{
 		margin-left:30%;
-		margin-top:5%;
 	}
 	#imgBox{
 		display:flex;

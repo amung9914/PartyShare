@@ -69,7 +69,7 @@ public class SearchController {
 			header.setContentType(MediaType.APPLICATION_JSON); //encode
 			entity = new ResponseEntity<>(e.getMessage(),header,HttpStatus.BAD_REQUEST);
 		}
-	//	System.out.println(entity);
+		System.out.println(entity);
         return entity; // ajax dataType = "text",
 	}
 	

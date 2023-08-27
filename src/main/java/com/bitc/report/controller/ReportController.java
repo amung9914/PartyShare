@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bitc.admin.service.AdminService;
 import com.bitc.board.service.BoardService;
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
@@ -31,6 +32,7 @@ public class ReportController {
 	
 	private final ReportService rs;
 	private final BoardService bs;
+	private final AdminService as;
 	
 	@GetMapping("report/reportList")
  	@ResponseBody
@@ -113,6 +115,7 @@ public class ReportController {
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		public ResponseEntity<List<ReportVO>> report(
 			MemberVO fromMid) {
+			//	 System.out.println(fromMid + " review vo");
 		// System.out.println(fromMid +" < 전달");
 		ResponseEntity<List<ReportVO>> entity = null;
 		List<ReportVO> list =null;
@@ -128,6 +131,7 @@ public class ReportController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type","text/plain;charset=utf-8");
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
 		}
 		System.out.println(errorMessage);
 		System.out.println(entity);
@@ -243,6 +247,24 @@ ResponseEntity<PartyBoardVO> entity = null;
 				entity = new ResponseEntity<>(header,HttpStatus.BAD_REQUEST);
 			}
 	 		System.out.println("original추출:" +entity);
+	 		return entity;
+	 	}
+	 	
+	 	@PostMapping("report/searchId")
+	 	public ResponseEntity<List<MemberVO>> searchId (String mnick){
+	 		ResponseEntity<List<MemberVO>> entity = null; 
+	 		
+	 		try {
+				List<MemberVO> list = as.memberNick(mnick);
+				HttpHeaders hd = new HttpHeaders();
+				hd.setContentType(MediaType.APPLICATION_JSON);
+				entity = new ResponseEntity<>(list,hd,HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				System.out.println("searchID 망함");
+			}
+	 		System.out.println(entity);
+	 		
 	 		return entity;
 	 	}
 			 

@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,7 @@ import com.bitc.map.vo.MapVO;
 import com.bitc.member.vo.MemberVO;
 import com.bitc.party.service.CreatePartyService;
 import com.bitc.party.vo.PartyVO;
+import com.bitc.wishlist.vo.WishlistVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,7 +39,7 @@ import lombok.RequiredArgsConstructor;
 public class CreatePartyController {
 	
 	private final CreatePartyService ps;
-	
+	// 파티 이미지 경로
 	private final String uploadPartyDir;
 	private final ServletContext context;
 	
@@ -104,8 +106,10 @@ public class CreatePartyController {
 		model.addAttribute(map);
 		model.addAttribute("vo", vo);
 		if(period.equals("짜릿한 일회성 만남")) {
+			// 하루 선택 달력
 			return "createParty/dateOne";
 		}else {
+			// 범위 선택 달력
 			return "createParty/date";
 		}
 	}
@@ -185,25 +189,31 @@ public class CreatePartyController {
 		return "redirect:/";
 	}
 	
-	// 파일의 경로를 리스트 내에 객체에 담아서 ${list.URL}
+	// 무한페이징 파티 리스트
 	@GetMapping("/partyList/{page}")
 	@ResponseBody
-	public Map<String, Object> partyList(@PathVariable(name="page") int page){
+	public Map<String, Object> partyList(@PathVariable(name="page") int page, HttpSession session){
+		MemberVO m = (MemberVO) session.getAttribute("loginMember");
+		int mnum = m.getMnum();
 		Map<String, Object> map = new HashMap<>();
 		Criteria cri = new Criteria(page, 20);
 		List<PartyVO> partyList = null;
+		List<WishlistVO> wishlist = null;
 		PageMaker pm = null;
 		try {
 			partyList = ps.partyList(cri);
 			pm = ps.getPageMaker(cri);
+			wishlist = ps.getWishlist(mnum);
 			map.put("pm", pm);
 			map.put("list", partyList);
+			map.put("wishlist", wishlist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return map;
 	}
 	
+	// 파티 맴버 강퇴
 	@GetMapping("/partyMemberBan")
 	public String partyMemberBan(Model model, int mnum, int pnum, RedirectAttributes rttr) {
 		try {
@@ -216,6 +226,7 @@ public class CreatePartyController {
 		return "redirect:/party/partyHost";
 	}
 	
+	// 파티 종료 
 	@GetMapping("/partyFinish")
 	public String partyFinish(int pnum, RedirectAttributes rttr) {
 		String result = null;
@@ -229,14 +240,4 @@ public class CreatePartyController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/partyDetail")
-	public String partyDetail(int pnum, Model model) {
-		try {
-			PartyVO vo = ps.selectParty(pnum);
-			model.addAttribute("party", vo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "partyDetail";
-	}
 }

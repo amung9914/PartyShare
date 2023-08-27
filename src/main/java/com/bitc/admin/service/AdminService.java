@@ -2,6 +2,7 @@ package com.bitc.admin.service;
 
 import java.util.List;
 
+import com.bitc.common.utils.Criteria;
 import com.bitc.member.vo.MemberVO;
 
 
@@ -19,7 +20,7 @@ public interface AdminService {
 	/**
 	 * @return 관리자가 불러오는 전체 member 리스트
 	 * */
-	List<MemberVO> memberList() throws Exception;	//adminService
+	List<MemberVO> memberList(Criteria cri) throws Exception;	//adminService
 
 	
 	/**
@@ -29,7 +30,10 @@ public interface AdminService {
 	
 	int blackMember(String targetId) throws Exception;	//adminService
 	
-
+	/**
+	 * 닉네임으로 멤버 검색 신고 대상 목록
+	 * */
+	List<MemberVO> memberNick(String mnick) throws Exception;
 	
 	
 	

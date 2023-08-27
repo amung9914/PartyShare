@@ -23,14 +23,14 @@
 	margin :1px 0 0 0 ;
 /* 	background: #FF385C; */
 }
-    div{	
+   /*  div{	
   	display: flex; 
-	/* background: gray; */
+	 background: gray; 
 	width : 610px;
 	height : 35px;
 	display: inline-block;
 	margin : 5px 0 0 0; 
-	  }  
+	  } */  
 #userMenu{
  /* 우측 : 선택바 위치 */
  	background: white;
@@ -71,7 +71,11 @@
 <title>partyShare</title>
 </head>
 <body>
+
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 <header id="headerHeader">
+
 <hr/>
 	<div id="userMenu">
 	<div id="menuBox"><a href="<c:url value='/'/>"> 홈ㅋ</a></div> 
@@ -79,13 +83,17 @@
 	<hr/>
 	<div id="headerDiv">
 <!-- 좌 -->	<div id="leftHd">
-			<div><a href="<c:url value='/freeBoard/freeBoard'/>">자유게시판</a></div>
+			<div><a href="<c:url value='/freeBoard/freeBoard'/>">자유게시판</a>&nbsp;&nbsp;&nbsp; <a href="${path}/admin/admin">관리자페이지 </a>
+  								<a href="${path}/member/report"> 신고페이지</a>
+  								<a href="${path}/member/post">post</a></div>
 			</div>
 	
 <!-- 중  -->	<div id="centerHd">
 				<div id="centerDivBox">
 			 	
+
 			<div class="divC"><a href="<c:url value='/friend'/>">친구리스트</a></div>
+
 			
 		</div>
 	</div>					<!-- -->
@@ -98,11 +106,6 @@
 					<div id="menuBox">
 					<a href="<c:url value='/member/profileModify?page=1'/>">프로필modify</a>
 					</div> 
-						  <div id="admin">
- 								 <a href="${path}/admin/admin">관리자페이지 </a>
-  								<a href="${path}/member/report"> 신고페이지</a>
-  								<a href="${path}/member/post">post</a>
-						  </div>
 					</div>
 				</div>
 	</div>
