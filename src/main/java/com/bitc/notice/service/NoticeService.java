@@ -26,7 +26,7 @@ public interface NoticeService {
 	/**
 	 * readed update -> Y
 	 * */
-	public void readPost(int noticeNum) throws Exception;	//notice
+	public void readPost(int noticeNum, String mid) throws Exception;	//notice
 	
 	/**
 	 * 관리자가 탈퇴하지 않은 모든 member의 mId를 포함해 notice 삽입
@@ -59,7 +59,9 @@ public interface NoticeService {
 	/**
 	 * @return 로그인 유저의 post(Notice)수신함
 	 * */
-	List<NoticeVO> myNotice(String mId) throws Exception;	//noticeService
-	
-	
+	List<NoticeVO> myNotice(String mid) throws Exception;	//noticeService
+	// 이미 본 알림 목록 보여주기
+	List<NoticeVO> bonPostList(String mid) throws Exception;
+	// 이미 본 알림 목록에서 제거
+	void deletePost(int no , String mid) throws Exception;
 }

@@ -12,5 +12,5 @@ public class NoticeVO {
 //	private LocalDateTime Date;
 	private String context;
 	private String readed;
-	private String mId;
+	private String mid;
 }
