@@ -28,26 +28,27 @@ public class HomeController {
 		return "home";
 	}
 	
+	    //개인정보 처리 방침으로 이동
+		@GetMapping("policy")
+		public String policy() {
+			return "common/policy";
+		}
 		
-		/*	
-		// test용 로그인 수행
-		@PostMapping("login")
-		public String login(MemberVO vo, HttpSession session) {
-			MemberVO loginMember = null;
-			try {
-				loginMember = ms.login(vo);
-			} catch (Exception e) {
-				e.printStackTrace();
-			} //로그인 서비스 연결
-			session.setAttribute("loginMember", loginMember);
-			return "redirect:/account"; // get으로 mapping으로 감
-		}	
-		
-*/
+		//이용약관으로 이동
+		@GetMapping("policy2")
+		public String policy2() {
+			return "common/policy2";
+		}
+	
 		// 계정관리 메뉴로 이동
 		@GetMapping("account")
 		public String account() {
 			return "member/account";
+		}
+		// 회사세부정보 메뉴로 이동
+		@GetMapping("infomation")
+		public String infomation() {
+			return "common/infomation";
 		}
 		
 }
