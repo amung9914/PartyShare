@@ -13,79 +13,106 @@
 <style>
 	#headerBox{
 		width: 100%;
-		height: 100px;
-		background-color: lightgrey;
+		height: 80px;
+		display: flex;
+		flex-wrap: wrap;
+		margin-top:2%;
+	}
+	#logoBox{
+		width: 10%;
+		height: 80px;
+		margin-left: 3%;
+	}
+	#header_searchBox{
+		width: 300px;
+		height: 80px;
+		margin-left: 25%;
+		text-align: center;
+		line-height: 80px;
+	}
+	#header_searchBox .searchContainer{
 		display: flex;
 		flex-wrap: wrap;
 	}
-	#logBox{
-		width: 10%;
-		height: 100px;
-		background-color: blue;
-		margin-left: 3%;
+	#header_searchBox #searchKeyword{
+		width: 80%;
+		height: 50px;
+		outline: none;
+		border: 1px solid black;
+		border-radius: 50px;
 	}
-	#searchBox{
-		width: 20%;
-		height: 100px; 
-		background-color: green;
-		margin-left: 25%;
+	#searchImg{
+		width: 50px;
+		height:50px;
+		border-radius: 25px;
 	}
 	#header_freeBoardDiv{
+		width: 7%;
+		height: 80px;
+		margin-left: 7%;
+		line-height: 50px;
+	}
+	#header_loginBox{
 		width: 10%;
-		height: 100px;
-		background-color: yellow;
+		height: 80px;
 		margin-left: 10%;
+		
 	}
 	#header_menuDiv{
 		width:3%;
-		height: 100px;
-		background-color: pink;
-		margin-left: 15%;
-		line-height: 100px;
+		height: 80px;
+		margin-left: 2%;
+		line-height: 50px;
 	}
 	#menuBtn{
-		width: 100%;
-	}
-	#dropDownBtn{
+		border: none;
 		background-color: white;
+	}
+	
+	#menuBtn, #menuBtn img{
+		width: 30px;
+		height : 30px;
+	}
+	#menuBtn img{
+		position: relative;
+		right: 12px;
+		bottom: 5px;
 	}
 </style>
 <title>partyShare</title>
 </head>
 <body>
 	<div id="headerBox">
-		<div id="logBox">
+		<div id="logoBox">
 		
 		</div>
-		<div id="searchBox">
-			
+		<div id="header_searchBox">
+			<div class="searchContainer">
+		      <input type="text" id="searchKeyword"  oninput="keywordSearch()">
+		      <img src="${path}/resources/img/search.png" id="searchImg"/>
+		    </div>
 		</div>
 		<div id="header_freeBoardDiv">
-			<a href="${path}/freeboard/freeboard">자유게시판</a>
-			<%@ include file="../member/login.jsp" %>
+			<button type="button" class="btn btn-outline-dark" onclick="location.href='${path}/freeboard/fredboard';">자유게시판</button>
 		</div>
+		<div id="header_loginBox">
+			
+		</div>
+		
 		<div id="header_menuDiv">
-			<div class="dropdown">
-			  <button class="btn btn-secondary dropdown-toggle" id="dropDownBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			    <img id="menuBtn" src="${path}/resources/img/menu.png"/>
+			<div class="dropdown-center">
+			  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" id="menuBtn" aria-expanded="false">
+			  		<img src="${path}/resources/img/menu.png"/>
 			  </button>
 			  <ul class="dropdown-menu">
-			  	
-			    <li></li>
+			    <li><%@ include file="../member/login.jsp" %></li>
 			    <li><a class="dropdown-item" href="#">Another action</a></li>
 			    <li><a class="dropdown-item" href="#">Something else here</a></li>
 			  </ul>
 			</div>
 		</div>
-		
 	</div>
+	<hr/>
 <br/>
-<script>
-	/* 로그인 해제 */
-	const invalidate = '${invalidate}';
-	if(invalidate != ''){
-		alert(invalidate);
-		location.href='<c:url value="/user/signOut"/>';
-	}
-</script>
 
+<%@ include file="search.jsp" %>

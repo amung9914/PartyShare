@@ -173,11 +173,12 @@
 	function printList(data){
 		let str = "";
 		let wishlistPnum = [];
-		
-		$(data.wishlist).each(function(){
-			let wishPnum = this.pnum;
-			wishlistPnum.push(wishPnum);
-		});
+		if(data.wishlist != null){
+			$(data.wishlist).each(function(){
+				let wishPnum = this.pnum;
+				wishlistPnum.push(wishPnum);
+			});	
+		}
 		
 		$(data.list).each(function(){
 			let pname = this.pname;
@@ -189,10 +190,14 @@
 			
 			str += '<li>';
 			// wishList 받아서 fullHeart.png로 출력
-			if(wishlistPnum.indexOf(pnum) < 0){
-				str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>"
+			if(data.wishlist != null){
+				if(wishlistPnum.indexOf(pnum) < 0){
+					str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+				}else{
+					str += "<img src='${contextPath}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+				}
 			}else{
-				str += "<img src='${contextPath}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>"
+				str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
 			}
 			str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
 			str += "<hr/>";
@@ -245,7 +250,6 @@
         	$.ajax({
         		type:"GET",
         		url:"${contextPath}/wishlist/getWishList",
-        		async: false,
         		data:{
         			mnum : ${loginMember.mnum}
         		},

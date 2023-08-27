@@ -194,19 +194,23 @@ public class CreatePartyController {
 	@ResponseBody
 	public Map<String, Object> partyList(@PathVariable(name="page") int page, HttpSession session){
 		MemberVO m = (MemberVO) session.getAttribute("loginMember");
-		int mnum = m.getMnum();
 		Map<String, Object> map = new HashMap<>();
 		Criteria cri = new Criteria(page, 20);
 		List<PartyVO> partyList = null;
-		List<WishlistVO> wishlist = null;
 		PageMaker pm = null;
+		
+		if(m != null) {
+			int mnum = m.getMnum();
+			List<WishlistVO> wishlist = null;
+			wishlist = ps.getWishlist(mnum);
+			map.put("wishlist", wishlist);
+		}
+		
 		try {
 			partyList = ps.partyList(cri);
 			pm = ps.getPageMaker(cri);
-			wishlist = ps.getWishlist(mnum);
 			map.put("pm", pm);
 			map.put("list", partyList);
-			map.put("wishlist", wishlist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
