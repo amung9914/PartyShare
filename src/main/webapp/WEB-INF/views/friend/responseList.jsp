@@ -1,61 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-	.mnum{
-		display:none;
-	}
-</style>
-</head>
-<body>
-	<h3> 요청받은목록 </h3>
-	<table id="table" class="table table-striped table-hover">
-		<tr>
-			<th>사진</th>
-			<th>아이디</th>
-			<th>닉네임</th>
-			<th>친구요청일</th>
-			<th>수락</th>
-			<th>거절</th>
-		</tr>
-		<c:choose>
+
+	<c:choose>
 			<c:when test="${!empty responseList}">
 				<c:forEach var="list" items="${responseList}">
-					<tr class="${list.ffrom}">
-						<td><img class="profileImg" src="${path}/friend/printImg?fileName=${list.profileImageName}" /></td>
-						<td>${list.mid}</td>
-						<td>${list.mnick}</td>
-						<!-- 당일이면 시간표시 / 아니면 날짜표시 -->
-						<td>
-						<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
-						<f:formatDate var="req" pattern="yyyy년MM월dd일" value="${list.requestTime}"/>
-						<c:choose>
-							<c:when test="${now == req}">
-								<f:formatDate pattern="HH:mm:ss" value="${list.requestTime}"/>
-							</c:when>
-							<c:otherwise>
-								${req}
-							</c:otherwise>
-						</c:choose>
-						</td>
-						<td ><button class="acceptBtn" id="${list.ffrom}">수락
-						</button></td>
-						<td ><button class="rejectBtn" id="${list.ffrom}">거절
-						</button></td>
-						
-					</tr>
-				</c:forEach> <!-- 반복문 끝 -->
-			</c:when>
-			<c:otherwise>
-				<tr>
-				<td></td>
-				<td></td>
-				<td>친구신청 내역이 없습니다.</td>
-				<td></td>
-				<td></td>
-				</tr>
-			</c:otherwise>
-		</c:choose>
-		</table>
+				    <div class="card ${list.ffrom}">
+					  <div class="card-body">
+					  	<div class="cardBox">
+					  		<img class="profileImg" src="${path}/friend/printImg?fileName=${list.profileImageName}" />
+						    <div class="info">
+						    <h5 class="card-title">${list.mnick}님에게 친구 요청을 받았습니다</h5>
+						    <p class="card-text">${list.mid}</p>
+						    <p class="card-text">
+							    <f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
+								<f:formatDate var="req" pattern="yyyy년MM월dd일" value="${list.requestTime}"/>
+								<c:choose>
+									<c:when test="${now == req}">
+										<f:formatDate pattern="HH:mm:ss" value="${list.requestTime}"/>
+									</c:when>
+									<c:otherwise>
+										${req}
+									</c:otherwise>
+								</c:choose>
+							</p>
+							</div>
+						</div>
+					  	<button class="acceptBtn btn btn-dark" id="${list.ffrom}">수락
+						</button>
+						<button class="rejectBtn btn btn-light" id="${list.ffrom}">거절
+						</button>
+					  </div>
+					</div>
+   				 </c:forEach>
+    		</c:when>
+    		<c:otherwise>
+    			<br/>
+    			<div class="card  mb-3">
+				  <div class="card-body">
+				     <p class="card-text">친구신청 내역이 존재하지 않습니다</p>
+				  </div>
+				</div>
+    		</c:otherwise>
+    </c:choose>
+    
+    
+	
 	<script>
 	
 	// 수락하기
@@ -65,7 +54,7 @@
 		
 		$.ajax({
 			type : "PUT",
-			url : "accept/"+ffrom,
+			url : "${path}/friend/accept/"+ffrom,
 			dataType: "text",
 			success : function(result){
 				alert(result);
@@ -86,7 +75,7 @@
 		
 		$.ajax({
 			type : "DELETE",
-			url : "reject/"+ffrom,
+			url : "${path}/friend/reject/"+ffrom,
 			dataType: "text",
 			success : function(result){
 				alert(result);

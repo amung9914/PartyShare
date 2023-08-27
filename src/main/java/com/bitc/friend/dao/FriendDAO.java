@@ -39,14 +39,14 @@ public interface FriendDAO {
 	 * 진행중인 파티 정보를 가져온다. 
 	 * mnum으로 -> joinparty & party -> partyVO
 	 */
-	@Select("SELECT p.* FROM joinmember J, party P "
+	@Select("SELECT P.* FROM joinmember J, party P "
 			+"WHERE J.pnum = P.pnum AND finish='N' AND mnum = #{mnum}")
 	List<PartyVO> ongoingParty(int mnum) throws Exception;
 	
 	/**
 	 * 참여했었던 파티 정보를 가져온다.
 	 */
-	@Select("SELECT p.* FROM joinmember J, party P "
+	@Select("SELECT P.* FROM joinmember J, party P "
 			+"WHERE J.pnum = P.pnum AND finish='Y' AND mnum = #{mnum}")
 	List<PartyVO> previousParty(int mnum) throws Exception;
 	
@@ -124,7 +124,7 @@ public interface FriendDAO {
 	/**
 	 * 거절을 눌렀을 때 친구 요청을 삭제 시킨다.
 	 */
-	@Delete("DELETE FROM friend WHERE ffrom = #{ffrom} AND fto = #{fto} AND YN = 'Y'")
+	@Delete("DELETE FROM friend WHERE ffrom = #{ffrom} AND fto = #{fto} AND YN = 'N'")
 	int reject(
 			@Param("ffrom")int ffrom, 
 			@Param("fto")int fto) throws Exception;

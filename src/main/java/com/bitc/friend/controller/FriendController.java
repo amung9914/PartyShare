@@ -27,12 +27,15 @@ public class FriendController {
 		List<FriendVO> list = null;
 			list = fs.friendList(session);
 		model.addAttribute("list",list);
+		model.addAttribute("requestList",fs.requestList(session)); //친구 요청 보낸 목록 전달
 		model.addAttribute("responseList",fs.responseList(session)); // 친구요청받은 목록 전달
 		return "friend/friendList";
 	}
+	
 	/**
 	 *	친구요청보낸목록 
 	 */
+	/*
 	@GetMapping("/requestList")
 	public String requestList(HttpSession session, Model model){
 		List<FriendVO> list = null;
@@ -44,7 +47,7 @@ public class FriendController {
 		model.addAttribute("list",list);
 		return "friend/requestList";
 	}
-	
+	*/
 	
 	/**
 	 *	친구요청받은목록 

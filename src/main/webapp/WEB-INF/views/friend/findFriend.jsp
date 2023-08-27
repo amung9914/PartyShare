@@ -16,17 +16,25 @@
 	.findResult{
 		display: none;
 	}
+	.btn.btn-primary{
+		background:#FF385C;
+		border:none;
+	}
+	.btn.btn-primary:hover{
+		background:black;
+		border:none;
+	}
 </style>
 </head>
 <body>
-<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasfind" role="button" aria-controls="offcanvasExample">
   친구찾기
 </a>
 
 <!-- offcanvas 출력 -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasfind" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">친구찾기</h5>
+    <h5 class="offcanvas-title" >친구찾기</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
@@ -34,7 +42,6 @@
       추가하고 싶은 상대방의 아이디 혹은 닉네임을 입력해주세요.
     </div>
     <br/>
-    
 	    <div class="input-group mb-3">
 	    <select class="form-select" id="select">
 		    <option value="mid">아이디</option>

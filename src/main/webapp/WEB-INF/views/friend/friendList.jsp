@@ -22,30 +22,71 @@ aside{
 	float:left;
 	margin : 30px;
 }
- .detailBox{
- border: 1px solid black;}
+ .delBtn{
+ 	float:right;
+ }
  .card li label{
      cursor: pointer;}
  .profileImg{
- 	width : 100px;
- 	}
+ 		width:100px;
+		height:100px;
+		border-radius:50px;
+		border:1px solid #ccc;
+	}
+ .cardBox{
+ 	display: inline-flex;
+    align-items: center;
+    margin:10px;
+ }
+  div.info{
+    margin:10px;
+ }
+ .detailLoad{
+ 	cursor:pointer;
+ }
+ 
+ img{
+    width: fit-content;
+ }
+ .card.mb-3{
+ cursor: pointer;
+ text-align: left;
+ }
+ .endParty{
+ 	color:red;
+ }
+ .img-fluid.rounded-start{
+ 	height:100%;
+ }
+ .partyView{
+ 	margin: 10px;
+ }
+ h5 .btn-close{
+ 	float:right;
+ }
 </style>
 </head>
 <body>
 
 <main>
-<h3>[친구 목록]</h3>	
-<div class="card" style="width: 18rem;">
+<h3>친구 목록</h3>
+<hr/>	
+<div class="card" style="width: 420px;">
   <ul class="list-group list-group-flush">
   	<c:choose>
   	<c:when test="${!empty list}">
 	    <c:forEach var="list" items="${list}">
-	    	
-	    	 <img class="profileImg" src="${path}/friend/printImg?fileName=${list.profileImageName}" />
+
 		   	<li class="list-group-item ${list.fto}">
-		   		<label class="detailLoad" data-mnum="${list.fto}" data-mid="${list.mid}" >${list.mid} / ${list.mnick}</label>
-		  		 <button type="button" class="btn btn-warning" id="${list.fto}">친구삭제</button>
-		   	</li>	 
+		   		<div class="cardBox detailLoad" data-mnum="${list.fto}" data-mid="${list.mid}" >
+			   		<img class="profileImg" src="${path}/friend/printImg?fileName=${list.profileImageName}" />
+			   		<div class="info">
+			   			<h5>${list.mnick}</h5>
+			   			<p class="card-text">${list.mid}</p>
+			   		</div>
+		   		</div>
+		  		 <button type="button" class="btn btn-light delBtn" id="${list.fto}">친구삭제</button>
+		   	</li>
 	    </c:forEach>
     </c:when>
     <c:otherwise>
@@ -54,11 +95,19 @@ aside{
     </c:choose>
   </ul>
 </div>
-<div class="card" id="ongoingView" style="display:none;">
+<div class="partyView" id="ongoingView" style="display:none;">
 </div>
-<div class="card" id="previousView" style="display:none;">
+<div class="partyView" id="previousView" style="display:none;">
 </div>
 <script>
+
+// 파티정보 화면 닫기버튼
+$(".partyView").on("click",".btn-close",function(){
+	$("#ongoingView").toggle("slow");
+	$("#previousView").toggle("slow");
+})
+
+// 친구목록에 있는 친구 정보 클릭시 상대방의 파티정보를 출력합니다.
 $(".detailLoad").on("click",function(){
 	const mnum = $(this).attr('data-mnum');
 	const mid = $(this).attr('data-mid');
@@ -67,7 +116,7 @@ $(".detailLoad").on("click",function(){
 	
 	// 친구의 진행중인 파티정보를 가져온다
 	function ongoingParty(){
-		let url="friend/ongoingParty/"+mnum;
+		let url="${path}/friend/ongoingParty/"+mnum;
 		$.getJSON(url,function(data){
 			
 			$("#ongoingView").toggle("slow");
@@ -76,7 +125,7 @@ $(".detailLoad").on("click",function(){
 			if(data.length != 0){
 				// 반복문으로 검색결과를 페이지에 표시
 				// 버튼에 data-mnum속성으로 mnum을 넣어줍니다. 
-				str += mid+"님이 참여중인 파티 <br/>";
+				str += "<h5>"+mid+"님이 참여중인 공간입니다<button type='button' class='btn-close' aria-label='Close'></button></h5>";
 				 $(data).each(function(){
 					
 					 //String을 date로 변환
@@ -89,31 +138,35 @@ $(".detailLoad").on("click",function(){
 					
 					$("#ongoingView").empty();
 					
-					str +="<div data-pnum='"+this.pnum+"' class='detailBox'>";
-					str += "<img src='upload/party/"+this.partyImage1+"' />";
-					str += "파티이름 : "+this.pname+"<br/>";
-					str += "날짜 : "+startDate+" ~ "+endDate+"<br/>";					
-					str += "장소 : "+this.sido;
-					str +="</div>"
+					str +="<div class='card mb-3' style='max-width: 400px;'>";
+					str +=	"<div class='row g-0 detailBox' data-pnum='"+this.pnum+"' >";
+					str +=		"<div class='col-md-4'>";
+					str +=			"<img src='${path}/party/printImg?fileName="+this.partyImage1+"' class='img-fluid rounded-start' >";
+					str +=		"</div>";
+					str +=		"<div class='col-md-8'>";
+					str +=			"<div class='card-body'>";
+					str +=				"<h5 class='card-title'>"+this.pname+"</h5>";
+					str +=				"<p class='card-text'>"+this.sido+"</p>";
+					str +=				"<p class='card-text'><small class='text-body-secondary'>"+startDate+"~"+endDate+"</small></p>";
+					str +=			"</div>";
+					str +=		"</div>";
+					str +=	"</div>";
+					str +="</div>";
+					
 					$("#ongoingView").append(str);
-					
-					
 				});
+				 
 			}else{ // 결과가 없는 경우
 				$("#ongoingView").empty();
 				str = "참여중인 파티가 없습니다.";
 				$("#ongoingView").append(str);
 			}
-			
-			
-					 
-			
 		});
 	} // end ongoingParty()
 	
 	//DB에서 친구의 파티정보를 가져온다
 	function previousParty(){
-		let url="friend/previousParty/"+mnum;
+		let url="${path}/friend/previousParty/"+mnum;
 		$.getJSON(url,function(data){
 			
 			$("#previousView").toggle("slow");
@@ -122,7 +175,7 @@ $(".detailLoad").on("click",function(){
 			if(data.length != 0){
 				// 반복문으로 검색결과를 페이지에 표시
 				// 버튼에 data-mnum속성으로 mnum을 넣어줍니다. 
-				str += mid+"님이 참여했던 파티<br/>";
+				str += "<h5>"+mid+"님이 함께했던 공간입니다</h5>";
 				 $(data).each(function(){
 					 $("#previousView").empty();
 					 //String을 date로 변환
@@ -133,32 +186,38 @@ $(".detailLoad").on("click",function(){
 					const startDate = koDF.format(startToDate);
 					const endDate = koDF.format(endToDate);
 					
+					str +="<div class='card mb-3' style='max-width: 400px;'>";
+					str +=	"<div class='row g-0 detailBox' data-pnum='"+this.pnum+"' >";
+					str +=		"<div class='col-md-4'>";
+					str +=			"<img src='${path}/party/printImg?fileName="+this.partyImage1+"' class='img-fluid rounded-start' >";
+					str +=		"</div>";
+					str +=		"<div class='col-md-8'>";
+					str +=			"<div class='card-body'>";
+					str +=				"<h5 class='card-title'>"+this.pname+"</h5>";
+					str +=				"<p class='card-text'>"+this.sido+"</p>";
+					str +=				"<p class='card-text'><small class='text-body-secondary'>"+startDate+"~"+endDate+"</small></p>";
+					str +=			"</div>";
+					str +=		"</div>";
+					str +=	"</div>";
+					str +="</div>";
 					
-					str +="<div data-pnum='"+this.pnum+"' class='detailBox'>";
-					str += "<img src='upload/party/"+this.partyImage1+"' />";
-					str += "파티이름 : "+this.pname+"<br/>";
-					str += "날짜 : "+startDate+" ~ "+endDate+"<br/>";					
-					str += "장소 : "+this.sido;
-					str +="</div>"
 					$("#previousView").append(str);
-				});
+					
+				 });
 			}else{ // 결과가 없는 경우
 				$("#previousView").empty();
 				str = "참여한 파티가 없습니다.";
 				$("#previousView").append(str);
 			}	
-					 
 			
 		});
 	}
-	
-	
 }); // label 클릭 이벤트 끝 
 
-// 파티정보 클릭 이벤트 - 상세페이지로 이동 
-$(".card").on("click",".detailBox",function(){
+// 파티정보 클릭 이벤트 - 상세페이지로 새창열기 
+$(".partyView").on("click",".detailBox",function(){
 	const pnum = $(this).attr('data-pnum');
-	const href= "/partyshare/partyBoard/listPage?pnum="+pnum;
+	const href= "<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
 	window.open(href);
 });
 
@@ -169,7 +228,7 @@ $(".btn.btn-warning").on("click",function(){
 	
 	$.ajax({
 		type : "DELETE",
-		url : "friend/deleteFriend/"+mnum,
+		url : "${path}/friend/deleteFriend/"+mnum,
 		dataType: "text",
 		success : function(result){
 			alert(result);
@@ -185,15 +244,14 @@ $(".btn.btn-warning").on("click",function(){
 </script>
 </main>
 <aside>
-<div>
 <h3> 새로운 친구를 등록해 보세요 </h3>
 <%@ include file="findFriend.jsp" %>  
 <hr/>
-<h3> 친구요청 상태를 확인해 보세요 </h3>
-<a class="btn btn-primary" href="<c:url value='/friend/requestList'/>">보낸요청</a>
-</div>
+<%@ include file="requestList.jsp" %>
 <hr/>
+<div class="result">
 <%@ include file="responseList.jsp" %>
+</div>
 </aside>
 </body>
 </html>
