@@ -101,4 +101,9 @@ public class CreatePartyServiceImpl implements CreatePartyService {
 		return dao.getWishlist(mnum);
 	}
 
+	@Override
+	public List<PartyVO> searchPartyList(Criteria cri, String keyword) {
+		return dao.searchParty(cri, keyword);
+	}
+
 }

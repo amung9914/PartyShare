@@ -55,4 +55,8 @@ public interface CreatePartyService {
 	 * 현재 로그인 한 회원의 위시리스트 검색
 	 */
 	public List<WishlistVO> getWishlist(int mnum);
+	/**
+	 * 키워드로 파티 리스트 검색
+	 */
+	public List<PartyVO> searchPartyList(Criteria cri, String keyword);
 }

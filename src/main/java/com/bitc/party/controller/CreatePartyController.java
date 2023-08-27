@@ -2,6 +2,8 @@ package com.bitc.party.controller;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -185,7 +188,12 @@ public class CreatePartyController {
 	
 	// 파티 리스트로
 	@GetMapping("/partyList")
-	public String partyList() {
+	public String partyList(String keyword, RedirectAttributes rttr) {
+		if(keyword == null) {
+			keyword="";
+		}
+		rttr.addFlashAttribute("searchValue", keyword);
+		
 		return "redirect:/";
 	}
 	
@@ -194,19 +202,23 @@ public class CreatePartyController {
 	@ResponseBody
 	public Map<String, Object> partyList(@PathVariable(name="page") int page, HttpSession session){
 		MemberVO m = (MemberVO) session.getAttribute("loginMember");
-		int mnum = m.getMnum();
 		Map<String, Object> map = new HashMap<>();
 		Criteria cri = new Criteria(page, 20);
 		List<PartyVO> partyList = null;
-		List<WishlistVO> wishlist = null;
 		PageMaker pm = null;
+		
+		if(m != null) {
+			int mnum = m.getMnum();
+			List<WishlistVO> wishlist = null;
+			wishlist = ps.getWishlist(mnum);
+			map.put("wishlist", wishlist);
+		}
+		
 		try {
 			partyList = ps.partyList(cri);
 			pm = ps.getPageMaker(cri);
-			wishlist = ps.getWishlist(mnum);
 			map.put("pm", pm);
 			map.put("list", partyList);
-			map.put("wishlist", wishlist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -236,8 +248,33 @@ public class CreatePartyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return "redirect:/";
 	}
 	
+	@GetMapping("/searchPartyList/{page}")
+	@ResponseBody
+	public Map<String, Object> searchPartyList(@PathVariable(name="page") int page, String keyword, HttpSession session){
+		MemberVO m = (MemberVO) session.getAttribute("loginMember");
+		Map<String, Object> map = new HashMap<>();
+		Criteria cri = new Criteria(page, 20);
+		List<PartyVO> partyList = null;
+		PageMaker pm = null;
+		
+		if(m != null) {
+			int mnum = m.getMnum();
+			List<WishlistVO> wishlist = null;
+			wishlist = ps.getWishlist(mnum);
+			map.put("wishlist", wishlist);
+		}
+		
+		try {
+			partyList = ps.searchPartyList(cri, keyword);
+			pm = ps.getPageMaker(cri);
+			map.put("pm", pm);
+			map.put("list", partyList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
 }

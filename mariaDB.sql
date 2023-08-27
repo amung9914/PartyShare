@@ -6,6 +6,8 @@ select * from joinmember;
 
 select * from map;
 
+desc partyboard_comment;
+
 select * from wishlist;
 select * from party;
 select * from freeboard;
@@ -29,5 +31,8 @@ SELECT category,pnum,title,content,writer,mnum FROM partyboard WHERE pnum = 1;
 
 
 SELECT * FROM report;
+
+INSERT INTO party(pName, host, sido, sigungu, address, detailAddress, startDate, endDate, pContext, description, category, partyImage1, partyImage2, partyImage3)
+SELECT pName, host, sido, sigungu, address, detailAddress, startDate, endDate, pContext, description, category, partyImage1,partyImage2,partyImage3 from party;
 
 

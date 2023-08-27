@@ -14,9 +14,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
 <style>
+html, body {
+    height: 100%
+}
+
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 93px;
+}
 main{
 	float:left;
-	margin : 30px;
+	margin: 30px 0px 0px 20%;
 }
 aside{
 	float:left;
@@ -67,7 +76,8 @@ aside{
 </style>
 </head>
 <body>
-
+<div id="wrap">
+<div class="mainBox">
 <main>
 <h3>친구 목록</h3>
 <hr/>	
@@ -222,7 +232,7 @@ $(".partyView").on("click",".detailBox",function(){
 });
 
 // 친구삭제 처리
-$(".btn.btn-warning").on("click",function(){
+$(".delBtn").on("click",function(){
 	const mnum = $(this).attr('id');
 	const area = document.getElementsByClassName(mnum);
 	
@@ -253,5 +263,6 @@ $(".btn.btn-warning").on("click",function(){
 <%@ include file="responseList.jsp" %>
 </div>
 </aside>
-</body>
-</html>
+</div>
+</div>
+<%@ include file="../common/footer.jsp" %>
