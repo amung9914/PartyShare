@@ -95,7 +95,7 @@
 </style>
 </head>
 <body>
-	</style>
+
 	
 	
 </head>
@@ -105,7 +105,7 @@
 <c:set var="fd" value="${formattedDate}" />
 <c:set var="pd" value="${formattedDate}" />
 	<!-- 메시지함 만들기 -->
-	<a href="${path}/member/bon_post">이미 본 알림</a>
+	<a href="${path}/member/bonpost">이미 본 알림</a>
 	<div id="bottle">
 
 	</div>
@@ -137,13 +137,17 @@
 	}
 	*/
 //	setInterval(receivePost, 1000);
+	var loginMemberId = ""+'${loginMember.mid}'+"";
 	
 	function checkAndClose(num){
 //		alert(num);
 		$.ajax({
 			url : '${path}/notice/readPost',
 			type : 'post',
-			data : {noticeNum : num},
+			data : {
+					noticeNum : num ,
+					mid : loginMemberId
+					},
 			dataType : 'text',
 			success : function (message) {
 				console.log(message);
@@ -169,12 +173,13 @@
 //        second = second >= 10 ? second : '0' + second;
 
         return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + '시' + minute+'분';// + ':' + second;
-}
+		}
 	
 	function receivePost(){
+		
 				let url = "${path}/notice/receivePost";
-				console.log(url);
-		 $.getJSON(url,{mId : 'reporter2'}, function(post) {
+				console.log(loginMemberId);
+		 $.getJSON(url,{mid : loginMemberId}, function(post) {
 				let str = "";
 	       	// data == 읽지 않은 메일 , 내가 읽지 않은 메일! 
 			   if (post.length > 0) {
@@ -302,7 +307,7 @@
 		})
 		*/
 		  $("#post").on("click" , "#checkBtn" , function () {
-			  //alert('이건 되나');  // 됨
+	//		  alert($(this).data("num"));  // 됨
 			  checkAndClose($(this).data("num"));
 			  receivePost();
 		});

@@ -32,8 +32,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}	//nsi
 	
 	@Override
-	public void readPost(int noticeNum) throws Exception {
-		dao.readPost(noticeNum);
+	public void readPost(int noticeNum, String mid) throws Exception {
+		dao.readPost(noticeNum, mid);
 	}	//nsi
 	
 	@Override
@@ -49,9 +49,9 @@ public class NoticeServiceImpl implements NoticeService {
 	
 
 	@Override
-	public List<NoticeVO> myNotice(String mId) throws Exception {
+	public List<NoticeVO> myNotice(String mid) throws Exception {
 	
-		return dao.myNotcie(mId);
+		return dao.myNotcie(mid);
 	}	//nsi
 	
 	@Override
@@ -69,6 +69,16 @@ public class NoticeServiceImpl implements NoticeService {
 	public void blackPost(String mId, NoticeVO vo) throws Exception {
 		dao.BlackPost(mId, vo);
 		
+	}
+
+	@Override
+	public List<NoticeVO> bonPostList(String mid) throws Exception {
+		return dao.bonPostList(mid);
+	}
+
+	@Override
+	public void deletePost(int no, String mid) throws Exception {
+		dao.deletePost(no, mid);
 	}	//nsi
 	
 }

@@ -39,12 +39,12 @@
 <body>
 
 	<form>						
-		신고자<input type="text" id="fromMid" value="reporter" disabled="disabled" class="reportInput"/>	<br/>
-		신고 대상 <input type="text" id="searchId"  oninput="searchNick()">
+		신고자<input type="text" id="fromMid" value="${loginMember.mid}" disabled="disabled" class="reportInput"/>	<br/>
+		신고 대상(닉네임 입력) <input type="text" id="searchId"  oninput="searchNick()">
 
 			
 			<div id="result">
-				<div id="resultNick"></div>
+			 	<div id="resultNick"></div>선택
 	
 				<!-- 검색된 유저가 나타날 창  -->
 				<!--  mnick로 검색하기 만들어야 함 DAO  -->

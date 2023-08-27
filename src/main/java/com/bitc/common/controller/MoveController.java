@@ -73,6 +73,11 @@ public class MoveController {
 	}
  	
 
+ 	@GetMapping("member/bonpost")
+	public String bon_post() {
+ 		System.out.println("bon_post여기까지 왔어요");
+		return "member/bonpost";
+	}
 	
 
 	

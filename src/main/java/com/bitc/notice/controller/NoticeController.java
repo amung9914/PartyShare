@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -44,15 +45,18 @@ public class NoticeController {
 	*/
 	
 	@PostMapping("notice/readPost")
-	public ResponseEntity<String> readPost(int noticeNum){
+	public ResponseEntity<String> readPost(int noticeNum , String mid){
+	//	MemberVO loginMember = (MemberVO)model.getAttribute("loginMember");
 		ResponseEntity<String> entity = null; 
+		System.out.println(noticeNum);
 		try {
-			ns.readPost(noticeNum);
+			ns.readPost(noticeNum,mid);
 			entity = new ResponseEntity<String>("됐다" , HttpStatus.OK);
 			HttpHeaders header = new HttpHeaders(); 
 			header.setContentType(MediaType.TEXT_PLAIN);
 			System.out.println("readPost DAO clear");
 		} catch (Exception e) {
+			e.printStackTrace();
 			entity = new ResponseEntity<String>("ㄴㄴ" , HttpStatus.BAD_REQUEST);
 		}
 		System.out.println(entity);
@@ -60,11 +64,12 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/notice/receivePost") 
-	 public ResponseEntity<List<NoticeVO>> receivePost(String mId){
+	 public ResponseEntity<List<NoticeVO>> receivePost(String mid){
 		 ResponseEntity<List<NoticeVO>> entity = null;
-//		 System.out.println(mId);
+		 System.out.println(mid +"mynotice");
 		 try {
-			List<NoticeVO> list = ns.myNotice(mId);
+			List<NoticeVO> list = ns.myNotice(mid);
+			
 	//		System.out.println(list +"시간확인");
 			entity = new ResponseEntity<List<NoticeVO>>(list,HttpStatus.OK);
 		} catch (Exception e) {
@@ -94,6 +99,43 @@ public class NoticeController {
 		}
  		
  		System.out.println(entity);
+ 		return entity;
+ 	}
+ 	
+ 	@PostMapping("/notice/bonPostList")
+	public ResponseEntity<List<NoticeVO>> bonPostList(String mid){
+ 		ResponseEntity<List<NoticeVO>> entity = null; 
+ 		System.out.println(mid +": bonPostList에서 발신한 mid");
+ 		
+ 		try {
+			List<NoticeVO> list = ns.bonPostList(mid);
+			System.out.println("controller sendPost출력" + list);
+			HttpHeaders header = new HttpHeaders();
+			header.setContentType(MediaType.APPLICATION_JSON);
+			entity = new ResponseEntity<>(list,header,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+ 		System.out.println("본포스트리스트: "+entity );
+ 		return entity;
+ 	}
+ 	
+ 	@PostMapping("/notice/deletePost")
+	public ResponseEntity<String> deletePost(int no, String mid){
+ 		ResponseEntity<String> entity = null; 
+ 		System.out.println(mid +": deletePost에서 발신한 mid");
+ 		String message = ""; 
+ 		try {
+			ns.deletePost(no,mid);
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type","text/plain;charset=utf-8");
+			message	= "삭제되었습니다.";
+			entity = new ResponseEntity<>(message,header,HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+ 		System.out.println("deletePost: "+entity );
  		return entity;
  	}
 	
