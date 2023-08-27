@@ -46,7 +46,7 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public FriendVO confirmFriend(FriendVO vo) throws Exception {
-		return dao.confirmRequest(vo);
+		return dao.confirmFriend(vo);
 	}
 	
 	@Override

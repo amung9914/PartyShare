@@ -59,6 +59,7 @@
 			success : function(result){
 				alert(result);
 				area[0].remove();
+				location.href="${path}/friend";
 			},
 			error : function(result){
 				alert(result);

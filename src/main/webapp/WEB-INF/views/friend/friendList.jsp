@@ -222,7 +222,7 @@ $(".partyView").on("click",".detailBox",function(){
 });
 
 // 친구삭제 처리
-$(".btn.btn-warning").on("click",function(){
+$(".delBtn").on("click",function(){
 	const mnum = $(this).attr('id');
 	const area = document.getElementsByClassName(mnum);
 	

@@ -17,10 +17,10 @@ public interface PartyCommentDAO {
 	
 	/**
 	 * 페이징 처리
-	 * @return - 페이징 처리된 게시글 목록 
+	 * @return - 페이징 처리된 댓글 목록 
 	 */
 	@Select("SELECT * FROM partyboard_comment "
-			+ " WHERE pnum = #{pnum} AND bno = #{bno} ORDER BY cno DESC "
+			+ " WHERE pnum = #{pnum} AND bno = #{bno} AND showBoard ='Y' ORDER BY cno DESC "
 			+ " limit #{cri.startRow}, #{cri.perPageNum}")
 	List<PartyCommentVO> listPage(PartyCommentDTO dto) throws Exception;
 	

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +76,9 @@
 				<div class="info">
 					${board.writer}
 					<f:formatDate value="${board.regdate}" pattern="yyyy.MM.dd. HH:mm"/>
+					<c:if test="${loginMember.mnick ne board.writer}">
 					&nbsp;<div class="boardReport">신고</div>
+					</c:if>
 				</div>
 			</td>
 		</tr>
