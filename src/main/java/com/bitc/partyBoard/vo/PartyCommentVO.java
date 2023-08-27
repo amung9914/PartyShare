@@ -15,5 +15,5 @@ public class PartyCommentVO {
 	private String mid;
 	private Date regdate;
 	private Date updatedate;
-	
+	private String showBoard;
 }

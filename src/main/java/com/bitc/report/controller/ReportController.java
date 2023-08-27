@@ -57,31 +57,17 @@ public class ReportController {
 	
 	 @PostMapping( //value = 
 			 "report/report" 
-			// produces = "text/plain; charset=UTF-8"
 			 )
 	public ResponseEntity<String> report(
-		//	@PathVariable(name="bno" , required = false) int bno
-		//	,@PathVariable(name="cno" ,required = false) int cno
-		//	,@PathVariable(name="pNum" , required = false) int pNum
-		//	,
+	
 			ReportVO report , MemberVO vo) {
 		 
 		ResponseEntity<String> entity = null;
 		String result ="";
-		/*
-			if(bno != 0 && cno == 0) {
-				//board
-			}else if(bno == 0) {
-				//comment mId , bno , cno 
-			}else {
-				//member
-			}
-			*/
-		
+	
 			System.out.println(report);
 		try {
 			String date = rs.makeStringDate();
-			//report.setDate(date); 
 			List<ReportVO> list = rs.reportInMonth(report);
 			System.out.println("m30리스트: " + list);
 			
@@ -106,7 +92,6 @@ public class ReportController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type","text/plain;charset=utf-8");
 		    entity = new ResponseEntity<String>(result, header, HttpStatus.BAD_REQUEST);
-		    //                              e.getM -> result
 		}
 		
 	return entity;	
@@ -117,17 +102,12 @@ public class ReportController {
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		public ResponseEntity<List<ReportVO>> report(
 			MemberVO fromMid) {
-			//	 System.out.println(fromMid + " review vo");
-		// System.out.println(fromMid +" < 전달");
 		ResponseEntity<List<ReportVO>> entity = null;
 		List<ReportVO> list =null;
 		String errorMessage = "";
-		//System.out.println("왔나?");
 		try {
-			
 			list = rs.reportReview(fromMid);
 			entity = new ResponseEntity<>(list,HttpStatus.OK);
-			//System.out.println("tryENd");
 		}catch (Exception e){
 			errorMessage = "페이지에 오류가 있습니다";
 			HttpHeaders header = new HttpHeaders();
@@ -201,18 +181,14 @@ public class ReportController {
 	 	//freeboard화
 	 	
 	 	
-	 	
-	 	
 	 	@PostMapping("report/reportedPartyBoard")
 	 	public ResponseEntity<List<PbReportVO>> reportedPartyBoard(){
 	 		 ResponseEntity<List<PbReportVO>> entity =null;
 	 		try {
 				List<PbReportVO> list = rs.reportedPartyBoard();
-				//PageMaker pm = rs.getPageMaker(cri);
 				HttpHeaders header = new HttpHeaders();
 				header.setContentType(MediaType.APPLICATION_JSON);
 				entity = new ResponseEntity<List<PbReportVO>>(list,header,HttpStatus.OK);
-			//	model.addAttribute("pm",pm);
 			} catch (Exception e) {
 				entity = new ResponseEntity<List<PbReportVO>>(HttpStatus.BAD_REQUEST);
 			}
@@ -244,7 +220,6 @@ public class ReportController {
 	 			@PathVariable(name="no") int no
 	 			){
 	 		ResponseEntity<FreeBoardVO> entity = null;
-	 		// no를 가지고 partyBoard반환 
 	 		System.out.println("freeReportBoard/{no}" + no);
 	 		try {
 	 			FreeBoardVO vo = bs.freeBoard(no);
@@ -305,7 +280,7 @@ public class ReportController {
 	 	@PostMapping("report/PbReportOriginal/{no}")
 	 	public ResponseEntity<PartyBoardVO> PbReportOriginal(
 	 			@PathVariable(name="no") int no){
-ResponseEntity<PartyBoardVO> entity = null;
+	 		ResponseEntity<PartyBoardVO> entity = null;
 	 		
 	 		try {
 	 			PartyBoardVO vo = bs.originalPartyBoard(no);

@@ -167,7 +167,7 @@
 			 	let str = ""; // 이전으로 뺐음 (1ajax와 2ajax를 사용)
 			 	$("#detailDiv").html(str);	//가장 먼저 없애고
 			 	//원본추출 시작
-			 		$.ajax({
+			 $.ajax({
 				url : '${path}/report/boardReportOriginal/'+no,
 				method : 'post',
 				data:{},
@@ -220,7 +220,7 @@
 					
 		}else if(no.startsWith("b")){						//원본글						
 			no = no.substring(1);
-			 	alert(no);
+//			 	alert(no);
 	    	$.ajax({
 	    		url:'${path}/report/boardReportBoard/'+no,	//bno
 	    		method : 'post',
@@ -256,14 +256,6 @@
 		//alert('PbReportDetail 작동 중' + no);
 	}
 	/* /* /* /* /* /* /* 그냥 freeboard 원본을 수정 */ 
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	function PbReportDetail(no){
@@ -307,15 +299,7 @@
 	    		success : function (comment){
 	    			let str = "";
 	    			console.log('댓글 추출이 먼저');
-	//    			console.log(comment +" < 댓글");
-	    			
-//	    			$("#detailDiv").html(str);	원본 이후에 그대로 누적
-	    			str += `<div>`;
-	    		//	str += `순번: \${}`;
-	  //  			str += `원본 글 작성자: \${originalWriter}<br/>`;
-	    			
-	  //  			str += `원본 글 번호: \${originalBoardNum}<br>`;
-	  //  			str += `원본 글 내용: \${originalText} <br/>`;
+	 
 	    			str += `댓글 번호: \${comment.cno}<br/>`;
 	    			str += `댓글 내용:\${comment.commentText}<br/>`;
 	//    			console.log(originalWriter + "작성자 2");
@@ -381,9 +365,7 @@
 		
 		$("#detailDiv").on("click", "#black", function(){ //버튼
 			let target = $(this).data('target');
-			
-			alert(target +'은 블랙입니다');
-			
+						
 			$.ajax({
 				method : 'post' ,
 				url : '${path}/admin/blackMember' , 
@@ -409,13 +391,13 @@
 				data :{bno : target} ,
 				dataType : 'text' , 
 				success : function( result){
-				alert(target +'번 게시글은 블라인드 처리되었습니다.');
+				alert(result);
 				} ,
 				error : function(error){
 				//	alert("어");
 				}
 			}); //ajax
-			
+		})
 			
 			//blindBoardComment
 		$("#detailDiv").on("click", "#blindBoardComment", function(){ //버튼
@@ -428,19 +410,17 @@
 				data :{cno : target} ,
 				dataType : 'text' , 
 				success : function( result){
-				alert(target +'번 댓글은 블라인드 처리되었습니다.');
+				alert(result);
 				} ,
 				error : function(error){
 				//	alert("어");
 				}
 			}); //ajax	
-			
-		
+		})
+		//ㄱㅊ
 		$("#detailDiv").on("click", "#blindPartyBoard", function(){ //버튼
 			let target = $(this).data('target');
 			console.log(target);
-			alert(target +'은 블라인드 처리되었습니다.');
-			
 			$.ajax({
 				method : 'post' ,
 				url : '${path}/board/blindPartyBoard' , 
@@ -455,12 +435,10 @@
 			}); //ajax
 			
 		});//on click
-		
+		//ㄱㅊ
 		$("#detailDiv").on("click", "#blindPartyComment", function(){ //버튼
 			let target = $(this).data('target');
 			console.log(target);
-			alert(target +'은 블라인드 처리되었습니다.');
-			
 			$.ajax({
 				method : 'post' ,
 				url : '${path}/board/blindPartyComment' , 
@@ -474,9 +452,11 @@
 				}
 			}); //ajax
 		});
+		
 		$("#detailDiv").on("click", "#ok", function(){
 			alert("확인했습니다.");
 		});
+		
 	 }); // ready
 		
 	
@@ -523,7 +503,7 @@
 			 $.getJSON("${path}/report/reportList",function(list){ //List<ReportVO>
 				    console.log(list);
 				    console.log(typeof list);
-				   // console.log('위가 제이슨');
+				  
 				    let str = "";
 					str += "<tr>";
 					str += "<th>순번</th>";
@@ -539,7 +519,6 @@
 				   	str += `<td class='reportTd'>\${this.toMid}</td>`;
 				   	str += `<td class='reportTd'>\${this.date}</td>`;
 				   	str += `<td class='reportTd'>\${this.category}</td>`;
-//내용 안 보이게	   	str += `<td class='reportTd'>\${this.context}</td>`;
 				   	str +=	`</tr>`;
 				    	console.log(str);
 				    	})
@@ -550,36 +529,6 @@
 				    });
 			}
 			
-		
-	  //  };
-	/*
-	//
-	    //    url: "reportList",
-	    //    method: "POST",
-	        data: {},
-	        dataType: "json", 
-	        // 성공 콜백
-	        success: function(list) {
-	            // 'list' 변수가 보고서 항목 배열을 포함한다고 가정
-	            // 목록을 반복하면서 각 항목의 HTML을 생성합니다.
-	            for (let i = 0; i < list.length; i++) {
-	                // 각 항목에 'title' 속성이 있다고 가정
-	                str += "<li>" + list[i].title + "</li>";
-	            }
-	            
-	            // 생성된 HTML을 reportUl 요소에 추가합니다.
-	            $("#reportUl").append(str);
-	        },
-	        // 오류 콜백
-	        error: function(result) {
-	            console.error("보고서 목록을 가져오는 중 오류가 발생했습니다.");
-	        } 
-	        */
-	   //
-	    
-	    // printList 함수 호출
-	 //   printList();
-//documentReady	});
 	</script>
 </body>
 </html>
