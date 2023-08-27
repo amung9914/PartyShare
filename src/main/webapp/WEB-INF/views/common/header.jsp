@@ -16,19 +16,25 @@
 		height: 80px;
 		display: flex;
 		flex-wrap: wrap;
-		margin-top:2%;
 	}
 	#logoBox{
 		width: 10%;
 		height: 80px;
 		margin-left: 3%;
 	}
+	
+	#logoBox img{
+		width: 80px;
+		height: 80px;
+		cursor: pointer;
+	}
+	
 	#header_searchBox{
 		width: 300px;
 		height: 80px;
 		margin-left: 25%;
 		text-align: center;
-		line-height: 80px;
+		margin-top:1%;
 	}
 	#header_searchBox .searchContainer{
 		display: flex;
@@ -51,18 +57,20 @@
 		width: 7%;
 		height: 80px;
 		margin-left: 7%;
-		line-height: 50px;
+		margin-top:1%;
 	}
 	#header_loginBox{
 		width: 10%;
 		height: 80px;
 		margin-left: 10%;
+		margin-top:1%;
 		
 	}
 	#header_menuDiv{
 		width:3%;
 		height: 80px;
 		margin-left: 2%;
+		margin-top: 1%;
 		line-height: 50px;
 	}
 	#menuBtn{
@@ -82,13 +90,14 @@
 	#searchImg{
 		cursor: pointer;
 	}
+	
 </style>
 <title>partyShare</title>
 </head>
 <body>
 	<div id="headerBox">
 		<div id="logoBox">
-		
+			<img src="${path}/resources/img/redHeart.png" onclick="location.href='${path}/'"/>
 		</div>
 		<div id="header_searchBox">
 			<div class="searchContainer">
@@ -98,7 +107,7 @@
 		    </div>
 		</div>
 		<div id="header_freeBoardDiv">
-			<button type="button" class="btn btn-outline-dark" onclick="location.href='${path}/freeBoard/freeBoard';">자유게시판</button>
+			<button type="button" class="btn btn-outline-secondary" onclick="location.href='${path}/freeBoard/freeBoard';">자유게시판</button>
 		</div>
 		<div id="header_loginBox">
 			<%@ include file="../member/login.jsp" %>	
@@ -110,8 +119,10 @@
 			  		<img src="${path}/resources/img/menu.png"/>
 			  </button>
 			  <ul class="dropdown-menu">
+			    <c:if test="${!empty loginMember}">
+			    	<li><a class="dropdown-item" href="${path}/member/account">계정관리</a></li>
+			    </c:if>
 			    
-			    <li><a class="dropdown-item" href="#">Another action</a></li>
 			    <li><a class="dropdown-item" href="#">Something else here</a></li>
 			  </ul>
 			</div>

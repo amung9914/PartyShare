@@ -239,6 +239,9 @@
 	// wishList
 	
 	function toggleHeart(heartElement) {
+		if('${loginMember}' == ''){
+			$("#loginButton").click();
+		}else{
 			if (heartElement.src.includes("${contextPath}/resources/img/redHeart.png")) {
 	            heartElement.src = "${contextPath}/resources/img/emptyHeart.png"; // 빈 하트 이미지 경로로 변경
 	            var pNum = $(heartElement).attr("id");
@@ -282,6 +285,8 @@
 	        	$("#newWishList").attr("data-pnum", pNum);
 	        	$("#listModal").modal("show");
 	        }
+		}
+			
 	  }
 	
 	function addWishlist(li){
