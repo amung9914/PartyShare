@@ -5,9 +5,9 @@
 	footer{
 		width: 100%;
 		background-color : #f7f7f7;
-		margin-top: 5%;
 		position : relative;
   		transform : translateY(-100%);
+  		padding: 20px 0px 0px 0px;
 	}
 	#footerAtag, #footerPtag{
 		width: 70%;
@@ -31,11 +31,10 @@
 <footer>
 	<div id="footerAtag">
 		&copy;2023 PartyShare, Inc. 
-		<a href="#">개인정보 처리방침</a> |
-		<a href="#">이용약관</a> |
-		<a href="#">사이트맵</a> |
-		<a href="#">이용정책</a> |
-		<a href="#">세부정보</a>
+		<a href="<c:url value='/policy'/>">개인정보 처리방침</a> |
+		<a href="<c:url value='/policy2'/>">이용약관</a> |
+		<a href="">사이트맵</a> |
+		<a href="<c:url value='/infomation'/>">세부정보</a>
 	</div>
 	<div id="footerPtag">
 		<hr/>
