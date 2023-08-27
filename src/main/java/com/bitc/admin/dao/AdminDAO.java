@@ -23,14 +23,14 @@ public interface AdminDAO {
 	@Select("SELECT * FROM member ORDER BY mnum  LIMIT #{cri.startRow}, #{cri.perPageNum}")
 	public List<MemberVO> memberList(@Param("cri") Criteria cri) throws Exception;	// adminDAO
 	
-	@Select("SELECT * FROM member WHERE mid = #{id}")
-	public MemberVO selectMember(String id) throws Exception;	// adminDAO
+	@Select("SELECT * FROM member WHERE mnick = #{mnick}")
+	public MemberVO selectMember(String mnick) throws Exception; // adminDAO
 	
 
 	@Update("UPDATE member SET mblackYN = 'Y' WHERE mid = #{targetId}")
 	public int blackMember(String targetId);	// adminDAO
 	
-	@Select("SELECT * FROM member WHERE mnick = #{mnick}")
+	@Select("SELECT * FROM member WHERE mnick LIKE CONCAT('%', #{mnick}, '%')")
 	public List<MemberVO> memberNick(String mnick) throws Exception;
 	
 

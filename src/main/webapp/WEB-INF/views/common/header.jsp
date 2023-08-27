@@ -51,7 +51,7 @@
 	height:30px !important;
 }
 #rightHd{
-	width:610px; 
+	width:590px; 
 	/*margin:100px;*/
 }
 #rightBox{

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-
+<!--context 이미지 절대경로 -->
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var="imgPath" value="${path}/image/printProfileImage?fileName=" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,31 +26,38 @@
 	display: none; 
 	}
 	
+	#targetInfo{
+	list-style: none;
+	}
+	
 	</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-<c:set var="path" value="${pageContext.request.contextPath}" />
+
 </head>
 <body>
 
 	<form>						
 		신고자<input type="text" id="fromMid" value="reporter" disabled="disabled" class="reportInput"/>	<br/>
-		검색 <input type="text" id="searchId"  oninput="searchNick()">
+		신고 대상 <input type="text" id="searchId"  oninput="searchNick()">
 
 			
 			<div id="result">
-			<div id="resultNick"></div>
-
-			<!-- 검색된 유저가 나타날 창  -->
-			<!--  mid로 검색하기 만들어야 함 DAO  -->
-			<div id ="resultProfile"><img src="#"> </div>
+				<div id="resultNick"></div>
+	
+				<!-- 검색된 유저가 나타날 창  -->
+				<!--  mnick로 검색하기 만들어야 함 DAO  -->
+				<div id="resultProfileContainer">
+					
+				</div>
 			<!-- 검색 완료된 유저 프로필 이미지  -->
 			</div>
 			
-			<input type="hidden" id="toMid" class="reportInput"/><br/>
+			<input type="hidden" id="toMid" class="reportInput" readonly="readonly"/><br/>
 		<input type="hidden" id="date"/><br/>
 		<!-- 사유<input type="text" id="category" class="reportInput"/><br/> -->
+		<input type="text" readonly="readonly" id="toNick"/><br/>
 		사유<select id="category" class="reportInput" >
 			  <option value="none" >"선택"</option>
 			  <option value="언행이 불량함" >"언행이 불량함"</option>
@@ -74,8 +83,8 @@
 		var searchIdValue = "";
 		var profileNick = "";
 		var imgsrc = "";
+		var mid="";
 		var obj = {};
-		
 		function hideList(){
 			$("#printTarget").toggle("fast");
 		}
@@ -83,7 +92,11 @@
 		
 		function searchNick() {
 		     searchIdValue = $("#searchId").val(); // 전역변수 저장
-		    
+		    if(searchIdValue == "" || searchIdValue === 'undefinded'){
+		    	return;
+		    }
+		     let html = `<img id="resultProfile" src="#"/>`;
+		     $("#resultProfileContainer").html(html);
 		    $.ajax({
 		        url: "${path}/report/searchId", 
 		        method: "post",
@@ -95,17 +108,31 @@
 		        	let str ="";
 		            	str += "<ul>";
 		            $(result).each(function() {
-//		            	profileNick = ${this.mnick};
-//		            	imgsrc = `${this.profileImageName}`;
-		                console.log(profileNick);
-		                console.log(profileNick);
-		                console.log(profileNick);
-		                console.log(imgsrc);
-//		                console.log(`${obj.mnick}+ obj`);
+		            	obj = this;
+		            	profileNick = this.mnick;
+		            					// ~= 까지
+		            	profileName	= this.profileImageName; 			
+		            	
+		                mid = this.mid;
 		                console.log(this);
-
-		                str += `<li> onclick="pick('\${this}')">\${this.mnick}</li>`;
-
+						
+		                str += '<li  id="targetInfo" onclick="pick()" ';
+		                str += `data-profile="\${imgsrc}" `;
+		                str += `data-mnick="\${profileNick}" `;
+		                str += `data-mid="\${mid}">`;
+		                str += `\${profileNick}</li>`;
+		                // 닉네임선택
+		                str += `<li>`;
+						str += `<img id="targetImg"`;
+						str += ' width="100px" ';
+						str += ' height="100px" ';
+						str += `onclick="pick()" `;
+//						str += `data-profile="\${imgsrc}"`; 
+//						str += `data-mnick="\${profileNick}"`;
+						str += `data-mid="\${mid}"`;
+						str += "src='${imgPath}"+profileName+"'";
+		                str += `</li>`;
+		                // 이미지선택
 		            }); // 반복문
 		            str += "</ul>";
 		            
@@ -116,21 +143,28 @@
 		        }
 		    }); // ajax
 		}
-		
-		
-		
-		function pick(profile){
-		console.log(profile);
-		console.log(profile.mnick);	// un
-		console.log(profile.profileImageName);	 // un
-		let str ="";
-//		str += `<div>\${profile.mnick}아니</div>`;
-		str += `<div>엥</div>`;
-			$("#resultProfile").attr("src" , profile.profileImageName);	//프로필 이미지 변경
 			
-			$("#resultNick").html(str);
-				
-		}
+		function pick() {
+			let pickSrc = $("#targetInfo").data("profile");	// 이미지경로
+			let pickNick = $("#targetInfo").data("mnick");	
+			$("#toNick").val(pickNick);
+			$("#toMid").val($("#targetInfo").data("mid"));
+			console.log("상대id : " + $("#toMid").val());
+			console.log('pick했습니다 : '+pickSrc+" 과 "+pickNick);
+			console.log($("#resultProfile").attr("src"));	// 선택x 
+			console.log("이 밑");
+			console.log($("#resultProfile"));
+			console.log($("#targetInfo"));					// 선택o	s.fn.init{li:}
+			console.log($("#resultNick"));					// s.fn.init{}
+			let str ="";
+			str += `<div>${pickNick}</div>`;
+				$("#resultProfile").attr("src" ,pickSrc);	//지정	X 
+			let image = $("#resultProfile").attr("src");
+			console.log(image + ":이미지경로");	 // 출력
+				$("#resultNick").html(str);
+	  		}
+		
+		
 		
 		
 		function reportReview() {
@@ -168,6 +202,9 @@
 		    	})
 		    
 			}
+			
+	
+			 
 		
 			$(document).ready(function(){
 		    var category = ""; // 변수 초기화
@@ -193,14 +230,15 @@
 			    	hideList()
 			    });
 			    
-			 
-				
+
+			    $(document).on("click", "#targetInfo", function() {
+			        pick();
+			    });
 			
+			   
+
+    // ...// pick 
 			
-
-
-
-
 
 
 							

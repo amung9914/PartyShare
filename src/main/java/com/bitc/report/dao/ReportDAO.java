@@ -78,4 +78,22 @@ public interface ReportDAO {
 	// 파티 코멘트
 	@Update("UPDATE partyboard_comment SET showBoard = 'B' WHERE showBoard = 'Y' AND cno = #{cno}")
 	void blindPartyBoardComment(PartyCommentVO vo) throws Exception;
+	
+	/**
+	 * 처리한 신고를 read 속성값 변경 
+	 * */
+	/*
+	@Update("UPDATE freeboard_comment SET showboard = 'B' WHERE showBoard = 'Y' AND cno = #{cno}")
+	void blindComment(ReportVO vo) throws Exception;
+	//파티 
+	@Update("UPDATE freeboard SET showBoard = 'B' WHERE showBoard = 'Y' AND bno = #{bno}")
+	void blindBoard(ReportVO vo) throws Exception;
+	//파티 원본
+	@Update("UPDATE partyboard SET showBoard = 'B' WHERE showBoard = 'Y' AND bno = #{bno}")
+	void blindPartyBoard(PartyBoardVO vo) throws Exception;
+	// 파티 코멘트
+	@Update("UPDATE partyboard_comment SET showBoard = 'B' WHERE showBoard = 'Y' AND cno = #{cno}")
+	void blindPartyBoardComment(PartyCommentVO vo) throws Exception;
+	*/
+	
 }

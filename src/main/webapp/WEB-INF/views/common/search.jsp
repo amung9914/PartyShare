@@ -140,7 +140,7 @@
     .barItem{
     font-size: smaller;
     display:inline-block;
-    width: 100px;
+    width: 95px;
     height: 100px;
     border: 1px solid gray;
     }
@@ -268,7 +268,8 @@
   					str += `\${this.description}`;
   					str += '</div>';
   				})
-  					str += `<div id="next" onclick="next(descriptionPage)">next</div>`;
+  					str += `<div id="next" onclick="next(descriptionPage)">next</div><br>`;
+  					str += `<div id="cancelDescription" onclick="cancel()">선택해제</div>`;
   				$("#barContatiner").html(str);
   			},
   			error : function(error){
@@ -276,6 +277,12 @@
   			}
   		})	
   	}
+  	
+  	function cancel() {
+  		$("#descriptionTemplate").html("");
+  		select("");
+		
+	}
  	// 45개가 있다고 치자 -> 마지막 페이지는 5 lastPage
  	function next(page){
  		if(descriptionPage != lastPage){
