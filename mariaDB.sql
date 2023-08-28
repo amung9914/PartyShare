@@ -40,4 +40,6 @@ SELECT * FROM member;
 INSERT INTO party(pName, host, sido, sigungu, address, detailAddress, startDate, endDate, pContext, description, category, partyImage1, partyImage2, partyImage3)
 SELECT pName, host, sido, sigungu, address, detailAddress, startDate, endDate, pContext, description, category, partyImage1,partyImage2,partyImage3 from party;
 
+SELECT * FROM map;
+DELETE FROM map WHERE pNum = 1022;
 

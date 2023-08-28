@@ -19,8 +19,15 @@
     display: inline-flex;
     width: 370px;
 }
-.infoDiv img{
-	width: 200px;
+.container{
+	overflow: hidden;
+	position: relative;
+	width : 200px;
+	height : 200px;
+}
+.container img{
+	width: 100%;
+    height: 100%;
 }
 .infoText{
 	padding: 10px;
@@ -130,9 +137,19 @@ function open(){
 					let str = "";
 					str += "<div class='infoBox'>";
 					str += "<div class='infoDiv' data-pnum='"+pnum+"'>";
+					str += "<div class='container'>";
 					str += "<img src='${path}/location/printImg?fileName="+pImg+"'/>";
+					str += "</div>";
 					str += "<div class='infoText'>";
+					str += "<div class='pname'>"
+					// 6자씩 쪼개서 이름 나타내줌
+					for(let i=0; i<=pname.length; i+=6){
+						str += "<div>"+pname.substring(i,i+6)+"</div>";
+					}
+					str += "</div>";
+					/*
 					str += "<div class='pname'>"+pname+"</div>";
+					*/
 					str += "<div class='hostName'>"+host+"</div>";
 					str += "</div>";
 					str += "</div>";//end infoDiv
