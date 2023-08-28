@@ -35,6 +35,10 @@ public interface AdminService {
 	 * */
 	List<MemberVO> memberNick(String mnick) throws Exception;
 	
+	// 블랙리스트
+	List<MemberVO> blackId() throws Exception;
+	
+	
 	
 	
 	

@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,10 +27,13 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class AdminController {
+	
+
 	private final SearchService ss;
 	private final AdminService as;
 	private final NoticeService ns;
 	private final MakeQuery mq;
+
 	// 관리자 카테고리 추가 메소드
 	@PostMapping("search/addCategory")
 	public ResponseEntity<String> addCategory(
@@ -164,6 +168,14 @@ public class AdminController {
  		System.out.println(result);
  		System.out.println(entity);
  		return entity;
+ 	}
+ 	
+	
+ 	@GetMapping("/blacklist")
+    public String blackList(Model model) throws Exception {
+        List<MemberVO> blackMembers = as.blackId();
+        model.addAttribute("blackMembers", blackMembers);
+        return "admin_blacklist"; 
  	}
  	
  	
