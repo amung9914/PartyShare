@@ -7,24 +7,84 @@
 <head>
 <meta charset="UTF-8">
 <title>bookingParty.jsp</title>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
+    
+    #bookingParty{
+    	margin: 50px auto;
+    	width: 45%;
+    	text-align: center;
+    	border: 1px solid rgb(221, 221, 221);
+    	border-radius: 12px;
+    	padding: 24px;
+    	background-color: white;
+    	box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    }
+    
+    #bookingBtn {
+		width : 50%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		height: 50px;
+		color: white;
+		background-color: #FF385C;
+		border: none;
+		font-size: 16px;
+		font-weight: bold;
+		text-decoration: none;
+		border-radius: 5px;
+		text-align: center;
+		line-height: 50px;
+	}
+	
+	#bookingBtn:hover {
+		cursor: pointer;
+		background-color: #FF6666;
+	}
+	
+	.bookingParty-title{
+		padding: 20px;
+	}
+	
+	.bookingParty-title h1{
+		margin-bottom: 20px;
+	}
+	
+	.bookingParty-title h3{
+		margin-top: 10px;
+	}
+	
+	.bookingParty-content {
+		padding: 20px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		text-align: left;
+	}
+</style>
 </head>
 <body>
-	<h1>파티 예약하기</h1>
-	<h3>파티 정보</h3>
-	<h5>파티 이름</h5>
-	${vo.pname}
-	<h5>날짜</h5>
-	${startDate}
-	<c:if test="${endDate ne null}">
-		- ${endDate}
-	</c:if>
-	<h5>장소</h5>
-	${vo.sido} ${vo.sigungu} ${vo.address} ${vo.detailAddress}
-	<br/><br/><br/><br/>
-	<form action="${contextPath}/partyDetail/bookingComplete" method="POST">
-		<input type="hidden" name="pNum" value="${vo.pnum}" /> 
-		<input type="submit" value="예약하기" onclick="checkLoginAndSubmit()" />
-	</form>
+	<div id="bookingParty">
+		<div class="bookingParty-title">
+			<h1>파티 참여하기</h1>
+			<img src="${contextPath}/upload/party${vo.partyImage1}"/> 
+			<h3>${vo.pname}</h3>
+		</div>
+		<hr/>
+		<div class="bookingParty-content">
+			<b>날짜 | </b>
+			${startDate}
+			<c:if test="${endDate ne null}">
+				- ${endDate}
+			</c:if><br/>
+			<b>장소 | </b>
+			${vo.sido} ${vo.sigungu} ${vo.address} ${vo.detailAddress}
+		</div>
+		<form action="${contextPath}/partyDetail/bookingComplete" method="POST">
+			<input type="hidden" name="pNum" value="${vo.pnum}" /> 
+			<input type="submit" id="bookingBtn" value="예약하기" onclick="checkLoginAndSubmit()" />
+		</form>
+	</div>
 	
 	<script>
 		function checkLoginAndSubmit() {
