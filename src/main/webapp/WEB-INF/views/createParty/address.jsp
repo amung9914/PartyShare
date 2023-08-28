@@ -9,23 +9,20 @@
 <title>Insert title here</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
-	h1{
-		margin-left:40%;
+	#wrap{
+		text-align: -webkit-center;
 	}
 	#addressBox{
-		border:1px black solid;
-		width: 700px;
-		height: 130px;
-		margin-left: 30%;
+		width: 550px;
+		height: 170px;
 		line-height: 30px;
 		margin-top: 3%;
-	}
-	#addressBox form{
-		margin-top:1%;
-		margin-left:5%;
+		text-align: left;
+		border: 1px solid rgb(221,221,221);
+		box-shadow: rgba(0, 0, 0, 0.18) 0px 6px 16px;
 	}
 	#address{
-		width: 500px;
+		width: 511px;
 	}
 	#detailAddress{
 		width: 310px;
@@ -33,15 +30,20 @@
 	#mapBox{
 		width: 550px;
 		height: 550px;
-		border: 1px lightgrey solid;
-		box-shadow: 1px 1px 1px;
-		margin-left: 35%;
-		margin-top: 3%;
-		text-align: center;
+		border: 1px solid rgb(221,221,221);
+		box-shadow: rgba(0, 0, 0, 0.18) 0px 6px 16px;
+		margin-top: 2%;
+	}
+	#addressBox form{
+		padding: 10px;
+	}
+	#addressBox form input{
+		margin: 1%;
 	}
 </style>
 </head>
 <body>
+<div id="wrap">
 	<h1>주소를 입력해주세요</h1>
 	<div id="addressBox">
 		<form action="createAddress" method="post">
@@ -64,7 +66,7 @@
 <div id="mapBox">파티 위치
 	<div id="map" style="width:500px;height:500px;margin:3% auto;"></div>
 </div>
-
+</div>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0534688966ae7b4ea20ffd95099348e8&libraries=services"></script>

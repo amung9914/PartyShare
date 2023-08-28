@@ -1,217 +1,278 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <title>검색 구현</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
-  rel="stylesheet" 
-  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
-  crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <style>
-    /*모달 제어*/
-    /* 모달 스타일 */
-    .itemsNO{
-    
-    }
-    #searchModal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 10px;
-      top: 200px;
-      width: 400px;
-      height: 600px;
-      overflow: auto;
-      background-color: aqua;
-    }
-  /* 헤더부분 시작 */  
-    #searchHeader{
-    width: 100%;
-    height:180px;
-    background: transparent;
-  	}
-  	
-  	#userMenu{
-  	
-  	}
-  /* 헤더부분 끝 */  
-    .modalContent {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 95%;
-    }
-    #responded{
-    width: 400px;
-    height : 600px;
-    display: flex;
-    overflow : auto;
-    }
+<title>검색 구현</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+/*모달 제어*/
+/* 모달 스타일 */
+.itemsNO {
+	
+}
 
-    /* 닫기 버튼 스타일 */
-    .close {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+#searchModal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 10px;
+	top: 200px;
+	width: 400px;
+	height: 600px;
+	overflow: auto;
+	background-color: aqua;
+}
+/* 헤더부분 시작 */
+#searchHeader {
+	width: 100%;
+	height: 180px;
+	background: transparent;
+}
 
-    .close:hover {
-      color: #000;
-      text-decoration: none;
-    }
-    /*모달 제어 끝*/
+#userMenu {
+	
+}
+/* 헤더부분 끝 */
+.modalContent {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 95%;
+}
 
-    /* 버튼 스타일 */
-    .searchBtn {
-      display: inline-block;
-      width: auto;
-      height: 50px;
-      background-color: #3498db;
-      color: white;
-      border: none;
-      border-radius: 25%;
-      text-align: center;
-      font-size: 16px;
-      line-height: 50px;
-      margin-right: 10px;
-      cursor: pointer;
-      
-      /* position: absolute; 
+#responded {
+	width: 400px;
+	height: 600px;
+	display: flex;
+	overflow: auto;
+}
+
+/* 닫기 버튼 스타일 */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.close:hover {
+	color: #000;
+	text-decoration: none;
+}
+/*모달 제어 끝*/
+
+/* 버튼 스타일 */
+.searchBtn {
+	display: inline-block;
+	width: auto;
+	height: 50px;
+	background-color: #3498db;
+	color: white;
+	border: none;
+	border-radius: 25%;
+	text-align: center;
+	font-size: 16px;
+	line-height: 50px;
+	margin-right: 10px;
+	cursor: pointer;
+
+	/* position: absolute; 
       top: 300px; */
-      /* left:100px; */
-      
-    }
+	/* left:100px; */
+}
 
-    /* 검색창 스타일 */
-    #searchKeyword {
-      height: 30px;
-      width: 150px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      /* position: absolute;
+/* 검색창 스타일 */
+#searchKeyword {
+	height: 30px;
+	width: 150px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	/* position: absolute;
       top:100px;
       left:300px; */
-    }
+}
 
-    /* 버튼과 검색창을 감싸는 부모 컨테이너 스타일 */
+/* 버튼과 검색창을 감싸는 부모 컨테이너 스타일 */
 
-    /* 검색창을 감싸는 div 스타일 */
-    .searchContainer {
-      display: inline-block;
-    }
+/* 검색창을 감싸는 div 스타일 */
+.searchContainer {
+	display: inline-block;
+}
 
-    /* 버튼 컨테이너 스타일 */
-    .buttonsContainer {
-      display: inline-block;
-    }
-    
-    #flexContainer{
-    display: flex;
-    }
-    .items{
-    width: 70px;
-    height: 70px;
-    font-size:samll;
-    display : inline-block;
-    padding : 3px; 
-    margin : 10px;
-    border : solid 1px black;
-    flex-direction: row;
-    
-    }
-    #selectedCategory{
-    font:bold; 
-    }
-    .template{
-    display: fixed;
-    background-color: gray;
-    
-    }
-    #barContatiner{
-    display:none;
-    display:block;
-    display:flex;
-    }
-    .barItem{
-    font-size: smaller;
-    display:inline-block;
-    width: 95px;
-    height: 100px;
-    border: 1px solid gray;
-    }
-    #keywordBtn {
-    position: block;
-    top:100px;
-    left:300px;
-     }
-     .template{
-     display: none;
-     }
-     #previous{
-     float:left;
-  	 top:50px;
-     }
-     #next{
-     float:right;
-  	 top:50px;
-   	 left:1800px;
-     }
-  	.displayNone{
-  		display:none;
-  	}
-  </style>
+/* 버튼 컨테이너 스타일 */
+.buttonsContainer {
+	display: inline-block;
+}
 
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<header id="searchHeader" class="displayNone">	
-  <div id="barContatiner" ></div>
-  <div class="searchBtnContainer">
-    <!-- 버튼창 -->
-    <div class="buttonsContainer">
-      <button data-targetContents="category" id="categoryBtn" class="searchBtn">카테고리 선택</button>
-      <button data-targetContents="date" id="dateBtn" class="searchBtn">날짜 선택</button>
-      <button data-targetContents="location" id="locationBtn" class="searchBtn">위치 선택</button>
-    </div>
-  </div>
-  	<div id="categoryTemplate" class='template'></div>
-	 <div id="dateTemplate" class='template'></div>
-	 <div id="descriptionTemplate" class='template'></div>
-	 <div id="sidoTemplate" class='template'></div>
-	 <div id="sigunguTemplate" class='template'></div>
-	
+#flexContainer {
+	display: flex;
+}
+
+.items {
+	width: 70px;
+	height: 70px;
+	font-size: samll;
+	display: inline-block;
+	padding: 3px;
+	margin: 10px;
+	border: solid 1px black;
+	flex-direction: row;
+}
+
+#selectedCategory {
+	font: bold;
+}
+
+.template {
+	display: fixed;
+	background-color: gray;
+}
+
+#barContatiner {
+	display: none;
+	display: block;
+	display: flex;
+}
+
+.barItem {
+	font-size: smaller;
+	display: inline-block;
+	width: 95px;
+	height: 100px;
+	border: 1px solid gray;
+}
+
+#keywordBtn {
+	position: block;
+	top: 100px;
+	left: 300px;
+}
+
+.template {
+	display: none;
+}
+
+#previous {
+	float: left;
+	top: 50px;
+}
+
+#next {
+	float: right;
+	top: 50px;
+	left: 1800px;
+}
+
+
+</style>
+
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<header id="searchHeader" >
+	<div id="barContatiner"></div>
+	<div class="searchBtnContainer">
+		<div class="searchContainer">
+			<!-- oninput="keywordSearch()"> -->
+		      <input type="hidden" id="searchKeywordt" />  
+		    </div>
+		<!-- 버튼창 -->
+		<div class="buttonsContainer">
+			<button data-targetContents="category" id="categoryBtn"
+				class="searchBtn">카테고리 선택</button>
+			<button data-targetContents="date" id="dateBtn" class="searchBtn">날짜
+				선택</button>
+			<button data-targetContents="location" id="locationBtn"
+				class="searchBtn">위치 선택</button>
+		</div>
+	</div>
+	<div id="categoryTemplate" class='template'></div>
+	<div id="dateTemplate" class='template'></div>
+	<div id="descriptionTemplate" class='template'></div>
+	<div id="sidoTemplate" class='template'></div>
+	<div id="sigunguTemplate" class='template'></div>
+	<div id="keywordTemplate" class='template'></div>
+	<input type="hidden"  id="keywordTemplate" />
+
 </header>
 <script>
-	const url = window.location.pathname;
-	if(url.endsWith("partyshare/")){
-		$("#searchHeader").removeClass("displayNone");
-	}
+		
 </script>
 <!-- 모달창이 위치합니다 여기가 파란색 박스입니다!   -->
-  <div id="searchModal">
-    <div class="modalContent">
-    
-      <div id="responsed">
-      <!-- responsed의 html을 정의함 -->
-      responded
-      </div>
-      <span class="close">&times;</span>
-    </div>
-  </div>
-  <!-- 모달창이 위치합니다 끝 searchModal -->
-  <script>
+<div id="searchModal">
+	<div class="modalContent">
+
+		<div id="responsed">
+			<!-- responsed의 html을 정의함 -->
+			responded
+		</div>
+		<span class="close">&times;</span>
+	</div>
+</div>
+<!-- 모달창이 위치합니다 끝 searchModal -->
+<script>
+/*
+function listPage(page){
+	const value= $("#searchKeyword").val();
+	$.ajax({
+		type:"GET",
+		url:"${path}/party/searchPartyList/"+page,
+		data:{
+			keyword:value
+		},
+		success: function(data){
+			printList(data);
+		}
+	});
+}
+*/
+
+var contextPath = '${pageContext.request.contextPath}';
+// var page = 1;
+if(typeof keyword === 'undefined'){keyword = "noValue"}
+var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
+
+
+//	listAjax(page,resultQuery);      //초기실행 주석
+//listPage(page);
+
+
+// 가져온 파티 리스트 출력
+
+	
+	
+
+							/*  페이징처리   */
+
+
+
   	var contextPath="${pageContext.request.contextPath}";
   //	<div><a href=''><img src='샘플이미지' /></a></div class="categoryImgDiv">
   		var countDescription = 1;
   		var lastPage = 10;
   		var descriptionPage = 1;
-  		var keyword = "";
+  		var keyword = "${searchValue}";
+  		
   		//select("");
+  	console.log("keyword : " + keyword);
+  	$("#keywordTemplate").val(keyword);
+  	let k = $("#keywordTemplate").val();
+  	console.log("k : " + k);
+  	
   	function keywordSearch(){
-  		keyword = $("#searchKeyword").val();
+  		
+  		keyword = '${searchValue}';
+  		$("#keywordTemplate").val(keyword);
+  		console.log(keyword);
+  		console.log($("#keywordTemplate").val());
   		
   		if(keyword.includes("㉾")){
   			alert('해당 문자는 사용할 수 없습니다.');
@@ -221,6 +282,7 @@
   		
   		select("㉾"+keyword);
   	}
+  		
  
  	 disableP();
   	 disableN();
@@ -391,10 +453,14 @@
   	}
   	/////////////////////////////셀렉트 된 후 = 모달 속 factor클릭!//////////////////////////
   	function select(factor){		// 아무 요소나 선택되었을 때
+  		page = 1;
   	  		console.log(factor + "< factor");
   	 // 	$("#sigunguTemplate").html("");
   		// 키워드 검색 추가하기 
   		// select factor로 변경되는 문자열이 들어온다 빈 문자열부터 찬 문자열까지 undefined는 안나오고
+  		if(factor.includes('description')){
+  	  		$("#descriptionTemplate").html(factor);
+  	  		}
   		if(factor.includes('description')){
   	  		$("#descriptionTemplate").html(factor);
   	  		}
@@ -421,12 +487,13 @@
   		if(!factor.includes('description') ){
   			if(!(factor.includes('㉾')||factor ==""))
   			$("#searchModal").toggle("fast");
+  			
   		}
   		
   		
   	//	selectedCategory = $("#selectedCategory").html();
   	
-  		let selectedKeyword = "noValue";		
+//  		let selectedKeyword = $("#kewordTemplate").html();		
   		let selectedDescription = $("#descriptionTemplate").html();
   		let selectedCategory = $("#categoryTemplate").html();
 //	  	console.log(selectedDescription);
@@ -484,11 +551,9 @@
   			selectedSigungu = selectedSigungu.substring(length);
   		}
   		
-  		if(factor.includes("㉾")){
-  			selectedKeyword = keyword;
-  			if(selectedKeyword ==""){
-  				selectedKeyword = "noValue";
-  			}
+  		if(factor.includes("㉾")){ // 글자수 줄이기 하다가 말았음
+  			$("#keywordTemplate").html(factor);
+  			
   			//alert("selectedKeyword: " +selectedKeyword);
   		}
   		// 버튼 값을 정리
@@ -515,15 +580,27 @@
   	//	console.log(selectedSido);
   	//	console.log(selectedSigungu);
   					//description
+  		let selectedKeyword = $("#keywordTemplate").val();
+  					console.log(selectedKeyword);
+
+  		  			if(selectedKeyword ==""){
+  		  				selectedKeyword = "noValue";
+  		  			}
+  	/* 	selectedKeyword = selectedKeyword.substring(1); */			
   		if(selectedSido == "noValue"){selectedSigungu = "noValue"}
-  			console.log(selectedSido);		
-  		let resultQuery = selectedDescription+"|"+selectedCategory+"|"
+  			console.log(selectedSido);
+  			
+  		resultQuery = selectedDescription+"|"+selectedCategory+"|"
   		+selectedDate+"|"+selectedSido+"|"+selectedSigungu+"|"+selectedKeyword;
   		console.log("resultQ: " + resultQuery);					
   		// 선택값이 없을 시  noValue
   		// 이제 ajax로 보낸다
+  		listAjax(page,resultQuery);
+  		console.log('listAjax호출 당시 page' + page);
+  		console.log('listAjax호출 당시 resultQuery' + resultQuery);
+  		/*
   		 $.ajax({
-  			url : "${path}/search/querySearch" ,
+  			url : "${path}/search/querySearch/"+page ,
   			method : "GET",
   			data : {
   				resultQuery : resultQuery
@@ -531,9 +608,15 @@
   			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
 
   			success :  function(partyList){
+  				goajax(partyList);
+  				*/
+  				
+  				
+  				/*
+  				console.log(partyList);
   				let str = "";
   				$(partyList).each(function(){
-  					let pname = this.pname;
+  					let pname = this.pname;						//6
   					let address = this.address;
   					let date = this.formatStartDate +"~"+ this.formatEndDate;		
   					let pnum = this.pnum;
@@ -550,15 +633,116 @@
   					str += date;
   					str += "</li>";
   				});
+  				
   				$("#partys").html(str);
-
+  				*/
+  				
+				/*
   			},
   			error : function(error){
   		//		alert(error);
   			}
   			
   		}); 
+  		*/
   	} // select(factor)
+  	
+  	
+  	
+  	
+  	//////함수화 시킬 ajax 
+  	function listAjax(page,resultQuery ){
+  		console.log('listAjax호출됨');
+  		console.log(page);
+  		
+  		console.log(resultQuery);
+  	 $.ajax({
+  			url : "${path}/search/querySearch/"+page ,
+  			method : "GET",
+  			data : {
+  				resultQuery : resultQuery
+  			},
+  			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
+
+  			success :  function(partyList){
+  				console.log(partyList);
+  				printLista(partyList);
+  				
+ 			},
+  			error : function(error){
+  		//		alert(error);
+  			}
+  			
+  		}); 
+  	} // select(factor)
+  	function printLista(data){
+	let str = "";
+	if(page ==1){$("#partys").html(str);}
+	
+	let wishlistPnum = [];
+	console.log("printlista 들어옴");
+	if(data.wishlist != null){
+		$(data.wishlist).each(function(){
+			let wishPnum = this.pnum;
+			wishlistPnum.push(wishPnum);
+		});	
+	}
+	
+	$(data).each(function(){
+		let pname = this.pname;
+		let address = this.address;
+		let date = this.formatStartDate +"~"+ this.formatEndDate;		
+		let pnum = this.pnum;
+		let path = this.partyImage1;
+		let detailAddress = this.detailAddress;
+		
+		str += '<li>';
+		// wishList 받아서 fullHeart.png로 출력
+		if(data.wishlist != null){
+			if(wishlistPnum.indexOf(pnum) < 0){
+				str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+			}else{
+				str += "<img src='${contextPath}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+			}
+		}else{
+			str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+		}
+		str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
+		str += "<hr/>";
+		str += "<strong onclick='partyDetail("+pnum+");' style='cursor: pointer;'>"+pname+"</strong><br/>";
+		str += address+" "+detailAddress+"<br/>";
+		str += date;
+		str += "</li>";
+	});
+	console.log("출력");
+	$("#partys").append(str);
+//	$("#partys").html(str);
+} 
+
+// 파티 상세 페이지로 이동
+function partyDetail(pnum){
+	location.href="<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
+}
+
+// 무한 페이징
+$(window).scroll(function(){
+	let dh = $(document).height();
+	let wh = $(window).height();
+	let wt = $(window).scrollTop();
+		
+	if((wt+wh) >= (dh - 10)){
+		if($("#partys li").size() <= 1){
+			return false;
+		}
+		page++;
+		listAjax(page,resultQuery);
+		console.log('listAjax실행' + page + resultQuery);
+	}	
+});
+  	
+  	
+  	
+  	//////함수화 시킬 ajax 
   	
   	
   	

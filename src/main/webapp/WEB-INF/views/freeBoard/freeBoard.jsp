@@ -4,11 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ include file="../common/header.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>freeBoard.jsp</title> -->
 <style>
     /* 검색창 및 글 작성 버튼 */
     .header-container {
@@ -16,10 +11,6 @@
 	    justify-content: space-between; 
 	    align-items: center; 
 	}
-    
-    table {
-    	margin-bottom: 122px;
-    }
     
     #writeFreeBoard {
     	width: 100px;
@@ -82,7 +73,7 @@
    		border-top: 2px solid black;
 	   	width: 100%;
 	    border-collapse: collapse;
-	    margin-bottom: 20px;
+	    margin-bottom: 122px;
    	}
    	
    	.boardtable-thead th {
@@ -153,7 +144,7 @@
 
 	/* 페이지 버튼 스타일 */
 	.paging-link {
-		width: 18px; 
+		width: 30px; 
 	    display: inline-block;
 	    margin: 20px 3px;
 	    padding: 5px 10px;
@@ -291,6 +282,4 @@
 		location.href = '${contextPath}/freeBoard/freeBoardWrite';
 	}
 </script>
-<!-- </body>
-</html> -->
 <%@ include file="../common/fixFooter.jsp" %>

@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
+<jsp:include page="../common/header.jsp" />
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lat" value="${location[0]}" />
 <c:set var="lng" value="${location[1]}" />
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>detailOfParty.jsp</title>
+<title>detailOfParty.jsp</title> -->
 <script>
 	const message = '${message}';
 	if(message != ''){
@@ -17,8 +18,8 @@
 	}
 </script>
 <style>
- 	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
-    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
+ 	/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;} */
 	
 	body{
 	 	position : relative;
@@ -27,10 +28,10 @@
 	#banner{
 		position: fixed;
 		text-align: center;
-		height: 300px;
+		height: 330px;
 		right: 21px;
 		bottom: 200px;
-		width: 350px;
+		width: 360px;
 	    border: 1px solid rgb(221, 221, 221);
     	border-radius: 12px;
     	padding: 24px;
@@ -147,6 +148,7 @@
 		display: flex;
 		justify-content: space-evenly;
 		list-style : none;
+		margin-bottom: 0;
 	}
 	
 	ul li a {
@@ -230,7 +232,7 @@
 	}
 	
 	.location-party-text {
-		margin: 20px 0px 20px 30px;
+		margin: 20px 0px 122px 30px;
 		padding-bottom: 35px;
 		border-bottom: 1px solid #CACACA;
 	}
@@ -319,7 +321,7 @@
 	<div id="footer"></div>
 	
 	<div id="banner">
-		<h1>함께 하시겠습니까?</h1>
+		<h3><b>함께 하시겠습니까?</b></h3>
 			<div class="banner-text-1">
 				<b>시작일</b> <br/>
 				${vo.formatStartDate} <br/>
@@ -593,5 +595,6 @@
 	    }
 	</script>
 	
-</body>
-</html>
+<!-- </body>
+</html> -->
+<%@ include file="../common/fixFooter.jsp" %>
