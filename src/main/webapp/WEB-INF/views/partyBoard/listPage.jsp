@@ -54,7 +54,7 @@
 	</form>
 	<button class="btn btn-outline-secondary" onclick="location.href='register?pnum=${pnum}';">
 	<img src="${path}/resources/img/write.png"/>
-	글쓰기
+	<b>글쓰기</b>
 	</button>	
 	</div>
 	
@@ -75,9 +75,9 @@
 				<c:choose>
 						<c:when test="${board.showboard == 'y'}">
 							<tr>
-								<td style="color: #FF385C;">공지</td>
+								<td style="color: #FF385C;"><b>공지</b></td>
 								<td>
-									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>">${board.title}</a>
+									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>"><b>${board.title}</b></a>
 								</td>
 								<td>${board.writer}</td>
 								<td> <!-- 당일이면 시간표시 / 아니면 날짜표시 -->
@@ -135,7 +135,7 @@
 									<c:if test="${board.category eq 'reply'}">
 									ㄴ
 									</c:if>
-									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>">${board.title}</a>
+									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>"><b>${board.title}</b></a>
 								</td>
 								<td>${board.writer}</td>
 								
@@ -157,7 +157,7 @@
 						<c:otherwise>
 							<tr>
 								<td></td>
-								<td>삭제된 게시물 입니다.</td>
+								<td><b>삭제된 게시물 입니다.</b></td>
 								<td></td>
 								<td> <!-- 삭제 요청 시간 출력 / 당일이면 시간표시 / 아니면 날짜표시 -->
 									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>

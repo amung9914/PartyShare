@@ -28,18 +28,38 @@ html, body {
     border: 1px solid rgb(221,221,221);
     width: 300px;
     height: 100px;
-    line-height: 55px;
+}
+b{
+	font-size: larger;
 }
 </style>
 <div id="wrap">
 	<div class="menu">
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/party/hostingList'/>">개설한 파티 관리</a>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/party/myParty'/>">참여중인 파티</a>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/wishlist/wishlist'/>">파티 위시리스트</a>
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/party/hostingList'/>">
+		<b>개설한 파티 관리</b>
+		<div class="form-text" id="basic-addon4">호스트중인 파티 목록으로 이동합니다</div>
+		</a>
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/party/myParty'/>">
+		<b>참여중인 파티</b>
+		<div class="form-text" id="basic-addon4">파티 일정을 확인해보세요</div>
+		</a>
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/wishlist/wishlist'/>">
+		<b>파티 위시리스트</b>
+		<div class="form-text" id="basic-addon4">참여하고 싶은 공간을 확인해보세요</div>
+		</a>
 		<br/>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/post?mId=${loginMember.mid}'/>">알림</a>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/profileModify'/>">계정설정</a>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/report'/>">신고하기</a>
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/post?mId=${loginMember.mid}'/>">
+		<b>알림</b>
+		<div class="form-text" id="basic-addon4">서비스 공지사항을 확인해보세요</div>
+		</a>
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/profileModify'/>">
+		<b>계정설정</b>
+		<div class="form-text" id="basic-addon4">계정 정보를 변경할 수 있습니다</div>
+		</a>
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/report'/>">
+		<b>신고하기</b>
+		<div class="form-text" id="basic-addon4">불쾌감을 주는 사용자를 신고할 수 있습니다</div>
+		</a>
 	</div>
 </div>	
 <%@ include file="../common/footer.jsp" %>
