@@ -17,6 +17,7 @@ local.properties
 # ignore properties file
 api.properties
 maria.properties
+pom.properties
 
 # External tool builders
 .externalToolBuilders/
