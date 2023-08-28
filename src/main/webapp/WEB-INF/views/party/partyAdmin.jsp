@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	#title{
-		margin-left: 10%;
+	
 	}
 	table img{
 		width: 50px;
@@ -10,16 +11,12 @@
 	}
 	#partyMemberListBox{
 		width:20%;
-		margin-left: 10%;
 		
 	}
 	#partyFinishBox{
-		margin-left: 10%;
 		width: 20%;
 	}
 </style>
-
-<a href="<c:url value='/home'/>">home으로</a>
 
 <c:if test="${!empty message}">
 	<script>

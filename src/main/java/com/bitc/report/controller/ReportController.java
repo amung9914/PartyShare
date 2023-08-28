@@ -314,7 +314,10 @@ public class ReportController {
 	 		return entity;
 	 	}
 	 	
-	 	
+	 	@GetMapping("report/admin_blackList")
+	 	public String blackList() {
+	 		return "admin/admin_blacklist";
+	 	}
 	 	
 	 
 			 

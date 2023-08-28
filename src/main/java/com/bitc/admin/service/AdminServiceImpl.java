@@ -36,6 +36,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<MemberVO> memberNick(String mnick) throws Exception {
 		return dao.memberNick(mnick);
+	}
+
+	@Override
+	public List<MemberVO> blackId() throws Exception {
+		
+		return dao.blackId();
 	}	
 	
 	/*

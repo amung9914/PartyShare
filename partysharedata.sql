@@ -1,4 +1,3 @@
-
 INSERT INTO member (mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)
 VALUES ('admin','admin','admin','관리자',30,'F','adminEmail','adminAddr');
 INSERT INTO member (mnum,mId,mPw,mName,mNick,mAge,mGender,mEmail,mAddr)

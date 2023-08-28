@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="../common/header.jsp" />
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>perWishlist.jsp</title>
+<title>perWishlist.jsp</title> -->
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
     * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
@@ -26,6 +27,7 @@
 	    flex-wrap: wrap;
 		list-style-type : none;
 		justify-content: space-between;
+		margin-bottom: 250px;
 	}
 		
 	li {
@@ -122,5 +124,6 @@
     }
     
 </script>
-</body>
-</html>
+<!-- </body>
+</html> -->
+<%@ include file="../common/fixFooter.jsp" %>
