@@ -2,22 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ include file="../common/header.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>freeBoard.jsp</title>
+<title>freeBoard.jsp</title> -->
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
-    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
-    
     /* 검색창 및 글 작성 버튼 */
     .header-container {
 	    display: flex; 
 	    justify-content: space-between; 
 	    align-items: center; 
 	}
+    
+    table {
+    	margin-bottom: 122px;
+    }
     
     #writeFreeBoard {
     	width: 100px;
@@ -46,6 +48,7 @@
 	   	width: 118px;
 	    height: 35px;
 	    border-radius: 10px;
+	    font-size: 15px;
 	    font-weight: bold;
 	    margin-right: 10px;
     }
@@ -150,7 +153,7 @@
 
 	/* 페이지 버튼 스타일 */
 	.paging-link {
-		width: 18px;
+		width: 18px; 
 	    display: inline-block;
 	    margin: 20px 3px;
 	    padding: 5px 10px;
@@ -168,8 +171,8 @@
 	}
 	
 </style>
-</head>
-<body>
+<!-- </head>
+<body> -->
 
 	<div class="header-container">
 		<div id="searchFreeBoard">
@@ -254,7 +257,7 @@
 	    </c:choose>
 		</tbody>
 		<c:if test="${!empty pm and pm.maxPage > 1}">
-				<tr>
+				<tr style="text-align:center;">
 					<th colspan="5">
 						<c:if test="${pm.first}">
 							<a class="paging-link" href="${contextPath}/freeBoard/freeBoard?page=1<c:if test="${not empty param.type}">&type=${param.type}</c:if><c:if test="${not empty param.keyword}">&keyword=${param.keyword}</c:if>" >&laquo;</a>
@@ -288,5 +291,6 @@
 		location.href = '${contextPath}/freeBoard/freeBoardWrite';
 	}
 </script>
-</body>
-</html>
+<!-- </body>
+</html> -->
+<%@ include file="../common/fixFooter.jsp" %>
