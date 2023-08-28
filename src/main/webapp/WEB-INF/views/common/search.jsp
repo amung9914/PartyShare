@@ -237,8 +237,7 @@ function listPage(page){
 
 var contextPath = '${pageContext.request.contextPath}';
 // var page = 1;
-if(typeof keyword === 'undefined'){keyword = "noValue"}
-var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
+
 
 
 //	listAjax(page,resultQuery);      //초기실행 주석
@@ -260,7 +259,9 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		var lastPage = 10;
   		var descriptionPage = 1;
   		var keyword = "${searchValue}";
-  		
+  		if(typeof keyword === 'undefined' || keyword ==''){keyword = "noValue"}
+  		var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
+  		console.log(resultQuery);
   		//select("");
   	console.log("keyword : " + keyword);
   	$("#keywordTemplate").val(keyword);
