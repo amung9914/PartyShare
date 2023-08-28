@@ -22,8 +22,13 @@ html, body {
 }
 .btn-outline-dark{
 	margin:20px;
-    width: 200px;
     padding: 20px 0px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    border-color: rgb(221,221,221);
+    border: 1px solid rgb(221,221,221);
+    width: 300px;
+    height: 100px;
+    line-height: 55px;
 }
 </style>
 <div id="wrap">

@@ -162,7 +162,6 @@
 	
 	function headerSearchTitle(page){
 		const value= $("#searchKeyword").val();
-		console.log(value);
 		$.ajax({
 			type:"GET",
 			url:"${path}/party/searchPartyList/"+page,
