@@ -26,7 +26,7 @@ public class MakeQuery {
 		//	delemeter 3개로 작성해야 함에 유의 
 		// String input은 "description|""|"date"|location"으로 도착한다.
 		System.out.println("Makequery addString 입력 :" + input);
-		String finalQuery = "SELECT * FROM party WHERE finish = 'N' ";
+		String finalQuery = "SELECT * FROM party WHERE finish = 'N' AND startDate >= NOW() ";
 		
 		
 		if(input.equals("noValue|noValue|noValue|noValue|noValue")) {
@@ -41,9 +41,9 @@ public class MakeQuery {
         }
         if(!result[1].equals("noValue")) {
         	finalQuery +=" AND category = '"+result[1]+"'";
-        }
+        }					//WHERE startDate BETWEEN NOW() AND NOW() + INTERVAL 30 DAY;
         if(!result[2].equals("noValue")) {
-        	finalQuery +=" AND  startDate >= NOW() + INTERVAL "+result[2]+" DAY ";// AND date <= NOW()";  
+        	finalQuery +=" AND  startDate <= NOW() + INTERVAL "+result[2]+"DAY ";  
         	//result[2] ==숫자 자리  date >= NOW() - INTERVAL 1 DAY AND date <= NOW()
         }
         if(!result[3].equals("noValue")) {

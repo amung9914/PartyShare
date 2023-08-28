@@ -42,15 +42,18 @@
 	<script>
 	var page = 1;
 	var firstPage = 1;
-	var lastPage = 1;
+	var lastPage = 10;  //총 멤버 숫자로 
 	
-	$(document).ready(function () {
-
+	
 	$("#memberList").click(function list() {
-			$("#memberModal").toggle("slow");
-			 $.getJSON("${path}/admin/memberList/"+page, function(data) {
+	 	   var requestUrl = "${path}/admin/memberList/" + page;
+			$("#memberModal").show();
+			console.log("page : "+page);
+			 $.getJSON(requestUrl, function(data) {
 			        // data는 JSON으로 받은 멤버 리스트
 			        console.log(data);
+			        console.log(page);
+			        
 			        let str = "";
 			        str += `<table class="member-table">`;
 			        	str += `<tr>`;
@@ -103,23 +106,21 @@
 			        $("#memberUl").html(str);
 			    });
 		});
-	});
 		
 	
 	function next(page){
  		if(page != lastPage){
  			page += 1;
  		console.log(page);
- 		list(page);
+ 		 $("#memberList").click();
  		}
- 		console.log(page);
- 		//disableN();
  	}
+	
  	function previous(page){
  		if(page != 1){
  			page += -1;
  		console.log(page);
- 		printDescription();
+ 		$("#memberList").click();
  		}
  	//	disableP();
  	}
