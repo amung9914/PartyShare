@@ -16,7 +16,7 @@
 	    min-height: 100%;
 	    position: relative;
 	    padding-bottom: 93px;
-	    text-align: center;
+	    
 	}
 	
 	#partyListContainer{
@@ -26,13 +26,15 @@
 	#partys{
 		display: flex;
    		flex-wrap: wrap;
+   		justify-content: space-between;
 	}
 	
 	#partys li{
 		list-style:none;
 		width: 300px;
 		height:400px;
-		margin:1%;
+		text-align: left;
+		margin: 1%;
 	}
 	
 	#partys li .partyImg{
@@ -48,7 +50,7 @@
 		cursor: pointer;
 		position: relative;
 		top: 40px;
-		left: 120px;
+		left: 260px;
 	}
 	
 	#mapBtn{
@@ -58,16 +60,12 @@
 		left:48%;
 		z-index: 1;
 	}
-	#createPartyBtn{
-		position: relative;
-		left:87%;
-	}
+	
 	#wishListUl{
 		width: 400px;
 	}
 	#newWishList{
 		width: 100%;
-		
 	}
 	#wishListUl li{
 		padding: 5px;
