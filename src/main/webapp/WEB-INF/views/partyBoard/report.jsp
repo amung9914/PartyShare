@@ -12,11 +12,29 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
+<style>
+.reportWindow{
+	margin : 10px;
+	width: 80%;
+}
+ .titleH2{
+ margin: 10px;
+ text-align:center;
+ }
+ body{
+ 	text-align: -webkit-center;
+ }
+ .title{
+ 	text-align: left;
+ 	margin: 0px 50px;
+ }
+</style>
 </head>
 <body>
-	<h2>신고하기</h2>
+
+	<h2 class="titleH2"><b>신고하기</b></h2>
 	<hr/>
-	<table class="table">
+	<table class="reportWindow">
 		<tr>
 			<td>작성자 : ${board.writer}
 				<br/>
@@ -24,13 +42,13 @@
 		</tr>
 	</table>
 	<hr/>
-	<h5>사유선택</h5>
+	<div class="title"><b>사유선택</b></div>
 	<form method="POST">
 	  <input type="hidden" name="pnum" value="${board.pnum}"/>
 	  <input type="hidden" name="bno" value="${board.bno}"/>
       <input type="hidden" name="fromMid" value="${loginMember.mid}"/>
       <input type="hidden" name="toMid" value="${board.mid}"/>
-      <select name="category" class="form-select" >
+      <select name="category" class="form-select reportWindow" >
          <option value="nothing" selected>분류</option>
          <option value="spam">스팸홍보/도배</option>
          <option value="obscene">음란물</option>
@@ -39,11 +57,11 @@
          <option value="privacy">개인정보 노출</option>
          <option value="etc">기타</option>
       </select><br/><hr/>
-      상세 신고 사유<br/>
-      <textarea class="form-control" name="context" cols="30" rows="2"></textarea> <br/> 
+      <div class="title"><b>상세 신고 사유</b></div>
+      <textarea class="form-control reportWindow" name="context" cols="30" rows="2" placeholder="신고 사유를 작성해주세요"></textarea> <br/> 
       <input type="submit" class="btn btn-dark"  id="reportBtn" value="신고하기" />
       <input type="button" class="btn btn-light" value="취소" onclick="window.close();" />
    </form>
-   
+
 </body>
 </html>
