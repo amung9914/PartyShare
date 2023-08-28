@@ -4,24 +4,27 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ include file="common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
 <style type="text/css">
 	html, body {
 	    height: 100%
+	    
+	}
+	body{
+		text-align: -webkit-center;
 	}
 	#wrap {
 	    min-height: 100%;
 	    position: relative;
-	    padding-bottom: 100px;
+	    padding-bottom: 120px;
 	}
 	
 	#title{
-		margin-left: 41%;
+	
 	}
 	
 	#modifyContainer{
-		margin-left: 30%;
+	
 	}
 	#modifyBox{
 		width: 50%;
@@ -90,7 +93,6 @@
 	}
 	
 	#partyListContanier{
-		margin-left: 25%;
 		margin-top: 3%;
 		width: 50%;
 	}
@@ -121,6 +123,14 @@
 	}
 	#modifyBox table tr td {
 		text-align: center;
+	}
+	
+	.card-body{
+		text-align: left;
+	}
+	
+	.card-title{
+		font-weight: bold;
 	}
 	
 </style>
@@ -192,8 +202,12 @@
 					<tr>
 						<td>성별</td>
 						<td>
-							<input type="radio" name="mgender" value="M" required />남자
-							<input type="radio" name="mgender" value="F" required />여자
+							<input type="radio" name="mgender" value="M" required 
+								<c:if test="${loginMember.mgender eq 'M'}">checked</c:if>
+							 />남자
+							<input type="radio" name="mgender" value="F" required 
+								<c:if test="${loginMember.mgender eq 'F'}">checked</c:if>
+							/>여자
 						</td>
 					</tr>
 					<tr>
@@ -207,62 +221,49 @@
 	</form>
 	<div id="partyListContanier">
 		<h2 id="title2">내가 참여했던 파티 목록</h2>
-		<table class="table table-bordered border-black">
-			<tr align="center">
-				<td colspan="3">참여 횟수 : ${joinCnt}</td>
-			</tr>
-			
-			<c:choose>
-				<c:when test="${!empty joinPartyList}">
-					<c:forEach var="list" items="${joinPartyList}">
-						<tr onclick="partyDetail(${list.pnum});" style="cursor:pointer;">
-							<td rowspan="3" style="text-align: center;">
-								<img id="partyImg" src="<c:url value='/image/printPartyImage?fileName=${list.partyImage1}'/>" />
-							</td>	
-							<td>파티이름  </td>
-							<td>${list.pname}</td>	
-						</tr>
-						<tr onclick="partyDetail(${list.pnum});" style="cursor:pointer;">
-							<td>파티날짜  </td>
-							<td>${list.formatStartDate} ~ ${list.formatEndDate}</td>
-						</tr>
-						<tr onclick="partyDetail(${list.pnum});" style="cursor:pointer;">
-							<td>파티장소  </td>
-							<td>${list.address} ${list.detailAddress}</td>
-						</tr>
-					</c:forEach>
+		<c:choose>
+			<c:when test="${!empty joinPartyList}">
+				<c:forEach var="list" items="${joinPartyList}">
+					<div class="card mb-3" style="max-width: 540px;" onclick="partyDetail(${list.pnum});" style="cursor:pointer;">
+					  <div class="row g-0">
+					    <div class="col-md-4">
+					      <img src="${path}/image/printPartyImage?fileName=${list.partyImage1}" class="img-fluid rounded-start" >
+					    </div>
+					    <div class="col-md-8">
+					      <div class="card-body">
+					        <h5 class="card-title">${list.pname}</h5>
+					        <p class="card-text">${list.formatStartDate} ~ ${list.formatEndDate}</p>
+					        <p class="card-text">${list.address} ${list.detailAddress}</p>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</c:forEach>
+				<div>
+					<c:if test="${pm.prev}">
+						<a href="<c:url value='/member/profileModify${pm.mkQueryStr(pm.startPage-1)}'/>">&laquo;</a>
+					</c:if>
 					
-					<tr id="pmtr">
-						<td colspan="3">
-							<!-- PageMaker == pm -->
-							<c:if test="${pm.prev}">
-								<a href="<c:url value='/member/profileModify${pm.mkQueryStr(pm.startPage-1)}'/>">&laquo;</a>
-							</c:if>
-							
-							<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}">
-								<c:choose>
-									<c:when test="${i eq pm.cri.page}">
-										<a style="color:red;" href="<c:url value='/member/profileModify${pm.mkQueryStr(i)}'/>">[${i}]</a>
-									</c:when>
-									<c:otherwise>
-										<a href="<c:url value='/member/profileModify${pm.mkQueryStr(i)}'/>">[${i}]</a>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
+					<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}">
+						<c:choose>
+							<c:when test="${i eq pm.cri.page}">
+								<a style="color:red;" href="<c:url value='/member/profileModify${pm.mkQueryStr(i)}'/>">[${i}]</a>
+							</c:when>
+							<c:otherwise>
+								<a href="<c:url value='/member/profileModify${pm.mkQueryStr(i)}'/>">[${i}]</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 
-							<c:if test="${pm.next}">
-								<a href="<c:url value='/member/profileModify${pm.mkQueryStr(pm.endPage+1)}'/>">&raquo;</a>
-							</c:if>
-						</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="3">참여 파티 없음</td>
-					</tr>			
-				</c:otherwise>
-			</c:choose>
-		</table>
+					<c:if test="${pm.next}">
+						<a href="<c:url value='/member/profileModify${pm.mkQueryStr(pm.endPage+1)}'/>">&raquo;</a>
+					</c:if>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<h1>참여한 파티가 없습니다.</h1>
+			</c:otherwise>
+		</c:choose>	
 	</div>
 </div>	
 

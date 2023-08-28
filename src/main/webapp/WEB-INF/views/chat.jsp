@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,16 +154,12 @@
 	
 	#partyInfoContainer img{
 		text-align:center;
-		width : 350px;
+		width : 100%;
 		height : 450px;
 	}
-	#partyInfoContainer table{
-		font-size: 21px;
+	#partyInfoContainer .card #card-border-width{
+		width: 
 	}
-	#partyInfoContainer table tr td:last-child{
-		padding-left: 10px;
-	}
-	
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
@@ -223,31 +220,19 @@
 			</div>
 		</div>
 	</section>
+	
+	
+	
 	<section id="infoSection">
 		<div id="partyInfoContainer">
-			<table class="table table-bordered border-black">
-				<tr>
-					<th colspan="2" style="text-align: center;">
-						<img src="<c:url value='/image/printPartyImage?fileName=${fn:replace(party.partyImage1, "s_", "")}'/>"/>
-					</th>
-				</tr>
-				<tr>
-					<td>파티이름</td>
-					<td>${party.pname}</td>
-				</tr>
-				<tr>
-					<td>파티날짜</td>
-					<td>${party.formatStartDate} ~ ${party.formatEndDate}</td>
-				</tr>
-				<tr>
-					<td>파티장소</td>
-					<td>${party.address}</td>
-				</tr>
-				<tr>
-					<td>파티소개</td>
-					<td>${party.pcontext}</td>
-				</tr>
-			</table>
+			<div class="card" style="width: 100%;">
+			  <img src='${path}/image/printPartyImage?fileName=${fn:replace(party.partyImage1, "s_", "")}' class="card-img-top" >
+			  <div class="card-body">
+			    <h5 class="card-title">${party.pname}</h5>
+		        <p class="card-text">${party.formatStartDate} ~ ${party.formatEndDate}</p>
+		        <p class="card-text">${party.address}</p>
+			  </div>
+			</div>
 		</div>
 	</section>
 </main>
