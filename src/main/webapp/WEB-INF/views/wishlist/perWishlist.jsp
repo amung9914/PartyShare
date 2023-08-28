@@ -8,55 +8,87 @@
 <meta charset="UTF-8">
 <title>perWishlist.jsp</title>
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
+    
+    #perWishlist-title{
+    	margin-left: 40px;
+    	margin-top: 20px;
+    }
+    
+    #perWishlist-content{
+    	width: 90%;
+    	margin: 0 auto;
+    }
+    
 	ul {
 	    display: flex;
 	    flex-wrap: wrap;
-    	justify-content : space-around;
 		list-style-type : none;
+		justify-content: space-between;
 	}
 		
 	li {
+		padding: 10px;
+		width: 300px;
+		height: 400px;
         margin : 20px;
+        text-decoration: none;
 	}
-		
-	.wishlistBox {
-		display: block;
-		width: 40vw;
-		height: 300px;
-		padding : 10px;
-		border-radius : 8px;
-		background-color : white;
-		box-shadow : 0px 2px 4px rgba(0, 0, 0, 0.2);
+	
+	li a {
+		 text-decoration: none;
+		 color: black;
+	}
+	
+	.partyImg {
+		width: 300px;
+	    height: 300px;
+	    cursor: pointer;
+	    border-radius: 15px;
 	}
 	
 	.heart {
     	width: 30px; /* 원하는 너비로 설정 */
     	height: auto; /* 너비에 따라 자동으로 높이를 조절 */
+    	cursor: pointer;
+    	position: relative;
+    	top: 95px;
+   		left: 255px;
 	}
+	
 </style>
 </head>
 <body>
-	 <h1>${alias}</h1>
+	 <div id="perWishlist-title">
+	 	<h1>${alias}</h1>
+	 </div>
+	 <div id="perWishlist-content">
 	 <ul>
 		<c:forEach var="party" items="${parties}">
-		      	<div class="wishlistBox">
-		      	<img id="${party.pnum}" class="heart" src="${contextPath}/resources/img/redHeart.png" alt="하트" onclick="toggleHeart(this)"> <br/><br/><br/>
-		    	<li>
-			      	<a href="${contextPath}/partyDetail/detailOfParty?pNum=${party.pnum}">
-					<img src="${contextPath}/upload/party${party.partyImage1}"/> 
-					<img src="${contextPath}/upload/party${party.partyImage2}"/> 
-					<img src="${contextPath}/upload/party${party.partyImage3}"/> <br/> 
-			      	파티 이름 : ${party.pname} <br/>
-			      	주소 : ${party.sido} ${party.sigungu} ${party.address} ${party.detailAddress} <br/>
-			      	시작 날짜 : ${party.formatStartDate} <br/>
-			      	종료 날짜 : ${party.formatEndDate} <br/>
-			      	</a>
-		   		</li>
-		      	</div>
+	    	<li>
+	      		<img id="${party.pnum}" class="heart" src="${contextPath}/resources/img/redHeart.png" alt="하트" onclick="toggleHeart(this)"> <br/><br/><br/>
+				<img class="partyImg" src="${contextPath}/upload/party${party.partyImage1}"/> 
+		      	<a href="${contextPath}/partyDetail/detailOfParty?pNum=${party.pnum}">
+		      	<b>${party.pname}</b> <br/>
+		      	${party.sido} ${party.sigungu}<br/>
+		      	${party.address} ${party.detailAddress} <br/>
+		      	${party.formatStartDate} <br/>
+		      	- ${party.formatEndDate} <br/>
+		      	</a>
+	   		</li>
     	</c:forEach>
+    </div>
 	</ul>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+    $(".partyImg").click(function(event) {
+        var pNum = $(this).closest("li").find(".heart").attr("id");
+        var url = "${contextPath}/partyDetail/detailOfParty?pNum=" + pNum;
+        window.location.href = url;
+    });
+
 
     function toggleHeart(heartElement) {
         if (heartElement.src.includes("${contextPath}/resources/img/redHeart.png")) {

@@ -7,9 +7,20 @@
 <meta charset="UTF-8">
 <title>modify.jsp</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- Editor's Style -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
+</script>
+<style>
+body{
+margin:30px;
+}
+
+</style>
 </head>
 <body>
-	<h3>MODIFY BAORD</h3>
 	<!-- model boardVO -->
 	<!-- board/modify POST -->
 	<form action="modify" method="POST" id="modifyForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
@@ -18,34 +29,34 @@
 		<input type="hidden" name="writer" value="${board.writer}" />
 		<input type="hidden" name="pnum" value="${board.pnum}"/>
 		
-		<table>
-		<tr>
-			<td>
-				<select name="category" id="categorySelect" value="${board.category}">
-		    		<option value="notice">공지사항</option>
-		    		<option value="normal">일반</option>
-	  			</select>
-	  		</td>
-		</tr>
+		<table class="table">
 		
 		<tr>
 			<td>제목</td>
 			<td>
-				<input type="text" name="title" id="title" value="${board.title}"/>
+				<input  class="form-control" type="text" name="title" id="title" value="${board.title}"/>
 			</td>
 		</tr>
 		<tr>
-		 	<td>CONTENT</td>
-			<td><textarea name="content" id="content">${board.content}</textarea>
-			</td> 
-		</tr>		
+				<td>카테고리</td>
+				<td>
+		  			<select class="form-select" name="category" id="categorySelect" value="${board.category}">
+			    		<option value="notice">공지사항</option>
+			    		<option value="normal" selected>일반</option>
+		  			</select>
+		  		</td>
+			</tr>
 		<tr>
-			<th colspan="2">		
-				<input type="button" id="saveBtn" value="완료"/>
-				<input type="button" onclick="goBack();" value="뒤로가기"/>
-			</th>
-			</table>	
-		</form>
+		 	<td>CONTENT</td>
+			<td><textarea class="form-control"  name="content" id="content">${board.content}</textarea>
+			</td> 
+		</tr>	
+		</table>
+			<input class="btn btn-dark" type="button" id="saveBtn" value="완료"/>
+			<input class="btn btn-light" type="button" onclick="goBack();" value="뒤로가기"/>
+				
+		</form>	
+				
 
 <script src="https://cdn.tiny.cloud/1/ogpnruhgbsh51awvrblkrooy38miyp3g61qzu5jw81jnacn6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>		
 <script>
@@ -54,8 +65,7 @@
     tinymce.init({
 		language: "ko_KR",
       	selector: '#content',
-      	width : 600,
-      	height : 500,
+      	 height : 800,
       	menubar : false,
       	 plugins: plugins,
       	  toolbar: edit_toolbar,

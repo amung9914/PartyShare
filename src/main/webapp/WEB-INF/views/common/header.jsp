@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
 
@@ -121,22 +122,28 @@
 			  		<img src="${path}/resources/img/menu.png"/>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <c:if test="${!empty loginMember}">
-			    	<li><a class="dropdown-item" href="${path}/member/account">계정관리</a></li>
-			    	<li><a class="dropdown-item" href="${path}/member/bonpost">확인한 알림</a></li>
-			    </c:if>
-			    <c:if test="${loginMember.mid eq 'admin'}">
+
+				  <c:choose>
+				  	<c:when test="${!empty loginMember}">
+                 <c:if test="${loginMember.mid eq 'admin'}">
 			    	<li><a class="dropdown-item" href="${path}/admin/admin">관리자페이지</a></li>
 			    </c:if>
-			    
-			    <li><a class="dropdown-item" href="#">Something else here</a></li>
+				  		<li><a class="dropdown-item" href="${path}/member/account">계정관리</a></li>
+              <li><a class="dropdown-item" href="${path}/member/bonpost">확인한 알림</a></li>
+				  		<li><a class="dropdown-item" href="${path}/member/logout">로그아웃</a></li>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<li><a class="dropdown-item" href="#" onclick="loginModalShow();">로그인</a></li>
+					    <li><a class="dropdown-item" href="${path}/member/goJoin">회원가입</a></li>
+				  	</c:otherwise>
+			  	</c:choose>
+
 			  </ul>
 			</div>
 		</div>
 	</div>
 	<hr/>
 <br/>
-${searchValue}
 <c:if test="${!empty searchValue}">
 	<script>
 		$("#searchKeyword").val('${searchValue}');
@@ -211,5 +218,8 @@ ${searchValue}
 	        $("#searchImg").click();
 	    }
 	});
+	
+	function loginModalShow(){
+		$("#loginModal").modal("show");
+	}
 </script>
-<%@ include file="search.jsp" %>

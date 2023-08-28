@@ -185,7 +185,8 @@ margin:30px;
 		language: "ko_KR",
       	selector: '#content',
       	menubar : false,
-      	 plugins: plugins,
+      	 plugins: plugins, 
+      	 height : 800,
       	  toolbar: edit_toolbar,
       	  /* enable title field in the Image dialog*/
       	  image_title: true,
