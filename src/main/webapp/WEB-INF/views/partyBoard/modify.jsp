@@ -55,7 +55,7 @@
 		language: "ko_KR",
       	selector: '#content',
       	width : 600,
-      	height : 500,
+      	 height : 800,
       	menubar : false,
       	 plugins: plugins,
       	  toolbar: edit_toolbar,
