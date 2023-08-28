@@ -22,14 +22,14 @@
 		flex-wrap: wrap;
 	}
 	#logoBox{
-		width: 10%;
-		height: 80px;
+		/* width: 10%;
+		height: 80px; */
 		margin-left: 3%;
 	}
 	
 	#logoBox img{
-		width: 80px;
-		height: 80px;
+		width: 160px;
+   		margin-top: 24px;
 		cursor: pointer;
 	}
 	
@@ -97,7 +97,7 @@
 <%@ include file="../member/login.jsp" %>
 	<div id="headerBox">
 		<div id="logoBox">
-			<img src="${path}/resources/img/redHeart.png" onclick="location.href='${path}/'"/>
+			<img src="${path}/resources/img/logo.png" onclick="location.href='${path}/'"/>
 		</div>
 		<div id="header_searchBox">
 			<div class="searchContainer">
