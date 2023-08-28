@@ -8,10 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bitc.common.utils.Criteria;
 import com.bitc.party.vo.PartyVO;
 import com.bitc.search.service.SearchService;
 import com.bitc.search.util.CalendarSearch;
@@ -74,21 +77,28 @@ public class SearchController {
 	}
 	
 	
-	@GetMapping("search/querySearch")
+	@GetMapping("search/querySearch/{page}")
 	public ResponseEntity<List<PartyVO>> querySearch(
-			String resultQuery
+			String resultQuery,
+			@PathVariable(name="page") int page,
+			Criteria cri 
 			){
+			cri.setPage(page);
+			System.out.println(cri.getStartRow());
+			System.out.println(page + "< querySearch page");
 		ResponseEntity<List<PartyVO>> entity = null;
 //		System.out.println(resultQuery);
 		
 		try {
-			List<PartyVO> list = ss.partySearch(mq.addStirng(resultQuery));
+			List<PartyVO> list = ss.partySearch(mq.addStirng(resultQuery, cri));
 			//System.out.println(list);
 			entity = new ResponseEntity<>(list,HttpStatus.OK);
 		} catch (Exception e) {
+			System.out.println("쿼리서치 예외");
+			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}		
-//		System.out.println("partyVO LIST :"+ entity);
+		System.out.println("partyVO LIST :"+ entity);
 		return entity;
 	}
 	//2

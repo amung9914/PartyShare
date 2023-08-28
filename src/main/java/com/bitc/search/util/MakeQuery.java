@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
 
+import com.bitc.common.utils.Criteria;
+
 import lombok.Data;
 import lombok.Getter;
 
@@ -21,12 +23,12 @@ public class MakeQuery {
 	 * @param 검색창의 박스를 조합해서 나온 하나의 문자열 
 	 * @return WHERE 과 AND를 활용할 수 있는 SQL용 문자열
 	 * */
-	public static String addStirng(String input) {
+	public static String addStirng(String input, Criteria cri) {
 		// delemeter로 받자 
 		//	delemeter 3개로 작성해야 함에 유의 
 		// String input은 "description|""|"date"|location"으로 도착한다.
 		System.out.println("Makequery addString 입력 :" + input);
-		String finalQuery = "SELECT * FROM party WHERE finish = 'N' AND startDate >= NOW() ";
+		String finalQuery = "SELECT * FROM party WHERE finish = 'N' ";//AND startDate >= NOW() ";
 		
 		
 		if(input.equals("noValue|noValue|noValue|noValue|noValue")) {
@@ -55,9 +57,13 @@ public class MakeQuery {
         if(!result[5].equals("noValue")) {
         	finalQuery +=" AND pName Like '%"+result[5]+"%'";
         }
-        finalQuery = finalQuery + "ORDER BY pnum DESC;";
+        finalQuery = finalQuery + "ORDER BY pnum DESC ";
+      
+        /*
+         * 페이징
+         * */
+        finalQuery = finalQuery + "limit " + cri.getStartRow()+ ", "+cri.getPerPageNum()+";";
         System.out.println("Makequery addString final :" + finalQuery);
-        
 		return finalQuery;
 	}
 	
