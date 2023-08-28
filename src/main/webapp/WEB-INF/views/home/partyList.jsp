@@ -10,17 +10,17 @@
 	html, body {
 	    height: 100%
 	}
-
+	
 	#wrap {
 		width: 100%;
 	    min-height: 100%;
 	    position: relative;
 	    padding-bottom: 93px;
+	    text-align: center;
 	}
 	
 	#partyListContainer{
 		width: 100%;
-		margin-left: 2%;
 	}
 
 	#partys{
@@ -30,10 +30,9 @@
 	
 	#partys li{
 		list-style:none;
-		padding:10px;
 		width: 300px;
 		height:400px;
-		margin: 20px;
+		margin:1%;
 	}
 	
 	#partys li .partyImg{
@@ -44,12 +43,12 @@
 	}
 	
 	#partys li .likeBtn{
-		width: 40px;
-		height: 40px;
+		width: 25px;
+		height:25px;
 		cursor: pointer;
 		position: relative;
-		left: 260px;	
-		top:40px;	
+		top: 40px;
+		left: 120px;
 	}
 	
 	#mapBtn{
@@ -144,12 +143,11 @@
 </c:if>
 <!-- partyList 필요 -->
 <hr/>
-<button id="createPartyBtn" class="btn btn-dark" onclick="location.href='${contextPath}/party/createParty';">파티 생성</button>
 <div id="mapBtn">
 	<button onclick="location.href='${contextPath}/location/map';" class="btn btn-dark">지도보기</button>
 </div>
 <div id="wrap">
-	<div id="partyListContainer" >
+	<div id="partyListContainer">
 		<ul id="partys">
 		
 		</ul>
