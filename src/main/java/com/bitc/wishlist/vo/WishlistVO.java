@@ -1,5 +1,9 @@
 package com.bitc.wishlist.vo;
 
+import java.util.List;
+
+import com.bitc.party.vo.PartyVO;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,5 +15,6 @@ public class WishlistVO {
 	int mnum;
 	int pnum;
 	String alias;
+	List<PartyVO> parties;
 	
 }
