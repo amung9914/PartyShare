@@ -144,8 +144,11 @@
 
 <c:if test="${!empty searchValue}">
 	<script>
+		 /* $("#keywordTemplate").val("'${searchValue}'");
+		console.log($("#keywordTemplate").val()); */
 		$("#searchKeyword").val('${searchValue}');
 		console.log($("#searchKeyword").val());
+		$("#searchKeywordt").val('${searchValue}');
 	</script>
 </c:if>
 
@@ -171,6 +174,8 @@
 			}
 		});
 	}
+	
+	
 	function searchPrintList(data){
 		let str = "";
 		let wishlistPnum = [];
@@ -180,6 +185,7 @@
 				wishlistPnum.push(wishPnum);
 			});	
 		}
+		
 		
 		$(data.list).each(function(){
 			let pname = this.pname;
@@ -208,7 +214,9 @@
 			str += "</li>";
 		});
 		$("#partys").html(str);
+		
 	}
+	
 	$("#searchKeyword").keydown(function(event) {
 	    if (event.which === 13) {
 	        event.preventDefault();

@@ -1,7 +1,7 @@
 create database partyShare;
 ALTER SCHEMA `partyShare`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_bin ;
 use partyShare;
-SELECT * FROM member;
+SELECT * FROM party;
 CREATE TABLE member 	  -- 회원테이블 
 (
     mNum    INT primary key auto_increment,    
