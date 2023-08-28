@@ -21,9 +21,72 @@
 <head>
 <meta charset="UTF-8">
 <title>freeBoardReply.jsp</title>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
+
+	form {
+		margin: 0 auto;
+		width: 650px;
+	}
+	
+	#title {
+		width: 100%;
+		height: 35px;
+		padding: 15px 15px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		border: none;
+		border-bottom: 1px solid lightgray;
+		font-size: 30px;
+		outline: none;
+	}
+	
+	#context {
+		width: 100%;
+	}
+	
+	.container {
+	    display: flex; 
+	    width: 104.5%;
+	    justify-content: space-between; 
+	    align-items: center; 
+	}
+	
+	 .write {
+    	width: 100px;
+	    height: 35px;
+	    border-radius: 10px;
+	    font-weight: bold;
+	    border: none;
+	    background-color: #FF385C;
+	    color: white;
+	    cursor: pointer;
+	    font-size: 16px;
+    }
+    
+    .write:hover {
+    	background-color: #FF6666;
+    }
+    
+    .back {
+   		width: 100px;
+	    height: 35px;
+	    border-radius: 10px;
+	    font-weight: bold;
+	    border: none;
+	    background-color: #F5F5F5;
+	    color: black;
+	    cursor: pointer;
+	    font-size: 16px;
+    }
+    
+    .back:hover {
+    	background-color: #DADADA;
+    }
+</style>
 </head>
 <body>
-	<h1>답변글 작성</h1>
 	<form action="${contextPath}/freeBoard/freeBoardReply" method="POST">
 		<input type="hidden" name="category" value="${board.category}"/>
 		<input type="hidden" name="mid" value="${loginMember.mid}"/>
@@ -31,19 +94,18 @@
 		<input type="hidden" name="origin" value="${board.origin}"/>
 		<input type="hidden" name="depth" value="${board.depth}"/>
 		<input type="hidden" name="seq" value="${board.seq}"/>
-		<div>
-			<label>제목</label>
-			<input type="text" name="title" required />
-		</div>
-		<div>
-			<label>내용</label>
-			<textarea id="context" name="context" rows=3></textarea>
-		</div>
-		<div>	
-			<input type="submit" value="답변 등록"/>
-			<!-- <a href="freeBoard?page=${criteria.page}&perPageNum=${criteria.perPageNum}">목록</a> -->
+		<input id="title" type="text" name="title" placeholder="제목을 입력하세요." required /> <br/>
+		<textarea id="context" name="context" rows=3></textarea> <br/>
+		<div class="container">	
+			<input class="back" onclick="back()" type="button" value="뒤로가기"/>
+			<input type="submit" class="write" value="답변 등록"/>
 		</div>
 	</form>
+<script>
+		function back(){
+			history.back();
+		}
+</script>
 <script src="https://cdn.tiny.cloud/1/av7h5dlwrzjn7ho0gzec0tvmepza55h6sfs7attnmohrhwhd/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 	let plugins = ["link", "image"];
@@ -52,7 +114,7 @@
     tinymce.init({
       language : "ko_KR",
       selector: '#context',
-      width : 600,
+      width : 681,
       height : 500,
       menubar : false,
       plugins: plugins,

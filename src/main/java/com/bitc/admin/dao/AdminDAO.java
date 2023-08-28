@@ -33,6 +33,10 @@ public interface AdminDAO {
 	@Select("SELECT * FROM member WHERE mnick LIKE CONCAT('%', #{mnick}, '%')")
 	public List<MemberVO> memberNick(String mnick) throws Exception;
 	
+	@Select("SELECT * FROM member WHERE mblackYN ='Y'")
+	public List<MemberVO > blackId();
+	
+	
 
 
 	

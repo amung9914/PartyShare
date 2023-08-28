@@ -14,7 +14,7 @@ import com.bitc.report.vo.ReportVO;
 
 public interface freeBoardMapper {
 
-	@Select("SELECT COUNT(*) FROM freeboard")
+	@Select("SELECT COUNT(*) FROM freeboard WHERE category = '일반'")
 	public int totalCount() throws Exception;
 	
 	@Select("SELECT COUNT(*) FROM freeboard WHERE title LIKE CONCAT('%', #{keyword}, '%')")
@@ -32,7 +32,7 @@ public interface freeBoardMapper {
 	@Select("SELECT * FROM freeboard WHERE category = '일반' ORDER BY origin DESC, seq ASC LIMIT #{startRow}, #{perPageNum}")
 	public List<FreeBoardVO> readFreeBoard(Criteria cri) throws Exception;
 	
-	@Insert("INSERT INTO freeboard VALUES (null, #{category}, #{title}, #{context}, NOW(), #{mnick}, 0, #{mid}, 0, 0, 0, 'Y')")
+	@Insert("INSERT INTO freeboard(bno, category, title, context, date, mNick, viewCnt, showBoard, mid, origin, depth, seq) VALUES (null, #{category}, #{title}, #{context}, NOW(), #{mnick}, 0, 'Y', #{mid}, 0, 0, 0)")
 	public int freeBoardUpload(FreeBoardVO vo) throws Exception;
 
 	@Update("UPDATE freeboard SET origin = LAST_INSERT_ID() WHERE bno = LAST_INSERT_ID()")

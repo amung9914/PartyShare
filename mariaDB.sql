@@ -20,19 +20,28 @@ SELECT * FROM party WHERE finish ='N' ;
 update party set finish='N';
 SELECT M.* FROM map M JOIN party USING (pnum) WHERE finish ='N' ORDER BY pnum DESC;
 
+DELETE FROM freeboard;
+DELETE FROM freeboard_comment;
+DELETE FROM report;
+SELECT * FROM freeboard_comment;
 
 SELECT * FROM wishlist;
-
+DESC freeboard;
 
 SELECT * FROM partyboard WHERE pnum = 1;
 
 INSERT INTO partyboard(category,pnum,title,content,writer,mnum) 
 SELECT category,pnum,title,content,writer,mnum FROM partyboard WHERE pnum = 1;
 
-
+SELECT * FROM party ORDER BY pNum DESC;
 SELECT * FROM report;
+SELECT * FROM member;
+
+UPDATE member SET mBlackYN = 'Y' WHERE mid = 'id777';
 
 INSERT INTO party(pName, host, sido, sigungu, address, detailAddress, startDate, endDate, pContext, description, category, partyImage1, partyImage2, partyImage3)
 SELECT pName, host, sido, sigungu, address, detailAddress, startDate, endDate, pContext, description, category, partyImage1,partyImage2,partyImage3 from party;
 
+SELECT * FROM map;
+DELETE FROM map WHERE pNum = 1022;
 

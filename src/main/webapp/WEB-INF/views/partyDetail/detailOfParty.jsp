@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
+<jsp:include page="../common/header.jsp" />
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lat" value="${location[0]}" />
 <c:set var="lng" value="${location[1]}" />
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>detailOfParty.jsp</title>
+<title>detailOfParty.jsp</title> -->
 <script>
 	const message = '${message}';
 	if(message != ''){
@@ -17,17 +18,8 @@
 	}
 </script>
 <style>
-
-	nav{
-		width : 100%;
-		border: 1px solid black; 
-	}
-
-	ul{
-		display: flex;
-		justify-content: space-evenly;
-		list-style : none;
-	}
+ 	/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;} */
 	
 	body{
 	 	position : relative;
@@ -35,10 +27,11 @@
 	
 	#banner{
 		position: fixed;
-		height: 300px;
+		text-align: center;
+		height: 330px;
 		right: 21px;
 		bottom: 200px;
-		width: 200px;
+		width: 360px;
 	    border: 1px solid rgb(221, 221, 221);
     	border-radius: 12px;
     	padding: 24px;
@@ -48,46 +41,228 @@
 		z-index: 1;
 	}
 	
+	.banner-text-1, .banner-text-2, .banner-text-3 {
+		text-align : left;
+		padding: 2px;
+		margin-bottom: 7px; 
+	}
+	
+	.banner-text-1 {
+		margin-top: 15px;
+	}
+	
+	.banner-text-3 {
+		margin-bottom: 20px;
+	}
+	
 	#banner.top{
 		position: fixed;
 		right: 21.5px;
-  		top: 350px;
+  		top: 560px;
 	}
 	
 	#banner.on {
 		position: fixed;
 		right: 21.5px;
-  		bottom: 350px;
+  		bottom: 300px;
 	}
 	
 	#bannerBtn {
-		width : 150px;
+		width : 80%;
+		margin: 0 auto;
 		height: 50px;
-		border: 1px solid black;
+		color: white;
+		background-color: #FF385C;
+		font-weight: bold;
+		text-decoration: none;
 		border-radius: 5px;
 		text-align: center;
 		line-height: 50px;
 	}
 	
-	#top{
-		background-color : beige;
-		height : 300px;
+	#bannerBtn:hover{
+		background-color: #FF6666;
 	}
 	
-	#middle{
+	#banner a {
+		text-decoration: none;
+	}
+	
+	/* #middle{
 		height : 1000px;
 	}
 	
 	#footer{
 		background-color : beige;
 		height : 300px;
+	} */
+	
+	/* 상단 파티 이름 */
+	.grid-container-text{
+	 	margin: 20px 0px 20px 20px;
 	}
 	
+	/* 대문사진 */
+	.grid-container {
+	  display: grid;
+	  width: 95%;
+	  margin: 0 auto;
+	  height: 350px;
+	  grid-template-columns: 1fr 1fr 1fr; 
+	  gap: 5px;
+	}
+	
+	.grid-container img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: contain;
+	}
+	
+	.first-image, .second-image, .third-image {
+	  width: 100%;
+	  max-height: 350px;
+	}
+	
+	/* 네비게이션 바 */
+	#top {
+		/* background-color : #FF385C;  */
+		width: 95%;
+		height: 50px;
+		display: flex;
+		justify-content: center; /* 수평 가운데 정렬 */
+		align-items: center; /* 수직 가운데 정렬 */
+		height: 50px; /* 컨테이너의 전체 높이만큼 설정하여 수직 중앙 정렬을 적용 */
+		margin: 20px auto;
+		color: white;
+		border-top: 2px solid black; /* 위쪽 테두리 */
+   		border-bottom: 2px solid black; /* 아래쪽 테두리 */
+		/* border-radius: 10px; */
+	}
+	
+	nav{
+		width : 100%;
+		font-weight: bold;
+	}
+
+	ul{
+		display: flex;
+		justify-content: space-evenly;
+		list-style : none;
+		margin-bottom: 0;
+	}
+	
+	ul li a {
+		color: black;
+		text-decoration: none;
+	}
+	
+	ul li a:hover {
+		color: #FF385C;
+	}
+	
+	/* 파티 소개 */
+	.introduce-party {
+		/* border: 1px solid black; */
+		width: 65%;
+	}
+	
+	.introduce-party-text {
+		margin: 20px 0px 20px 30px;
+		padding-bottom: 35px;
+		border-bottom: 1px solid #CACACA;
+	}
+	
+	/* 파티 통계 */
+	.stats-party {
+		/* border: 1px solid black; */
+		width: 65%;
+	}
+	
+	.stats-party-text {
+		margin: 20px 0px 20px 30px;
+		padding-bottom: 35px;
+		border-bottom: 1px solid #CACACA;
+	}
+	
+	.stats-party-text h1 {
+		padding-bottom: 20px;
+	}
+	
+	.statsBtn {
+	  display: inline-block;
+	  padding: 10px 20px;
+	  margin-right: 15px;
+	  margin-bottom: 20px;
+	  font-size: 15px;
+	  border-radius: 30px; /* 테두리 둥글게 설정 */
+	  border: 1px solid #FF385C; /* 테두리 색 설정 */
+	  background-color: white; /* 배경 색 설정 */
+	  color: black;
+	  text-align: center;
+	  cursor: pointer;
+	  transition: background-color 0.3s, border-color 0.3s;
+	}
+	
+	.statsBtn.active {
+   		background-color: #F3F3F3;
+	}
+
+	.statsBtn:hover:not(.active) {
+    	background-color: #F3F3F3;
+	}
+	
+	.statsArea {
+		width: 501px;
+		text-align: center;
+	    border: 1px solid rgb(221, 221, 221);
+    	border-radius: 12px;
+    	padding: 24px;
+    	background-color: white;
+    	box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+	}
+	
+	.statsArea h3 {
+		margin-bottom : 20px;
+	}
+	
+	/* 파티 지도 */
+	.location-party {
+		/* border-bottom: 1px solid #CACACA; */
+		width: 65%;
+	}
+	
+	.location-party-text {
+		margin: 20px 0px 122px 30px;
+		padding-bottom: 35px;
+		border-bottom: 1px solid #CACACA;
+	}
+
 </style>
 </head>
 <body>
+	
+	<div class="grid-container-text">
+		<h1>${vo.pname}</h1>
+		<b>시작일</b> ${vo.formatStartDate} &nbsp; | &nbsp; <b>장소</b> 
+		${vo.sido} ${vo.sigungu} ${vo.address} ${vo.detailAddress} <br/>
+	</div>
+	
+	<div class="grid-container">
+	  <div class="first-image">
+	    <!-- 왼쪽 사진 -->
+	    <img src="${contextPath}/upload/party${f:replace(vo.partyImage1, 's_', '')}"/>
+	  </div>
+	    <div class="second-image">
+	      <!-- 상단 오른쪽 사진 -->
+	      <img src="${contextPath}/upload/party${f:replace(vo.partyImage2, 's_', '')}"/>
+	    </div>
+	    <div class="third-image">
+	      <!-- 하단 오른쪽 사진 -->
+	      <img src="${contextPath}/upload/party${f:replace(vo.partyImage3, 's_', '')}"/>
+	    </div>
+	</div>
+	
 	<div id=top>
-		<h1>detailOfParty.jsp</h1>
 		<nav>
 			<ul>
 				<li><a href="<c:url value='/'/>">홈</a></li>
@@ -97,47 +272,68 @@
 		</nav>
 	</div>
 	
-	<img src="${contextPath}/upload/party${f:replace(vo.partyImage1, 's_', '')}" width="50%"/>
-	<img src="${contextPath}/upload/party${f:replace(vo.partyImage2, 's_', '')}" width="25%"/>
-	<img src="${contextPath}/upload/party${f:replace(vo.partyImage3, 's_', '')}" width="25%"/>
+	<div class="introduce-party">
+		<div class="introduce-party-text">
+			<h1>파티 소개</h1>
+			${vo.pcontext}
+		</div>
+	</div>
 	
-	<h1>파티 소개</h1>
+	<div class="stats-party">
+		<div class="stats-party-text">
+		<h1>파티원 통계</h1>
+			<c:choose>
+				<c:when test="${isEmpty eq true}">
+					해당 파티에 참여중인 파티원이 없습니다.
+				</c:when>
+				<c:otherwise>
+					<button class="statsBtn" onclick="showGraph('joinCntGraph')">참여횟수</button>
+					<button class="statsBtn" onclick="showGraph('genderGraph')">성별</button>
+					<button class="statsBtn" onclick="showGraph('ageGraph')">연령</button>
+					<div class="statsArea">
+						<div id="joinCntGraph">
+							<h3>참여횟수</h3>
+							<canvas id="joinCnt-chart" width="500" height="300"></canvas>
+						</div>
+						<div id="genderGraph">
+							<h3>성별</h3>
+							<canvas id="gender-chart" width="500" height="300"></canvas>
+						</div>
+						<div id="ageGraph">
+							<h3>연령</h3>
+							<canvas id="age-chart" width="500" height="300"></canvas>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 	
-	${vo.pcontext}
-	
-	<h1>파티원 통계</h1>
-	<c:choose>
-		<c:when test="${isEmpty eq true}">
-			해당 파티에 참여중인 파티원이 없습니다.
-		</c:when>
-		<c:otherwise>
-			<button onclick="showGraph('joinCntGraph')">참여횟수</button>
-			<button onclick="showGraph('genderGraph')">성별</button>
-			<button onclick="showGraph('ageGraph')">연령</button>
-			<div id="joinCntGraph">
-				<h3>참여횟수</h3>
-				<canvas id="joinCnt-chart" width="500" height="300"></canvas>
-			</div>
-			<div id="genderGraph">
-				<h3>성별</h3>
-				<canvas id="gender-chart" width="500" height="300"></canvas>
-			</div>
-			<div id="ageGraph">
-				<h3>연령</h3>
-				<canvas id="age-chart" width="500" height="300"></canvas>
-			</div>
-		</c:otherwise>
-	</c:choose>
-	
-	<h1>파티 장소</h1>
-	${vo.sido} ${vo.sigungu} ${vo.address} ${vo.detailAddress} <br/><br/><br/>
-	<div id="map" style="width:100%;height:350px;z-index:0;"></div>
+	<div class="location-party">
+		<div class="location-party-text">
+			<h1>파티 장소</h1>
+			${vo.sido} ${vo.sigungu} ${vo.address} ${vo.detailAddress} <br/><br/><br/>
+			<div id="map" style="width:100%;height:350px;z-index:0;"></div>
+		</div>
+	</div>
 	
 	<div id="middle"></div>
 	<div id="footer"></div>
 	
 	<div id="banner">
-		<h1>함께 하시겠습니까?</h1>
+		<h3><b>함께 하시겠습니까?</b></h3>
+			<div class="banner-text-1">
+				<b>시작일</b> <br/>
+				${vo.formatStartDate} <br/>
+			</div>
+			<div class="banner-text-2">
+				<b>종료일</b> <br/>
+				${vo.formatEndDate} <br/>
+			</div>
+			<div class="banner-text-3">
+				<b>장소</b> <br/>
+				${vo.sido} ${vo.sigungu} ${vo.address} ${vo.detailAddress}
+			</div>
 		<a href="${contextPath}/partyDetail/bookingParty?pNum=${vo.pnum}"><div id="bannerBtn">파티 참여하기</div></a>
 	</div>
 	
@@ -212,7 +408,28 @@
 		var joinCntChart = null;
 	    var genderChart = null;
 	    var ageChart = null;
-	
+	    var activeButton = null; // 현재 활성화된 버튼
+
+	    var buttons = document.getElementsByClassName("statsBtn");
+	    for (var i = 0; i < buttons.length; i++) {
+	        buttons[i].addEventListener("click", function() {
+	            toggleActive(this);
+	        });
+	    }
+
+	    function toggleActive(button) {
+	        if (button.classList.contains("active")) {
+	            button.classList.remove("active");
+	        } else {
+	            if (activeButton !== null) {
+	                activeButton.classList.remove("active");
+	            }
+	            button.classList.add("active");
+	            activeButton = button;
+	        }
+	    }
+
+	    
 		// 초기에 참여횟수 그래프만 보이도록 설정
 		createJoinCntChart();
 	    /* document.getElementById("joinCntGraph").style.display = "block"; */
@@ -245,6 +462,7 @@
 	                graph.style.display = "none";
 	            }
 	        }
+	        
 	    }
 	    
 	    function createJoinCntChart() {
@@ -258,7 +476,7 @@
 			          backgroundColor: ["#dcdcdc", "#dcdcdc", "#dcdcdc", "#dcdcdc"],
 			          borderColor: ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
 			          borderWidth: [2, 2, 2, 2, 2],
-			          hoverBackgroundColor: ["#FF8200", "#FF8200", "#FF8200", "#FF8200"],
+			          hoverBackgroundColor: ["#FF385C", "#FF385C", "#FF385C", "#FF385C"],
 			          data: [${joinCntPercent[0]}, ${joinCntPercent[1]}, ${joinCntPercent[2]}, ${joinCntPercent[3]}]
 			        }
 			      ]
@@ -301,7 +519,7 @@
 			          backgroundColor: ["#dcdcdc", "#dcdcdc"],
 			          borderColor: ["#FFFFFF", "#FFFFFF"],
 			          borderWidth: [2, 2, 2, 2, 2],
-			          hoverBackgroundColor: ["#FF8200", "#FF8200"],
+			          hoverBackgroundColor: ["#FF385C", "#FF385C"],
 			          data: [${genderPercent[0]},${genderPercent[1]}]
 			        }
 			      ]
@@ -344,7 +562,7 @@
 			          backgroundColor: ["#dcdcdc", "#dcdcdc", "#dcdcdc", "#dcdcdc", "#dcdcdc"],
 			          borderColor: ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
 			          borderWidth: [2, 2, 2, 2, 2],
-			          hoverBackgroundColor: ["#FF8200", "#FF8200", "#FF8200", "#FF8200", "#FF8200"],
+			          hoverBackgroundColor: ["#FF385C", "#FF385C", "#FF385C", "#FF385C", "#FF385C"],
 			          data: [${agePercent[0]}, ${agePercent[1]}, ${agePercent[2]}, ${agePercent[3]}, ${agePercent[4]}]
 			        }
 			      ]
@@ -377,5 +595,6 @@
 	    }
 	</script>
 	
-</body>
-</html>
+<!-- </body>
+</html> -->
+<%@ include file="../common/fixFooter.jsp" %>

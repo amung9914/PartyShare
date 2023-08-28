@@ -35,6 +35,12 @@ public class wishlistController {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		try {
 			List<WishlistVO> wishlist = ws.readWishlist(member.getMnum());
+			
+			for(WishlistVO vo : wishlist) {
+				List<PartyVO> parties = ws.readPerWishlist(vo.getAlias());
+				vo.setParties(parties);
+			}
+				
 			model.addAttribute("wishlist", wishlist);
 		} catch (Exception e) {
 			System.out.println("wishlist하다가 오류 났어요");
@@ -89,7 +95,6 @@ public class wishlistController {
 	        return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
 	    }
 	}
-	
 	@GetMapping("/getWishList")
 	@ResponseBody
 	public List<WishListDTO> getWishList(int mnum){
@@ -104,5 +109,4 @@ public class wishlistController {
 		}
 		return list;
 	}
-	
 }
