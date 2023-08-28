@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitc.member.vo.MemberVO;
 import com.bitc.party.vo.PartyVO;
 import com.bitc.wishlist.service.wishlistService;
-import com.bitc.wishlist.vo.WishListDTO;
 import com.bitc.wishlist.vo.WishlistVO;
 
 import lombok.RequiredArgsConstructor;
@@ -35,6 +33,12 @@ public class wishlistController {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		try {
 			List<WishlistVO> wishlist = ws.readWishlist(member.getMnum());
+			
+			for(WishlistVO vo : wishlist) {
+				List<PartyVO> parties = ws.readPerWishlist(vo.getAlias());
+				vo.setParties(parties);
+			}
+				
 			model.addAttribute("wishlist", wishlist);
 		} catch (Exception e) {
 			System.out.println("wishlist하다가 오류 났어요");
@@ -88,21 +92,6 @@ public class wishlistController {
 	        // 로그인되지 않은 경우 에러 응답을 생성 (예: HttpStatus.UNAUTHORIZED)
 	        return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
 	    }
-	}
-	
-	@GetMapping("/getWishList")
-	@ResponseBody
-	public List<WishListDTO> getWishList(int mnum){
-		List<WishListDTO> list = null;
-		try {
-			list = ws.getWishList(mnum);
-			
-			System.out.println(list);
-		} catch (Exception e) {
-			System.out.println("getWishList하다가 오류났어요.");
-			e.printStackTrace();
-		}
-		return list;
 	}
 	
 }
