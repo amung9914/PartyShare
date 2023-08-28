@@ -124,9 +124,14 @@
 			  		<img src="${path}/resources/img/menu.png"/>
 			  </button>
 			  <ul class="dropdown-menu">
+
 				  <c:choose>
 				  	<c:when test="${!empty loginMember}">
+                 <c:if test="${loginMember.mid eq 'admin'}">
+			    	<li><a class="dropdown-item" href="${path}/admin/admin">관리자페이지</a></li>
+			    </c:if>
 				  		<li><a class="dropdown-item" href="${path}/member/account">계정관리</a></li>
+              <li><a class="dropdown-item" href="${path}/member/bonpost">확인한 알림</a></li>
 				  		<li><a class="dropdown-item" href="${path}/member/logout">로그아웃</a></li>
 				  	</c:when>
 				  	<c:otherwise>
@@ -134,6 +139,7 @@
 					    <li><a class="dropdown-item" href="${path}/member/goJoin">회원가입</a></li>
 				  	</c:otherwise>
 			  	</c:choose>
+
 			  </ul>
 			</div>
 		</div>
