@@ -49,8 +49,10 @@
 	<div> <br/>
 	<button id="home">홈화면</button>
 	<button id="user_list">모든 유저 목록</button>
+	</div>
 	
-	
+	<div>  
+	<button id="blackList">블랙리스트 페이지</button>
 	</div>
 	<br/>
 	
@@ -91,6 +93,11 @@
 			console.log('안되노?');
 		});
 		
+		$("#blackList").click(function () {
+			console.log('되는데?');
+			location.href = '<c:url value="/report/admin_blackList"/>';
+			console.log('안되노?');
+		});
 		
 		$("#modifyInterval").click(function () {
 			console.log('되는데?');
