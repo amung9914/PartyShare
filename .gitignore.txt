@@ -15,7 +15,7 @@ local.properties
 .recommenders
 
 # ignore properties file
-api.properties
+AdminController.class
 
 # External tool builders
 .externalToolBuilders/
