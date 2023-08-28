@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -124,17 +125,23 @@ public class AdminController {
  	
  	
 	
- 	@GetMapping("admin/memberList")
- 	public ResponseEntity<List<MemberVO>> memberList(Criteria cri){
+ 	@GetMapping("admin/memberList/{page}")
+ 	public ResponseEntity<List<MemberVO>> memberList(Criteria cri 
+ 			,@PathVariable( name="page") int page){
+ 		System.out.println(page +"page");
  		ResponseEntity<List<MemberVO>> entity = null;
- 		
+ 		//	int startNum = ((1-page)*15)+1;
+ 		//	System.out.println(startNum);
  		try {
  			cri.setPerPageNum(15);
+ 			cri.setPage(page);
+ 			System.out.println(cri.getStartRow());
 			List<MemberVO> list = as.memberList(cri);
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(MediaType.APPLICATION_JSON);
 			entity = new ResponseEntity<>(list,header,HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			entity = new ResponseEntity<List<MemberVO>>(HttpStatus.BAD_REQUEST);
 		}
  		System.out.println(entity);

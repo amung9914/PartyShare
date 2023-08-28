@@ -14,23 +14,123 @@
 <meta charset="UTF-8">
 <title>freeBoardRead.jsp</title>
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
+    
+    #container {
+    	margin: 0 auto;
+		width: 650px;
+    }
+    
+    #title {
+		width: 100%;
+		height: 35px;
+		padding: 15px 15px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		border: none;
+		font-size: 30px;
+		outline: none;
+	}
+	
+	#writer {
+		border: none;
+		outline: none;
+		font-size: 16px;
+		padding-left: 15px;
+	}
+	
+	#writingDate {
+		padding-left: 15px;
+	}
+	
+	#viewCnt {
+		padding-left: 15px;
+	}
+    
 	#content {
-		border : 1px solid gray;
 		padding : 10px;
 		margin : 10px; 
 	}
 	
-	#writeComment {
-		border : 1px solid gray;
-		padding : 10px;
-		margin : 10px; 
+	#buttons {
+		text-align: right;
 	}
-
+	
+	#buttons a{
+		text-decoration: none;
+		color: #FF385C;
+		font-weight: bold;
+	}
+	
+	/* 댓글 작성 */
+	#writeComment {
+		display: flex;
+		margin: 20px;
+	}
+	
+	#writeComment #addBtn {
+		width: 21%;
+		background-color: #FF385C;
+		color: white;
+		border: none;
+		cursor: pointer;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	
+	#writeComment #addBtn:hover {
+		background-color: #FF6666;
+	}
+	
+	#writeComment #cText {
+		font-size: 16px;
+		padding: 6px;
+	}
+	
+	/* 댓글 수정창 */
 	#modDiv {
-		border : 1px solid black;
+		border : 1px solid lightgray;
 		padding : 10px;
 		display : none;
 	}
+	
+	#modDiv #modText{
+		border : 1px solid #FFDDDD;
+		width: 100%;
+		outline: none;
+	}
+	
+	#modBtn {
+		padding: 5px;
+		width: 70px;
+		background-color: #FF385C;
+		color: white;
+		font-weight: bold;
+		border: none;
+		border-radius: 30px;
+		cursor: pointer;
+		outline: none;
+	}
+	
+	#modBtn:hover {
+		background-color: #FF6666;
+	}
+	
+	#closeBtn {
+		padding: 5px;
+		width: 70px;
+		background-color: #DADADA;
+		color: black;
+		font-weight: bold;
+		border: none;
+		border-radius: 30px;
+		cursor: pointer;
+	}
+	
+	#closeBtn:hover {
+    	background-color: #E9E9E9;
+    }
 
 	#comments li {
 		list-style : none;
@@ -41,12 +141,22 @@
 	}
 	
 	#pagination li{
-		list-style : none;
-		float : left;
-		padding : 3px;
-		border : 1px solid skyblue;
-		margin : 3px;
+		width: 11px;
+		font-size: 14px;
+		text-align: center;
+	    display: inline-block;
+	    margin: 20px 3px;
+	    padding: 5px 10px;
+	    border: 1px solid #D6D6D6;
+	    background-color: white;
+	    border-radius: 3px;
 	}
+	
+	#pagination li:hover{
+		background-color: #FFE6E6;
+	    color: #fff;
+	    border: 1px solid #D6D6D6;
+	}	
 	
 	#pagination li a{
 		text-decoration : none;
@@ -54,77 +164,87 @@
 	}
 	
 	#pagination li a.active{
-		color : red;
+		font-weight: bold;
+		color : #FF385C;
 	}
+	
+	.commentBtn {
+		padding: 5px;
+		width: 70px;
+		background-color: #DADADA;
+		color: black;
+		font-weight: bold;
+		border: none;
+		border-radius: 30px;
+		cursor: pointer;
+		outline: none;
+	}
+	
+	.commentBtn:hover {
+    	background-color: #E9E9E9;
+    }
+	
 </style>
 </head>
 <body>
-	<h1>게시물 상세보기</h1>
-	
-	<!-- 댓글 수정창 -->
-	<div id="modDiv">
-		<!--댓글 작성자 닉네임 저장 -->
-		<div id="modMnick"></div>
-		<!-- 댓글 내용 수정 -->
-		<div>
-			<!-- 댓글 번호, 댓글 작성자 아이디 저장 -->
-			<input type="hidden" id="modCno" name="modCno"/>
-			<input type="hidden" id="modMid" name="modMid"/>
-			<textarea id="modText">안농</textarea>
+	<div id="container">
+		<!-- 댓글 수정창 -->
+		<div id="modDiv">
+			<!--댓글 작성자 닉네임 저장 -->
+			<div id="modMnick"></div>
+			<!-- 댓글 내용 수정 -->
+			<div>
+				<!-- 댓글 번호, 댓글 작성자 아이디 저장 -->
+				<input type="hidden" id="modCno" name="modCno"/>
+				<input type="hidden" id="modMid" name="modMid"/>
+				<textarea id="modText" cols="80" rows="3"></textarea>
+			</div>
+			<div>
+				<button id="modBtn">수정</button>
+				<button id="closeBtn">닫기</button>
+			</div>
 		</div>
-		<div>
-			<button id="modBtn">수정</button>
-			<button id="closeBtn">닫기</button>
+		
+		<input type="text" id="title" name="title" value="${freeBoardVO.title}" readonly/>
+		<input type="text" id="writer" name="writer" value="${freeBoardVO.mnick}" readonly/> <br/>
+		<span id="writingDate">${freeBoardVO.formatDate}</span>
+		<span id="viewCnt">조회수 : ${freeBoardVO.viewCnt}</span>
+		<br/><br/><hr/>
+		
+		<div id="content">
+			${freeBoardVO.context}
 		</div>
+		<br/><br/><hr/>
+		
+		<div id="buttons">
+			<c:if test="${freeBoardVO.category eq '일반'}">
+				<a href="" id="reply">답변글 작성</a> |
+			</c:if>
+				<a href="" id="modify">수정</a> |
+				<a href="" id="remove">삭제</a> |
+				<a href="" id="report">신고</a> |
+			<a href="" id="list">목록</a>
+		</div>
+		
+		<!-- 댓글 작성 -->
+		<div id="writeComment">
+			<textarea name="commentText" id="cText" cols="78" rows="3" placeholder="댓글을 남겨주세요."></textarea> <br/>
+			<button id="addBtn">댓글 작성</button>
+		</div>
+		
+		<!-- 댓글 목록 -->
+		<ul id="comments"></ul>
+		
+		<!-- 댓글 페이징 블럭 정보 -->
+		<ul id="pagination" style="text-align:center"></ul>
+		
+		<form id="submitForm" method="POST">
+			<input type="hidden" name="mid" value="${freeBoardVO.mid}"/>
+			<input type="hidden" name="bno" value="${freeBoardVO.bno}"/>
+			<input type="hidden" name="page" value="${cri.page}"/>
+			<input type="hidden" name="perPageNum" value="${cri.perPageNum}"/>
+		</form>
 	</div>
-	
-	<div>
-		<label>제목</label>
-		<input type="text" name="title" value="${freeBoardVO.title}" readonly/>
-	</div>
-	<div>
-		<label>작성자</label>
-		<input type="text" name="writer" value="${freeBoardVO.mnick}" readonly/>
-	</div>
-	<div>
-		조회수 : ${freeBoardVO.viewCnt}
-	</div>
-	<div>
-		작성일 : ${freeBoardVO.formatDate}
-	</div>
-	<div id="content">
-		<label>내용</label> <hr/>
-		${freeBoardVO.context}
-	</div>
-	<div>
-		<c:if test="${freeBoardVO.category eq '일반'}">
-			<a href="" id="reply">답변글 작성</a> |
-		</c:if>
-			<a href="" id="modify">수정</a> |
-			<a href="" id="remove">삭제</a> |
-			<a href="" id="report">신고</a> |
-		<a href="" id="list">목록</a>
-	</div>
-	
-	<!-- 댓글 작성 -->
-	<div id="writeComment">
-		댓글 작성 <hr/> 
-		<textarea name="commentText" id="cText" cols="30" rows="2"></textarea> <br/>
-		<button id="addBtn">댓글 작성</button>
-	</div>
-	
-	<!-- 댓글 목록 -->
-	<ul id="comments"></ul>
-	
-	<!-- 댓글 페이징 블럭 정보 -->
-	<ul id="pagination"></ul>
-	
-	<form id="submitForm" method="POST">
-		<input type="hidden" name="mid" value="${freeBoardVO.mid}"/>
-		<input type="hidden" name="bno" value="${freeBoardVO.bno}"/>
-		<input type="hidden" name="page" value="${cri.page}"/>
-		<input type="hidden" name="perPageNum" value="${cri.perPageNum}"/>
-	</form>
 	<script>
 		var result = '${result}';
 		if(result != null && result != ''){
@@ -181,18 +301,18 @@
 				
 				if(this.showBoard === 'N'){
 					str += "<li>";
-					str += "작성자 : " + mnick + "<br/>작성일시 : " + regdate;
-					str += "<br/><hr/>" + "신고 접수로 인해 블라인드 처리된 댓글입니다.";
+					str += "<b>" + mnick + "</b>" + "&nbsp;&nbsp;&nbsp;" + "<b>" + regdate + "</b>";
+					str += "<br/><br/>" + "신고 접수로 인해 블라인드 처리된 댓글입니다.";
 					str += "</li>";
 				} else {
 					str += "<li>";
-					str += "작성자 : " + mnick + "<br/>작성일시 : " + regdate;
+					str += "<b>" + mnick + "</b>" + "&nbsp;&nbsp;&nbsp;" + "<b>" + regdate + "</b>" + "&nbsp;&nbsp;&nbsp;";
 					// 수정할 댓글 번호, text, auth
 					// data가 붙으면 사용자 정의형 속성
-					str += ` - <button id="modifyBtn_\${cno}" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-text="\${cText}">수정</button>`
-						 + ` <button id="deleteBtn_\${cno}" data-cno=\${cno} data-mid=\${mid}>삭제</button> `
-						 + ` <button id="reportBtn_\${cno}" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-cno=\${cno}>신고</button> `
-					str += "<br/><hr/>" + preText;
+					str += ` <button id="modifyBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-text="\${cText}">수정</button>`
+						 + ` <button id="deleteBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid}>삭제</button> `
+						 + ` <button id="reportBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-cno=\${cno}>신고</button> `
+					str += "<br/><br/>" + preText;
 					str += "</li>";
 				}
 			});
@@ -356,7 +476,7 @@
 		    let toMid = $(this).data("mid");
 		    let mnick = $(this).data("mnick");
 		    let cno = $(this).data("cno");
-		    
+
 		    if (mid === "") {
 		        alert("신고요청을 위해선 로그인이 필요합니다.");
 		        return;
@@ -364,7 +484,7 @@
 			
 			// 팝업창 오픈
 			let url = "${contextPath}/freeBoard/reportPopup?fromMid=" + fromMid + "&toMid=" + toMid + "&mnick=" + mnick + "&cno=" + cno;
-		    window.open(url, "댓글 신고", "width=400, height=300, left=100, top=50");
+		    window.open(url, "댓글 신고", "width=400, height=300, left=550, top=250");
 		});
 		
 	</script>
@@ -420,7 +540,7 @@
 				
 				// 팝업창 오픈
 				let url = "${contextPath}/freeBoard/reportPopup?fromMid=${loginMember.mid}&toMid=${freeBoardVO.mid}&mnick=${freeBoardVO.mnick}&bno=${freeBoardVO.bno}";
-			    window.open(url, "댓글 신고", "width=400, height=300, left=100, top=50");
+			    window.open(url, "댓글 신고", "width=400, height=300, left=550, top=250");
 			});
 			
 		});

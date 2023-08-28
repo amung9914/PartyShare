@@ -9,36 +9,78 @@
 <meta charset="UTF-8">
 <title>wishlist.jsp</title>
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
+
 	ul {
 	    display: flex;
 	    flex-wrap: wrap;
-    	justify-content: flex-start;
 		list-style-type : none;
+		justify-content: center;
 	}
 	
 	li {
         margin : 20px;
 	}
 	
+	li a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	#wishlist-title {
+		margin-left: 40px;
+    	margin-top: 20px;
+    	margin-bottom: 40px;
+	}
+	
 	.wishlistBox {
-		display: block;
-		width: 40vw;
+		display: inline-block;
+		width: 350px;
 		height: 200px;
-		padding : 10px;
 		border-radius : 8px;
 		background-color : white;
 		box-shadow : 0px 2px 4px rgba(0, 0, 0, 0.2);
 	}
+
+    /* 이미지 스타일 */
+    .partyImg {
+        width: 100%;
+        max-width: 100%;
+        max-height: 200px; 
+        border-radius: 5px;
+        cursor: pointer;   
+        object-fit: cover;
+    }
 </style>
 </head>
 <body>
-	<h1>위시리스트</h1>
+	<div id="wishlist-title">
+		<h1>위시리스트</h1>
+	</div>
 	<ul>
 		<c:set var="seen" value="" />
 		<c:forEach var="wishlist" items="${wishlist}">
    			 <c:if test="${fn:indexOf(seen, wishlist.alias) eq -1}">
 			      <li>
-			      	<a href="${contextPath}/wishlist/perWishlist?alias=${wishlist.alias}"><div class="wishlistBox">${wishlist.alias}</div></a>
+			      	<a href="${contextPath}/wishlist/perWishlist?alias=${wishlist.alias}">
+			      		<div class="wishlistBox">
+			      		<c:choose>
+                            <c:when test="${not empty wishlist.parties}">
+                            <div class="partyImages">
+                                <img class="partyImg" src="${contextPath}/upload/party${wishlist.parties[0].partyImage1}"/>
+                                <%-- <img class="partyImg" src="${contextPath}/upload/party${wishlist.parties[0].partyImage2}"/>
+                                <img class="partyImg" src="${contextPath}/upload/party${wishlist.parties[0].partyImage3}"/> --%> 
+                          	</div>
+                            </c:when>
+                            <c:otherwise>
+                                <!-- 파티 이미지가 없을 경우 대체 이미지 등을 표시 -->
+                                <%-- <img class="partyImg" src="${contextPath}/resources/img/noPartyImage.jpg"/> --%>
+                            </c:otherwise>
+                        </c:choose>
+			      		</div>
+			      		<h2>${wishlist.alias}</h2>
+			      	</a>
 			      </li>
 			      <c:set var="seen" value="${seen}${wishlist.alias}," />
 		    </c:if>

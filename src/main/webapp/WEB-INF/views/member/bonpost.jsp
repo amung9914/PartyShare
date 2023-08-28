@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
@@ -33,7 +31,7 @@
 		function bonPostList(){
 			
 			str = "";
-			$ajax({
+			$.ajax({
 				url : '${path}/notice/bonpostList', 
 				method : 'post',
 				data:{
@@ -59,10 +57,10 @@
 						str += `<td>\${this.context}</td>`; 
 						str += '</tr>';
 						str += '<tr>';
-						str += '<td colspan="3"><button id="deleteBtn" onclick="deletd()";
+						str += '<td colspan="3"><button id="deleteBtn" onclick="deletePost()" ';
 						str += ' data-num="\${this.no}">확인</button></td>';
 						str += '</tr>';
-					}
+					}) // foreach
 					str += '</table>'; // 끝
 					$("#post").html(str);
 				},
@@ -70,10 +68,10 @@
 					console.log(error)	
 				}
 				
-			})		
-		}
+			})	//ajax	
+		} //end 
 		
-		function delete() {
+		function deletePost() {
 			let no = $("#deleteBtn").data("num");
 			$ajax({
 				url : '${path}/notice/deletePost', 

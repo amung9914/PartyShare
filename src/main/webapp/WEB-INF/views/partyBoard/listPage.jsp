@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>listPage.jsp</title>
+<%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- 부트스트랩 추가 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
-</script>
 <style>
 	a{
 	text-decoration:none;
@@ -32,16 +21,27 @@
 	.title{
 		width: 50%;
 	}
-	table{
-		text-align: left;
-	}
+
 	.tableBox{
 		text-align: -webkit-center;
+		    margin: 0px 50px;
 	}
+	.input-group{
+		margin:100px 0px;
+	}
+	/* footer */
+	html, body {
+    height: 90%
+}
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+}
+	
 	
 </style>
-</head>
-<body>
+	<div id="wrap">
 	<div class="tableBox">
 	<div class="control">
 	<form name="changeCri" action="listPage" method="GET">
@@ -54,7 +54,7 @@
 	</form>
 	<button class="btn btn-outline-secondary" onclick="location.href='register?pnum=${pnum}';">
 	<img src="${path}/resources/img/write.png"/>
-	글쓰기
+	<b>글쓰기</b>
 	</button>	
 	</div>
 	
@@ -75,9 +75,9 @@
 				<c:choose>
 						<c:when test="${board.showboard == 'y'}">
 							<tr>
-								<td>${board.bno}</td>
-								<td style="color: #FF385C;">
-									[공지]<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>">${board.title}</a>
+								<td style="color: #FF385C;"><b>공지</b></td>
+								<td>
+									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>"><b>${board.title}</b></a>
 								</td>
 								<td>${board.writer}</td>
 								<td> <!-- 당일이면 시간표시 / 아니면 날짜표시 -->
@@ -98,7 +98,7 @@
 						<c:otherwise>
 							<tr>
 								<td></td>
-								<td>삭제된 게시물 입니다.</td>
+								<td>규제된 게시물 입니다.</td>
 								<td></td>
 								<td> <!-- 삭제 요청 시간 출력 / 당일이면 시간표시 / 아니면 날짜표시 -->
 									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
@@ -135,7 +135,7 @@
 									<c:if test="${board.category eq 'reply'}">
 									ㄴ
 									</c:if>
-									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>">${board.title}</a>
+									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>"><b>${board.title}</b></a>
 								</td>
 								<td>${board.writer}</td>
 								
@@ -157,7 +157,7 @@
 						<c:otherwise>
 							<tr>
 								<td></td>
-								<td>삭제된 게시물 입니다.</td>
+								<td><b>삭제된 게시물 입니다.</b></td>
 								<td></td>
 								<td> <!-- 삭제 요청 시간 출력 / 당일이면 시간표시 / 아니면 날짜표시 -->
 									<f:formatDate var="now" pattern="yyyy년MM월dd일" value="<%= new java.util.Date() %>"/>
@@ -213,7 +213,7 @@
 			<input type="hidden" name="pnum" value="${pnum}"/>
 			<div class="input-group">
 				<select class="form-select" name="searchType">
-					<option value="n">--------------------------</option>
+					<option value="n">검색 내용 선택</option>
 					<option value="t">제목</option>
 					<option value="c">내용</option>
 					<option value="w">작성자</option>
@@ -226,12 +226,11 @@
 			</div>
 			
 	</form>
-	
+	<br/>
 	
 	</div>
-</body>
-</html>
-
+	</div>
+<%@ include file="../common/footer.jsp" %>
 
 
 

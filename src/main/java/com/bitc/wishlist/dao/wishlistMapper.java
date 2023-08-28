@@ -30,5 +30,4 @@ public interface wishlistMapper {
 	
 	@Select("SELECT partyImage1 FROM party WHERE pnum=#{pnum}")
 	public String getPartyImage1(int pnum);
-	
 }

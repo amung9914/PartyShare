@@ -211,6 +211,7 @@
 			<tr align="center">
 				<td colspan="3">참여 횟수 : ${joinCnt}</td>
 			</tr>
+			
 			<c:choose>
 				<c:when test="${!empty joinPartyList}">
 					<c:forEach var="list" items="${joinPartyList}">
@@ -230,6 +231,7 @@
 							<td>${list.address} ${list.detailAddress}</td>
 						</tr>
 					</c:forEach>
+					
 					<tr id="pmtr">
 						<td colspan="3">
 							<!-- PageMaker == pm -->
