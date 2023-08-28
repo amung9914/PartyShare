@@ -34,7 +34,7 @@
 	#header_searchBox{
 		width: 300px;
 		height: 80px;
-		margin-left: 25%;
+		margin-left: 30%;
 		text-align: center;
 		margin-top:1%;
 	}
@@ -46,34 +46,28 @@
 		width: 80%;
 		height: 50px;
 		outline: none;
-		border: 1px solid black;
-		border-radius: 50px;
+		border: 1px solid rgb(221,221,221);
+		border-radius: 100px;
 		text-align: center;
+		box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
+		
+		
 	}
 	#searchImg{
-		width: 50px;
-		height:50px;
-		border-radius: 25px;
-	}
-	#header_freeBoardDiv{
-		width: 7%;
-		height: 80px;
-		margin-left: 7%;
-		margin-top:1%;
-	}
-	#header_loginBox{
-		width: 10%;
-		height: 80px;
-		margin-left: 10%;
-		margin-top:1%;
-		
+		width: 40px;
+		height:40px;
+		position: relative;
+		right: 45px;
+		top: 5px;
 	}
 	#header_menuDiv{
 		width:3%;
 		height: 80px;
-		margin-left: 2%;
 		margin-top: 1%;
 		line-height: 50px;
+		position: absolute;
+		right: 0;
+		
 	}
 	#menuBtn{
 		border: none;
@@ -98,6 +92,7 @@
 <title>partyShare</title>
 </head>
 <body>
+<%@ include file="../member/login.jsp" %>
 	<div id="headerBox">
 		<div id="logoBox">
 			<img src="${path}/resources/img/redHeart.png" onclick="location.href='${path}/'"/>
@@ -109,12 +104,6 @@
 		      <img src="${path}/resources/img/search.png" id="searchImg" onclick="goListPage();"/>
 		    </div>
 		</div>
-		<div id="header_freeBoardDiv">
-			<button type="button" class="btn btn-outline-secondary" onclick="location.href='${path}/freeBoard/freeBoard';">자유게시판</button>
-		</div>
-		<div id="header_loginBox">
-			<%@ include file="../member/login.jsp" %>	
-		</div>
 		
 		<div id="header_menuDiv">
 			<div class="dropdown-center">
@@ -125,11 +114,14 @@
 				  <c:choose>
 				  	<c:when test="${!empty loginMember}">
 				  		<li><a class="dropdown-item" href="${path}/member/account">계정관리</a></li>
+				  		<li><a class="dropdown-item" href="${path}/party/createParty">파티생성</a></li>
+				  		<li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
 				  		<li><a class="dropdown-item" href="${path}/member/logout">로그아웃</a></li>
 				  	</c:when>
 				  	<c:otherwise>
 				  		<li><a class="dropdown-item" href="#" onclick="loginModalShow();">로그인</a></li>
 					    <li><a class="dropdown-item" href="${path}/member/goJoin">회원가입</a></li>
+					    <li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
 				  	</c:otherwise>
 			  	</c:choose>
 			  </ul>
@@ -138,6 +130,7 @@
 	</div>
 	<hr/>
 <br/>
+
 <c:if test="${!empty searchValue}">
 	<script>
 		$("#searchKeyword").val('${searchValue}');
