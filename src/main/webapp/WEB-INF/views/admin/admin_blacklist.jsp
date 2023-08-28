@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>게시판이오</title>
 <style>
   table {
     width: 70%;
