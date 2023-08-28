@@ -14,7 +14,7 @@ import com.bitc.report.vo.ReportVO;
 
 public interface freeBoardMapper {
 
-	@Select("SELECT COUNT(*) FROM freeboard")
+	@Select("SELECT COUNT(*) FROM freeboard WHERE category = '일반'")
 	public int totalCount() throws Exception;
 	
 	@Select("SELECT COUNT(*) FROM freeboard WHERE title LIKE CONCAT('%', #{keyword}, '%')")
