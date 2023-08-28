@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
 
@@ -130,14 +131,13 @@
 				  		<li><a class="dropdown-item" href="#" onclick="loginModalShow();">로그인</a></li>
 					    <li><a class="dropdown-item" href="${path}/member/goJoin">회원가입</a></li>
 				  	</c:otherwise>
-			  </c:choose>
+			  	</c:choose>
 			  </ul>
 			</div>
 		</div>
 	</div>
 	<hr/>
 <br/>
-${searchValue}
 <c:if test="${!empty searchValue}">
 	<script>
 		$("#searchKeyword").val('${searchValue}');
@@ -217,4 +217,3 @@ ${searchValue}
 		$("#loginModal").modal("show");
 	}
 </script>
-<%@ include file="search.jsp" %>
