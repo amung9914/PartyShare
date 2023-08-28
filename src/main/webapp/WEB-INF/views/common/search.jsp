@@ -152,6 +152,10 @@
 	border: 1px solid gray;
 }
 
+.card_Ptag{
+	font-size: 2px;
+}
+
 #keywordBtn {
 	position: block;
 	top: 100px;
@@ -179,6 +183,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <header id="searchHeader" >
 	<div id="barContatiner"></div>
+	
 	<div class="searchBtnContainer">
 		<div class="searchContainer">
 			<!-- oninput="keywordSearch()"> -->
@@ -186,13 +191,22 @@
 		    </div>
 		<!-- 버튼창 -->
 		<div class="buttonsContainer">
+		<button type="button" id="categoryBtn" data-targetContents="category" class="btn btn-outline-danger" class="searchBtn">카테고리 선택</button>
+		<button type="button" id="dateBtn" data-targetContents="date" class="btn btn-outline-danger" class="searchBtn">날짜 선택</button>
+		<button type="button" id="locationBtn" data-targetContents="location" class="btn btn-outline-danger" class="searchBtn">위치 선택</button>
+		</div>
+		
+		<!-- 
+		<div class="buttonsContainer">
 			<button data-targetContents="category" id="categoryBtn"
 				class="searchBtn">카테고리 선택</button>
-			<button data-targetContents="date" id="dateBtn" class="searchBtn">날짜
-				선택</button>
+			<button data-targetContents="date" id="dateBtn"
+			 class="searchBtn">날짜 선택</button>
 			<button data-targetContents="location" id="locationBtn"
 				class="searchBtn">위치 선택</button>
 		</div>
+		 -->
+		 
 	</div>
 	<div id="categoryTemplate" class='template'></div>
 	<div id="dateTemplate" class='template'></div>
@@ -298,15 +312,27 @@ var contextPath = '${pageContext.request.contextPath}';
   			dataType :"json",		// List<descpriptionVO>
   			success: function (list){
   				let str = "";
-  					str += `<div id="previous" onclick="previous(descriptionPage)">previous</div>`;
+  				
+  					str += `<div id="previous" onclick="previous(descriptionPage)">previous</div>`;			
+  					
   	//				str += `<div class='barItem' onclick='select("description"+"\${this.description}")'>`;
-  				$(list).each(function(){	
-  					str += `<div class='barItem' onclick='select("description"+"\${this.description}")'>`;
-  					str += `\${this.description}`;
-  					str += '</div>';
+  				$(list).each(function(){
+  					
+  					
+  			str+=		`<div class="card" class='barItem' onclick='select("description"+"\${this.description}")'>`;
+  			str+=	  `<img src="#" class="card-img-top" alt="...">`;
+  			str+=	  `<div class="card-body">`;
+  			str+=	    `<p class="card_Ptag" class="card-text" >\${this.description}</p>`;			//내용
+  			str+=	  `</div>`;
+  			str+=	`</div>`;
+  					
+  					
+//  					str += `<div class='barItem' class="card" onclick='select("description"+"\${this.description}")'>`;    /*  */
+//  					str += `\${this.description}`;																			/*  */
+//  					str += '</div>';																					/*  */
   				})
   					str += `<div id="next" onclick="next(descriptionPage)">next</div><br>`;
-  					str += `<div id="cancelDescription" onclick="cancel()">선택해제</div>`;
+  					str += `<div id="cancelDescription" onclick="cancel()">선택해제</div>`;                
   				$("#barContatiner").html(str);
   			},
   			error : function(error){
@@ -594,58 +620,12 @@ var contextPath = '${pageContext.request.contextPath}';
   		resultQuery = selectedDescription+"|"+selectedCategory+"|"
   		+selectedDate+"|"+selectedSido+"|"+selectedSigungu+"|"+selectedKeyword;
   		console.log("resultQ: " + resultQuery);					
-  		// 선택값이 없을 시  noValue
-  		// 이제 ajax로 보낸다
-  		listAjax(page,resultQuery);
   		console.log('listAjax호출 당시 page' + page);
   		console.log('listAjax호출 당시 resultQuery' + resultQuery);
-  		/*
-  		 $.ajax({
-  			url : "${path}/search/querySearch/"+page ,
-  			method : "GET",
-  			data : {
-  				resultQuery : resultQuery
-  			},
-  			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
-
-  			success :  function(partyList){
-  				goajax(partyList);
-  				*/
-  				
-  				
-  				/*
-  				console.log(partyList);
-  				let str = "";
-  				$(partyList).each(function(){
-  					let pname = this.pname;						//6
-  					let address = this.address;
-  					let date = this.formatStartDate +"~"+ this.formatEndDate;		
-  					let pnum = this.pnum;
-  					let path = this.partyImage1;
-  					let detailAddress = this.detailAddress;
-  					
-  					str += '<li>';
-  					// wishList 받아서 fullHeart.png로 출력
-  					str += "<img src='"+contextPath+"/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>"
-  					str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
-  					str += "<hr/>";
-  					str += "<strong onclick='partyDetail("+pnum+");' style='cursor: pointer;'>"+pname+"</strong><br/>";
-  					str += address+" "+detailAddress+"<br/>";
-  					str += date;
-  					str += "</li>";
-  				});
-  				
-  				$("#partys").html(str);
-  				*/
-  				
-				/*
-  			},
-  			error : function(error){
-  		//		alert(error);
-  			}
-  			
-  		}); 
-  		*/
+  		
+  		listAjax(page,resultQuery);
+  		
+  
   	} // select(factor)
   	
   	
@@ -667,7 +647,7 @@ var contextPath = '${pageContext.request.contextPath}';
 
   			success :  function(partyList){
   				console.log(partyList);
-  				printLista(partyList);
+  				printListAjax(partyList);
   				
  			},
   			error : function(error){
@@ -676,12 +656,12 @@ var contextPath = '${pageContext.request.contextPath}';
   			
   		}); 
   	} // select(factor)
-  	function printLista(data){
+  	function printListAjax(data){
 	let str = "";
-	if(page ==1){$("#partys").html(str);}
+
 	
 	let wishlistPnum = [];
-	console.log("printlista 들어옴");
+	console.log("printListAjax 들어옴");
 	if(data.wishlist != null){
 		$(data.wishlist).each(function(){
 			let wishPnum = this.pnum;
@@ -715,8 +695,15 @@ var contextPath = '${pageContext.request.contextPath}';
 		str += date;
 		str += "</li>";
 	});
-	console.log("출력");
-	$("#partys").append(str);
+	console.log("출력, 현재 페이지:" + page);
+	
+	if(page == 1){
+		$("#partys").html(str);
+		console.log('html');
+	}else{
+		console.log('appned');
+		$("#partys").append(str);
+	}
 //	$("#partys").html(str);
 } 
 
@@ -766,6 +753,7 @@ $(window).scroll(function(){
       $(".searchBtn").click(function () {
     //    console.log('searchBtnClick');
         // 타겟 정의
+        console.log('searchBtn확인');
         var targetContents = $(this).attr("data-targetContents");
         $("#searchModal").toggle("slow");
         console.log("targetContents console = " +targetContents);
@@ -805,10 +793,12 @@ $(window).scroll(function(){
       });
 
       // MODAL CLOSE
+      
       $(".close").click(function () {
         $("#searchModal").toggle("fast");
         $("#responsed").html("");
       });
+      
       // 스크롤
     /*  
     $(window).scroll(function(){
@@ -826,23 +816,7 @@ $(window).scroll(function(){
 		}); 
       */
       
-      /*
-      $("#selectBox").on('change', function() {
-		    // 선택된 option 요소의 value 값을 변수에 저장
-		    searchFor = $(this).val();
-		    
-		   
-		    
-		//	alert(searchFor)
-		//alert(keyword+'로 검색');
-	})
-	*/  //검색 기준에서 없앨 예정 -> 키워드 실시간으로 통일
-	  
-	 /*
-	 $("#searchKeyword").on('change',function(){
-	   	  
-	     })
-	     */
+    
 	
     }); // ready
     
