@@ -12,6 +12,8 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
 
 	#headerBox{
 		width: 100%;
@@ -111,11 +113,19 @@
 			  		<img src="${path}/resources/img/menu.png"/>
 			  </button>
 			  <ul class="dropdown-menu">
+
 				  <c:choose>
 				  	<c:when test="${!empty loginMember}">
+                 <c:if test="${loginMember.mid eq 'admin'}">
+			    	<li><a class="dropdown-item" href="${path}/admin/admin">관리자페이지</a></li>
+			    </c:if>
 				  		<li><a class="dropdown-item" href="${path}/member/account">계정관리</a></li>
+
 				  		<li><a class="dropdown-item" href="${path}/party/createParty">파티생성</a></li>
 				  		<li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
+
+              <li><a class="dropdown-item" href="${path}/member/bonpost">확인한 알림</a></li>
+
 				  		<li><a class="dropdown-item" href="${path}/member/logout">로그아웃</a></li>
 				  	</c:when>
 				  	<c:otherwise>
@@ -124,6 +134,7 @@
 					    <li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
 				  	</c:otherwise>
 			  	</c:choose>
+
 			  </ul>
 			</div>
 		</div>
@@ -149,7 +160,6 @@
 	
 	function headerSearchTitle(page){
 		const value= $("#searchKeyword").val();
-		console.log(value);
 		$.ajax({
 			type:"GET",
 			url:"${path}/party/searchPartyList/"+page,
