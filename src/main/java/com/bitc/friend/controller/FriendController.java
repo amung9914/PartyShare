@@ -14,7 +14,7 @@ import com.bitc.friend.vo.FriendVO;
 
 import lombok.RequiredArgsConstructor;
 
-@RequestMapping("/friend")
+@RequestMapping("/user/friend")
 @RequiredArgsConstructor
 @Controller
 public class FriendController {
@@ -32,38 +32,5 @@ public class FriendController {
 		return "friend/friendList";
 	}
 	
-	/**
-	 *	친구요청보낸목록 
-	 */
-	/*
-	@GetMapping("/requestList")
-	public String requestList(HttpSession session, Model model){
-		List<FriendVO> list = null;
-		try {
-			list = fs.requestList(session);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("list",list);
-		return "friend/requestList";
-	}
-	*/
-	
-	/**
-	 *	친구요청받은목록 
-	 */
-	/*
-	@GetMapping("/responseList")
-	public String responseList(HttpSession session, Model model){
-		List<FriendVO> list = null;
-		try {
-			list = fs.responseList(session);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("list",list);
-		return "friend/responseList";
-	}
-	*/
 
 }
