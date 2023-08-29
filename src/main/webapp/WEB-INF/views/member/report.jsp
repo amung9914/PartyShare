@@ -7,7 +7,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 부트스트랩 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- 부트스트랩 -->
 	<style>
+	
+	#wrap {
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 min-height: 100vh;
+	 margin: 0;
+	 background-color: #f0f0f0; /* 배경색은 예시로 설정됨 */
+	 padding: 20px 0; /* 내용 위아래로 약간의 간격 추가 */
+	 }
 	.reportDiv{
 	margin: 10px 0 0 0;
 	padding: 2px;
@@ -30,6 +44,26 @@
 	list-style: none;
 	}
 	
+	.listLi{
+	list-style: none;
+	}
+	#resultProfileContainer {
+    max-height: 300px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 생성 */
+    }
+    #result{
+    display:block;
+    height:350px;
+    max-height: 350px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 생성 */
+    }
+    b{
+    font-size: larger;
+    }
+    .selectImg{
+    border-color: blue;
+    }
+	
 	</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -37,10 +71,15 @@
 
 </head>
 <body>
-
+<button id="cancel">뒤로 가기</button>	<!-- data  --> <hr/>
+	<div id="wrap">
 	<form>						
-		신고자<input type="text" id="fromMid" value="${loginMember.mid}" disabled="disabled" class="reportInput"/>	<br/>
-		신고 대상(닉네임 입력) <input type="text" id="searchId"  oninput="searchNick()">
+	<!-- 	<div class="form-text" id="basic-addon4">신고자</div> -->
+	
+		<b>신고자</b> <br/>
+		<input type="text" id="fromMid" value="${loginMember.mid}" disabled="disabled" class="reportInput"/>	<br/>
+		<b>신고 대상</b> <br/>
+		<input type="text" id="searchId"  oninput="searchNick()">
 
 			
 			<div id="result">
@@ -68,7 +107,7 @@
 			
 		내용<textarea id="context" ></textarea>	<br/> 
 			<button id="report">신고하기</button>	<!-- data  -->
-			<button id="cancel">뒤로 가기</button>	<!-- data  --> <hr/>
+			
 		<br/><br/><br/><br/><br/>
 		 <button type="button" id="reportReview">나의 신고 내역 확인하기</button>	<!-- data  -->
 		 <button type="button" id="hideList">숨기기</button>	<!-- data  -->
@@ -78,6 +117,7 @@
 			</ul>
 			<p>신고 되면 뒤로 가기 활성화 : 주석 임시제거 테스트</p>
 	</form>
+	</div>
 	
 		<script type="text/javascript">
 		var searchIdValue = "";
@@ -111,26 +151,31 @@
 		            	obj = this;
 		            	profileNick = this.mnick;
 		            					// ~= 까지
-		            	profileName	= this.profileImageName; 			
-		            	
+		            	profileName	= this.profileImageName;
+		            	mnum = this.mnum;
 		                mid = this.mid;
 		                console.log(this);
 						
-		                str += '<li  id="targetInfo" onclick="pick()" ';
+		                str += '<li id="targetInfo' + mnum + '" class="listLi" data-profile="' + imgsrc + '" data-mnick="' + profileNick + '" data-mid="' + mid + '">';
+		                
+		                str += `\${profileNick}</li>`;    
+		                /*
+		                str += '<li  id="targetInfo' + mnum + '" class="listLi" onclick="pick(' + mnum + ')" ';
 		                str += `data-profile="\${imgsrc}" `;
 		                str += `data-mnick="\${profileNick}" `;
 		                str += `data-mid="\${mid}">`;
 		                str += `\${profileNick}</li>`;
+		                */
 		                // 닉네임선택
-		                str += `<li>`;
+		                str += `<li class="listLi">`;
 						str += `<img id="targetImg"`;
-						str += ' width="100px" ';
-						str += ' height="100px" ';
+						str += ' width="80px" ';
+						str += ' height="80px" ';
 						str += `onclick="pick()" `;
 //						str += `data-profile="\${imgsrc}"`; 
 //						str += `data-mnick="\${profileNick}"`;
 						str += `data-mid="\${mid}"`;
-						str += "src='${imgPath}"+profileName+"'";
+						str += "src='${imgPath}"+profileName+"'>";
 		                str += `</li>`;
 		                // 이미지선택
 		            }); // 반복문
@@ -144,26 +189,25 @@
 		    }); // ajax
 		}
 			
-		function pick() {
-			let pickSrc = $("#targetInfo").data("profile");	// 이미지경로
-			let pickNick = $("#targetInfo").data("mnick");	
-			$("#toNick").val(pickNick);
-			$("#toMid").val($("#targetInfo").data("mid"));
-			console.log("상대id : " + $("#toMid").val());
-			console.log('pick했습니다 : '+pickSrc+" 과 "+pickNick);
-			console.log($("#resultProfile").attr("src"));	// 선택x 
-			console.log("이 밑");
-			console.log($("#resultProfile"));
-			console.log($("#targetInfo"));					// 선택o	s.fn.init{li:}
-			console.log($("#resultNick"));					// s.fn.init{}
-			let str ="";
-			str += `<div>${pickNick}</div>`;
-				$("#resultProfile").attr("src" ,pickSrc);	//지정	X 
-			let image = $("#resultProfile").attr("src");
-			console.log(image + ":이미지경로");	 // 출력
-				$("#resultNick").html(str);
-	  		}
-		
+		function pick(mnum) {
+		    let pickSrc = $("#targetInfo" + mnum).data("profile");
+		    let pickNick = $("#targetInfo" + mnum).data("mnick");
+		    let pickMid = $("#targetInfo" + mnum).data("mid");
+		    
+		    $("#toNick").val(pickNick);
+		    $("#toMid").val(pickMid);
+		    
+		    console.log("상대id : " + $("#toMid").val());
+		    console.log('pick했습니다 : ' + pickSrc + " 과 " + pickNick);
+
+		    let str = `<div>${pickNick}</div>`;
+		    $("#resultProfile").attr("src", pickSrc);
+
+		    let image = $("#resultProfile").attr("src");
+		    console.log(image + ":이미지경로");
+
+		    $("#resultNick").html(str);
+		}
 		
 		
 		
@@ -216,6 +260,12 @@
 			// 관리자 SELECT = "SELECT * FROM report "
 			
 		  // 사유 선택이 변경될 때마다 값을 category 변수에 저장
+		  		 $(document).on("click", ".targetImg", function () {
+      			  let mnum = $(this).closest("li").attr("id").replace("targetInfo", "");
+     			  pick(mnum);
+    			});
+		  
+		  
 			    $("#category").change(function() {
 			        category = $(this).val();
 			        console.log("사유 value: " + category);
@@ -292,7 +342,14 @@
 			});// ready
 			</script>
 			
+			<script>
+			$(document).ready(function () {
+			    $("#targetImg").click(function () {
+			        $(this).addClass("selectImg");
+			    });
+			});
 			
+			</script>
 		
 	
 		

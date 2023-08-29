@@ -77,7 +77,7 @@
 		
 		$("#modifySearchOpt").click(function () {
 			console.log('되는데?');
-			location.href = '<c:url value="/search/modifySearchOpt"/>';
+			location.href = '<c:url value="/admin/modifySearchOpt"/>';
 			console.log('안되노?');
 		});
 		
@@ -89,7 +89,7 @@
 		
 		$("#reportPage").click(function () {
 			console.log('되는데?');
-			location.href = '<c:url value="/report/admin_report"/>';
+			location.href = '<c:url value="/admin/admin_report"/>';
 			console.log('안되노?');
 		});
 		

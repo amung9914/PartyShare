@@ -30,12 +30,12 @@ public class MoveController {
 		return "admin/user_list";
 	}
 	
-	@GetMapping("search/modifySearchOpt")
+	@GetMapping("admin/modifySearchOpt")
 	public String modifyCategory() {
 		return "/admin/modifySearchOpt";
 	}
 	
-	@GetMapping("report/admin_report")
+	@GetMapping("admin/admin_report")
 	public String admin_report() {
 		return "admin/admin_report";
 	}
@@ -62,18 +62,18 @@ public class MoveController {
  		return "/admin/start";
  	}
  	
- 	@GetMapping("member/post")
+ 	@GetMapping("user/post")
  	public String post() {
 		return "/member/post";
  	}
  	
- 	@GetMapping("member/report")
+ 	@GetMapping("user/report")
 	public String report() {
 		return "member/report";
 	}
  	
 
- 	@GetMapping("member/bonpost")
+ 	@GetMapping("user/bonpost")
 	public String bon_post() {
  		System.out.println("bon_post여기까지 왔어요");
 		return "member/bonpost";

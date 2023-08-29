@@ -43,7 +43,7 @@ b{
 		<div class="form-text" id="basic-addon4">참여하고 싶은 공간을 확인해보세요</div>
 		</a>
 		<br/>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/post?mId=${loginMember.mid}'/>">
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/user/post?mId=${loginMember.mid}'/>">
 		<b>알림</b>
 		<div class="form-text" id="basic-addon4">서비스 공지사항을 확인해보세요</div>
 		</a>
@@ -51,7 +51,7 @@ b{
 		<b>계정설정</b>
 		<div class="form-text" id="basic-addon4">계정 정보를 변경할 수 있습니다</div>
 		</a>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/report'/>">
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/user/report'/>">
 		<b>신고하기</b>
 		<div class="form-text" id="basic-addon4">불쾌감을 주는 사용자를 신고할 수 있습니다</div>
 		</a>

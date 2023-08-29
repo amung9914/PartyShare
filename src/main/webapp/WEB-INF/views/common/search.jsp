@@ -76,25 +76,26 @@
 /*모달 제어 끝*/
 
 /* 버튼 스타일 */
+ /*
 .searchBtn {
 	display: inline-block;
 	width: auto;
 	height: 50px;
-	background-color: #3498db;
+ 	background-color: #3498db; 
 	color: white;
 	border: none;
 	border-radius: 25%;
 	text-align: center;
 	font-size: 16px;
 	line-height: 50px;
-	margin-right: 10px;
+	margin-right: 10px; 
 	cursor: pointer;
 
-	/* position: absolute; 
-      top: 300px; */
-	/* left:100px; */
+	 position: absolute; 
+      top: 300px; 
+	 left:100px; 
 }
-
+*/
 /* 버튼과 검색창을 감싸는 부모 컨테이너 스타일 */
 
 /* 검색창을 감싸는 div 스타일 */
