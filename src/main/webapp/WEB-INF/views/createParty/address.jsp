@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/header.jsp" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 	
@@ -14,6 +15,11 @@
 		text-align: left;
 		border: 1px solid rgb(221,221,221);
 		box-shadow: rgba(0, 0, 0, 0.18) 0px 6px 16px;
+	}
+	#addressBox input{
+	  border: 1px solid rgb(221,221,221);
+	  box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
+	  padding: 2px;
 	}
 	#address{
 		width: 511px;
@@ -53,6 +59,7 @@
 			<input type="hidden" id="sigungu" name="sigungu"/>
 			<input type="hidden" id="lat" name="lat">
 	    	<input type="hidden" id="lng" name="lng">
+	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 	</div>
 	

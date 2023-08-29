@@ -3,9 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ include file="common/header.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<style type="text/css">
+<style>
 	html, body {
 	    height: 100%
 	    
@@ -19,15 +20,8 @@
 	    padding-bottom: 120px;
 	}
 	
-	#title{
-	
-	}
-	
-	#modifyContainer{
-	
-	}
 	#modifyBox{
-		width: 50%;
+		width: 30%;
 	}
 	
 	.profile_img_wrap{
@@ -108,11 +102,11 @@
 		width: 200px;
 		height: 200px;
 	}
-	#pmtr{
+	#pmBox{
 		text-align: center;
 		font-size: 20px;
 	}
-	#pmtr a{
+	#pmBox a{
 		text-decoration: none;
 		color:black;
 	}
@@ -148,7 +142,7 @@
 		</div>
 	</div>
 	
-	<form action="${path}/member/modify" method="post" enctype="multipart/form-data">
+	<form action="${path}/user/modify" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="mnum" value="${loginMember.mnum}"/>
 		<input type="hidden" name="mbanCnt" value="${loginMember.mbanCnt}"/>
 		<input type="hidden" name="mjoinCnt" value="${loginMember.mjoinCnt}"/>
@@ -210,8 +204,10 @@
 							/>여자
 						</td>
 					</tr>
+					
 					<tr>
 						<td colspan="2" style="text-align: center">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<button class="btn btn-dark">수정완료</button>
 						</td>
 					</tr>
@@ -224,7 +220,7 @@
 		<c:choose>
 			<c:when test="${!empty joinPartyList}">
 				<c:forEach var="list" items="${joinPartyList}">
-					<div class="card mb-3" style="max-width: 540px;" onclick="partyDetail(${list.pnum});" style="cursor:pointer;">
+					<div class="card mb-3" style="max-width: 540px; cursor: pointer;" onclick="partyDetail(${list.pnum});">
 					  <div class="row g-0">
 					    <div class="col-md-4">
 					      <img src="${path}/image/printPartyImage?fileName=${list.partyImage1}" class="img-fluid rounded-start" >
@@ -239,24 +235,24 @@
 					  </div>
 					</div>
 				</c:forEach>
-				<div>
+				<div id="pmBox">
 					<c:if test="${pm.prev}">
-						<a href="<c:url value='/member/profileModify${pm.mkQueryStr(pm.startPage-1)}'/>">&laquo;</a>
+						<a href="<c:url value='/user/profileModify${pm.mkQueryStr(pm.startPage-1)}'/>">&laquo;</a>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}">
 						<c:choose>
 							<c:when test="${i eq pm.cri.page}">
-								<a style="color:red;" href="<c:url value='/member/profileModify${pm.mkQueryStr(i)}'/>">[${i}]</a>
+								<a style="color:red;" href="<c:url value='/user/profileModify${pm.mkQueryStr(i)}'/>">[${i}]</a>
 							</c:when>
 							<c:otherwise>
-								<a href="<c:url value='/member/profileModify${pm.mkQueryStr(i)}'/>">[${i}]</a>
+								<a href="<c:url value='/user/profileModify${pm.mkQueryStr(i)}'/>">[${i}]</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:if test="${pm.next}">
-						<a href="<c:url value='/member/profileModify${pm.mkQueryStr(pm.endPage+1)}'/>">&raquo;</a>
+						<a href="<c:url value='/user/profileModify${pm.mkQueryStr(pm.endPage+1)}'/>">&raquo;</a>
 					</c:if>
 				</div>
 			</c:when>
@@ -288,7 +284,7 @@
 		if(isImages){
 			$.ajax({
 				type:"POST",
-				url: contextPath+"/image/uploadAjax",
+				url: contextPath+"user/image/uploadAjax",
 				data:formData,
 				processData:false,
 				contentType:false,
@@ -312,7 +308,7 @@
 		let fileName = $("#uImage").val();
 		$.ajax({
 			type:"DELETE",
-			url: contextPath+"/image/deleteFile",
+			url: contextPath+"user/image/deleteFile",
 			data : fileName,
 			dataType:"text",
 			success:function(result){
@@ -326,10 +322,8 @@
 		});
 	});
 	
-	var contextPath = '${pageContext.request.contextPath}';
-	
 	function partyDetail(pnum){
-		location.href=''+contextPath+'/partyDetail/detailOfParty?pNum='+pnum;
+		location.href='${path}/partyDetail/detailOfParty?pNum='+pnum;
 	}
 </script>
 <%@ include file="common/footer.jsp" %>

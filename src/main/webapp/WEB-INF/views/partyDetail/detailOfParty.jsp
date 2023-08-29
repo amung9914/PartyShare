@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
 <jsp:include page="../common/header.jsp" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lat" value="${location[0]}" />
 <c:set var="lng" value="${location[1]}" />
@@ -18,7 +18,6 @@
 		alert(message);
 	}
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
  	/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
     * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;} */
@@ -257,7 +256,7 @@
 			<ul>
 				<li><a href="<c:url value='/'/>">홈</a></li>
 				<li><a href="<c:url value='/partyBoard/listPage?pnum=${vo.pnum}'/>">게시판</a></li>
-				<li><a href="<c:url value='/chat?pnum=${vo.pnum}'/>">채팅창</a></li>
+				<li><a href="<c:url value='/user/chat?pnum=${vo.pnum}'/>">채팅창</a></li>
 			</ul>	
 		</nav>
 	</div>

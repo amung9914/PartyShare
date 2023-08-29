@@ -155,108 +155,34 @@
 	var contextPath = '${pageContext.request.contextPath}';
 	var page = 1;
 	
-	//listPage(page);
-	
-	// 파티 리스트를 가져와 출력 
-	function listPage(page){
-		const value= $("#searchKeyword").val();
-		$.ajax({
-			type:"GET",
-			url:"${path}/party/searchPartyList/"+page,
-			data:{
-				keyword:value
-			},
-			success: function(data){
-			//	printList(data);									막았음
-			}
-		});
-	}
-	
-	// 가져온 파티 리스트 출력
-	function printList(data){
-		let str = "";
-		let wishlistPnum = [];
-		if(data.wishlist != null){
-			$(data.wishlist).each(function(){
-				let wishPnum = this.pnum;
-				wishlistPnum.push(wishPnum);
-			});	
-		}
-		
-		$(data.list).each(function(){
-			let pname = this.pname;
-			let address = this.address;
-			let date = this.formatStartDate +"~"+ this.formatEndDate;		
-			let pnum = this.pnum;
-			let path = this.partyImage1;
-			let detailAddress = this.detailAddress;
-			
-			str += '<li>';
-			// wishList 받아서 fullHeart.png로 출력
-			if(data.wishlist != null){
-				if(wishlistPnum.indexOf(pnum) < 0){
-					str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
-				}else{
-					str += "<img src='${contextPath}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
-				}
-			}else{
-				str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
-			}
-			str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
-			str += "<hr/>";
-			str += "<strong onclick='partyDetail("+pnum+");' style='cursor: pointer;'>"+pname+"</strong><br/>";
-			str += address+" "+detailAddress+"<br/>";
-			str += date;
-			str += "</li>";
-		});
-		$("#partys").append(str);
-	} 
-	
 	// 파티 상세 페이지로 이동
 	function partyDetail(pnum){
 		location.href="<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
 	}
-	
-	// 무한 페이징 ->	searchPage
-	/*
-	$(window).scroll(function(){
-		let dh = $(document).height();
-		let wh = $(window).height();
-		let wt = $(window).scrollTop();
-			
-		if((wt+wh) >= (dh - 10)){
-			if($("#partys li").size() <= 1){
-				return false;
-			}
-			page++;
-			listPage(page);
-		}	
-	});
-	*/
 	// wishList
 	
 	function toggleHeart(heartElement) {
 		if('${loginMember}' == ''){
 			$("#loginModal").modal("show");
 		}else{
-			if (heartElement.src.includes("${contextPath}/resources/img/redHeart.png")) {
-	            heartElement.src = "${contextPath}/resources/img/emptyHeart.png"; // 빈 하트 이미지 경로로 변경
+			if (heartElement.src.includes("${path}/resources/img/redHeart.png")) {
+	            heartElement.src = "${path}/resources/img/emptyHeart.png"; // 빈 하트 이미지 경로로 변경
 	            var pNum = $(heartElement).attr("id");
 	            // dao.deleteWishList() 호출
 	            $.ajax({
 	                type: "POST",
-	                url: "${contextPath}/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
+	                url: "${path}/user/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
 	                data: {pNum : pNum},
 	                success: function(data) {
 	                    console.log("Wish List deleted");
 	                }
 	            });
 	        } else {
-	        	heartElement.src = "${contextPath}/resources/img/redHeart.png";
+	        	heartElement.src = "${path}/resources/img/redHeart.png";
 	            var pNum = $(heartElement).attr("id");
 	        	$.ajax({
 	        		type:"GET",
-	        		url:"${contextPath}/wishlist/getWishList",
+	        		url:"${path}/user/wishlist/getWishList",
 	        		data:{
 	        			mnum : "${loginMember.mnum}"
 	        		},
@@ -292,7 +218,7 @@
         let pNum = $(li).attr("class");
         $.ajax({
             type: "POST",
-            url: "${contextPath}/wishlist/addWishlist", // addWishlist에 해당하는 컨트롤러 URL
+            url: "${path}/user/wishlist/addWishlist", // addWishlist에 해당하는 컨트롤러 URL
             data: {
             	pNum : pNum,
             	alias : alias
@@ -315,7 +241,7 @@
 		let pnum = $("#newAlias").attr("data-pnum");
 		$.ajax({
 			type:"POST",
-			url: "${contextPath}/wishlist/addWishlist", // addWishlist에 해당하는 컨트롤러 URL
+			url: "${path}/user/wishlist/addWishlist", // addWishlist에 해당하는 컨트롤러 URL
             data: {
             	pNum : pnum,
             	alias : inputAlias

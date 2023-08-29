@@ -47,7 +47,7 @@
 	
 	 <!-- 채팅 -->
 	<websocket:handlers allowed-origins="http://">
-		<websocket:mapping handler="echoHandler" path="/echo"/>
+		<websocket:mapping handler="echoHandler" path="/user/echo"/>
 		<websocket:sockjs />
 	</websocket:handlers> 
 		

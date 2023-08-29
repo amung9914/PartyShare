@@ -30,7 +30,7 @@ public class ChatController {
 	/**
 	 * 채팅 창 입장 
 	 */
-	@RequestMapping("/chat")
+	@RequestMapping("/user/chat")
     public ModelAndView enterChat(@RequestParam int pnum, ModelAndView mav, HttpSession session, RedirectAttributes rttr) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		
@@ -63,8 +63,13 @@ public class ChatController {
     	return mav;
     }
 	
-	// 이전 채팅 리스트 가져오기
-	@GetMapping("/chatList")
+	/**
+	 * 이전 채팅 목록 가져오기 
+	 * @param pnum - 채팅 목록을 가져올 파티 번호
+	 * @param endNo - 현재 출력되고 있는 마지막 채팅번호
+	 * @return
+	 */
+	@GetMapping("/user/chatList")
 	@ResponseBody
 	public List<ChatVO> selectChatList(@RequestParam int pnum, @RequestParam int endNo) {
 		List<ChatVO> list = null;

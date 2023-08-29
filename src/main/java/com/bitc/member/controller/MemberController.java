@@ -24,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/member")
 public class MemberController {
 	
 	private final MemberService ms;
@@ -43,9 +42,8 @@ public class MemberController {
 		}
 	}
 	
-	
 	// 개인정보 수정 페이지 이동
-	@GetMapping("/profileModify")
+	@GetMapping("/user/profileModify")
 	public String profileModify(Model model, HttpSession session, String page) {
 		// 현재 로그인 사용자 정보
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
@@ -74,7 +72,7 @@ public class MemberController {
 	}
 	
 	// 개인 정보 수정 요청
-	@PostMapping("/modify")
+	@PostMapping("/user/modify")
 	public String modifyMember(MemberVO member, HttpSession session) {
 		try {
 			ms.modifyMember(member);
@@ -85,12 +83,10 @@ public class MemberController {
 		session.setAttribute("loginMember", member);
 		return "redirect:profileModify";
 	}
-	@GetMapping("/logout")
+	@GetMapping("/user/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginMember");
 		
 		return "redirect:/";
 	}
-	@GetMapping("/account")
-	public void account() {}
 }

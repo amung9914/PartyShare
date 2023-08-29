@@ -50,13 +50,13 @@
 	<script>
 		function partyFinish(pnum){
 			if(confirm('파티를 종료하시겠습니까?')){
-				location.href="<c:url value='/party/partyFinish?pnum="+pnum+"'/>";	
+				location.href="<c:url value='/host/party/partyFinish?pnum="+pnum+"'/>";	
 			}
 		}
 
 		function banMember(mnum, mname){
 			if(confirm(mname+'님을 강퇴 하시겠습니까?')){
-				location.href="<c:url value='/party/partyMemberBan?mnum="+mnum+"&pnum=${party.pnum}'/>";	
+				location.href="<c:url value='/host/party/partyMemberBan?mnum="+mnum+"&pnum=${party.pnum}'/>";	
 			}
 		}
 		

@@ -25,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/image")
 public class ImageController {
 
 	private final MemberService ms;
@@ -56,7 +55,7 @@ public class ImageController {
 	}
 	
 	// 프로필 이미지 출력
-	@GetMapping("/printProfileImage")
+	@GetMapping("image/printProfileImage")
 	public ResponseEntity<byte[]> printProfileImage(String fileName) throws Exception{
 		return new ResponseEntity<>(
 				FileUtils.getBytes(profileRealPath, fileName),
@@ -66,7 +65,7 @@ public class ImageController {
 	}
 	
 	// 프로필 이미지를 맴버 번호를 이용해 출력
-	@GetMapping("/printProfileImageNum")
+	@GetMapping("image/printProfileImageNum")
 	public ResponseEntity<byte[]> printProfileImageNum(int mnum) throws Exception{
 		MemberVO member = ms.selectMember(mnum);
 		String fileName = member.getProfileImageName();
@@ -78,7 +77,7 @@ public class ImageController {
 	}
 	
 	// 파티 이미지 출력
-	@GetMapping("/printPartyImage")
+	@GetMapping("image/printPartyImage")
 	public ResponseEntity<byte[]> printPartyImage(String fileName) throws Exception{
 		return new ResponseEntity<>(
 				FileUtils.getBytes(partyRealPath, fileName),
@@ -88,7 +87,7 @@ public class ImageController {
 	}
 	
 	// 프로필 이미지 업로드
-	@PostMapping("uploadAjax")
+	@PostMapping("user/image/uploadAjax")
 	@ResponseBody
 	public ResponseEntity<String> profileImageUpload(MultipartFile file) throws Exception{
 		String savedName = FileUtils.uploadOriginalImage(profileRealPath, file);
@@ -98,7 +97,7 @@ public class ImageController {
 	}
 
 	// 이미지 삭제
-	@DeleteMapping(value="deleteFile", produces="text/plain;charset=utf-8")
+	@DeleteMapping(value="user/image/deleteFile", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(@RequestBody String fileName) throws Exception{
 		ResponseEntity<String> entity = null;
