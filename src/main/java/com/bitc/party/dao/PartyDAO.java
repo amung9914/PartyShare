@@ -22,7 +22,7 @@ public interface PartyDAO {
 	/**
 	 * 내가 참여중인 파티 목록
 	 */
-	@Select("SELECT P.* FROM joinmember J, party P WHERE J.pnum = P.pnum AND J.mnum = #{mnum} ORDER BY pnum ")
+	@Select("SELECT P.* FROM joinmember J, party P WHERE J.pnum = P.pnum AND J.mnum = #{mnum} AND P.finish ='N' ORDER BY pnum ")
 	List<PartyVO> myPartyList(MemberVO vo) throws Exception;
 	
 	/**
