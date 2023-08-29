@@ -35,7 +35,10 @@
 		padding:10px;
 		border:1px solid #ccc;
 		height:130px;
-		margin: 5px 0;}
+		}
+	#comments{
+		margin: 5px 0px 200px 0px;
+	}
 		
 	#modDiv{
 		border:1px solid black;
@@ -120,17 +123,17 @@
 			
 			$("#list").click(function(e){
 				e.preventDefault();
-				location.href="<c:url value='/partyBoard/listPage?pnum=${board.pnum}'/>";
+				location.href="<c:url value='/user/partyBoard/listPage?pnum=${board.pnum}'/>";
 			});
 			
 			//답글 작성
 			$("#replyBtn").click(function(e){
-				location.href="<c:url value='/partyBoard/reply?pnum=${board.pnum}&bno=${board.bno}'/>";
+				location.href="<c:url value='/user/partyBoard/reply?pnum=${board.pnum}&bno=${board.bno}'/>";
 			})
 			
 			// 수정 페이지 요청 
 			$("#modify").click(function(e){
-				location.href="<c:url value='/partyBoard/modify?pnum=${board.pnum}&bno=${board.bno}'/>";
+				location.href="<c:url value='/user/partyBoard/modify?pnum=${board.pnum}&bno=${board.bno}'/>";
 			});
 			
 			// 게시글 삭제요청
@@ -138,7 +141,7 @@
 				e.preventDefault();
 				let conf = confirm("복구 할 수 없습니다. 삭제하시겠습니까?");
 				if(conf){
-					formObj.attr("action","remove?pnum=${board.pnum}");
+					formObj.attr("action","${path}/user/partyBoard/remove?pnum=${board.pnum}");
 					formObj.submit();
 				}
 			});
@@ -148,7 +151,7 @@
 	</script>
 	<script>
 	$(".boardReport").on("click",function(){
-			window.open("/partyshare/partyBoard/report?pnum="+${board.pnum}+"&bno="+${board.bno},"Pop","width=500,height=600");
+			window.open("${path}/user/partyBoard/report?pnum="+${board.pnum}+"&bno="+${board.bno},"Pop","width=500,height=600");
 	})
 	
 	</script>

@@ -35,7 +35,6 @@ import com.bitc.party.vo.PartyVO;
 import lombok.RequiredArgsConstructor;
 
 @PropertySource("classpath:/prop/maria.properties") // api숨김
-@RequestMapping("/party/*")
 @RequiredArgsConstructor
 @Controller
 public class PartyController {
@@ -67,7 +66,7 @@ public class PartyController {
 	 * 사진출력
 	 */
 	@ResponseBody
-	@GetMapping("printImg")
+	@GetMapping("/party/printImg")
 	   public ResponseEntity<byte[]> displayImg(String fileName) throws Exception{
 	      return new ResponseEntity<>(
 	            FileUtils.getBytes(realPath, fileName),
@@ -77,7 +76,7 @@ public class PartyController {
 	   }
 	
 	// 내가 개설한 파티 리스트 페이지 이동
-	@GetMapping("hostingList")
+	@GetMapping("/host/party/hostingList")
 	public String partyHost(HttpSession session, Model model) {
 		//model에 담아서 주기
 		List<PartyVO> list = null;
@@ -91,7 +90,7 @@ public class PartyController {
 	}
 	
 	// 파티관리 페이지
-	@GetMapping("partyHost")
+	@GetMapping("/host//party/partyHost")
 	public String partyHost(int pnum,Model model) {
 		PartyVO vo = null;
 		List<MemberVO> list = null;
@@ -107,7 +106,7 @@ public class PartyController {
 	}
 	
 	//파티수정 페이지
-	@GetMapping("updateParty")
+	@GetMapping("/host/party/updateParty")
 	public String updateParty(int pnum,Model model) {
 		PartyVO vo = null;
 		MapVO map = null;
@@ -131,7 +130,7 @@ public class PartyController {
 	}
 	
 	// mapVO, partyVO 수정처리
-	@PostMapping("updateParty")
+	@PostMapping("/host/party/updateParty")
 	public String updateSubmit(
 			MultipartHttpServletRequest request,
 			MapVO map, PartyVO vo, RedirectAttributes rttr) {
@@ -197,11 +196,11 @@ public class PartyController {
 		}
 		rttr.addFlashAttribute("result",result);
 		rttr.addAttribute("pnum",vo.getPnum());
-		return "redirect:/party/partyHost"; 
+		return "redirect:/host/party/partyHost"; 
 	}
 	
 	// 참여중인 파티 페이지 이동
-	@GetMapping("myParty")
+	@GetMapping("/user/party/myParty")
 	public String myParty(HttpSession session, Model model) {
 		//model에 담아서 주기
 				List<PartyVO> list = null;
@@ -214,7 +213,7 @@ public class PartyController {
 		return "/party/myPartyList";
 	}
 	
-	@GetMapping("calender")
+	@GetMapping("/user/party/calender")
 	public String calender(HttpSession session, Model model) {
 		//model에 담아서 주기
 		List<PartyVO> list = null;
@@ -232,7 +231,7 @@ public class PartyController {
 	  * 파티탈퇴
 	  */
 	 @ResponseBody
-	 @DeleteMapping("withdraw/{pnum}")
+	 @DeleteMapping("/user/party/withdraw/{pnum}")
 	 public ResponseEntity<String> withdraw(
 			 HttpSession session,
 			 @PathVariable int pnum){

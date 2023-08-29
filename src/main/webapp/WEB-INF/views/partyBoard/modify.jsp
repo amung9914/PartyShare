@@ -25,7 +25,7 @@ html, body {
 <div id="wrap">
 	<!-- model boardVO -->
 	<!-- board/modify POST -->
-	<form action="modify" method="POST" id="modifyForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
+	<form action="${path}/user/partyBoard/modify" method="POST" id="modifyForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
 		<input type="hidden" name="mnum" value="${board.mnum}"/>
 		<input type="hidden" name="bno" value="${board.bno}"/>
 		<input type="hidden" name="writer" value="${board.writer}" />
@@ -123,7 +123,7 @@ $("#saveBtn").click(function(){
 			
 		});
 function goBack(){
-	location.href="<c:url value='/partyBoard/read?pnum=${board.pnum}&bno=${board.bno}'/>";
+	location.href="<c:url value='/user/partyBoard/read?pnum=${board.pnum}&bno=${board.bno}'/>";
 }		
 
 </script>

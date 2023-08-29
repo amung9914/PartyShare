@@ -15,7 +15,7 @@ import com.bitc.partyBoard.vo.PartyReportVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/partyBoard/*")
+@RequestMapping("/user/partyBoard/*")
 @RequiredArgsConstructor
 public class PartyReposrtController {
 
