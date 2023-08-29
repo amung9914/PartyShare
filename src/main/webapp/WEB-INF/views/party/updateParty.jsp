@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <!-- Editor's Style -->
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
@@ -14,13 +10,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
 <style>
-body{
-margin:30px;
+html, body {
+    height: 90%
+}
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+    margin:30px;
 }
 
 </style>
-</head>
-<body>
+<div id="wrap">
 <h3>파티정보</h3>
 <hr/>
 <form method="POST" enctype="multipart/form-data" id="updateForm">
@@ -240,6 +241,5 @@ $("#saveBtn").click(function(){
 			
 		});
 </script>		
-		
-</body>
-</html>
+</div>	
+<%@ include file="../common/footer.jsp" %>

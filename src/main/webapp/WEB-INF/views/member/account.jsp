@@ -10,11 +10,7 @@
 html, body {
     height: 90%
 }
-#wrap {
-    min-height: 100%;
-    position: relative;
-    padding-bottom: 100px;
-}
+
 	
 .menu{
 	text-align:center;
@@ -33,7 +29,7 @@ b{
 	font-size: larger;
 }
 </style>
-<div id="wrap">
+
 	<div class="menu">
 		<a class="btn btn-outline-dark" role="button" href="<c:url value='/party/hostingList'/>">
 		<b>개설한 파티 관리</b>
@@ -61,5 +57,5 @@ b{
 		<div class="form-text" id="basic-addon4">불쾌감을 주는 사용자를 신고할 수 있습니다</div>
 		</a>
 	</div>
-</div>	
-<%@ include file="../common/footer.jsp" %>
+
+<%@ include file="../common/fixFooter.jsp" %>
