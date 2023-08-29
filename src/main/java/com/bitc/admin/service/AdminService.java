@@ -38,6 +38,9 @@ public interface AdminService {
 	// 블랙리스트
 	List<MemberVO> blackId() throws Exception;
 	
+	// 차단해제
+	List<MemberVO> unblock() throws Exception;
+	
 	
 	
 	

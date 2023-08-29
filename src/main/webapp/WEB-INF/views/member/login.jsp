@@ -9,13 +9,14 @@
         width: 100%;
         padding: 10px;
         font-size: 16px;
-        margin-bottom: 10px; /* 아래쪽 간격 추가 */
+        margin-bottom: -5px; /* 아래쪽 간격 추가 */
     }
 
     .custom-button {
         width: 100%;
         padding: 10px;
         font-size: 16px;
+        margin-bottom:-4px;
     }
 
     /* 모달 내부 "X" 버튼 스타일 */
@@ -43,23 +44,26 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">로그인</h5>
-
             </div>
             <div class="modal-body">
                 <form action="${pageContext.request.contextPath}/member/loginCheck" method="post">
-                    <div class="form-group">
-                        <input type="text" id="mid" name="mid" class="form-control" placeholder="아이디를 입력해주세요" required>
+                    <div class="form-group mb-3">
+                        <input type="text" id="mid" name="mid" class="form-control custom-input" placeholder="아이디를 입력해주세요" required>
                     </div>
-                    <div class="form-group">
-                        <input type="password" id="mpw" name="mpw" class="form-control" placeholder="비밀번호를 입력해주세요" required>
+                    <div class="form-group mb-3">
+                        <input type="password" id="mpw" name="mpw" class="form-control custom-input" placeholder="비밀번호를 입력해주세요" required>
                     </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="cookie" name="cookie">
-                        <label class="form-check-label" for="cookie">로그인 상태 유지</label>
+                    <div class="form-group form-check mb-3">
+                        <div class="d-flex justify-content-start align-items-center"> <!-- 로그인 상태 유지 체크 박스와 레이블을 감싸는 div -->
+                            <label class="form-check-label" for="cookie" style="margin-right: 10px;">로그인 상태 유지</label> <!-- margin-right를 추가하여 오른쪽으로 이동 -->
+                            <input type="checkbox" class="form-check-input" id="cookie" name="cookie">
+                        </div>
+                    </div>
+                    <div class="form-group text-center mb-3">
+                        <button type="submit" class="btn btn-primary custom-button" style="background-color: #FF385C; border-color: #FF385C;">로그인</button>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary" style="background-color: #FF385C; border-color: #FF385C; margin-right : 20px;">로그인</button>
-                        <button type="button" onclick="location.href='${pageContext.request.contextPath}/member/goJoin';" class="btn btn-dark">회원가입</button>
+                        <button type="button" onclick="location.href='${pageContext.request.contextPath}/member/goJoin';" class="btn btn-dark custom-button">회원가입</button>
                     </div>
                 </form>
             </div>

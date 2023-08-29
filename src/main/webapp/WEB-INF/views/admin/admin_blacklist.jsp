@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판이오</title>
+<title>블랙리스트 목록</title>
 <style>
   table {
     width: 70%;
@@ -30,16 +30,22 @@
   
   <table>
     <tr>
-      <th>정지먹은 계정</th>
-      <th>정지여부</th>
+        <th>정지먹은 계정</th>
+        <th>차단해제</th>
     </tr>
     <c:forEach var="member" items="${blackMembers}">
         <tr>
-          <td>${member.mid}</td>
-          <td>${member.mblackYN}</td>
+            <td>${member.mid}</td>
+            <td>
+                <form action="unblock" method="post">
+                    <input type="hidden" name="memberId" value="${member.mid}">
+                    <input type="submit" value="차단해제">
+                </form>
+            </td>
         </tr>
-      
     </c:forEach>
-  </table>
+</table>
+
+
 </body>
 </html>
