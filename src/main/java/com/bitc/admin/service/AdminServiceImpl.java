@@ -40,8 +40,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<MemberVO> blackId() throws Exception {
-		
-		return dao.blackId();
+		List<MemberVO> list = dao.blackId();
+		System.out.println(list);
+		return list;
 	}
 
 	@Override
