@@ -53,4 +53,9 @@ public interface PartyService {
 	 * 파티 참여 맴버 리스트 
 	 */
 	public List<MemberVO> getJoinPartyMemberList(int pnum) throws Exception;
+
+	/** 
+	 * 파티 탈퇴
+	 */
+	String withdraw(HttpSession session, int pnum);
 }

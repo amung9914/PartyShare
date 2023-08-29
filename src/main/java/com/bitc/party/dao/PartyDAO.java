@@ -2,6 +2,8 @@ package com.bitc.party.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -64,6 +66,12 @@ public interface PartyDAO {
 	 * 파티 참여 맴버 목록
 	 */
 	@Select("SELECT * FROM member WHERE mnum IN (SELECT mnum FROM joinmember WHERE pnum=#{pnum})")
-	public List<MemberVO> getJoinPartyMember(int pnum) throws Exception; 
+	public List<MemberVO> getJoinPartyMember(int pnum) throws Exception;
+	
+	/**
+	 * 파티 탈퇴 
+	 */
+	@Delete("DELETE FROM joinmember WHERE mNum = #{mnum} AND pNum = #{pnum}")
+	int withdraw(@Param("mnum")int mnum, @Param("pnum")int pnum); 
 	
 }

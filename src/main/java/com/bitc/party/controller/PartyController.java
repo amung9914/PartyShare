@@ -9,11 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -224,6 +227,32 @@ public class PartyController {
 		return "party/calender";
 	}
 	
+	
+	/**
+	  * 파티탈퇴
+	  */
+	 @ResponseBody
+	 @DeleteMapping("withdraw/{pnum}")
+	 public ResponseEntity<String> withdraw(
+			 HttpSession session,
+			 @PathVariable int pnum){
+		 ResponseEntity<String> entity = null;
+		 String result = null;
+		 HttpHeaders header = new HttpHeaders();
+		 header.add("Content-Type", "text/plain;charset=utf-8");
+		 try {
+			result = ps.withdraw(session,pnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 if(result.equals("SUCCESS")) {
+			 entity = new ResponseEntity<>("정상 처리 되었습니다.",header,HttpStatus.OK);
+		 }else {
+			 entity = new ResponseEntity<>("실패하셨습니다",header,HttpStatus.BAD_REQUEST);
+		 }
+		 
+		 return entity;
+	 }
 	
 	 
 }

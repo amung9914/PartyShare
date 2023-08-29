@@ -67,6 +67,12 @@ public class PartyServiceImpl implements PartyService{
 		return dao.getJoinPartyMember(pnum);
 	}
 
+	@Override
+	public String withdraw(HttpSession session, int pnum) {
+		MemberVO vo = (MemberVO) session.getAttribute("loginMember");
+		int mnum = vo.getMnum();
+		return getResult(dao.withdraw(mnum, pnum));
+	}
 	
 
 }
