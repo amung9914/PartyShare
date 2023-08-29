@@ -178,17 +178,6 @@ public class AdminController {
  	}
  	
 	
- 	@GetMapping("/blacklist")
-    public String blackList(Model model) throws Exception {
-        List<MemberVO> blackMembers = as.blackId();
-        model.addAttribute("blackMembers", blackMembers);
-        return "admin_blacklist"; 
- 	}
- 	
- 	
- 	
-
-	
  	/*
 	  @GetMapping("admin/notice") public String notice() {
 		  System.out.println("이거냐고"); 
