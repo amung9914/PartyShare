@@ -79,12 +79,6 @@ public class MapController {
 		return result;
 	}
 	
-	//주소등록페이지 연결
-	@GetMapping("regist")
-	public String registLoction(Model model) {
-		return "map/registLocation";
-	}
-	
 	//현재지도확인 페이지 연결
 		@GetMapping("map")
 		public String viewMap(Model model) {

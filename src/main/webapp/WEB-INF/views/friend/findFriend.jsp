@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <style type="text/css">
@@ -43,7 +44,6 @@
 		</div>
 	
     <!-- selectButton 제이쿼리로 클릭이벤트 -> find-result 보이게 출력 (완료)-->
-    <!-- form태그로 submit 하면 ajax로 결과 받아와서 결과출력란에 보일 수 있도록! 구현하기 -->
     <div class="findResult" >
 	    <!-- 검색 결과 출력 -->
 	    
@@ -81,7 +81,7 @@ $("#selectButton").on("click",function(event){
 	
 	// DB에서 사용자를 찾는 함수
 	function findId(){
-		let url="friend/searchId/"+select+"/"+target;
+		let url="${path}/user/friend/searchId/"+select+"/"+target;
 		$.getJSON(url,function(data){
 			let str = "";
 			
@@ -95,7 +95,7 @@ $("#selectButton").on("click",function(event){
 				$(data).each(function(){
 					$(".findResult").empty();
 					str +="<div data-mnum='"+this.mnum+"' class='username'>";
-					str +="<img class='profileImg' src='${path}/friend/printImg?fileName="+this.profileImageName+"'/>";
+					str +="<img class='profileImg' src='${path}/user/friend/printImg?fileName="+this.profileImageName+"'/>";
 					str += "id : "+this.mid+" | 닉네임 : "+this.mnick;
 					str +="</div>"
 					str += "<button data-mnum='"+this.mnum+"' class='btn btn-outline-secondary' type='button'>친구 요청</button><br/>";
@@ -126,7 +126,7 @@ $(".findResult").on("click",".btn.btn-outline-secondary",function(){
 	}else{
 	$.ajax({
 		type : "POST",
-		url : "friend/create",
+		url : "${path}/user/friend/create",
 		data: {
 			ffrom,
 			fto
@@ -134,7 +134,7 @@ $(".findResult").on("click",".btn.btn-outline-secondary",function(){
 		dataType: "text",
 		success : function(result){
 			alert(result);
-			location.href="${path}/friend";
+			location.href="${path}/user/friend";
 		},
 		error : function(res){
 			alert(res.responseText);

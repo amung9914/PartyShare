@@ -7,7 +7,7 @@
 				    <div class="card ${list.ffrom}">
 					  <div class="card-body">
 					  	<div class="cardBox">
-					  		<img class="profileImg" src="${path}/friend/printImg?fileName=${list.profileImageName}" />
+					  		<img class="profileImg" src="${path}/user/friend/printImg?fileName=${list.profileImageName}" />
 						    <div class="info">
 						    <h5 class="card-title">${list.mnick}님에게 친구 요청을 받았습니다</h5>
 						    <p class="card-text">${list.mid}</p>
@@ -54,12 +54,12 @@
 		
 		$.ajax({
 			type : "PUT",
-			url : "${path}/friend/accept/"+ffrom,
+			url : "${path}/user/friend/accept/"+ffrom,
 			dataType: "text",
 			success : function(result){
 				alert(result);
 				area[0].remove();
-				location.href="${path}/friend";
+				location.href="${path}/user/friend";
 			},
 			error : function(result){
 				alert(result);
@@ -76,7 +76,7 @@
 		
 		$.ajax({
 			type : "DELETE",
-			url : "${path}/friend/reject/"+ffrom,
+			url : "${path}/user/friend/reject/"+ffrom,
 			dataType: "text",
 			success : function(result){
 				alert(result);

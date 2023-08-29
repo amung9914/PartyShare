@@ -27,7 +27,7 @@ import com.bitc.party.vo.PartyVO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/friend")
+@RequestMapping("/user/friend")
 @RequiredArgsConstructor
 public class FriendAjaxController {
 

@@ -30,11 +30,11 @@ b{
 </style>
 
 	<div class="menu">
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/party/hostingList'/>">
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/host/party/hostingList'/>">
 		<b>개설한 파티 관리</b>
 		<div class="form-text" id="basic-addon4">호스트중인 파티 목록으로 이동합니다</div>
 		</a>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/party/myParty'/>">
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/user/party/myParty'/>">
 		<b>참여중인 파티</b>
 		<div class="form-text" id="basic-addon4">파티 일정을 확인해보세요</div>
 		</a>

@@ -59,7 +59,7 @@
         	</p>
 	        <p class="card-text"><small class="text-body-secondary">${party.formatStartDate} ~ ${party.formatEndDate} </small></p>
 	      
-        <a href="<c:url value='/partyBoard/listPage?pnum=${party.pnum}'/>" class="btn btn-dark">팀게시판</a>
+        <a href="<c:url value='/user/partyBoard/listPage?pnum=${party.pnum}'/>" class="btn btn-dark">팀게시판</a>
         <button class="btn btn-light withdraw" data-pnum='${party.pnum}' data-host='${party.host}'>파티 나가기</button>
       </div>
     </div>
@@ -94,17 +94,17 @@ $(".withdraw").click(function(e){
 	if(host == ${loginMember.mnum}){
 		alert("호스트는 탈퇴할 수 없습니다.");
 		$(".card.mb-3").remove();
-		location.href="<c:url value='/party/myParty'/>";		
+		location.href="<c:url value='/user/party/myParty'/>";		
 	}else{
 
 		//ajax 통신
 		$.ajax({
 			type : "DELETE",
-			url : "${path}/party/withdraw/"+pnum,
+			url : "${path}/user/party/withdraw/"+pnum,
 			dataType:"text",
 			success : function(result){
 				alert(result);
-				location.href="<c:url value='/party/myParty'/>";
+				location.href="<c:url value='/user/party/myParty'/>";
 			},
 			error: function(result){
 				alert("실패하였습니다");

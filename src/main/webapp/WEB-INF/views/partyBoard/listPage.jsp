@@ -41,7 +41,7 @@
 	
 	<div class="tableBox">
 	<div class="control">
-	<form name="changeCri" action="listPage" method="GET">
+	<form name="changeCri" action="${path}/user/partyBoard/listPage" method="GET">
 		<input type="hidden" name="pnum" value="${pnum}"/>
 		<select name="perPageNum" class="form-select" onchange="changeCri.submit();">
 			<c:forEach var="i" begin="5" end="20" step="5">
@@ -49,7 +49,7 @@
 			</c:forEach>
 		</select>
 	</form>
-	<button class="btn btn-outline-secondary" onclick="location.href='register?pnum=${pnum}';">
+	<button class="btn btn-outline-secondary" onclick="location.href='${path}/user/partyBoard/register?pnum=${pnum}';">
 	<img src="${path}/resources/img/write.png"/>
 	<b>글쓰기</b>
 	</button>	
@@ -74,7 +74,7 @@
 							<tr>
 								<td style="color: #FF385C;"><b>공지</b></td>
 								<td>
-									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>"><b>${board.title}</b></a>
+									<a href="<c:url value='/user/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>"><b>${board.title}</b></a>
 								</td>
 								<td>${board.writer}</td>
 								<td> <!-- 당일이면 시간표시 / 아니면 날짜표시 -->
@@ -132,7 +132,7 @@
 									<c:if test="${board.category eq 'reply'}">
 									ㄴ
 									</c:if>
-									<a href="<c:url value='/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>"><b>${board.title}</b></a>
+									<a href="<c:url value='/user/partyBoard/readPage${pm.mkQueryStr(pm.cri.page)}&bno=${board.bno}&pnum=${pnum}'/>"><b>${board.title}</b></a>
 								</td>
 								<td>${board.writer}</td>
 								
@@ -176,21 +176,21 @@
 			<tr>
 				<th colspan="5">
 					<c:if test="${pm.first}">
-						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=1&perPageNum=${pm.cri.perPageNum}'/>">&laquo;</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/user/partyBoard/listPage?pnum=${pnum}&page=1&perPageNum=${pm.cri.perPageNum}'/>">&laquo;</a>
 					</c:if>
 					<c:if test="${pm.prev}">
-						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.startPage-1}&perPageNum=${pm.cri.perPageNum}'/>">&lt;</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/user/partyBoard/listPage?pnum=${pnum}&page=${pm.startPage-1}&perPageNum=${pm.cri.perPageNum}'/>">&lt;</a>
 					</c:if>
 					<c:forEach var="i" 
 							   begin="${pm.startPage}" 
 							   end ="${pm.endPage}">
-						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${i}&perPageNum=${pm.cri.perPageNum}'/>">${i}</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/user/partyBoard/listPage?pnum=${pnum}&page=${i}&perPageNum=${pm.cri.perPageNum}'/>">${i}</a>
 					</c:forEach>
 					<c:if test="${pm.next}">
-						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.endPage+1}&perPageNum=${pm.cri.perPageNum}'/>">&gt;</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/user/partyBoard/listPage?pnum=${pnum}&page=${pm.endPage+1}&perPageNum=${pm.cri.perPageNum}'/>">&gt;</a>
 					</c:if>
 					<c:if test="${pm.last}">
-						<a class="btn btn-outline-secondary" href="<c:url value='/partyBoard/listPage?pnum=${pnum}&page=${pm.maxPage}&perPageNum=${pm.cri.perPageNum}'/>">&raquo;</a>
+						<a class="btn btn-outline-secondary" href="<c:url value='/user/partyBoard/listPage?pnum=${pnum}&page=${pm.maxPage}&perPageNum=${pm.cri.perPageNum}'/>">&raquo;</a>
 					</c:if>
 				</th>
 			</tr>
@@ -206,7 +206,7 @@
 		</c:choose>
 	</table>
 	
-	<form action="listPage" method="GET" class="searchForm">
+	<form action="${path}/user/partyBoard/listPage" method="GET" class="searchForm">
 			<input type="hidden" name="pnum" value="${pnum}"/>
 			<div class="input-group">
 				<select class="form-select" name="searchType">
