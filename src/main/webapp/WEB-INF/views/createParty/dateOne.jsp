@@ -8,11 +8,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 	#dateBox{
-		margin-top: 20%;
-	}
-	#title{
-		margin-top:5%;
-		cursor: pointer;
+		margin-top: 14%;
 	}
 	#startDate{
 		border:none;
@@ -22,15 +18,33 @@
 		width: 600px;
 		font-size: 30px;
 	}
-	#calBox{
-		width: 240px;
-		height: 10px;
-		background-color: gray;
+	#calenderBox{
+		width: 300px;
+		height:  100px;
+		text-align: left;
+		display:flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		position: relative;
+		right: 50px;
+		cursor: pointer;
+	}
+	#calenderBox p{
+		font-size: 40px;
+		width: 400px;
+		
+	}
+	#calenderBox img{
+		width : 70px;
+		height: 70px;
 	}
 </style>
 <div id="createParty_wrap">
-	<h1 id="title">짜릿한 하루를 선택해주세요</h1>
-	<div id="calBox"></div>
+	
+	<div id="calenderBox">
+		<img src="${pageContext.request.contextPath}/resources/img/calendar.png"/>
+		<p id="title">날짜를 선택하세요</p>
+	</div>
 	<div id="dateBox">
 		<form action="createDate" method="post">
 			<input type="hidden" name="host" value="${loginMember.mnum}"/>
@@ -49,7 +63,7 @@
 </div>
 	<script>
 	
-	 $('#calBox').daterangepicker({
+	 $('#calenderBox').daterangepicker({
 		 	"locale": {
 		        "format": "YYYY-MM-DD",
 		        "applyLabel": "확인",
@@ -65,7 +79,7 @@
 		  });
 	$("#startDate").val(today());
 	$("#endDate").val(today());
-	$("h1").click();
+	$("#calenderBox").click();
 	function today(){
 		let date = new Date();
 		let yyyy = date.getFullYear();

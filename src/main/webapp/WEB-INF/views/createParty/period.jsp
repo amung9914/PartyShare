@@ -7,7 +7,6 @@
 <style>
 	#wrap{
 		width: 50%;
-		margin-top:5%;
 	}
 	
 	.widget-list {
@@ -17,6 +16,7 @@
 	  margin: 0;
 	  padding: 0;
 	  border-radius: 8px;
+	  margin-top: 15%;
 	}
 	
 	.widget {
@@ -30,6 +30,7 @@
 	  line-height: 300px;
 	  text-align: center;
 	  border-radius: 4px;
+	  font-size: 1.5rem;
 	}
 	
 	/* extension */
