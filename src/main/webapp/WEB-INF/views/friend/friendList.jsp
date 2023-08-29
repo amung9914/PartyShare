@@ -22,7 +22,7 @@ html, body {
 }
 main{
 	float:left;
-	margin: 30px 0px 0px 28%;
+	margin: 30px 0px 0px 25%; 
 }
 aside{
 	float:left;
@@ -50,10 +50,17 @@ aside{
  .detailLoad{
  	cursor:pointer;
  }
+ #previousView{
+ margin: 10px 10px 200px 10px;
+ }
+ .result{
+ margin: 0px 0px 200px 0px;
+ }
  
- img{
+ body img{
     width: fit-content;
  }
+ 
  .card.mb-3{
  cursor: pointer;
  text-align: left;
@@ -262,4 +269,4 @@ $(".delBtn").on("click",function(){
 </aside>
 </div>
 </div>
-<%@ include file="../common/footer.jsp" %>
+<%@ include file="../common/fixFooter.jsp" %>
