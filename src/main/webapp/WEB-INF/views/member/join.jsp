@@ -1,199 +1,70 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../common/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<!-- 부트스트랩 CSS 포함 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
-html, body {
-	height: 100%
-}
+    /* 아이디 입력칸 스타일 */
+    .custom-input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: -5px; /* 아래쪽 간격 추가 */
+    }
 
-#wrap {
-	min-height: 100%;
-	position: relative;
-	padding-bottom: 93px;
-}
+    .custom-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom:-4px;
+    }
 
-.container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	margin-top: -5%;
-}
+    /* 모달 내부 "X" 버튼 스타일 */
+    .closeModal {
+        background-color: transparent;
+        border: none; /* 태두리 없애기 */
+        font-size: 30px;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+    }
 
-.form-container {
-	background-color: white;
-	border: 1px solid #ccc;
-	padding: 20px;
-	width: 800px; /* 조정 가능한 너비 */
-}
+    .modal-title {
+        margin-bottom: 10px;
+    }
 
-#mId {
-	width: 300px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
-}
-
-/* 예시: 비밀번호 입력 필드의 너비 조정 */
-#password {
-	width: 300px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
-}
-
-input[name="repw"] {
-	width: 300px;
-	padding: 10px;
-}
-
-/* 예시: 이름 입력 필드의 너비 조정 */
-input[name="mname"] {
-	width: 200px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
-}
-
-/* 예시: 이메일 입력 필드의 너비 조정 */
-input[name="memail"] {
-	width: 300px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
-}
-
-/* 예시: 주소 입력 필드의 너비 조정 */
-input[name="maddr"] {
-	width: 400px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
-}
-
-input[name="mnick"] {
-	width: 200px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
-}
-
-/* 예시: 나이 입력 필드의 너비 조정 */
-input[name="mage"] {
-	width: 200px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
-}
-
-.uploadImage {
-	width: 100px;
-	height: 100px;
-	border-radius: 50px;
-	border: 1px solid #ccc;
-}
+    .modal-title + hr {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
 </style>
-<title>회원가입</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-</head>
-<body>
-	<div id="wrap">
-		<div class="container">
-			<div class="form-container">
-				<h2>회원가입</h2>
-				<form action="<c:url value='/member/join' />" method="POST"
-					id="passwordForm" enctype="multipart/form-data">
-					<table class="table table-hover">
-						<tr>
-							<td>아이디:</td>
-							<td><input type="text" name="mid" id="mId"
-								placeholder="아이디를 입력하세요" required></td>
-						</tr>
-						<tr>
-							<td>비밀번호:</td>
-							<td><input type="password" name="mpw" id="password"
-								placeholder="비밀번호를 8자리 이상 입력해주세요" required></td>
-							<td><button type="button"
-									onclick="togglePasswordVisibility()">보이기</button></td>
-						</tr>
-						<!-- <tr>
-							<td>비밀번호 확인 :</td>
-							<td><input type="password" name="repw" id="repw"
-								placeholder="비밀번호를 다시확인해주세요"></td>
-						</tr> -->
-						<tr>
-							<td>이름:</td>
-							<td><input type="text" name="mname" placeholder="이름"
-								required></td>
-						</tr>
-						<tr>
-							<td>닉네임:</td>
-							<td><input type="text" name="mnick" placeholder="닉네임"
-								required></td>
-						</tr>
-						<tr>
-							<td>나이:</td>
-							<td><input type="number" name="mage" placeholder="나이를 입력하세요"
-								required></td>
-						</tr>
-						<tr>
-							<td>성별:</td>
-							<td><input type="radio" name="mgender" value="m" checked>남자
-								<input type="radio" name="mgender" value="f">여자</td>
-						</tr>
-						<tr>
-							<td>이메일:</td>
-							<td><input type="email" name="memail"
-								placeholder="이메일을 입력하세요" required></td>
-						</tr>
-						<tr>
-							<td>주소:</td>
-							<td><input type="text" name="maddr" placeholder="주소를 입력하세요"
-								required></td>
-						</tr>
-						<tr>
-							<td>프로필 이미지</td>
-							<td class="text-center"><img
-								src="${path}/resources/img/profile.jpg" id="viewImage"
-								class="uploadImage" />
-								<div class="row">
-									<div class="col-md-6">
-										<input type="file" id="profileImage" name="file"
-											accept="image/*" class="full-left" />
-									</div>
-									<div class="col-md-6">
-										<input type="button" id="removeProfile" value="삭제" />
-									</div>
-								</div></td>
-						</tr>
-
-						<tr>
-							<td colspan="2" align="center">
-								<button type="submit" class="btn btn-primary"
-									style="background-color: #FF385C; border-color: #FF385C; margin-right: 20px;">가입</button>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
-		</div>
-	</div>
-	<script>
-		const passwordInput = document.getElementById('password');
-		const mIdInput = document.getElementById('mId');
-
-		document.getElementById('passwordForm').addEventListener('submit',
-				function(event) {
-					if (passwordInput.value.length <= 8) {
-						alert("비밀번호는 8자 이상이어야 합니다.");
-						event.preventDefault(); // 제출 막기
-					}
-
-					if (hasSpecialCharacters(mIdInput.value)) {
-						alert("아이디에 특수 문자를 사용할 수 없습니다.");
-						event.preventDefault(); // 제출 막기
-					}
-				});
-
-		function hasSpecialCharacters(input) {
-			const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-			return specialCharacters.test(input);
-		}
-		function togglePasswordVisibility() {
-			var passwordField = document.getElementById("password");
-			if (passwordField.type === "password") {
-				passwordField.type = "text";
-			} else {
-				passwordField.type = "password";
-			}
-		}
-	</script>
-	<%@ include file="../common/footer.jsp"%>
+<!-- 부트스트랩 모달 -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"> <!-- 가운데 정렬 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+            </div>
+            <div class="modal-body">
+                <form action="${pageContext.request.contextPath}/member/loginCheck" method="post">
+                    <div class="form-group mb-3">
+                        <input type="text" id="mid" name="mid" class="form-control custom-input" placeholder="아이디를 입력해주세요" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" id="mpw" name="mpw" class="form-control custom-input" placeholder="비밀번호를 입력해주세요" required>
+                    </div>
+                    <div class="form-group form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="cookie" name="cookie">
+                        <label class="form-check-label" for="cookie">로그인 상태 유지</label>
+                    </div>
+                    <div class="form-group text-center mb-3">
+                        <button type="submit" class="btn btn-primary custom-button" style="background-color: #FF385C; border-color: #FF385C;">로그인</button>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="button" onclick="location.href='${pageContext.request.contextPath}/member/goJoin';" class="btn btn-dark custom-button">회원가입</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

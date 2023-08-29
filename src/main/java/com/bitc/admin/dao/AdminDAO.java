@@ -36,6 +36,9 @@ public interface AdminDAO {
 	@Select("SELECT * FROM member WHERE mblackYN ='Y'")
 	public List<MemberVO > blackId();
 	
+	@Update("UPDATE member SET mblackYN='N' WHERE mblackYN='Y' AND mid = #{mid}")
+	public List<MemberVO>unblock();
+	
 	
 
 
