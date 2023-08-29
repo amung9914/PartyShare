@@ -46,7 +46,7 @@
 	function listPage(page){
 		$("#modDiv").css("display","none"); // 수정칸 안보이게함 
 		$("body").prepend($("#modDiv"));
-		let url = "comments/"+pnum+"/"+bno+"/"+page;
+		let url = "${path}/user/partyBoard/comments/"+pnum+"/"+bno+"/"+page;
 		$.getJSON(url,function(data){
 			// data == Map
 			// {'list':{}, 'pm' : {}}
@@ -97,7 +97,7 @@
 		
 		$.ajax({
 			type : "POST",
-			url : "comments",
+			url : "${path}/user/partyBoard/comments",
 			data : {
 				bno : bno,
 				commentText : text,
@@ -150,7 +150,7 @@
 		
 		$.ajax({
 			type : "PATCH",
-			url : "comments/"+cno,
+			url : "${path}/user/partyBoard/comments/"+cno,
 			headers : {
 				"Content-Type" : "application/json"
 			},
@@ -164,7 +164,7 @@
 			success : function(data){
 				alert(data);
 				$("#modDiv").toggle(); // 수정창 닫기
-				location.href="${path}/partyBoard/read?bno="+bno+"&pnum="+pnum;
+				location.href="${path}/user/partyBoard/read?bno="+bno+"&pnum="+pnum;
 			}
 			
 		}); 
@@ -175,7 +175,7 @@
 		const cno = $("#modCno").text();
 		$.ajax({
 			type : "DELETE",
-			url : "comments/"+cno,
+			url : "${path}/user/partyBoard/comments/"+cno,
 			headers : {
 				"Content-Type" : "application/json"
 			},
@@ -188,7 +188,7 @@
 			success : function(data){
 				alert(data);
 				$("#modDiv").toggle();
-				location.href="${path}/partyBoard/read?bno="+bno+"&pnum="+pnum;
+				location.href="${path}/user/partyBoard/read?bno="+bno+"&pnum="+pnum;
 			}
 		});
 	});
@@ -220,7 +220,7 @@
 		const cno = $(this).attr("data-cno");
 		report();
 		function report (){
-			window.open("/partyshare/partyBoard/comments/report?pnum="
+			window.open("${path}/user/partyBoard/comments/report?pnum="
 					+pnum+"&bno="+bno+"&cno="+cno,"Pop","width=500,height=600")
 		}
 	})

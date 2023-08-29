@@ -42,9 +42,10 @@
 	</table>
 	<hr/>
 	<div class="title"><b>사유선택</b></div>
-	<form method="POST">
+	<form method="POST" action="${path}/user/partyBoard/comments/report">
 	  <input type="hidden" name="pnum" value="${comment.pnum}"/>
 	  <input type="hidden" name="bno" value="${comment.bno}"/>
+	  <input type="hidden" name="cno" value="${comment.cno}"/>
       <input type="hidden" name="fromMid" value="${loginMember.mid}"/>
       <input type="hidden" name="toMid" value="${comment.mid}"/>
       <select name="category" class="form-select reportWindow">

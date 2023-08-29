@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>register.jsp</title>
+<%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <!-- Editor's Style -->
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
@@ -14,14 +10,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
 <style>
-body{
-margin:30px;
-}
 
+html, body {
+    height: 90%
+}
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+    margin:30px;
+}
 </style>
-</head>
-<body>
-	<form action="reply" method="POST" id="registerForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
+<div id="wrap">
+	<form action="${path}/user/partyBoard/reply" method="POST" id="registerForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
 		<input type="hidden" name="mnum" value="${loginMember.mnum}"/>
 		<input type="hidden" name="writer" value="${loginMember.mnick}" />
 		<input type="hidden" name="pnum" value="${board.pnum}"/>
@@ -111,11 +112,11 @@ $("#saveBtn").click(function(){
 			
 		});
 function goBack(){
-	location.href="<c:url value='/partyBoard/read?pnum=${board.pnum}&bno=${board.bno}'/>";
+	location.href="<c:url value='/user/partyBoard/read?pnum=${board.pnum}&bno=${board.bno}'/>";
 }
 </script>
-</body>
-</html>
+</div>	
+<%@ include file="../common/footer.jsp" %>
 
   
 

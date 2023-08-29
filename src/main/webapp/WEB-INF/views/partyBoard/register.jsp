@@ -23,7 +23,7 @@ html, body {
 </style>
 
 <div id="wrap">
-	<form action="register" method="POST" id="registerForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
+	<form action="${path}/user/partyBoard/register" method="POST" id="registerForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
 		<input type="hidden" name="mnum" value="${loginMember.mnum}"/>
 		<input type="hidden" name="writer" value="${loginMember.mnick}" />
 		<input type="hidden" name="pnum" value="${pnum}"/>
@@ -51,7 +51,6 @@ html, body {
 			</table>
 			<input type="button" class="btn btn-dark" id="saveBtn" value="완료"/>
 			<input type="button" class="btn btn-light" onclick="goBack();" value="뒤로가기"/>
-	
 				
 		</form>
 <script src="https://cdn.tiny.cloud/1/ogpnruhgbsh51awvrblkrooy38miyp3g61qzu5jw81jnacn6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>		
@@ -116,7 +115,7 @@ $("#saveBtn").click(function(){
 			
 		});
 function goBack(){
-	location.href="<c:url value='/partyBoard/listPage?pnum=${pnum}'/>";
+	location.href="<c:url value='/user/partyBoard/listPage?pnum=${pnum}'/>";
 }
 </script>
 </div>	

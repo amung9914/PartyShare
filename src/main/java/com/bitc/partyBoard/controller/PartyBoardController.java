@@ -21,7 +21,7 @@ import com.bitc.partyBoard.vo.PartyBoardVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/partyBoard/*")
+@RequestMapping("/user/partyBoard/*")
 @RequiredArgsConstructor
 public class PartyBoardController {
 	
@@ -59,7 +59,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/partyDetail/detailOfParty?pNum="+pnum;
+			return "redirect:/user/partyDetail/detailOfParty?pNum="+pnum;
 		}
 		
 	}
@@ -76,7 +76,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/partyDetail/detailOfParty?pNum="+pnum;
+			return "redirect:/user/partyDetail/detailOfParty?pNum="+pnum;
 		}
 	
 	}
@@ -89,7 +89,7 @@ public class PartyBoardController {
 			RedirectAttributes rttr)throws Exception{
 		bs.regist(board);
 		rttr.addAttribute("pnum",board.getPnum());
-		return "redirect:/partyBoard/listPage";
+		return "redirect:/user/partyBoard/listPage";
 	}
 	
 	/**
@@ -106,11 +106,11 @@ public class PartyBoardController {
 			bs.updateCnt(bno,pnum);
 			rttr.addAttribute("bno",bno);
 			rttr.addAttribute("pnum",pnum);
-			return "redirect:/partyBoard/read";
+			return "redirect:/user/partyBoard/read";
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/partyDetail/detailOfParty?pNum="+pnum;
+			return "redirect:/user/partyDetail/detailOfParty?pNum="+pnum;
 		}
 	}
 	
@@ -126,7 +126,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/partyDetail/detailOfParty?pNum="+board.getPnum();
+			return "redirect:/user/partyDetail/detailOfParty?pNum="+board.getPnum();
 		}
 		
 	}
@@ -147,7 +147,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/partyDetail/detailOfParty?pNum="+board.getPnum();
+			return "redirect:/user/partyDetail/detailOfParty?pNum="+board.getPnum();
 		}
 	}
 
@@ -163,7 +163,7 @@ public class PartyBoardController {
 		rttr.addFlashAttribute("result",result);
 		rttr.addAttribute("bno",vo.getBno()); // get방식으로 파라미터값 삽입.
 		rttr.addAttribute("pnum",vo.getPnum()); // get방식으로 파라미터값 삽입.
-		return "redirect:/partyBoard/read";//?bno="+vo.getBno();
+		return "redirect:/user/partyBoard/read";//?bno="+vo.getBno();
 	}
 	/**
 	 * 게시글 삭제 완료 후 listPage 페이지 로 이동 - redirect 
@@ -176,7 +176,7 @@ public class PartyBoardController {
 		rttr.addAttribute("page",cri.getPage());
 		rttr.addAttribute("perPageNum",cri.getPerPageNum());
 		rttr.addAttribute("pnum",pnum);
-		return "redirect:/partyBoard/listPage";
+		return "redirect:/user/partyBoard/listPage";
 	}
 	
 
@@ -191,7 +191,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/partyDetail/detailOfParty?pNum="+pnum;
+			return "redirect:/user/partyDetail/detailOfParty?pNum="+pnum;
 		}
 		
 	}
@@ -204,7 +204,7 @@ public class PartyBoardController {
 			RedirectAttributes rttr)throws Exception{
 			bs.registReply(board);
 		rttr.addAttribute("pnum",board.getPnum());
-		return "redirect:/partyBoard/listPage";
+		return "redirect:/user/partyBoard/listPage";
 	}
 }
 

@@ -55,8 +55,8 @@ html, body {
         	</p>
 	        <p class="card-text"><small class="text-body-secondary">${party.formatStartDate} ~ ${party.formatEndDate} </small></p>
 	      
-	      <a href="<c:url value='/party/partyHost?pnum=${party.pnum}'/>" class="btn btn-dark">파티관리</a>
-        <a href="<c:url value='/partyBoard/listPage?pnum=${party.pnum}'/>" class="btn btn-dark">팀게시판</a>
+	      <a href="<c:url value='/host/party/partyHost?pnum=${party.pnum}'/>" class="btn btn-dark">파티관리</a>
+        <a href="<c:url value='/user/partyBoard/listPage?pnum=${party.pnum}'/>" class="btn btn-dark">팀게시판</a>
       </div>
     </div>
   </div>

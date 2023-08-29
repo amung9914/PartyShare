@@ -26,7 +26,7 @@ import com.bitc.partyBoard.vo.PartyCommentVO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/partyBoard/comments")
+@RequestMapping("/user/partyBoard/comments")
 @RequiredArgsConstructor
 public class PartyCommentController {
 
