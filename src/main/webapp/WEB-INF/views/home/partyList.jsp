@@ -168,7 +168,7 @@
 				keyword:value
 			},
 			success: function(data){
-				printList(data);
+			//	printList(data);									막았음
 			}
 		});
 	}
@@ -218,7 +218,8 @@
 		location.href="<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
 	}
 	
-	// 무한 페이징
+	// 무한 페이징 ->	searchPage
+	/*
 	$(window).scroll(function(){
 		let dh = $(document).height();
 		let wh = $(window).height();
@@ -232,7 +233,7 @@
 			listPage(page);
 		}	
 	});
-	
+	*/
 	// wishList
 	
 	function toggleHeart(heartElement) {

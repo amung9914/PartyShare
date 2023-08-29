@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:set var="imgPath" value="${path}/image/printProfileImage?fileName=" />
+<c:set var="descImgPath" value="${path}/resources/img/descImg/" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>검색 구현</title>
 <link
@@ -20,14 +23,14 @@
 
 #searchModal {
 	display: none;
-	position: fixed;
+	position: relative;
 	z-index: 1;
-	left: 10px;
-	top: 200px;
-	width: 400px;
-	height: 600px;
+/* 	left: -100px; */
+	top: 50px;
+	/* width: 400px;
+	height: 600px; */
 	overflow: auto;
-	background-color: aqua;
+/* 	background-color: aqua; */
 }
 /* 헤더부분 시작 */
 #searchHeader {
@@ -54,6 +57,8 @@
 	display: flex;
 	overflow: auto;
 }
+
+
 
 /* 닫기 버튼 스타일 */
 .close {
@@ -151,9 +156,13 @@
 	height: 100px;
 	border: 1px solid gray;
 }
+..barItem:hover{
+
+}
 
 .card_Ptag{
 	font-size: 2px;
+	font-style: bold;
 }
 
 #keywordBtn {
@@ -166,17 +175,20 @@
 	display: none;
 }
 
-#previous {
+#previousBtn {
 	float: left;
 	top: 50px;
 }
 
-#next {
+#nextBtn {
 	float: right;
 	top: 50px;
 	left: 1800px;
 }
-
+.clicked {
+/*   background-color: #e74c3c; */
+  border-color : #e74c3c;
+}
 
 </style>
 
@@ -191,9 +203,9 @@
 		    </div>
 		<!-- 버튼창 -->
 		<div class="buttonsContainer">
-		<button type="button" id="categoryBtn" data-targetContents="category" class="btn btn-outline-danger" class="searchBtn">카테고리 선택</button>
-		<button type="button" id="dateBtn" data-targetContents="date" class="btn btn-outline-danger" class="searchBtn">날짜 선택</button>
-		<button type="button" id="locationBtn" data-targetContents="location" class="btn btn-outline-danger" class="searchBtn">위치 선택</button>
+		<button type="button" id="categoryBtn" data-targetContents="category" class="btn btn-outline-danger searchBtn">카테고리 선택</button>
+		<button type="button" id="dateBtn" data-targetContents="date" class="btn btn-outline-danger searchBtn">날짜 선택</button>
+		<button type="button" id="locationBtn" data-targetContents="location" class="btn btn-outline-danger searchBtn">위치 선택</button>
 		</div>
 		
 		<!-- 
@@ -224,12 +236,12 @@
 <!-- 모달창이 위치합니다 여기가 파란색 박스입니다!   -->
 <div id="searchModal">
 	<div class="modalContent">
-
+	 <span class="close">&times;</span>
 		<div id="responsed">
 			<!-- responsed의 html을 정의함 -->
 			responded
 		</div>
-		<span class="close">&times;</span>
+		
 	</div>
 </div>
 <!-- 모달창이 위치합니다 끝 searchModal -->
@@ -256,6 +268,7 @@ var contextPath = '${pageContext.request.contextPath}';
 if(typeof keyword === 'undefined'){keyword = "noValue"}
 var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 
+ // listAjax(page,resultQuery);
 
 
 //	listAjax(page,resultQuery);      //초기실행 주석
@@ -274,7 +287,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	var contextPath="${pageContext.request.contextPath}";
   //	<div><a href=''><img src='샘플이미지' /></a></div class="categoryImgDiv">
   		var countDescription = 1;
-  		var lastPage = 10;
+  		var lastPageDs = 10;
   		var descriptionPage = 1;
   		var keyword = "${searchValue}";
 
@@ -304,40 +317,43 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		select("㉾"+keyword);
   	}
   		
- 
+ 	
  	 disableP();
   	 disableN();
   	countDesc();
  	printDescription(); 		//버튼이벤트 없이 호출이니까 ready에서 ㄴㄴㄴrmsid aㅓㅁㅌㄹ
- 	console.log(lastPage);
+ 	console.log(lastPageDs);
   	function printDescription(){
   		$.ajax({
   			url:"${path}/search/printDescription",
   			method : "post",
-  			data:{page : descriptionPage },
+  			data:{descPage : descriptionPage },
   			dataType :"json",		// List<descpriptionVO>
   			success: function (list){
   				let str = "";
-  				
-  					str += `<div id="previous" onclick="previous(descriptionPage)">previous</div>`;			
+  					console.log('버튼출력할때' +descriptionPage );
+ 
+  					str += `<div id="previousBtn" onclick="previous(descriptionPage)">previous</div>`;			
   					
   	//				str += `<div class='barItem' onclick='select("description"+"\${this.description}")'>`;
   				$(list).each(function(){
-  					
-  					
-  			str+=		`<div class="card" class='barItem' onclick='select("description"+"\${this.description}")'>`;
-  			str+=	  `<img src="#" class="card-img-top" alt="...">`;
+  					let descriptionSrc = "";
+  					descriptionSrc = "description";
+  					descriptionSrc += ""+this.no;
+  	//				console.log(descriptionSrc);
+  			str+=	  `<div class="card barItem" onclick='select("description"+"\${this.description}")'>`;
+  			str+=	  `<img src="${descImgPath}description2.jpg" height="55px" class="card-img-top" alt="...">`;
   			str+=	  `<div class="card-body">`;
-  			str+=	    `<p class="card_Ptag" class="card-text" >\${this.description}</p>`;			//내용
+  			str+=	  `<p class="card_Ptag card-text" >\${this.description}</p>`;			//내용
   			str+=	  `</div>`;
-  			str+=	`</div>`;
+  			str+=	  `</div>`;
   					
   					
 //  					str += `<div class='barItem' class="card" onclick='select("description"+"\${this.description}")'>`;    /*  */
 //  					str += `\${this.description}`;																			/*  */
 //  					str += '</div>';																					/*  */
   				})
-  					str += `<div id="next" onclick="next(descriptionPage)">next</div><br>`;
+  					str += `<div id="nextBtn" onclick="next(descriptionPage)">next</div><br>`;
   					str += `<div id="cancelDescription" onclick="cancel()">선택해제</div>`;                
   				$("#barContatiner").html(str);
   			},
@@ -352,17 +368,17 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		select("");
 		
 	}
- 	// 45개가 있다고 치자 -> 마지막 페이지는 5 lastPage
- 	function next(page){
- 		if(descriptionPage != lastPage){
+ 	// 45개가 있다고 치자 -> 마지막 페이지는 5 lastPageDs
+ 	function next(descriptionPage){
+ 		if(descriptionPage != lastPageDs){
  		descriptionPage += 1;
- 		console.log(descriptionPage);
+ 		console.log("if절" + descriptionPage);
  		printDescription();
  		}
- 		console.log(descriptionPage);
+ 	//	console.log(descriptionPage);
  		disableN();
  	}
- 	function previous(page){
+ 	function previous(descriptionPage){
  		if(descriptionPage != 1){
  		descriptionPage += -1;
  		console.log(descriptionPage);
@@ -371,23 +387,23 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  		disableP();
  	}
  	function disableN(){
- 		console.log("lastP" + lastPage)
- 		if(descriptionPage == lastPage){
+ 		console.log("lastP" + lastPageDs)
+ 		if(descriptionPage == lastPageDs){
  //			alert('조건 충족');
- 			$("#next").prop("disabled", true);
- 			$("#next").css("opacity","0.5"); 			
+ 			$("#nextBtn").prop("disabled", true);
+ 			$("#nextBtn").css("opacity","0.5"); 			
  		}else{
- 			$("#next").prop("disabled", false);
- 			$("#next").css("opacity","0"); 
+ 			$("#nextBtn").prop("disabled", false);
+ 			$("#nextBtn").css("opacity","0"); 
  		}
  	}
  	function disableP(){
  	if(descriptionPage != 1){
-			$("#previous").prop("disabled", false);
-			$("#previous").css("opacity","0"); 
+			$("#previousBtn").prop("disabled", false);
+			$("#previousBtn").css("opacity","0"); 
 		}else{
-			$("#previous").css("opacity","0.5"); 
-			$("#previous").prop("disabled", true);
+			$("#previousBtn").css("opacity","0.5"); 
+			$("#previousBtn").prop("disabled", true);
 		}
  	}
  	function countDesc(){
@@ -398,8 +414,8 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  			dataType: 'text', 
  	        success: function(count) {
  	        	countDescription = parseInt(count); 
- 	            console.log(countDescription + '개');
- 	           	lastPage = Math.ceil(countDescription/10);
+ 	            console.log('description :' + countDescription + '개');
+ 	           lastPageDs = Math.ceil(countDescription/10);
  	            
  	        },
 			error: function(count){
@@ -414,17 +430,20 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	function printCategory(list){ 
 //  		console.log('작동');
   				let str="";
-  				str += '<div id="selectedCategory"></div><hr/>';
+  				str += '<div id="selectedCategory"></div>';
   		$("#responsed").html(str);
-  	 			str += `<div onclick='select("category")' 
-		  		class='itemsNO' class='close'>선택하지 않음</div> <br/> `;
+  				str += `<div class="container">`;   
+  	 			str += `<button type="button" onclick='select("category")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
+		  		 
   	  	$(list).each(function(){	
   	  			// categoryVO
-			   	str += `<div onclick='select("category"+"\${this.category}")' 
-			   	class='items' class='close'>\${this.category}</div> `;
-			   	console.log('ㅇ');
+		//	   	str += `<div onclick='select("category"+"\${this.category}")' 
+		//	   	class='items' class='close'>\${this.category}</div> `;
+			   	str += `<button type="button" class="btn btn-outline-danger items" style="font-size: 13px;" `; 
+			   	str += ` onclick='select("category"+"\${this.category}")'>\${this.category}</button>`;
+//			   	console.log('ㅇ');
   	  	})
-  		
+  			str +=	`</div>`;
   					    //	console.log(str); 주르륵 나오는거
   		$("#responsed").append(str);
   	};
@@ -436,10 +455,14 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	function printDate(list){ 
   		let str="";
   //		str += '<div id="selectedDate"></div><hr/>';
-  			str +=	`<div class='itemsNO' class='close' onclick='select("date")'>선택하지 않음</div>`;
+  			str += `<div class="container">`;     
+  			str += `<button type="button" onclick='select("date")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
+  		//	str +=	`<div class='itemsNO' class='close' onclick='select("date")'>선택하지 않음</div> <br/>`;
   		$(list).each(function(){
-  			str += `<div class='items' class='close' onclick='select("date\${this}")'>\${this}일 이내</div>`;
+  			//str += `<div class='items' class='close' onclick='select("date\${this}")'>\${this}일 이내</div>`;
+  			str += `<button type="button" class="btn btn-outline-danger items" onclick='select("date\${this}")'>\${this}일 이내</button>`;
   		})
+  			 str +=	`</div>`;
   	//	console.log(str);
   		$("#responsed").html(str);//
   		
@@ -451,10 +474,19 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	function printLocation(list){	
   		let str="";
   		$("#responsed").html(str);
-  		str += `<div class='itemsNO' class='close' onclick='select("sido")'>선택하지 않음</div>`;
+  		
+  		
+  	  <!-- Content here -->
+ 
+  		str += `<div class="container">`;    
+  		str += `<button type="button" onclick='select("sido")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
+  //		str += `<div class='itemsNO close' onclick='select("sido")'>선택하지 않음</div> <br/>`;
   		$(list).each(function(){	// locationVO
-  			str += `<div class='items' class='close' onclick='select("sido\${this.sido}")'>\${this.sido}</div>`;
+  		//	str += `<div class='items close' onclick='select("sido\${this.sido}")'>\${this.sido}</div>`;
+  	  	//	str += `<span class="badge bg-light items" onclick='select("sido\${this.sido}")'>\${this.sido}</span>`;
+  		  	str += `<button type="button" class="btn btn-outline-danger items" onclick='select("sido\${this.sido}")'>\${this.sido}</button>`;
   		})
+  		str +=	`</div>`;
   		$("#responsed").html(str);
   		
   	};
@@ -469,12 +501,16 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			data : { targetContents : sido },
   			dataType : "json",
   			success : function(sigungu){	// List<LocationVO>
-  					str += `<div class='itemsNO' class='close' onclick='select("sigungu")'>선택하지 않음</div>`;
+  		        	str += `<div class="container">`;    
+  		        	str += `<button type="button" onclick='select("sigungu")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
+  				//	str += `<div class='itemsNO' class='close' onclick='select("sigungu")'>선택하지 않음</div>`;
   					$(sigungu).each(function(){
-					str += `<div class='items' class='close' onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</div>`;
+				//	str += `<div class='items' class='close' onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</div>`;
+					str += `<button type="button" class="btn btn-outline-danger items" onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</button>`;
 					$("#responsed").html(str);  //셀렉트 기능 구현 아직 안함
-				})				
-  			},
+				})	
+					str += `</div>`;
+  			},	
   			error : function(error){
 
   			}
@@ -487,6 +523,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	/////////////////////////////셀렉트 된 후 = 모달 속 factor클릭!//////////////////////////
   	function select(factor){		// 아무 요소나 선택되었을 때
   		page = 1;
+  		$("#partys").html("");
   	  		console.log(factor + "< factor");
   	 // 	$("#sigunguTemplate").html("");
   		// 키워드 검색 추가하기 
@@ -584,7 +621,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			selectedSigungu = selectedSigungu.substring(length);
   		}
   		
-  		if(factor.includes("㉾")){ // 글자수 줄이기 하다가 말았음
+  		if(factor.includes("㉾")){ // 해결
   			$("#keywordTemplate").html(factor);
   			
   			//alert("selectedKeyword: " +selectedKeyword);
@@ -607,11 +644,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		}else{
   			$("#categoryBtn").html(selectedCategory);
   			}
-  	//	console.log(selectedDescription);
-  	//	console.log(selectedCategory);
-  	//	console.log(selectedDate);
-  	//	console.log(selectedSido);
-  	//	console.log(selectedSigungu);
+ 
   					//description
   		let selectedKeyword = $("#keywordTemplate").val();
   					console.log(selectedKeyword);
@@ -619,7 +652,6 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		  			if(selectedKeyword ==""){
   		  				selectedKeyword = "noValue";
   		  			}
-  	/* 	selectedKeyword = selectedKeyword.substring(1); */			
   		if(selectedSido == "noValue"){selectedSigungu = "noValue"}
   			console.log(selectedSido);
   			
@@ -642,45 +674,95 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	function listAjax(page,resultQuery ){
   		console.log('listAjax호출됨');
   		console.log(page);
-  		
-  		console.log(resultQuery);
-  	 $.ajax({
-
-  		// 선택값이 없을 시  noValue
+  	// 선택값이 없을 시  noValue
   		// 이제 ajax로 보낸다
-  		listAjax(page,resultQuery);
+  		
   		console.log('listAjax호출 당시 page' + page);
   		console.log('listAjax호출 당시 resultQuery' + resultQuery);
-  		/*
   		 $.ajax({
+			
+   			url : "${path}/search/querySearch/"+page ,
+   			method : "GET",
+   			data : {
+   				resultQuery : resultQuery
+   			},
+   			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
 
-  			url : "${path}/search/querySearch/"+page ,
-  			method : "GET",
-  			data : {
-  				resultQuery : resultQuery
+   			success :  function(partyList){
+   				  	console.log("ListAjax에서 출력")
+   			  		console.log(partyList);
+   				let str = "";
+   				let wishlistPnum = [];
+//   				console.log("printListAjax 들어옴");
+
+   				if(partyList.wishlist != null){
+   					$(partyList.wishlist).each(function(){
+   						let wishPnum = this.pnum;
+   						wishlistPnum.push(wishPnum);
+   					});	
+   				}
+   				
+   				$(partyList).each(function(){
+   					let pname = this.pname;
+   					let address = this.address;
+   					let date = this.formatStartDate +"~"+ this.formatEndDate;		
+   					let pnum = this.pnum;
+   					let path = this.partyImage1;
+   					let detailAddress = this.detailAddress;
+   					
+   					str += '<li>';
+   					// wishList 받아서 fullHeart.png로 출력
+   					if(partyList.wishlist != null){
+   						if(wishlistPnum.indexOf(pnum) < 0){
+   							str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+   						}else{
+   							str += "<img src='${contextPath}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+   						}
+   					}else{
+   						str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+   					}
+   					str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
+   					str += "<hr/>";
+   					str += "<strong onclick='partyDetail("+pnum+");' style='cursor: pointer;'>"+pname+"</strong><br/>";
+   					str += address+" "+detailAddress+"<br/>";
+   					str += date;
+   					str += "</li>";
+   				});
+
+   				console.log("출력, 현재 페이지:" + page);
+   				
+   				if(page == 1){
+   					$("#partys").html(str);
+   					console.log('html');
+   				}else{
+   					console.log('appned');
+   					$("#partys").append(str);
+   				}
+			
   			},
-  			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
+   			error : function(error){
+   		//		alert(error);
+   			}
+   			
+   		}); 
+  	}// listAjax(page,resultQuery)
+  		
+  		
+  		/*
+  		
+  		*/
+  //	} // select(factor)
 
-  			success :  function(partyList){
-
-  				console.log(partyList);
-  				printListAjax(partyList);
-
-  				
- 			},
-  			error : function(error){
-  		//		alert(error);
-  			}
-  			
-  		}); 
-  	} // select(factor)
-
+  /*
+  이사 시작
   	function printListAjax(data){
+	  	console.log("printListAjax에서 출력")
+  		console.log(data);
 	let str = "";
 
 	
 	let wishlistPnum = [];
-	console.log("printListAjax 들어옴");
+//	console.log("printListAjax 들어옴");
 
 	if(data.wishlist != null){
 		$(data.wishlist).each(function(){
@@ -728,6 +810,8 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 
 //	$("#partys").html(str);
 } 
+  */ 
+  //이사 끝
 
 // 파티 상세 페이지로 이동
 function partyDetail(pnum){
@@ -735,20 +819,30 @@ function partyDetail(pnum){
 }
 
 // 무한 페이징
+
+
 $(window).scroll(function(){
-	let dh = $(document).height();
+	
+	let dh = $(document).height();		
 	let wh = $(window).height();
 	let wt = $(window).scrollTop();
-		
-	if((wt+wh) >= (dh - 10)){
+	
+	if((wt+wh) >= (dh  )){
 		if($("#partys li").size() <= 1){
+			console.log('return false');
 			return false;
 		}
+		console.log(dh);
+		console.log(wh);
+		console.log(wt);
+		console.log(wt+wh);
+		console.log("wt+wh-dh : ");
+		console.log(wt+wh-dh);
 		page++;
 		listAjax(page,resultQuery);
 		console.log('listAjax실행' + page + resultQuery);
-	}	
-});
+	}//
+});	//
   	
   	
   	
@@ -764,10 +858,23 @@ $(window).scroll(function(){
     		console.log('무한반복')
     	});
     	*/
+    	$(".barItem").click(function() {
+    	//	 $(this).css("border-color", "#e74c3c"); // 테두리색 변경 // 배경색 변경
+    		 $(".barItem.clicked").removeClass("clicked");
+
+    		  // 클릭된 요소의 테두리색 변경
+    		  $(this).addClass("clicked");
+    		});
     	
     	
+    	
+    	// 이 자체가 실행이 안 된다.
     	$("#keywordBtn").click(function(){
-    		keywordSearch()
+    //		keywordSearch();
+    	console.log(page);
+    	console.log("이 사이에");
+    	console.log(resultQuery);
+    		 listAjax(page,resultQuery);
     	});
     		
     	
@@ -818,6 +925,7 @@ $(window).scroll(function(){
       
       $(".close").click(function () {
         $("#searchModal").toggle("fast");
+        $("#searchModal").hide();
         $("#responsed").html("");
       });
       

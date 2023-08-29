@@ -34,11 +34,11 @@ public class SearchController {
 	// init으로 getMapping 3개 함수를 모두 호출함
 	//1
 	@PostMapping("search/printDescription") // 최초에 프린트
-	public ResponseEntity<List<descriptionVO>> description(int page){
+	public ResponseEntity<List<descriptionVO>> description(int descPage){
 		ResponseEntity<List<descriptionVO>> entity = null;
-		System.out.println("pageNum =" + page);
+		System.out.println("pageNum =" + descPage);
 		try {
-			List<descriptionVO> list = ss.description(page);
+			List<descriptionVO> list = ss.description(descPage);
 //			System.out.println(list);
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(MediaType.APPLICATION_JSON);
