@@ -27,6 +27,7 @@
 		border: 1px solid rgb(221,221,221);
 		box-shadow: rgba(0, 0, 0, 0.18) 0px 6px 16px;
 		margin-top: 2%;
+		margin-bottom:5%;
 	}
 	#addressBox form{
 		padding: 10px;

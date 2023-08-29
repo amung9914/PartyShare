@@ -5,7 +5,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
 	html, body {
 	    height: 100%
@@ -125,8 +124,8 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Wish List</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-		<input type="text" id="newAlias" /> <br/>최대 50자<br/>
+      <div class="modal-body" align="center">
+		<input type="text" id="newAlias" /> <br/>최대 50자<br/><br/>
 		<button id="newAliasBtn" class="btn btn-outline-dark" onclick="newAliasBtnClick();">새로 만들기</button>
       </div>
       <div class="modal-footer">

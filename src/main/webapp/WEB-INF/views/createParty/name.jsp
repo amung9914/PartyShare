@@ -4,7 +4,7 @@
 <style>
 	#formBox{
 		width: 50%;
-		margin-top: 20%;
+		margin-top: 12%;
 	}
 	
 	#pname{

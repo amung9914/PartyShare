@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 	#dateBox{
-		margin-top: 20%;
+		margin-top: 14%;
 	}
 	#title{
 		cursor: pointer;
@@ -20,9 +20,34 @@
 		width: 300px;
 		font-size: 30px;
 	}
+	#calenderBox{
+		width: 300px;
+		height:  100px;
+		text-align: left;
+		display:flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		position: relative;
+		right: 100px;
+		cursor: pointer;
+	}
+	#calenderBox p{
+		font-size: 40px;
+		width: 400px;
+		
+	}
+	#calenderBox img{
+		width : 70px;
+		height: 70px;
+	}
 </style>
 <div id="createParty_wrap">
-	<h1 id="title">날짜를 선택하세요</h1>
+	
+	<div id="calenderBox">
+		<img src="${pageContext.request.contextPath}/resources/img/calendar.png"/>
+		<p id="title">날짜를 선택하세요</p>
+	</div>
+	
 	<div id="dateBox">
 		<form action="createDate" method="post">
 			<input type="hidden" name="host" value="${loginMember.mnum}"/>
@@ -40,7 +65,7 @@
 	</div>
 </div>
 	<script>
-	$('h1').daterangepicker({
+	$('#calenderBox').daterangepicker({
 	    "locale": {
 	        "format": "YYYY-MM-DD",
 	        "separator": " ~ ",
@@ -61,6 +86,6 @@
 	    $("#startDate").val(start.format('YYYY-MM-DD'));
 	    $("#endDate").val(end.format('YYYY-MM-DD'));
 	});
-	$("h1").click();
+	$("#calenderBox").click();
 	</script>
 	<%@ include file="partyCreateFooter.jsp" %>

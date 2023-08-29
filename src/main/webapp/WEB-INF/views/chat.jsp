@@ -2,12 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="common/header.jsp" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>home</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
 	html, body {
@@ -20,21 +16,41 @@
 	    padding-bottom: 120px;
 	}
 
-	nav{
-		width : 100%;
+	/* 네비게이션 바 */
+	#top {
+		/* background-color : #FF385C;  */
+		width: 95%;
+		height: 50px;
+		display: flex;
+		justify-content: center; /* 수평 가운데 정렬 */
+		align-items: center; /* 수직 가운데 정렬 */
+		height: 50px; /* 컨테이너의 전체 높이만큼 설정하여 수직 중앙 정렬을 적용 */
+		margin: 20px auto;
+		color: white;
+		border-top: 2px solid black; /* 위쪽 테두리 */
+   		border-bottom: 2px solid black; /* 아래쪽 테두리 */
+		/* border-radius: 10px; */
 	}
 	
-	#navUl{
+	nav{
+		width : 100%;
+		font-weight: bold;
+	}
+
+	ul{
 		display: flex;
 		justify-content: space-evenly;
 		list-style : none;
+		margin-bottom: 0;
 	}
 	
-	#top{
-		background-color : beige;
-		height : 100px;
-		line-height:100px;
-		margin-top:2%;
+	ul li a {
+		color: black;
+		text-decoration: none;
+	}
+	
+	ul li a:hover {
+		color: #FF385C;
 	}
 	
 	#chatMain{
@@ -164,8 +180,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-</head>
-<body>
 <div id="wrap">
 <div id=top>
 		<nav>
