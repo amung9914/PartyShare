@@ -129,9 +129,8 @@
 
 				  		<li><a class="dropdown-item" href="${path}/party/createParty">파티생성</a></li>
 				  		<li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
-
-              <li><a class="dropdown-item" href="${path}/member/bonpost">확인한 알림</a></li>
-
+				  		<li><a class="dropdown-item" href="${path}/friend">친구리스트</a></li>
+			            <li><a class="dropdown-item" href="${path}/member/bonpost">확인한 알림</a></li>
 				  		<li><a class="dropdown-item" href="${path}/member/logout">로그아웃</a></li>
 				  	</c:when>
 				  	<c:otherwise>
