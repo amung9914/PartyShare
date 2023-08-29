@@ -32,14 +32,15 @@ public class AdminBController {
         return "admin/admin_blacklist"; 
  	}
 	@PostMapping("/unblock")
-	public String unblock(Model model) {
+	public String unblock(Model model, String mid) {
+		
 		List<MemberVO> unblock = null;
 		try {
-			unblock = as.unblock();
+			unblock = as.unblock(mid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("unblock", unblock);
-		return "admin/admin_blacklist";
+		return "redirect:/blacklist";
 	}
 }

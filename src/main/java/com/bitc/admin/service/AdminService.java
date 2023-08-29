@@ -39,7 +39,7 @@ public interface AdminService {
 	List<MemberVO> blackId() throws Exception;
 	
 	// 차단해제
-	List<MemberVO> unblock() throws Exception;
+	List<MemberVO> unblock(String mid) throws Exception;
 	
 	
 	
