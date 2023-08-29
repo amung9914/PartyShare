@@ -10,8 +10,8 @@
   		padding: 20px 0px 0px 0px;
 	}
 	#footerAtag, #footerPtag{
-		width: 70%;
-		margin-left:15%;
+		width: 90%;
+		margin-left:5%;
 	}
 	#footerAtag{
 		height: 15px;
