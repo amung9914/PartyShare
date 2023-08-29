@@ -35,7 +35,7 @@ public interface partyDetailMapper {
 	public int findJoinMember(@Param("pNum") int pNum, @Param("mNum") int mNum) throws Exception;
 	
 	@Select("INSERT INTO joinmember VALUES (null, #{pNum}, #{mNum})")
-	public int joinMember(@Param("pNum") int pNum, @Param("mNum") int mNum) throws Exception;
+	public void joinMember(@Param("pNum") int pNum, @Param("mNum") int mNum) throws Exception;
 
 	@Update("UPDATE member SET mJoinCnt = mJoinCnt + 1 WHERE mNum = #{mNum}")
 	public void increaseJoinCnt(int mNum) throws Exception;

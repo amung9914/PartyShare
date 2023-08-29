@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ include file="../common/header.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
     /* 검색창 및 글 작성 버튼 */
     .header-container {
