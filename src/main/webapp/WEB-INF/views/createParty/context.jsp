@@ -3,7 +3,7 @@
 <%@ include file="../common/header.jsp" %>
 <style>
 	#contentBox{
-		margin-top: 5%;
+		margin-top: 3%;
 	}
 	
 	
@@ -37,8 +37,7 @@
     tinymce.init({
       language : "ko_KR",
       selector: '#content',
-      skin: 'oxide-dark',
-      width : 600,
+      width : 1000,
       height: 500,
       menubar : false,
       plugins: plugins,

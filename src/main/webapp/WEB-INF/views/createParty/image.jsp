@@ -9,6 +9,7 @@
 		display:flex;
 		flex-wrap:wrap;
 		flex-direction: column;
+		align-content: center;
 		width:500px;
 		height:750px;
 		margin-top:3%;
@@ -45,7 +46,10 @@
 		position: absolute;
 		text-align: center;
 	}
-	
+	.subImage{
+		width: 250px;
+		height: 250px;
+	}
 	.subImage .img_cover{
 		width: 250px;
 		height: 250px;
@@ -72,7 +76,7 @@
 		background-repeat:no-repeat;
 		width: 150px;
 		height: 150px;
-		margin-top:25%;	
+		margin-top:20%;	
 	}
 	
 	.img_cover label{

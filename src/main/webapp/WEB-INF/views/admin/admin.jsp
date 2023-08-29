@@ -95,7 +95,7 @@
 		
 		$("#blackList").click(function () {
 			console.log('되는데?');
-			location.href = '<c:url value="/report/admin_blackList"/>';
+			location.href = '<c:url value="/blacklist"/>';
 			console.log('안되노?');
 		});
 		

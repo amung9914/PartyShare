@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <style>
 	a{
 	text-decoration:none;
@@ -18,6 +19,7 @@
 		width : 50%;
 		margin : 20px;
 	}
+
 	.title{
 		width: 50%;
 	}
@@ -33,15 +35,10 @@
 	html, body {
     height: 90%
 }
-#wrap {
-    min-height: 100%;
-    position: relative;
-    padding-bottom: 100px;
-}
-	
+
 	
 </style>
-	<div id="wrap">
+	
 	<div class="tableBox">
 	<div class="control">
 	<form name="changeCri" action="listPage" method="GET">
@@ -222,15 +219,15 @@
 					<option value="tcw">제목 &amp; 내용 &amp; 작성자</option>
 				</select>
 				<input type="text" class="form-control" name="keyword" placeholder="검색어를 입력하세요" />
-				<input type="submit" class="btn btn-dark" value="검색" />
+				<input type="submit" style="z-index: 0;" class="btn btn-dark" value="검색" />
 			</div>
 			
 	</form>
 	<br/>
 	
 	</div>
-	</div>
-<%@ include file="../common/footer.jsp" %>
+	
+<%@ include file="../common/fixFooter.jsp" %>
 
 
 

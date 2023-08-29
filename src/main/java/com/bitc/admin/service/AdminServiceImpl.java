@@ -40,14 +40,15 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<MemberVO> blackId() throws Exception {
-		
-		return dao.blackId();
+		List<MemberVO> list = dao.blackId();
+		System.out.println(list);
+		return list;
 	}
 
 	@Override
-	public List<MemberVO> unblock() throws Exception {
+	public List<MemberVO> unblock(String mid) throws Exception {
 		
-		return dao.unblock();
+		return dao.unblock(mid);
 	}	
 	
 	/*

@@ -19,15 +19,28 @@ public class AdminBController {
 	private final AdminService as;
 	
 	@GetMapping("/blacklist")
-    public String blackList(Model model) throws Exception {
-        List<MemberVO> blackMembers = as.blackId();
+    public String blackList(Model model) {
+        List<MemberVO> blackMembers = null;
+
+        try {
+			blackMembers = as.blackId();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        System.out.println(blackMembers);
         model.addAttribute("blackMembers", blackMembers);
         return "admin/admin_blacklist"; 
  	}
 	@PostMapping("/unblock")
-	public String unblock(Model model) throws Exception{
-		List<MemberVO> unblock = as.unblock();
+	public String unblock(Model model, String mid) {
+		
+		List<MemberVO> unblock = null;
+		try {
+			unblock = as.unblock(mid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("unblock", unblock);
-		return "admin/admin_blacklist";
+		return "redirect:/blacklist";
 	}
 }

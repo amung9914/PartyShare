@@ -16,8 +16,8 @@
 	
 	#successBox{
 		text-align: center;
-		width: 500px;
-		margin-top:15%;
+		width: 600px;
+		margin-top:10%;
 	}
 	#successBox a{
 		display:inline-block;

@@ -38,7 +38,7 @@
             <td>${member.mid}</td>
             <td>
                 <form action="unblock" method="post">
-                    <input type="hidden" name="memberId" value="${member.mid}">
+                    <input type="hidden" name="mid" value="${member.mid}">
                     <input type="submit" value="차단해제">
                 </form>
             </td>
