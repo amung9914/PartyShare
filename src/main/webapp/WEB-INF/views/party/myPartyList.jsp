@@ -2,11 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>개설한 파티 목록</title>
+<%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 부트스트랩 추가 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -14,8 +10,10 @@
 </script>
 
 <style>
-body{
+
+#wrap{
 	text-align: -webkit-center;
+	margin : 0px 0px 50px 0px;
 }
 
  img{
@@ -33,11 +31,11 @@ body{
  }
  #menu{
  	float : left;
- 	margin: 0px 30px;
+ 	margin: 0px 30px 100px 100px;
  }
 </style>
-</head>
-<body>
+
+<div id="wrap">
 <div id="menu"> 	
 	<h3>참여 중인 파티</h3>
 <c:forEach items="${list}" var="party">
@@ -120,5 +118,5 @@ $(".withdraw").click(function(e){
 });
 </script>
 
-</body>
-</html>
+</div>	
+<%@ include file="../common/fixFooter.jsp" %>

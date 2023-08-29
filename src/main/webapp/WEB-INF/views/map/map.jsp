@@ -2,13 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>여러개 마커에 이벤트 등록하기1</title>
+<%@ include file="../common/header.jsp" %>
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
+</script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>   
 <style>
+html, body {
+    height: 90%
+}
+
  .infoBox{
  	background-color:white;
  	width: 400px;
@@ -48,8 +52,6 @@
     margin: 10px;
     }
 </style>
-</head>
-<body>
 <div id="map" style="width:100%;height:97.5vh;"></div>
 <div id="detailView"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>

@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>modify.jsp</title>
+<%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- Editor's Style -->
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
@@ -14,13 +10,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
 <style>
-body{
+#wrap{
 margin:30px;
 }
-
+html, body {
+    height: 90%
+}
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+}
 </style>
-</head>
-<body>
+<div id="wrap">
 	<!-- model boardVO -->
 	<!-- board/modify POST -->
 	<form action="modify" method="POST" id="modifyForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
@@ -126,9 +128,8 @@ function goBack(){
 
 </script>
 			
-		
-</body>
-</html>
+</div>	
+<%@ include file="../common/footer.jsp" %>
 
 
 
