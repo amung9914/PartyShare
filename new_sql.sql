@@ -225,6 +225,7 @@ VALUES
 ('반려동물'),
 ('가족/결혼'),
 ('그외');
+DELETE  FROM partycategory;
 
 INSERT INTO partydescription (description)
 VALUES
