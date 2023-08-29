@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	#contentBox{
 		margin-top: 3%;
@@ -24,6 +25,7 @@
 	    	<input type="hidden" name="startDate" value="${vo.startDate}" />
 			<input type="hidden" name="endDate" value="${vo.endDate}" />
 			<input type="hidden" name="pname" value="${vo.pname}" />
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<textarea rows="10" cols="100" name="pcontext" id="content"></textarea> <br/>
 		</form>	
 	</div>

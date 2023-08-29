@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 <style>
@@ -25,8 +26,8 @@
 	  flex: auto;
 	  margin: 0.5rem;
 	  background: white;
-	  border:1px black solid;
-	  box-shadow:1px 1px 1px;
+  	  border: 1px solid rgb(221,221,221);
+	  box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
 	  line-height: 300px;
 	  text-align: center;
 	  border-radius: 4px;
@@ -62,6 +63,7 @@
 		<input type="hidden" id="lat" name="lat" value="${mapVO.lat}">
     	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
     	<input type="text" id="period" name="period" class="reqInput" required/>
+    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 <script>
 	ScrollReveal().reveal('.widget', { interval: 200 });

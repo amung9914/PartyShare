@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <c:set var="imgPath" value="${path}/image/printProfileImage?fileName=" />
 <c:set var="descImgPath" value="${path}/resources/img/descImg/" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -93,18 +93,6 @@
 	/* position: absolute; 
       top: 300px; */
 	/* left:100px; */
-}
-
-/* 검색창 스타일 */
-#searchKeyword {
-	height: 30px;
-	width: 150px;
-	padding: 5px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	/* position: absolute;
-      top:100px;
-      left:300px; */
 }
 
 /* 버튼과 검색창을 감싸는 부모 컨테이너 스타일 */
@@ -688,21 +676,21 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
    			},
    			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
 
-   			success :  function(partyList){
+   			success :  function(data){
    				  	console.log("ListAjax에서 출력")
-   			  		console.log(partyList);
+   			  		console.log(data.partyList);
    				let str = "";
    				let wishlistPnum = [];
 //   				console.log("printListAjax 들어옴");
 
-   				if(partyList.wishlist != null){
-   					$(partyList.wishlist).each(function(){
+   				if(data.wishlist != null){
+   					$(data.wishlist).each(function(){
    						let wishPnum = this.pnum;
    						wishlistPnum.push(wishPnum);
    					});	
    				}
    				
-   				$(partyList).each(function(){
+   				$(data.partyList).each(function(){
    					let pname = this.pname;
    					let address = this.address;
    					let date = this.formatStartDate +"~"+ this.formatEndDate;		
@@ -712,14 +700,14 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
    					
    					str += '<li>';
    					// wishList 받아서 fullHeart.png로 출력
-   					if(partyList.wishlist != null){
+   					if(data.wishlist != null){
    						if(wishlistPnum.indexOf(pnum) < 0){
-   							str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+   							str += "<img src='${path}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
    						}else{
-   							str += "<img src='${contextPath}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+   							str += "<img src='${path}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
    						}
    					}else{
-   						str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
+   						str += "<img src='${path}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
    					}
    					str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
    					str += "<hr/>";

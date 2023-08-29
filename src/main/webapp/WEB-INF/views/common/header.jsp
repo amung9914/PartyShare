@@ -9,11 +9,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
     * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
@@ -58,8 +55,6 @@
 		border-radius: 100px;
 		text-align: center;
 		box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
-		
-		
 	}
 	#searchImg{
 		width: 40px;
@@ -127,13 +122,13 @@
                  <c:if test="${loginMember.mid eq 'admin'}">
 			    	<li><a class="dropdown-item" href="${path}/admin/admin">관리자페이지</a></li>
 			    </c:if>
-				  		<li><a class="dropdown-item" href="${path}/member/account">계정관리</a></li>
+				  		<li><a class="dropdown-item" href="${path}/user/account">계정관리</a></li>
 
-				  		<li><a class="dropdown-item" href="${path}/party/createParty">파티생성</a></li>
+				  		<li><a class="dropdown-item" href="${path}/user/party/createParty">파티생성</a></li>
 				  		<li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
 				  		<li><a class="dropdown-item" href="${path}/user/friend">친구리스트</a></li>
 			            <li><a class="dropdown-item" href="${path}/member/bonpost">확인한 알림</a></li>
-				  		<li><a class="dropdown-item" href="${path}/member/logout">로그아웃</a></li>
+				  		<li><a class="dropdown-item" href="${path}/user/logout">로그아웃</a></li>
 				  	</c:when>
 				  	<c:otherwise>
 				  		<li><a class="dropdown-item" href="#" onclick="loginModalShow();">로그인</a></li>
@@ -151,11 +146,7 @@
 
 <c:if test="${!empty searchValue}">
 	<script>
-		 /* $("#keywordTemplate").val("'${searchValue}'");
-		console.log($("#keywordTemplate").val()); */
 		$("#searchKeyword").val('${searchValue}');
-		console.log($("#searchKeyword").val());
-		$("#searchKeywordt").val('${searchValue}');
 	</script>
 </c:if>
 
@@ -182,7 +173,6 @@
 		});
 	}
 	
-	
 	function searchPrintList(data){
 		let str = "";
 		let wishlistPnum = [];
@@ -192,7 +182,6 @@
 				wishlistPnum.push(wishPnum);
 			});	
 		}
-		
 		
 		$(data.list).each(function(){
 			let pname = this.pname;
@@ -220,8 +209,11 @@
 			str += date;
 			str += "</li>";
 		});
-		$("#partys").html(str);
-		
+		if(page == 1){
+			$("#partys").html(str);	
+		}else{
+			$("#partys").append(str);
+		}
 	}
 	
 	$("#searchKeyword").keydown(function(event) {
@@ -234,4 +226,11 @@
 	function loginModalShow(){
 		$("#loginModal").modal("show");
 	}
+	
+
+	$(document).ajaxSend(function(e,xhr,options){
+		xhr.setRequestHeader(
+				'${_csrf.headerName}',
+				'${_csrf.token}');
+	});
 </script>

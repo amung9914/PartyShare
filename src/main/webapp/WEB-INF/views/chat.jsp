@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="common/header.jsp" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	html, body {
 	    height: 100%
@@ -37,19 +37,19 @@
 		font-weight: bold;
 	}
 
-	ul{
+	#navUl{
 		display: flex;
 		justify-content: space-evenly;
 		list-style : none;
 		margin-bottom: 0;
 	}
 	
-	ul li a {
+	#navUl li a {
 		color: black;
 		text-decoration: none;
 	}
 	
-	ul li a:hover {
+	#navUl li a:hover {
 		color: #FF385C;
 	}
 	
@@ -274,7 +274,7 @@
 
 			var endNo = $("#chatList li").first().data("no");
 			$.ajax({
-				url : contextPath+"/chatList?endNo="+endNo+"&pnum=${party.pnum}",
+				url : contextPath+"/user/chatList?endNo="+endNo+"&pnum=${party.pnum}",
 				type : "GET",
 				dataType : "json",
 				success : function(result) {

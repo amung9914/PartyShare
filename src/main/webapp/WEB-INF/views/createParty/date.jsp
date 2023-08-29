@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 	#dateBox{
-		margin-top: 14%;
+		margin-top: 18%;
 	}
 	#title{
 		cursor: pointer;
@@ -31,23 +32,18 @@
 		right: 100px;
 		cursor: pointer;
 	}
-	#calenderBox p{
-		font-size: 40px;
-		width: 400px;
-		
-	}
-	#calenderBox img{
-		width : 70px;
-		height: 70px;
+	#calBox{
+		text-align:left;
+		width: 30%;
+		font-weight: 500;
+		font-size:40px;
+		cursor: pointer;
 	}
 </style>
 <div id="createParty_wrap">
-	
-	<div id="calenderBox">
-		<img src="${pageContext.request.contextPath}/resources/img/calendar.png"/>
-		<p id="title">날짜를 선택하세요</p>
+	<div id="calBox">
+		날짜를 선택하세요
 	</div>
-	
 	<div id="dateBox">
 		<form action="createDate" method="post">
 			<input type="hidden" name="host" value="${loginMember.mnum}"/>
@@ -61,11 +57,12 @@
 	    	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
 	    	<input type="text" name="startDate" id="startDate" /> ~
 	    	<input type="text" name="endDate" id="endDate" />
+	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 	</div>
 </div>
 	<script>
-	$('#calenderBox').daterangepicker({
+	$('#calBox').daterangepicker({
 	    "locale": {
 	        "format": "YYYY-MM-DD",
 	        "separator": " ~ ",
@@ -86,6 +83,6 @@
 	    $("#startDate").val(start.format('YYYY-MM-DD'));
 	    $("#endDate").val(end.format('YYYY-MM-DD'));
 	});
-	$("#calenderBox").click();
+	$("#calBox").click();
 	</script>
 	<%@ include file="partyCreateFooter.jsp" %>

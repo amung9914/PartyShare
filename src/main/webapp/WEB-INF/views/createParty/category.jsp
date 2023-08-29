@@ -31,11 +31,12 @@
 	  flex: auto;
 	  margin: 0.5rem;
 	  background: white;
-	  border:1px black solid;
 	  box-shadow:1px 1px 1px;
 	  line-height: 150px;
 	  text-align: center;
 	  border-radius: 4px;
+	  border: 1px solid rgb(221,221,221);
+	  box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
 	}
 	
 	/* extension */
@@ -62,6 +63,7 @@
 		<input type="hidden" name="host" value="${loginMember.mnum}"/>
 		<input type="hidden" name="description" value="${vo.description}" />
 		<input type="text" class="reqInput" id="category" name="category" required/><br/>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 	</div>
 <script>

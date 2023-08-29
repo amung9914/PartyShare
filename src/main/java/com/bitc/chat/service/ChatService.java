@@ -18,6 +18,7 @@ public interface ChatService {
 
 	/**
 	 * 채팅 내용 저장
+	 * 채팅을 저장하고 저장된 채팅의 cnum 반환
 	 */
 	int insertChat(ChatVO chat) throws Exception;
 	

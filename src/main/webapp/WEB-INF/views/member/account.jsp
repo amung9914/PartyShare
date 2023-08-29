@@ -4,8 +4,7 @@
 <%@ include file="../common/header.jsp" %>
 <!-- 부트스트랩 추가 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 html, body {
     height: 90%
@@ -48,7 +47,7 @@ b{
 		<b>알림</b>
 		<div class="form-text" id="basic-addon4">서비스 공지사항을 확인해보세요</div>
 		</a>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/member/profileModify'/>">
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/user/profileModify'/>">
 		<b>계정설정</b>
 		<div class="form-text" id="basic-addon4">계정 정보를 변경할 수 있습니다</div>
 		</a>

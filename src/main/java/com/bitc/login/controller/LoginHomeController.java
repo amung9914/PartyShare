@@ -73,18 +73,19 @@ public class LoginHomeController {
 			             vo.setProfileImageName(savedName);
 			             js.Join(vo);
 					} catch (Exception e) {
-						return "error500";
+						e.printStackTrace();
 					}
-                   // 8 23 수정
+                   // 8 23 수정 - 사용자가 이미지를 등록하였고 가입 완료
                    return "redirect:/member/login";
                 }
             }
-        }      
+        }    
+       // 사용자가 이미지를 등록하지 않으면
 		vo.setProfileImageName("/default.jpg");
 		try {
 			js.Join(vo);
 		} catch (Exception e) {
-			return "error500";
+			e.printStackTrace();
 		}
        return "redirect:/member/login"; // 여기서 이미지 넣어야함
     }
@@ -116,6 +117,7 @@ public class LoginHomeController {
         return "error500"; // 에러 페이지의 뷰 이름
     }
 */	
+    /*
     @PostMapping("error500") 
     public String error500() {
     	return "error500";
@@ -125,7 +127,7 @@ public class LoginHomeController {
     public String error404() {
     	return "error404";
     }
-    
+    */
 
    /*
     * @PostMapping("uploadImg") public String uploadImg() { return "test"; }
@@ -139,13 +141,6 @@ public class LoginHomeController {
     * model.addAttribute("savedName", savedName); } return "test"; }
     */
 
-    public String uploadFile(String original, byte[] fileData) throws IOException {
-        String savedName = "";
-        UUID uuid = UUID.randomUUID();
-        savedName = uuid.toString().replace("-", "") + "_" + original;
-        FileCopyUtils.copy(fileData, new File(realPath, savedName));
-        return savedName;
-    }
     
 
 }

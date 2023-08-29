@@ -43,16 +43,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<error-page>
-		<error-code>500</error-code>
-		<location>/error500</location>
-	</error-page>
-	
-	<error-page>
-		<error-code>404</error-code>
-		<location>/error500</location>
-	</error-page>
-	
 	<!-- security - filter -->
 	<!-- <filter>
 		<filter-name>springSecurityFilterChain</filter-name>
