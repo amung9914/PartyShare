@@ -107,12 +107,12 @@
 /* 검색창을 감싸는 div 스타일 */
 .searchContainer {
 	display: inline-block;
-}
+  }
 
 /* 버튼 컨테이너 스타일 */
 .buttonsContainer {
 	display: inline-block;
-}
+  }
 
 #flexContainer {
 	display: flex;
@@ -216,6 +216,7 @@
 	<div id="keywordTemplate" class='template'></div>
 	<input type="hidden"  id="keywordTemplate" />
 
+
 </header>
 <script>
 		
@@ -252,6 +253,9 @@ function listPage(page){
 var contextPath = '${pageContext.request.contextPath}';
 // var page = 1;
 
+if(typeof keyword === 'undefined'){keyword = "noValue"}
+var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
+
 
 
 //	listAjax(page,resultQuery);      //초기실행 주석
@@ -273,9 +277,11 @@ var contextPath = '${pageContext.request.contextPath}';
   		var lastPage = 10;
   		var descriptionPage = 1;
   		var keyword = "${searchValue}";
+
   		if(typeof keyword === 'undefined' || keyword ==''){keyword = "noValue"}
   		var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		console.log(resultQuery);
+
   		//select("");
   	console.log("keyword : " + keyword);
   	$("#keywordTemplate").val(keyword);
@@ -620,6 +626,7 @@ var contextPath = '${pageContext.request.contextPath}';
   		resultQuery = selectedDescription+"|"+selectedCategory+"|"
   		+selectedDate+"|"+selectedSido+"|"+selectedSigungu+"|"+selectedKeyword;
   		console.log("resultQ: " + resultQuery);					
+
   		console.log('listAjax호출 당시 page' + page);
   		console.log('listAjax호출 당시 resultQuery' + resultQuery);
   		
@@ -638,6 +645,15 @@ var contextPath = '${pageContext.request.contextPath}';
   		
   		console.log(resultQuery);
   	 $.ajax({
+
+  		// 선택값이 없을 시  noValue
+  		// 이제 ajax로 보낸다
+  		listAjax(page,resultQuery);
+  		console.log('listAjax호출 당시 page' + page);
+  		console.log('listAjax호출 당시 resultQuery' + resultQuery);
+  		/*
+  		 $.ajax({
+
   			url : "${path}/search/querySearch/"+page ,
   			method : "GET",
   			data : {
@@ -646,8 +662,10 @@ var contextPath = '${pageContext.request.contextPath}';
   			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
 
   			success :  function(partyList){
+
   				console.log(partyList);
   				printListAjax(partyList);
+
   				
  			},
   			error : function(error){
@@ -656,12 +674,14 @@ var contextPath = '${pageContext.request.contextPath}';
   			
   		}); 
   	} // select(factor)
+
   	function printListAjax(data){
 	let str = "";
 
 	
 	let wishlistPnum = [];
 	console.log("printListAjax 들어옴");
+
 	if(data.wishlist != null){
 		$(data.wishlist).each(function(){
 			let wishPnum = this.pnum;
@@ -695,6 +715,7 @@ var contextPath = '${pageContext.request.contextPath}';
 		str += date;
 		str += "</li>";
 	});
+
 	console.log("출력, 현재 페이지:" + page);
 	
 	if(page == 1){
@@ -704,6 +725,7 @@ var contextPath = '${pageContext.request.contextPath}';
 		console.log('appned');
 		$("#partys").append(str);
 	}
+
 //	$("#partys").html(str);
 } 
 

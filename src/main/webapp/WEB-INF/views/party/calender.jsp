@@ -30,7 +30,7 @@
 	    buttonIcons: false, // show the prev/next text
 	    weekNumbers: true,
 	    navLinks: true, // can click day/week names to navigate views
-	    editable: true,
+	    editable: false,
 	    dayMaxEvents: true, // allow "more" link when too many events
 	    events: [
 	    	<c:forEach items="${list}" var="party">
@@ -38,7 +38,7 @@
 	            title: '${party.pname}',
 	            start: '${party.startDate}',
 	            end: '${party.endDate}',
-	        	url: '${path}/party/partyDetail?pnum=${party.pnum}',
+	        	url: '${path}/partyDetail/detailOfParty?pNum=${party.pnum}',
 	          },
 	    	</c:forEach>
 	    	]

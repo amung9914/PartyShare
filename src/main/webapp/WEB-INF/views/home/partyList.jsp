@@ -10,30 +10,31 @@
 	html, body {
 	    height: 100%
 	}
-
+	
 	#wrap {
 		width: 100%;
 	    min-height: 100%;
 	    position: relative;
 	    padding-bottom: 93px;
+	    
 	}
 	
 	#partyListContainer{
 		width: 100%;
-		margin-left: 2%;
 	}
 
 	#partys{
 		display: flex;
    		flex-wrap: wrap;
+   		justify-content: space-between;
 	}
 	
 	#partys li{
 		list-style:none;
-		padding:10px;
 		width: 300px;
 		height:400px;
-		margin: 20px;
+		text-align: left;
+		margin: 1%;
 	}
 	
 	#partys li .partyImg{
@@ -44,12 +45,12 @@
 	}
 	
 	#partys li .likeBtn{
-		width: 40px;
-		height: 40px;
+		width: 25px;
+		height:25px;
 		cursor: pointer;
 		position: relative;
-		left: 260px;	
-		top:40px;	
+		top: 40px;
+		left: 260px;
 	}
 	
 	#mapBtn{
@@ -59,16 +60,12 @@
 		left:48%;
 		z-index: 1;
 	}
-	#createPartyBtn{
-		position: relative;
-		left:87%;
-	}
+	
 	#wishListUl{
 		width: 400px;
 	}
 	#newWishList{
 		width: 100%;
-		
 	}
 	#wishListUl li{
 		padding: 5px;
@@ -144,12 +141,11 @@
 </c:if>
 <!-- partyList 필요 -->
 <hr/>
-<button id="createPartyBtn" class="btn btn-dark" onclick="location.href='${contextPath}/party/createParty';">파티 생성</button>
 <div id="mapBtn">
 	<button onclick="location.href='${contextPath}/location/map';" class="btn btn-dark">지도보기</button>
 </div>
 <div id="wrap">
-	<div id="partyListContainer" >
+	<div id="partyListContainer">
 		<ul id="partys">
 		
 		</ul>
@@ -241,7 +237,7 @@
 	
 	function toggleHeart(heartElement) {
 		if('${loginMember}' == ''){
-			$("#loginButton").click();
+			$("#loginModal").modal("show");
 		}else{
 			if (heartElement.src.includes("${contextPath}/resources/img/redHeart.png")) {
 	            heartElement.src = "${contextPath}/resources/img/emptyHeart.png"; // 빈 하트 이미지 경로로 변경
