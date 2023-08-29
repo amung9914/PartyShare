@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>perWishlist.jsp</title> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
     * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
@@ -26,11 +27,13 @@
 	    display: flex;
 	    flex-wrap: wrap;
 		list-style-type : none;
-		justify-content: space-between;
+		justify-content: space-around;
 		margin-bottom: 250px;
+		padding-left: 0;
+		padding: 0 20px;
 	}
 		
-	li {
+	.perWishlist-li {
 		padding: 10px;
 		width: 300px;
 		height: 400px;
@@ -38,7 +41,7 @@
         text-decoration: none;
 	}
 	
-	li a {
+	.perWishlist-li a {
 		 text-decoration: none;
 		 color: black;
 	}
@@ -68,7 +71,7 @@
 	 <div id="perWishlist-content">
 	 <ul>
 		<c:forEach var="party" items="${parties}">
-	    	<li>
+	    	<li class="perWishlist-li">
 	      		<img id="${party.pnum}" class="heart" src="${contextPath}/resources/img/redHeart.png" alt="하트" onclick="toggleHeart(this)"> <br/><br/><br/>
 				<img class="partyImg" src="${contextPath}/upload/party${party.partyImage1}"/> 
 		      	<a href="${contextPath}/partyDetail/detailOfParty?pNum=${party.pnum}">
