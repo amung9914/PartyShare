@@ -31,7 +31,7 @@ import com.bitc.party.vo.PartyVO;
 
 import lombok.RequiredArgsConstructor;
 
-@PropertySource("classpath:api.properties") // api숨김
+@PropertySource("classpath:/prop/maria.properties") // api숨김
 @RequestMapping("/party/*")
 @RequiredArgsConstructor
 @Controller
