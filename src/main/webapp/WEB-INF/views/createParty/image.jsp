@@ -2,23 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-	#title{
-		margin-left:30%;
-	}
 	#imgBox{
 		display:flex;
 		flex-wrap:wrap;
 		flex-direction: column;
 		width:500px;
 		height:750px;
-		margin-left:30%;
 		margin-top:3%;
 	}
 	#imgBox img{
@@ -92,8 +84,7 @@
 	}
 	
 </style>
-</head>
-<body>
+<div id="createParty_wrap">
 	<h1 id="title">대표 사진 업로드</h1>
 	<form action="createImage" method="POST" enctype="multipart/form-data">
     	<input type="hidden" name="host" value="${loginMember.mnum}"/>
@@ -134,6 +125,7 @@
 			</div>
 		</div>
 	</form>
+</div>
 	<script>
 	function readURL(input) {
 		let previews = document.querySelectorAll(".preview");
@@ -169,5 +161,3 @@
 	
 </script>
 <%@ include file="partyCreateFooter.jsp" %>
-</body>
-</html>

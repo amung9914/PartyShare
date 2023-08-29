@@ -1,21 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="../common/header.jsp" %>
 <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 	#dateBox{
-		margin-left: 30%;
 		margin-top: 20%;
 	}
 	#title{
-		margin-left:32%;
 		cursor: pointer;
 	}
 	#startDate, #endDate{
@@ -27,9 +21,7 @@
 		font-size: 30px;
 	}
 </style>
-</head>
-<body>
-	
+<div id="createParty_wrap">
 	<h1 id="title">날짜를 선택하세요</h1>
 	<div id="dateBox">
 		<form action="createDate" method="post">
@@ -45,8 +37,8 @@
 	    	<input type="text" name="startDate" id="startDate" /> ~
 	    	<input type="text" name="endDate" id="endDate" />
 		</form>
-		
 	</div>
+</div>
 	<script>
 	$('h1').daterangepicker({
 	    "locale": {
@@ -72,5 +64,3 @@
 	$("h1").click();
 	</script>
 	<%@ include file="partyCreateFooter.jsp" %>
-</body>
-</html>

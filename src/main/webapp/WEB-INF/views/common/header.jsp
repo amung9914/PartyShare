@@ -15,6 +15,9 @@
 	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
     * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
 
+	#createParty_wrap{
+		text-align: -webkit-center;
+	}
 	#headerBox{
 		width: 100%;
 		height: 80px;

@@ -1,26 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="../common/header.jsp" %>
 <style>
 	html, body {
 	    height: 100%
 	}
-
+	
 	#wrap {
 	    min-height: 100%;
 	    position: relative;
 	    padding-bottom: 93px;
+	    text-align: -webkit-center;
 	}
 	
 	#successBox{
 		text-align: center;
 		width: 500px;
-		margin-left:35%;
 		margin-top:15%;
 	}
 	#successBox a{
@@ -35,7 +31,6 @@
 		
 	}
 </style>
-</head>
 <div id="wrap">
 	<div id="successBox">
 		<h1>축하합니다.</h1>

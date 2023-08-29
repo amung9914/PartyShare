@@ -1,44 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<%@ include file="../common/header.jsp" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-<title>Insert title here</title>
 <style>
-	h1{
-		margin-left: 23%;
-	}
-	#categoryContainer div{
-		border:1px black solid;
-		width: 100px;
-		height: 50px;
-		padding :20px;
-	}
-	
-	#categoryContainer{
-		display:flex;
-		flex-wrap: wrap;
-		width: 1000px;
-		hight:50px;
-		padding:20px;
-		text-align: center;
-	}
-	
-	form button{
-		width: 100px;
-		height: 50px;
-	}
 	
 	#box{
 		width: 50%;
-		margin-left: 25%;
 		margin-top: 5%;
-		
 	}
 	
 	#description{
@@ -71,24 +42,8 @@
 	  visibility: hidden;
 	}
 	
-	#footerDiv{
-		margin:0;
-		padding:0;
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		height:100px;
-		position: fixed;
-		bottom: 0;
-		border-top: 2px black solid;
-		padding:20px;
-	}
-	#footerDiv button{
-		width: 150px;
-	}
 </style>
-</head>
-<body>
+<div id="createParty_wrap">
 	<h1>다음 중 당신의 파티를 가장 잘 설명하는 것은 무엇인가요?</h1>
 	<c:if test="${!empty description}">
 		<div id="box">
@@ -102,12 +57,11 @@
 		</div>
 	</c:if>
 	
-	
 	<form action="createDescription" method="post">
 		<input type="hidden" name="host" value="${loginMember.mnum}"/>
 		<input type="text" id="description" class="reqInput" name="description" required/> <br/>
 	</form>
-	
+</div>	
 <script>
 	ScrollReveal().reveal('.widget', { interval: 200 });
 	const divs = document.querySelectorAll(".widget");
@@ -124,5 +78,3 @@
 	
 </script>
 <%@ include file="partyCreateFooter.jsp" %>
-</body>
-</html>

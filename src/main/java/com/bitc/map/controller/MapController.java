@@ -25,7 +25,7 @@ import com.bitc.map.vo.MapVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@PropertySource("classpath:api.properties")
+@PropertySource("classpath:/prop/maria.properties")
 @RequestMapping("/location/*")
 @RequiredArgsConstructor
 public class MapController {

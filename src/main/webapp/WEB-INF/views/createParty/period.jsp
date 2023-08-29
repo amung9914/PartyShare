@@ -1,22 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<%@ include file="../common/header.jsp" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-<title>Insert title here</title>
 <style>
-	h1{
-		margin-left:38%;
-	}
-	
 	#wrap{
 		width: 50%;
-		margin-left: 25%;
-		margin-top: 10%;
+		margin-top:5%;
 	}
 	
 	.widget-list {
@@ -49,15 +40,14 @@
 		visibility: hidden;
 	}
 </style>
-	
-</head>
-<body>
-	<h1>어떤 만남을 추구하시나요?</h1>
-	<div id="wrap">
-		<ul class="widget-list">
-			<li class="widget">짜릿한 일회성 만남</li>
-			<li class="widget">오래 보고싶은 인연을 만나고 싶으세요?</li>
-		</ul>
+	<div id="createParty_wrap">
+		<div id="wrap">
+			<h1>어떤 만남을 추구하시나요?</h1>
+			<ul class="widget-list">
+				<li class="widget">짜릿한 일회성 만남</li>
+				<li class="widget">오래 보고싶은 인연을 만나고 싶으세요?</li>
+			</ul>
+		</div>
 	</div>
 
 	<form action="choosePeriod" method="post"> 
@@ -87,5 +77,3 @@
 	
 </script>
 <%@ include file="partyCreateFooter.jsp" %>
-</body>
-</html>
