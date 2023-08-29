@@ -62,7 +62,7 @@ body{
 	        <p class="card-text"><small class="text-body-secondary">${party.formatStartDate} ~ ${party.formatEndDate} </small></p>
 	      
         <a href="<c:url value='/partyBoard/listPage?pnum=${party.pnum}'/>" class="btn btn-dark">팀게시판</a>
-        <button class="btn btn-light withdraw" data-pnum='${party.pnum}'>파티 나가기</button>
+        <button class="btn btn-light withdraw" data-pnum='${party.pnum}' data-host='${party.host}'>파티 나가기</button>
       </div>
     </div>
   </div>
@@ -86,24 +86,34 @@ $(".withdraw").click(function(e){
 	e.preventDefault();
 	// pnum가지고 오기
 	const pnum = $(this).attr("data-pnum");
+	const host = $(this).attr("data-host");
+	console.log()
 	
 	let conf = confirm("정말로 파티를 나가시겠습니까?");
 	if(conf){
-	//ajax 통신
-	$.ajax({
-		type : "DELETE",
-		url : "${path}/party/withdraw/"+pnum,
-		dataType:"text",
-		success : function(result){
-			alert(result);
-			location.href="<c:url value='/party/myParty'/>";
-		},
-		error: function(result){
-			alert("실패하였습니다");
-		}	
-		
-	});
-	
+
+	// 호스트는 탈퇴할 수 없음
+	if(host == ${loginMember.mnum}){
+		alert("호스트는 탈퇴할 수 없습니다.");
+		$(".card.mb-3").remove();
+		location.href="<c:url value='/party/myParty'/>";		
+	}else{
+
+		//ajax 통신
+		$.ajax({
+			type : "DELETE",
+			url : "${path}/party/withdraw/"+pnum,
+			dataType:"text",
+			success : function(result){
+				alert(result);
+				location.href="<c:url value='/party/myParty'/>";
+			},
+			error: function(result){
+				alert("실패하였습니다");
+			}	
+			
+		});	
+	}
 	
 	}
 	
