@@ -1,46 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<%@ include file="../common/header.jsp" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>Insert title here</title>
 <style>
 
-	h1{
-		margin-left: 23%;
-		
-	}
-	#categoryContainer div{
-		border:1px black solid;
-		width: 100px;
-		height: 50px;
-		padding :20px;
-	}
-	
-	#categoryContainer{
-		display:flex;
-		flex-wrap: wrap;
-		width: 1000px;
-		hight:50px;
-		padding:20px;
-		text-align: center;
-	}
-	
-	form button{
-		width: 100px;
-		height: 50px;
-	}
-	
 	#box{
 		width: 50%;
-		margin-left: 25%;
 		margin-top: 5%;
-		
 	}
 	#category{
 		visibility: hidden;
@@ -74,10 +43,7 @@
 	}
 	
 </style>
-</head>
-
-<body>
-	
+	<div id="createParty_wrap">
 	<h1>다음 중 당신의 파티를 가장 잘 설명하는 것은 무엇인가요?</h1>
 	<c:if test="${!empty category}">
 		<div id="box">
@@ -96,6 +62,7 @@
 		<input type="hidden" name="description" value="${vo.description}" />
 		<input type="text" class="reqInput" id="category" name="category" required/><br/>
 	</form>
+	</div>
 <script>
 	const divs = document.querySelectorAll(".widget");
 	divs.forEach((target) => target.addEventListener("click", handleConcept));
@@ -111,5 +78,3 @@
 	ScrollReveal().reveal('.widget', { interval: 200 });
 </script>
 <%@ include file="partyCreateFooter.jsp" %>
-</body>
-</html>

@@ -16,6 +16,7 @@
 		border-top: 2px black solid;
 		padding:20px;
 		background-color: white;
+		z-index: 1;
 	}
 	#footerDiv button{
 		width: 150px;
@@ -33,7 +34,7 @@
 		if(value != ''){
 			$("form").submit();	
 		}else{
-			alert('선택해주세요');
+			alert('필수 항목을 선택 또는 입력해주세요.');
 		}
 	});
 	$("#prevBtn").click(function(){

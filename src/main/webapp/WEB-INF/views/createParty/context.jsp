@@ -1,23 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="../common/header.jsp" %>
 <style>
-	h1{
-		margin-left:35%;
-	}
 	#contentBox{
-		margin-left: 35%;
 		margin-top: 5%;
 	}
 	
 	
 </style>
-</head>
-<body>
+<div id="createParty_wrap">
 	<h1>파티의 자세한 소개를 작성해주세요</h1>
 	<div id="contentBox">
 		<form action="createContext" method="post">
@@ -36,7 +27,7 @@
 			<textarea rows="10" cols="100" name="pcontext" id="content"></textarea> <br/>
 		</form>	
 	</div>
-	
+</div>
 	
 	<script src="https://cdn.tiny.cloud/1/3namak8ojm8wwt7yzd2any1fyz4o6twi4gqqxlcgkc6lp22l/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	<script>
@@ -96,5 +87,3 @@
     });
   </script>
   <%@ include file="partyCreateFooter.jsp" %>
-</body>
-</html>

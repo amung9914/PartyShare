@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="../common/header.jsp" %>
 <style>
 	#formBox{
 		width: 50%;
-		margin-left: 25%;
 		margin-top: 20%;
 	}
 	
@@ -21,8 +16,7 @@
 		text-align: center;
 	}
 </style>
-</head>
-<body>
+<div id="createParty_wrap">
 	<div id="formBox">
 		<form action="createName" method="post">
 			<input type="hidden" name="host" value="${loginMember.mnum}"/>
@@ -40,7 +34,5 @@
 			<input type="text" name="pname" id="pname" class="reqInput" placeholder="파티 이름은 무엇인가요?"/><br/>
 		</form>
 	</div>
-	
+</div>	
 	<%@ include file="partyCreateFooter.jsp" %>
-</body>
-</html>

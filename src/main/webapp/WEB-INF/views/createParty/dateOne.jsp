@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<%@ include file="../common/header.jsp" %>
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -11,11 +8,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 	#dateBox{
-		margin-left: 30%;
 		margin-top: 20%;
 	}
 	#title{
-		margin-left:32%;
 		margin-top:5%;
 		cursor: pointer;
 	}
@@ -27,11 +22,15 @@
 		width: 600px;
 		font-size: 30px;
 	}
+	#calBox{
+		width: 240px;
+		height: 10px;
+		background-color: gray;
+	}
 </style>
-</head>
-<body>
-	
+<div id="createParty_wrap">
 	<h1 id="title">짜릿한 하루를 선택해주세요</h1>
+	<div id="calBox"></div>
 	<div id="dateBox">
 		<form action="createDate" method="post">
 			<input type="hidden" name="host" value="${loginMember.mnum}"/>
@@ -46,11 +45,11 @@
 	    	<input type="text" name="startDate" id="startDate" /> 
 	    	<input type="hidden" name="endDate" id="endDate" />
 		</form>
-		
 	</div>
+</div>
 	<script>
 	
-	 $('h1').daterangepicker({
+	 $('#calBox').daterangepicker({
 		 	"locale": {
 		        "format": "YYYY-MM-DD",
 		        "applyLabel": "확인",
@@ -59,7 +58,7 @@
 		        "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
 		        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 		    },
-		    singleDatePicker: true,
+		    singleDatePicker: true
 		  }, function(start, end, label) {
 			  $("#startDate").val(start.format('YYYY-MM-DD'));
 			  $("#endDate").val(start.format('YYYY-MM-DD'));
@@ -78,5 +77,3 @@
 	}
 	</script>
 	<%@ include file="partyCreateFooter.jsp" %>
-</body>
-</html>
