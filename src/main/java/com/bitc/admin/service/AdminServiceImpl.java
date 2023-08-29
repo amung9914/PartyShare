@@ -42,6 +42,12 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberVO> blackId() throws Exception {
 		
 		return dao.blackId();
+	}
+
+	@Override
+	public List<MemberVO> unblock() throws Exception {
+		
+		return dao.unblock();
 	}	
 	
 	/*
