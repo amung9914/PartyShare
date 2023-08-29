@@ -22,7 +22,7 @@
 				    <div class="card ${requestList.fto}">
 					  <div class="card-body">
 					  	<div class="cardBox">
-					  		<img class="profileImg" src="${path}/friend/printImg?fileName=${requestList.profileImageName}" />
+					  		<img class="profileImg" src="${path}/user/friend/printImg?fileName=${requestList.profileImageName}" />
 						    <div class="info">
 						    <h5 class="card-title">${requestList.mnick}</h5>
 						    <p class="card-text">${requestList.mid}</p>
@@ -62,10 +62,9 @@
 	$(".cancelBtn").on("click",function(){
 		const fto = this.id;
 		let area = document.getElementsByClassName(fto);
-		console.log(area);
 		$.ajax({
 			type : "DELETE",
-			url : "${path}/friend/deleteRequest/"+fto,
+			url : "${path}/user/friend/deleteRequest/"+fto,
 			dataType: "text",
 			success : function(result){
 				alert(result);

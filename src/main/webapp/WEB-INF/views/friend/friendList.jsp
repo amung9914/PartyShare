@@ -22,7 +22,7 @@ html, body {
 }
 main{
 	float:left;
-	margin: 30px 0px 0px 25%; 
+	margin: 30px 0px 0px 100px; 
 }
 aside{
 	float:left;
@@ -93,7 +93,7 @@ aside{
 
 		   	<li class="list-group-item ${list.fto}">
 		   		<div class="cardBox detailLoad" data-mnum="${list.fto}" data-mid="${list.mid}" >
-			   		<img class="profileImg" src="${path}/friend/printImg?fileName=${list.profileImageName}" />
+			   		<img class="profileImg" src="${path}/user/friend/printImg?fileName=${list.profileImageName}" />
 			   		<div class="info">
 			   			<h5>${list.mnick}</h5>
 			   			<p class="card-text">${list.mid}</p>
@@ -130,7 +130,7 @@ $(".detailLoad").on("click",function(){
 	
 	// 친구의 진행중인 파티정보를 가져온다
 	function ongoingParty(){
-		let url="${path}/friend/ongoingParty/"+mnum;
+		let url="${path}/user/friend/ongoingParty/"+mnum;
 		$.getJSON(url,function(data){
 			
 			$("#ongoingView").toggle("slow");
@@ -180,7 +180,7 @@ $(".detailLoad").on("click",function(){
 	
 	//DB에서 친구의 파티정보를 가져온다
 	function previousParty(){
-		let url="${path}/friend/previousParty/"+mnum;
+		let url="${path}/user/friend/previousParty/"+mnum;
 		$.getJSON(url,function(data){
 			
 			$("#previousView").toggle("slow");
@@ -242,7 +242,7 @@ $(".delBtn").on("click",function(){
 	
 	$.ajax({
 		type : "DELETE",
-		url : "${path}/friend/deleteFriend/"+mnum,
+		url : "${path}/user/friend/deleteFriend/"+mnum,
 		dataType: "text",
 		success : function(result){
 			alert(result);
