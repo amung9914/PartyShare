@@ -71,7 +71,7 @@
 		margin-top: 1%;
 		line-height: 50px;
 		position: absolute;
-		right: 0;
+		right: 10px;
 		
 	}
 	#menuBtn{

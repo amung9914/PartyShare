@@ -17,6 +17,7 @@
 		alert(message);
 	}
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
  	/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
     * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;} */
@@ -26,9 +27,10 @@
 	}
 	
 	#banner{
+		display: none;
 		position: fixed;
 		text-align: center;
-		height: 330px;
+		height: auto;
 		right: 21px;
 		bottom: 200px;
 		width: 360px;
@@ -38,7 +40,7 @@
     	background-color: white;
     	box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 		transition: top 0.5s; 
-		z-index: 1;
+		z-index: 0;
 	}
 	
 	.banner-text-1, .banner-text-2, .banner-text-3 {
@@ -58,13 +60,15 @@
 	#banner.top{
 		position: fixed;
 		right: 21.5px;
-  		top: 560px;
+  		top: 700px;
+  		height: fit-content
 	}
 	
 	#banner.on {
 		position: fixed;
 		right: 21.5px;
-  		bottom: 300px;
+  		/* bottom: 300px; */
+  		bottom: 180px;
 	}
 	
 	#bannerBtn {
@@ -232,7 +236,7 @@
 	}
 	
 	.location-party-text {
-		margin: 20px 0px 122px 30px;
+		margin: 20px 0px 187px 30px;
 		padding-bottom: 35px;
 		border-bottom: 1px solid #CACACA;
 	}
@@ -247,6 +251,16 @@
 		${vo.sido} ${vo.sigungu} ${vo.address} ${vo.detailAddress} <br/>
 	</div>
 	
+	<div id=top>
+		<nav>
+			<ul>
+				<li><a href="<c:url value='/'/>">홈</a></li>
+				<li><a href="<c:url value='/partyBoard/listPage?pnum=${vo.pnum}'/>">게시판</a></li>
+				<li><a href="<c:url value='/chat?pnum=${vo.pnum}'/>">채팅창</a></li>
+			</ul>	
+		</nav>
+	</div>
+		
 	<div class="grid-container">
 	  <div class="first-image">
 	    <!-- 왼쪽 사진 -->
@@ -261,16 +275,7 @@
 	      <img src="${contextPath}/upload/party${f:replace(vo.partyImage3, 's_', '')}"/>
 	    </div>
 	</div>
-	
-	<div id=top>
-		<nav>
-			<ul>
-				<li><a href="<c:url value='/'/>">홈</a></li>
-				<li><a href="<c:url value='/partyBoard/listPage?pnum=${vo.pnum}'/>">게시판</a></li>
-				<li><a href="<c:url value='/chat?pnum=${vo.pnum}'/>">채팅창</a></li>
-			</ul>	
-		</nav>
-	</div>
+
 	
 	<div class="introduce-party">
 		<div class="introduce-party-text">
@@ -387,7 +392,8 @@
 	    $w.on('scroll', function() {
 	
 		    var sT = $w.scrollTop();
-		    var val = $(document).height() - $w.height() - footerHei;
+		    // var val = $(document).height() - $w.height() - footerHei;
+		    var val = $(document).height() - $w.height() - 100;
 		
 		    if (sT >= val) {
 		        $banner.addClass('on');
@@ -399,6 +405,7 @@
 		        $banner.addClass('top');
 		    } else {
 		        $banner.removeClass('top');
+		        $banner.show();
 		    }  
 	    	
   		}); 
