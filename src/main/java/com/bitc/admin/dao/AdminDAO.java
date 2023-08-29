@@ -37,7 +37,7 @@ public interface AdminDAO {
 	public List<MemberVO> blackId() throws Exception;
 	
 	@Update("UPDATE member SET mblackYN='N' WHERE mblackYN='Y' AND mid = #{mid}")
-	public List<MemberVO> unblock() throws Exception;
+	public List<MemberVO> unblock(String mid) throws Exception;
 	
 	
 
