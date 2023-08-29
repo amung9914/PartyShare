@@ -62,6 +62,7 @@ body{
 	        <p class="card-text"><small class="text-body-secondary">${party.formatStartDate} ~ ${party.formatEndDate} </small></p>
 	      
         <a href="<c:url value='/partyBoard/listPage?pnum=${party.pnum}'/>" class="btn btn-dark">팀게시판</a>
+        <button class="btn btn-light withdraw" data-pnum='${party.pnum}'>파티 나가기</button>
       </div>
     </div>
   </div>
@@ -70,6 +71,7 @@ body{
 </div>
 <%@ include file="calender.jsp" %>
 <script>
+
 $(".card.mb-3").on("click",function(){
 	const pnum = $(this).attr("data-pnum");
 	location.href="<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
@@ -77,5 +79,36 @@ $(".card.mb-3").on("click",function(){
 
 $(".endParty").closest(".card.mb-3").css("background-color","lightgray");
 </script>
+
+<script>
+//파티탈퇴요청
+$(".withdraw").click(function(e){
+	e.preventDefault();
+	// pnum가지고 오기
+	const pnum = $(this).attr("data-pnum");
+	
+	let conf = confirm("정말로 파티를 나가시겠습니까?");
+	if(conf){
+	//ajax 통신
+	$.ajax({
+		type : "DELETE",
+		url : "${path}/party/withdraw/"+pnum,
+		dataType:"text",
+		success : function(result){
+			alert(result);
+			location.href="<c:url value='/party/myParty'/>";
+		},
+		error: function(result){
+			alert("실패하였습니다");
+		}	
+		
+	});
+	
+	
+	}
+	
+});
+</script>
+
 </body>
 </html>
