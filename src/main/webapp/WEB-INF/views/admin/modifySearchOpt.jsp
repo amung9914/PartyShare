@@ -205,7 +205,7 @@
 		$("#addDescription").click(function(){
 			console.log('add디스크립션');
 			$.ajax({
-				type : "POST",
+				type : "get",
 				url : "${path}/search/addDescription",
 				data : {
 					description : $("#description").val()
@@ -227,5 +227,12 @@
 			});
 		});
 	</script>
+	<script>
+   $(document).ajaxSend(function(e,xhr,options){
+      xhr.setRequestHeader(
+            '${_csrf.headerName}',
+            '${_csrf.token}');
+   });
+</script>
 </body>
 </html>

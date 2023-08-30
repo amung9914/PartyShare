@@ -3,9 +3,10 @@ SELECT * FROM member WHERE mid = 'admin' AND mpw = 'admin';
 
 show tables;
 select * from joinmember;
-
+drop table partydescription;
+select * from partycategory;
 select * from map;
-
+commit;
 desc partyboard_comment;
 
 select * from wishlist;

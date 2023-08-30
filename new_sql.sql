@@ -166,7 +166,7 @@ mNum INT NOT NULL,
 FOREIGN KEY (pNum) REFERENCES party(pNum) ON UPDATE CASCADE,
 FOREIGN KEY (mNum) REFERENCES member(mNum) ON UPDATE CASCADE
 );
-
+select * from partydescription ;
 CREATE TABLE map -- -- 지도 --
 (
 no INT primary key auto_increment,
@@ -225,8 +225,8 @@ VALUES
 ('반려동물'),
 ('가족/결혼'),
 ('그외');
-DELETE  FROM partycategory;
-
+DELETE  FROM partycategory where no >=105;
+select * from partycategory;
 INSERT INTO partydescription (description)
 VALUES
 ('기상천외한 파티'),
@@ -411,10 +411,17 @@ VALUES
 
 commit; -------------------------------------------------
 
-CREATE TABLE dateIndex ( 
+CREATE TABLE dateindex ( 
 date int 
 );
-SELECT * FROM dateIndex ;
+insert into dateindex value (1);
+insert into dateindex value (3);
+insert into dateindex value (7);
+insert into dateindex value (15);
+insert into dateindex value (30);
+insert into dateindex value (60);
+insert into dateindex value (90);
+SELECT * FROM dateindex ;
 
 CREATE TABLE partyCategory (
 category varchar(20),

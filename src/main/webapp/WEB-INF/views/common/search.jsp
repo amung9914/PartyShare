@@ -147,7 +147,7 @@
 	border:solid 1px red;
 }
 .barItem {
-	font-size: smaller;
+	font-size: 4px;
 	display: inline-block;
 	width: 95px;
 	height: 100px;
@@ -162,7 +162,7 @@
 }
 
 .card_Ptag{
-	font-size: 2px;
+	font-size: 4px;
 	font-style: bold;
 }
 .card-body{
@@ -256,46 +256,23 @@
 </div>
 <!-- 모달창이 위치합니다 끝 searchModal -->
 <script>
-/*
-function listPage(page){
-	const value= $("#searchKeyword").val();
-	$.ajax({
-		type:"GET",
-		url:"${path}/party/searchPartyList/"+page,
-		data:{
-			keyword:value
-		},
-		success: function(data){
-			printList(data);
-		}
-	});
-}
-*/
-
+	   $(document).ajaxSend(function(e,xhr,options){
+	      xhr.setRequestHeader(
+	            '${_csrf.headerName}',
+	            '${_csrf.token}');
+	   });
+	
 var contextPath = '${pageContext.request.contextPath}';
 // var page = 1;
 
 if(typeof keyword === 'undefined'){keyword = "noValue"}
 var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 
- // listAjax(page,resultQuery);
 
-
-//	listAjax(page,resultQuery);      //초기실행 주석
-//listPage(page);
-
-
-// 가져온 파티 리스트 출력
-
-	
-	
-
-							/*  페이징처리   */
 
 
 
   	var contextPath="${pageContext.request.contextPath}";
-  //	<div><a href=''><img src='샘플이미지' /></a></div class="categoryImgDiv">
 	var isToggle = true;
 	var countDescription = 1;
 	var lastPageDs = 10;
@@ -304,13 +281,13 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 
 	if(typeof keyword === 'undefined' || keyword ==''){keyword = "noValue"}
 	var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
-	console.log(resultQuery);
+//	console.log(resultQuery);
 
   		//select("");
-  	console.log("keyword : " + keyword);
+//  	console.log("keyword : " + keyword);
   	$("#keywordTemplate").val(keyword);
   	let k = $("#keywordTemplate").val();
-  	console.log("k : " + k);
+//  	console.log("k : " + k);
   	
   	function keywordSearch(){
   		
@@ -338,6 +315,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		$.ajax({
   			url:"${path}/search/printDescription",
   			method : "post",
+  			headers: { "${_csrf.parameterName}": "${_csrf.token}" },
   			data:{descPage : descriptionPage ,
   				${_csrf.parameterName}:"${_csrf.token}"
   				},
@@ -353,7 +331,6 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   					let descriptionSrc = "";
   				//	descriptionSrc = "description";
   					descriptionSrc += "${descImgPath}/description"+this.no+".jpg";
-  					console.log(descriptionSrc);
   			str+=	  `<div class="card barItem" onclick='select("description"+"\${this.description}")'>`;
   			str+=	  '<img src="'+descriptionSrc+'" height="55px" class="card-img-top" alt="...">';
   			str+=	  `<div class="card-body">`;
@@ -917,11 +894,12 @@ $(window).scroll(function(){
         $.ajax({
         	  url: '${path}/search/getSearchContents', // target컨텐츠가 전달
         	  method: 'POST',
+        	  headers: { "${_csrf.parameterName}": "${_csrf.token}" },
         	  data: {targetContents : targetContents},
         	  dataType: 'JSON',  // return : entity
         	  success: function(response) {
         	    // entity<Object>
-        	    console.log('Object성공! : ', response);
+        	    // console.log('Object성공! : ', response);
         	    // 이게 어느 타입이냐에 따라 메서드가 나뉘어야 함
         	    
         	    if(targetContents == "category" ){
@@ -974,3 +952,4 @@ $(window).scroll(function(){
     }); // ready
     
   </script>
+

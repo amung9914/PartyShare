@@ -59,7 +59,7 @@ public class AdminController {
         return entity; // ajax dataType = "text",
 	}
 	
-	@PostMapping("search/addDescription")
+	@GetMapping("search/addDescription")
 	public ResponseEntity<String> addDescription(
           descriptionVO vo
     ) {
