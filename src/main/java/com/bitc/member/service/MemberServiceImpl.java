@@ -2,6 +2,7 @@ package com.bitc.member.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bitc.common.utils.Criteria;
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberDAO dao;
-	
+	private final PasswordEncoder passwordEncoder;
 	@Override
 	public MemberVO selectMember(int mnum) throws Exception{
 		MemberVO member= dao.selectMember(mnum);
@@ -25,12 +26,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void modifyMember(MemberVO member) throws Exception{
+		// pw 암호화
+		String pw = member.getMpw();
+		member.setMpw(passwordEncoder.encode(pw));
 		dao.modifyMember(member);
 	}
 
 	@Override
 	public List<PartyVO> joinPartyList(int mnum, Criteria cri) throws Exception{
-		
 		return dao.joinPartyList(mnum, cri);
 	}
 

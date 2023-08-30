@@ -185,7 +185,7 @@
 		<nav>
 			<ul id="navUl">
 				<li><a href="<c:url value='/'/>">홈</a></li>
-				<li><a href="<c:url value='/partyBoard/listPage?pnum=${party.pnum}'/>">게시판</a></li>
+				<li><a href="<c:url value='/user/partyBoard/listPage?pnum=${party.pnum}'/>">게시판</a></li>
 				<li><a href="<c:url value='/partyDetail/detailOfParty?pNum=${party.pnum}'/>">파티창</a></li>
 			</ul>	
 		</nav>
