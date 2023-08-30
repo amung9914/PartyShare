@@ -167,11 +167,11 @@
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="password" name="mpw" value="${loginMember.mpw}" required/></td>
+						<td><input type="password" name="mpw" required/></td>
 					</tr>
 					<tr>
 						<td>비밀번호 확인</td>
-						<td><input type="password" name="passwordChk" value="${loginMember.mpw}" required/></td>
+						<td><input type="password" name="passwordChk" required/></td>
 					</tr>
 					<tr>
 						<td>이름</td>
@@ -284,7 +284,7 @@
 		if(isImages){
 			$.ajax({
 				type:"POST",
-				url: contextPath+"user/image/uploadAjax",
+				url: contextPath+"/user/image/uploadAjax",
 				data:formData,
 				processData:false,
 				contentType:false,
@@ -308,7 +308,7 @@
 		let fileName = $("#uImage").val();
 		$.ajax({
 			type:"DELETE",
-			url: contextPath+"user/image/deleteFile",
+			url: contextPath+"/user/image/deleteFile",
 			data : fileName,
 			dataType:"text",
 			success:function(result){
@@ -325,5 +325,10 @@
 	function partyDetail(pnum){
 		location.href='${path}/partyDetail/detailOfParty?pNum='+pnum;
 	}
+	$(document).ajaxSend(function(e,xhr,options){
+		xhr.setRequestHeader(
+				'${_csrf.headerName}',
+				'${_csrf.token}');
+	});
 </script>
 <%@ include file="../common/footer.jsp" %>
