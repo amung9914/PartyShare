@@ -76,7 +76,7 @@ public class LoginHomeController {
 						e.printStackTrace();
 					}
                    // 8 23 수정 - 사용자가 이미지를 등록하였고 가입 완료
-                   return "redirect:/member/login";
+                   return "redirect:/";
                 }
             }
         }    
@@ -87,7 +87,7 @@ public class LoginHomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-       return "redirect:/member/login"; // 여기서 이미지 넣어야함
+       return "redirect:/"; // 여기서 이미지 넣어야함
     }
     
     //2023-08-22 
