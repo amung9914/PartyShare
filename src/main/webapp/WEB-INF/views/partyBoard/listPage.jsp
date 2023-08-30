@@ -31,6 +31,10 @@
 	.input-group{
 		margin:100px 0px;
 	}
+	.pm{
+		text-align:center;
+	}
+	
 	/* footer */
 	html, body {
     height: 90%
@@ -175,7 +179,7 @@
 					</c:choose>
 			</c:forEach>
 			<tr>
-				<th colspan="5">
+				<th class="pm" colspan="5">
 					<c:if test="${pm.first}">
 						<a class="btn btn-outline-secondary" href="<c:url value='/user/partyBoard/listPage?pnum=${pnum}&page=1&perPageNum=${pm.cri.perPageNum}'/>">&laquo;</a>
 					</c:if>

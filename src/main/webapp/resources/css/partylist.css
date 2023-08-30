@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+#wrap{
+	text-align: -webkit-center;
+	margin : 0px 0px 50px 0px;
+}
+
+ #wrap img{
+    width: fit-content;
+ }
+ .card.mb-3{
+ cursor: pointer;
+ text-align: left;
+ }
+ .endParty{
+ 	color:red;
+ }
+ .img-fluid.rounded-start{
+ 	height:100%;
+ }
+ #menu{
+ 	float : left;
+ 	margin: 0px 30px 100px 100px;
+ }
+
+@media (max-width: 1240px) {
+   #menu{
+ 	float : none;
+   }
+}

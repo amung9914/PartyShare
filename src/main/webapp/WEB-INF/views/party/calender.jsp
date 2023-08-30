@@ -11,6 +11,13 @@
 	text-decoration: none;
     color: black;
 	}
+	
+	
+@media (max-width: 1240px) {
+   #calendar{
+ 	width : 80%
+   }
+}
 </style>
 
  <div id='calendar'></div>
