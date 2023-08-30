@@ -4,98 +4,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
-    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
-
-	#createParty_wrap{
-		text-align: -webkit-center;
-	}
-	#headerBox{
-		width: 100%;
-		height: 80px;
-		display: flex;
-		flex-wrap: wrap;
-	}
-	#logoBox{
-		/* width: 10%;
-		height: 80px; */
-		margin-left: 3%;
-	}
-	
-	#logoBox img{
-		width: 160px;
-   		margin-top: 24px;
-		cursor: pointer;
-	}
-	
-	#header_searchBox{
-		width: 300px;
-		height: 80px;
-		margin-left: 32%;
-		text-align: center;
-		margin-top:1%;
-	}
-	#header_searchBox .searchContainer{
-		display: flex;
-		flex-wrap: wrap;
-	}
-	#header_searchBox #searchKeyword{
-		width: 80%;
-		height: 50px;
-		outline: none;
-		border: 1px solid rgb(221,221,221);
-		border-radius: 100px;
-		text-align: center;
-		box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
-	}
-	#searchImg{
-		width: 40px;
-		height:40px;
-		position: relative;
-		right: 45px;
-		top: 5px;
-	}
-	#header_menuDiv{
-		width:3%;
-		height: 80px;
-		margin-top: 1%;
-		line-height: 50px;
-		position: absolute;
-
-		right: 20px;
-
-		
-	}
-	#menuBtn{
-		border: none;
-		background-color: white;
-	}
-
-	
-	#menuBtn, #menuBtn img{
-		width: 30px;
-		height : 30px;
-	}
-	#menuBtn img{
-		position: relative;
-		right: 12px;
-		bottom: 5px;
-	}
-	#searchImg{
-		cursor: pointer;
-	}
-	
-</style>
+<link href="${path}/resources/css/ksg/header.css" rel="stylesheet">
 <title>partyShare</title>
 </head>
 <body>
@@ -229,11 +145,4 @@
 	function loginModalShow(){
 		$("#loginModal").modal("show");
 	}
-	
-
-	$(document).ajaxSend(function(e,xhr,options){
-		xhr.setRequestHeader(
-				'${_csrf.headerName}',
-				'${_csrf.token}');
-	});
 </script>

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background-color : #f7f7f7;
+	padding: 20px 0px 0px 0px;
+	z-index:100;
+}
+#footerAtag, #footerPtag{
+	width: 90%;
+	margin-left: 5%;
+}
+#footerAtag{
+	height: 15px;
+	line-height: 15px;
+}
+#footerAtag a{
+	text-decoration: none;
+	color:black;
+}
+#footerAtag a:hover{
+	text-decoration: underline;
+}
+#footerPtag{
+	font-size: 10px;
+}
+
+#footerPtag p{
+	margin-bottom:0;
+}

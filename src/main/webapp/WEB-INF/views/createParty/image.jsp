@@ -5,90 +5,29 @@
 <%@ include file="../common/header.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
 <style>
-	#imgBox{
-		display:flex;
-		flex-wrap:wrap;
-		flex-direction: column;
-		align-content: center;
-		width:500px;
-		height:750px;
-		margin-top:3%;
-	}
-	#imgBox img{
-		border:1px solid black;
-	}
-	
-	.subImage .preview{
-		width:250px;
-		height:250px;
-	}
-	
-	.mainImage .preview{
-		width: 500px;
-		height: 509px;
-	}
-	.mainImage{
-		width: 500px;
-		height: 509px;
-	}
-	
-	.img_wrap{
-		position: relative;
-		margin:5px;
-		width: 500px;
-	}
-	
-	.mainImage .img_cover{
-		width: 500px;
-		height: 509px;
-		border-radius:20px;
-		box-sizing:border-box;
-		position: absolute;
-		text-align: center;
-	}
-	.subImage{
-		width: 250px;
-		height: 250px;
-	}
-	.subImage .img_cover{
-		width: 250px;
-		height: 250px;
-		border-radius:20px;
-		box-sizing:border-box;
-		position: absolute;
-		text-align: center;
-	}
-	
 	.mainImage .img_cover > label{
-		display:inline-block;
-		background-image:url('${path}/resources/img/plus_icon.png');
-		background-size:150px;
-		background-repeat:no-repeat;
-		width: 150px;
-		height: 150px;
-		margin-top:35%;
-	}	
-	
-	.subImage .img_cover > label{
-		display:inline-block;
-		background-image:url('${path}/resources/img/plus_icon.png');
-		background-size:150px;
-		background-repeat:no-repeat;
-		width: 150px;
-		height: 150px;
-		margin-top:20%;	
-	}
-	
-	.img_cover label{
-		cursor: pointer;
-	}
-	
-	.mainImage .img_cover .img_file, .subImage .img_cover .img_file{
-		display: none;
-	}
-	
+	display:inline-block;
+	background-image:url('${path}/resources/img/plus_icon.png');
+	background-size:150px;
+	background-repeat:no-repeat;
+	width: 150px;
+	height: 150px;
+	margin-top:35%;
+}	
+
+.subImage .img_cover > label{
+	display:inline-block;
+	background-image:url('${path}/resources/img/plus_icon.png');
+	background-size:150px;
+	background-repeat:no-repeat;
+	width: 150px;
+	height: 150px;
+	margin-top:20%;	
+}	
 </style>
+
 <div id="createParty_wrap">
 	<h1 id="title">대표 사진 업로드</h1>
 	<form action="createImage" method="POST" enctype="multipart/form-data">

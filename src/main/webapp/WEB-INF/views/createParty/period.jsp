@@ -5,45 +5,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-<style>
-	#wrap{
-		width: 50%;
-	}
+<link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
 	
-	.widget-list {
-	  display: flex;
-	  flex-wrap:wrap;
-	  list-style: none;
-	  margin: 0;
-	  padding: 0;
-	  border-radius: 8px;
-	  margin-top: 15%;
-	}
-	
-	.widget {
-	  width: 20%;
-	  height: 300px;
-	  flex: auto;
-	  margin: 0.5rem;
-	  background: white;
-  	  border: 1px solid rgb(221,221,221);
-	  box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
-	  line-height: 300px;
-	  text-align: center;
-	  border-radius: 4px;
-	  font-size: 1.5rem;
-	}
-	
-	/* extension */
-	html.sr .widget {
-	  visibility: hidden;
-	}
-	#period{
-		visibility: hidden;
-	}
-</style>
 	<div id="createParty_wrap">
-		<div id="wrap">
+		<div id="periodBox">
 			<h1>어떤 만남을 추구하시나요?</h1>
 			<ul class="widget-list">
 				<li class="widget">짜릿한 일회성 만남</li>

@@ -2,13 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-	#contentBox{
-		margin-top: 3%;
-	}
-	
-	
-</style>
+<link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
 <div id="createParty_wrap">
 	<h1>파티의 자세한 소개를 작성해주세요</h1>
 	<div id="contentBox">
@@ -34,7 +28,7 @@
 	<script src="https://cdn.tiny.cloud/1/3namak8ojm8wwt7yzd2any1fyz4o6twi4gqqxlcgkc6lp22l/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	<script>
 	let plugins = ['link', 'image'];
-	let edit_toolbar = "link image forecolor backcolor";
+	let edit_toolbar = "link image forecolor backcolor fontsize";
 	
     tinymce.init({
       language : "ko_KR",
