@@ -40,6 +40,12 @@ public class HomeController {
 			return "common/policy2";
 		}
 	
+		//사이트맵으로 이동
+		@GetMapping("siteMap")
+		public String siteMap() {
+			return "common/siteMap";
+		}
+		
 		// 계정관리 메뉴로 이동
 		@GetMapping("/user/account")
 		public String account() {
