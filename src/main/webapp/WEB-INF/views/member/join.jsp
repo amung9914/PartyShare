@@ -165,10 +165,15 @@ input[name="mage"] {
 
                   <tr>
                      <td colspan="2" align="center">
-                     <div class="text-center"> <!-- 이 div를 추가합니다 -->
-        			    <button type="submit" class="btn btn-primary"
-         			      style="background-color: #FF385C; border-color: #FF385C; margin-left:100px;">가입</button>
-       					 </div>
+                     <div class="text-center">
+    <button type="submit" class="btn btn-primary"
+            style="background-color: #FF385C; border-color: #FF385C; margin-left: 100px;">가입</button>
+    
+    <button onclick="window.location.href = '${path}/member/loginPage';" class="btn btn-secondary"
+            style="background-color: #007BFF; border-color: #007BFF; margin-left: 20px;">로그인 페이지로</button>
+</div>
+
+
                      </td>
                   </tr>
                </table>
@@ -188,7 +193,7 @@ input[name="mage"] {
 
       document.getElementById('passwordForm').addEventListener('submit',
             function(event) {
-               if (passwordInput.value.length <= 8) {
+               if (passwordInput.value.length <= 7) {
                   alert("비밀번호는 8자 이상이어야 합니다.");
                   event.preventDefault(); // 제출 막기
                }
