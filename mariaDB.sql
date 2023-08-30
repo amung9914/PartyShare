@@ -58,13 +58,21 @@ CREATE TABLE validation_member_auth(
 DESC validation_member_auth;
 
 desc blacklist;
+desc party;
 
 DELETE FROM wishlist;
 DROP TABLE location;
 DELETE FROM member;
 DELETE FROM party;
+delete from map;
+delete from partyboard;
+delete from joinmember;
+delete from chat;
 
 INSERT INTO validation_member_auth
 VALUES ('admin', 'ROLE_ADMIN');
+
+select * from validation_member_auth;
+
 
 
