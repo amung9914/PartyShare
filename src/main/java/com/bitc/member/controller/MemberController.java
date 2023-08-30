@@ -68,7 +68,7 @@ public class MemberController {
 		model.addAttribute("joinCnt", joinCnt);
 		model.addAttribute("joinPartyList", list);
 		model.addAttribute("pm", pm);
-		return "profileModify";
+		return "member/profileModify";
 	}
 	
 	// 개인 정보 수정 요청
@@ -81,7 +81,7 @@ public class MemberController {
 		}
 		// 수정한 내용을 세션에 업데이트 함
 		session.setAttribute("loginMember", member);
-		return "redirect:profileModify";
+		return "redirect:/member/profileModify";
 	}
 
 	

@@ -32,7 +32,7 @@
 		<security:session-management>
 			<security:concurrency-control 
 			 error-if-maximum-exceeded="false" 
-			 max-sessions="1" 
+			 max-sessions="5" 
 			 expired-url="/member/logOff"/>
 		</security:session-management>
 		<!-- 403 권한 불충분 사용자 핸들러 등록 accessDeniedHandler -->
