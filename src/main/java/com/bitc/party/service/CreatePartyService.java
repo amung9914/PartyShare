@@ -13,7 +13,7 @@ public interface CreatePartyService {
 	/**
 	 * 파티 생성
 	 */
-	public int createParty(PartyVO vo) throws Exception;
+	public int createParty(PartyVO vo, String mid) throws Exception;
 	
 	/**
 	 * 파티 맴버 목록에 맴버 추가
@@ -46,7 +46,7 @@ public interface CreatePartyService {
 	/**
 	 * 파티 종료 시 파티 정보 수정 
 	 */
-	public String setPartyFinish(int pnum) throws Exception;
+	public String setPartyFinish(int pnum, MemberVO member) throws Exception;
 	/**
 	 * 파티의 위치 정보 저장
 	 */

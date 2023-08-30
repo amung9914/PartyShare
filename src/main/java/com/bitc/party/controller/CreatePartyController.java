@@ -166,7 +166,8 @@ public class CreatePartyController {
 		
 		try {
 			// 파티 등록 후 파티 pnum가져와서 맵 테이블에 저장
-			int pnum = ps.createParty(vo);
+			MemberVO member = (MemberVO) request.getSession().getAttribute("loginMember");
+			int pnum = ps.createParty(vo, member.getMid());
 			map.setPnum(pnum);		
 			ps.setLocation(map);
 			// 파티 참여 맴버 저장
@@ -203,10 +204,12 @@ public class CreatePartyController {
 	
 	// 파티 종료 
 	@GetMapping("/host/party/partyFinish")
-	public String partyFinish(int pnum, RedirectAttributes rttr) {
+	public String partyFinish(int pnum, RedirectAttributes rttr, HttpSession session) {
+		MemberVO member = (MemberVO) session.getAttribute("loginMember");
+		String mid = member.getMid();
 		String result = null;
 		try {
-			result = ps.setPartyFinish(pnum);
+			result = ps.setPartyFinish(pnum, member);
 			rttr.addFlashAttribute("message", result);
 		} catch (Exception e) {
 			e.printStackTrace();

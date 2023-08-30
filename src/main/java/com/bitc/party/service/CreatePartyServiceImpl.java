@@ -9,8 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
+import com.bitc.common.vo.AuthDTO;
+import com.bitc.login.dao.JoinDAO;
 import com.bitc.map.vo.MapVO;
+import com.bitc.member.vo.MemberVO;
 import com.bitc.party.dao.CreatePartyDAO;
+import com.bitc.party.dao.PartyDAO;
 import com.bitc.party.vo.PartyVO;
 import com.bitc.wishlist.vo.WishlistVO;
 
@@ -21,11 +25,17 @@ import lombok.RequiredArgsConstructor;
 public class CreatePartyServiceImpl implements CreatePartyService {
 
 	private final CreatePartyDAO dao;
+	private final JoinDAO joinDAO;
+	private final PartyDAO partyDAO;
 	
 	@Transactional
 	@Override
-	public int createParty(PartyVO vo) throws Exception{
+	public int createParty(PartyVO vo, String mid) throws Exception{
 		dao.createParty(vo);
+		List<String> list = joinDAO.getAuthList(mid);
+		if(!list.contains("ROLE_HOST")) {
+			joinDAO.insertHostAuth(mid);
+		}
 		int result = dao.lastIndex();
 		return result;
 	}
@@ -82,9 +92,14 @@ public class CreatePartyServiceImpl implements CreatePartyService {
 	}
 
 	@Override
-	public String setPartyFinish(int pnum) throws Exception{
+	public String setPartyFinish(int pnum, MemberVO member) throws Exception{
 		if(dao.setPartyFinish(pnum) > 0) {
 			dao.setPartyChatFinish(pnum);
+			List<PartyVO> list = partyDAO.HostingList(member);
+			if(list.size() == 0) {
+				AuthDTO dto = new AuthDTO(member.getMid(), "ROLE_HOST");
+				joinDAO.deleteAuth(dto);
+			}
 			return "파티 종료";
 		}else {
 			return "파티 종료 실패";
