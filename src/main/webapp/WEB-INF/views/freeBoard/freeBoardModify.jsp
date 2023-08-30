@@ -82,7 +82,7 @@
 </style>
 </head>
 <body>
-	<form action="${contextPath}/freeBoard/freeBoardModify" method="POST">
+	<form action="${contextPath}/user/freeBoard/freeBoardModify" method="POST">
 		<input type="hidden" name="bno" value="${freeBoardVO.bno}"/>
 		<input type="hidden" name="page" value="${criteria.page}"/>
 		<input type="hidden" name="perPageNum" value="${criteria.perPageNum}"/>

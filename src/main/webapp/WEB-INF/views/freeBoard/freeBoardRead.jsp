@@ -250,6 +250,7 @@
 		if(result != null && result != ''){
 			alert(result);
 		}
+		
 	</script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
@@ -373,7 +374,7 @@
 			
 			$.ajax({
 				type : "POST",
-				url : "${contextPath}/comment/comments",
+				url : "${contextPath}/user/comment/comments",
 				data : JSON.stringify({
 					bno : bno,
 					commentText : text,
@@ -430,7 +431,7 @@
 		    
 		    $.ajax({
 				type : "PATCH",
-				url : "${contextPath}/comment/comments/"+cno,
+				url : "${contextPath}/user/comment/comments/"+cno,
 				headers : {
 					"Content-Type" : "application/json"
 				},
@@ -458,7 +459,7 @@
 		    
 		    $.ajax({
 				type : "DELETE",
-				url : "${contextPath}/comment/comments/"+cno,
+				url : "${contextPath}/user/comment/comments/"+cno,
 				data : {
 					cno : cno
 				},
@@ -483,7 +484,7 @@
 		    }
 			
 			// 팝업창 오픈
-			let url = "${contextPath}/freeBoard/reportPopup?fromMid=" + fromMid + "&toMid=" + toMid + "&mnick=" + mnick + "&cno=" + cno;
+			let url = "${contextPath}/user/freeBoard/reportPopup?fromMid=" + fromMid + "&toMid=" + toMid + "&mnick=" + mnick + "&cno=" + cno;
 		    window.open(url, "댓글 신고", "width=400, height=300, left=550, top=250");
 		});
 		
@@ -506,7 +507,7 @@
 			
 			$("#reply").click(function(e){
 				e.preventDefault();
-				formObj.attr("action","${contextPath}/freeBoard/freeBoardReply");
+				formObj.attr("action","${contextPath}/user/freeBoard/freeBoardReply");
 				formObj.attr("method","get");
 				formObj.submit();
 			});
@@ -514,7 +515,7 @@
 			// 수정 페이지 요청
 			$("#modify").click(function(e){
 				e.preventDefault();
-				formObj.attr("action", "${contextPath}/freeBoard/freeBoardModify");
+				formObj.attr("action", "${contextPath}/user/freeBoard/freeBoardModify");
 				formObj.attr("method", "get");
 				formObj.submit();
 			});
@@ -524,7 +525,7 @@
 				e.preventDefault();
 				let conf = confirm("복구할 수 없습니다. 삭제하시겠습니까?");
 				if(conf){
-					formObj.attr("action", "${contextPath}/freeBoard/freeBoardRemove");
+					formObj.attr("action", "${contextPath}/user/freeBoard/freeBoardRemove");
 					formObj.attr("method", "get");
 					formObj.submit();
 				}
@@ -539,7 +540,7 @@
 			    }
 				
 				// 팝업창 오픈
-				let url = "${contextPath}/freeBoard/reportPopup?fromMid=${loginMember.mid}&toMid=${freeBoardVO.mid}&mnick=${freeBoardVO.mnick}&bno=${freeBoardVO.bno}";
+				let url = "${contextPath}/user/freeBoard/reportPopup?fromMid=${loginMember.mid}&toMid=${freeBoardVO.mid}&mnick=${freeBoardVO.mnick}&bno=${freeBoardVO.bno}";
 			    window.open(url, "댓글 신고", "width=400, height=300, left=550, top=250");
 			});
 			

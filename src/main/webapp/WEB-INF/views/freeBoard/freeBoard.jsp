@@ -280,7 +280,7 @@
 	}
 
 	const freeBoardWrite = () => {
-		location.href = '${contextPath}/freeBoard/freeBoardWrite';
+		location.href = '${contextPath}/user/freeBoard/freeBoardWrite';
 	}
 </script>
 <%@ include file="../common/fixFooter.jsp" %>

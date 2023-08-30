@@ -24,13 +24,13 @@ import com.bitc.report.vo.ReportVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/freeBoard/*")
+/* @RequestMapping("user/freeBoard/*") */
 @RequiredArgsConstructor
 public class freeBoardController {
 	
 	private final freeBoardService fs;
 	
-	@GetMapping("/freeBoard")
+	@GetMapping("freeBoard/freeBoard")
 	public void freeBoard(HttpServletRequest request, Criteria cri, Model model) {
 		try {
 			String type = request.getParameter("type");
@@ -60,10 +60,12 @@ public class freeBoardController {
 		}
 	}
 	
-	@GetMapping("/freeBoardWrite")
-	public void freeBoardWrite() {}
+	@GetMapping("user/freeBoard/freeBoardWrite")
+	public String freeBoardWrite() {
+		return "/freeBoard/freeBoardWrite";
+	}
 	
-	@PostMapping("/freeBoardWrite")
+	@PostMapping("user/freeBoard/freeBoardWrite")
 	public String freeBoardWrite(FreeBoardVO vo) {
 		
 		System.out.println("write한 vo는" + vo);
@@ -74,10 +76,10 @@ public class freeBoardController {
 			System.out.println("freeBoardWrite하다가 오류났어요.");
 		}
 		
-		return "redirect:freeBoard?page=1";
+		return "redirect:/freeBoard/freeBoard?page=1";
 	}
 	
-	@GetMapping("/freeBoardRead")
+	@GetMapping("freeBoard/freeBoardRead")
 	public String freeBoardRead(
 			@ModelAttribute("cri") Criteria cri,
 			HttpSession session, int bno, Model model)  {
@@ -93,17 +95,19 @@ public class freeBoardController {
 		return "freeBoard/freeBoardRead";
 	}
 	
-	@GetMapping("freeBoardModify")
-	public void freeBoardModify(int bno, Model model, Criteria cri) {
+	@GetMapping("user/freeBoard/freeBoardModify")
+	public String freeBoardModify(int bno, Model model, Criteria cri) {
 		try {
 			FreeBoardVO vo = fs.readFreeBoardDetail(bno);
 			model.addAttribute("freeBoardVO", vo);
 		} catch (Exception e) {
 			System.out.println("freeBoardModify하다가 오류났어요.");
 		}
+		
+		return "/freeBoard/freeBoardModify";
 	}
 	
-	@PostMapping("freeBoardModify")
+	@PostMapping("user/freeBoard/freeBoardModify")
 	public String freeBoardModify(
 			Criteria cri,
 			RedirectAttributes rttr,
@@ -119,10 +123,10 @@ public class freeBoardController {
 		rttr.addFlashAttribute("cri", cri);
 		// get 방식으로 파라미터를 넣어준다.
 		rttr.addAttribute("bno", vo.getBno());
-		return "redirect:freeBoardRead"; // ?bno=" + vo.getBno();
+		return "redirect:/freeBoard/freeBoardRead"; // ?bno=" + vo.getBno();
 	}
 	
-	@GetMapping("freeBoardRemove")
+	@GetMapping("user/freeBoard/freeBoardRemove")
 	public String freeBoardRemove(int bno, Criteria cri, RedirectAttributes rttr, HttpServletRequest request, HttpSession session) {
 		String result = null;
 		
@@ -139,7 +143,7 @@ public class freeBoardController {
 			rttr.addFlashAttribute("result", result);
 			rttr.addAttribute("page", cri.getPage());
 			rttr.addAttribute("perPageNum", cri.getPerPageNum());
-			return "redirect:freeBoard";
+			return "redirect:/freeBoard/freeBoard";
 		}
 		
 		
@@ -147,7 +151,7 @@ public class freeBoardController {
 		if(loginMember == null || !freeBoardMid.equals(loginMember.getMid())) {
 			result = "작성자만 삭제할 수 있습니다.";
 			rttr.addFlashAttribute("result", result);
-			return "redirect:freeBoardRead?bno=" + bno;
+			return "redirect:/freeBoard/freeBoardRead?bno=" + bno;
 		} else {
 			try {
 				result = fs.freeBoardRemove(bno);
@@ -158,10 +162,10 @@ public class freeBoardController {
 		 rttr.addFlashAttribute("result", result);
 		 rttr.addAttribute("page", cri.getPage());
 		 rttr.addAttribute("perPageNum", cri.getPerPageNum());
-		 return "redirect:freeBoard";
+		 return "redirect:/freeBoard/freeBoard";
 	}
 	
-	@GetMapping("reportPopup")
+	@GetMapping("user/freeBoard/reportPopup")
 	public String reportPopup(
 			@RequestParam(name="mnick") String mnick,
 			Model model
@@ -172,7 +176,7 @@ public class freeBoardController {
 		return "freeBoard/reportPopup";
 	}
 	
-	@PostMapping("reportPopup")
+	@PostMapping("user/freeBoard/reportPopup")
 	public String reportPopup(
 			String mnick,
 			String fromMid,
@@ -235,7 +239,7 @@ public class freeBoardController {
 		return "freeBoard/reportPopup";
 	}
 	
-	@GetMapping("/freeBoardReply")
+	@GetMapping("user/freeBoard/freeBoardReply")
 	public String freeBoardReply(int bno, Model model) {
 		// bno == 답변을 작성하려는 원본글 번호
 		try {
@@ -246,7 +250,7 @@ public class freeBoardController {
 		return "freeBoard/freeBoardReply";
 	}
 	
-	@PostMapping("/freeBoardReply")
+	@PostMapping("user/freeBoard/freeBoardReply")
 	public String freeBoardReply(FreeBoardVO vo) {
 		// 답변글 등록
 		try {
@@ -255,7 +259,7 @@ public class freeBoardController {
 			System.out.println("freeBoardReply post하다가 오류났어요.");
 		}
 		// 답변글 등록 완료 시 게시글 목록 페이지로 이동 
-		return "redirect:freeBoard";
+		return "redirect:/freeBoard/freeBoard";
 	}
 	
 }

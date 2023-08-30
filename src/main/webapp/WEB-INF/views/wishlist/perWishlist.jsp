@@ -73,7 +73,7 @@
 		<c:forEach var="party" items="${parties}">
 	    	<li class="perWishlist-li">
 	      		<img id="${party.pnum}" class="heart" src="${contextPath}/resources/img/redHeart.png" alt="하트" onclick="toggleHeart(this)"> <br/><br/><br/>
-				<img class="partyImg" src="${contextPath}/upload/party${party.partyImage1}"/> 
+				<img class="partyImg" src="${contextPath}/image/printPartyImage?fileName=${party.partyImage1}"/>
 		      	<a href="${contextPath}/partyDetail/detailOfParty?pNum=${party.pnum}">
 		      	<b>${party.pname}</b> <br/>
 		      	${party.sido} ${party.sigungu}<br/>
@@ -102,7 +102,7 @@
             // dao.deleteWishList() 호출
             $.ajax({
                 type: "POST",
-                url: "${contextPath}/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
+                url: "${contextPath}/user/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
                 data: {pNum : pNum},
                 success: function(data) {
                     console.log("Wish List deleted");
@@ -114,7 +114,7 @@
             // dao.addWishList() 호출
             $.ajax({
                 type: "POST",
-                url: "${contextPath}/wishlist/addWishlist", // addWishlist에 해당하는 컨트롤러 URL
+                url: "${contextPath}/user/wishlist/addWishlist", // addWishlist에 해당하는 컨트롤러 URL
                 data: {
                 	pNum : pNum,
                 	alias : "${alias}"

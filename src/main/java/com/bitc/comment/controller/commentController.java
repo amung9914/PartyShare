@@ -26,13 +26,13 @@ import com.bitc.common.utils.PageMaker;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/comment/*")
+/* @RequestMapping("/comment/*") */
 @RequiredArgsConstructor
 public class commentController {
 	
 	private final commentService cs;
 
-	@PostMapping("comments")
+	@PostMapping("user/comment/comments")
 	public ResponseEntity<String> addComment(@RequestBody FreeBoardCommentVO vo){
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -48,7 +48,7 @@ public class commentController {
 		return entity;
 	}
 	
-	@GetMapping("comments/{bno}/{page}")
+	@GetMapping("comment/comments/{bno}/{page}")
 	@ResponseBody
 	public Map<String, Object> listPageComment(
 			@PathVariable(name="bno") int bno,
@@ -70,7 +70,7 @@ public class commentController {
 		return map;
 	}
 	
-	@PatchMapping("comments/{cno}")
+	@PatchMapping("user/comment/comments/{cno}")
 	public ResponseEntity<String> updateComment(
 			@PathVariable(name="cno") int cno,
 			@RequestBody FreeBoardCommentVO vo) {
@@ -89,7 +89,7 @@ public class commentController {
 		return entity;
 	}
 	
-	@DeleteMapping("comments/{cno}")
+	@DeleteMapping("user/comment/comments/{cno}")
 	public ResponseEntity<String> deleteComment(@PathVariable(name="cno") int cno) {
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
