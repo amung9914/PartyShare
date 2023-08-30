@@ -6,40 +6,7 @@
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<style>
-	#dateBox{
-		margin-top: 18%;
-	}
-	#title{
-		cursor: pointer;
-	}
-	#startDate{
-		border:none;
-		outline: none;
-		border-bottom: 2px solid black;
-		text-align: center;
-		width: 600px;
-		font-size: 30px;
-	}
-	#calenderBox{
-		width: 300px;
-		height:  100px;
-		text-align: left;
-		display:flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-		position: relative;
-		right: 50px;
-		cursor: pointer;
-	}
-	#calBox{
-		text-align:left;
-		width: 30%;
-		font-weight: 500;
-		font-size:40px;
-		cursor: pointer;
-	}
-</style>
+<link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
 <div id="createParty_wrap">
 	<div id="calBox">
 		<h1 id="title">날짜를 선택하세요</h1>
@@ -55,14 +22,14 @@
 			<input type="hidden" name="detailAddress" value="${vo.detailAddress}">
 			<input type="hidden" id="lat" name="lat" value="${mapVO.lat}">
 	    	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
-	    	<input type="text" name="startDate" id="startDate" /> 
+	    	<input type="text" name="dateOne_startDate" id="dateOne_startDate" /> 
 	    	<input type="hidden" name="endDate" id="endDate" />
 	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 	</div>
 </div>
 	<script>
-	$("#startDate").val(today());
+	$("#dateOne_startDate").val(today());
 	$("#endDate").val(today());
 	$('#calBox').daterangepicker({
 	    "locale": {
@@ -77,11 +44,11 @@
 	        "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
 	        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 	    },
-	    "startDate": new Date(),
+	    "dateOne_startDate": new Date(),
 	    "endDate": new Date(),
 	    "drops": "down"
 	}, function (start, end, label) {
-	    $("#startDate").val(start.format('YYYY-MM-DD'));
+	    $("#dateOne_startDate").val(start.format('YYYY-MM-DD'));
 	    $("#endDate").val(start.format('YYYY-MM-DD'));
 	});
 	$("#calBox").click();

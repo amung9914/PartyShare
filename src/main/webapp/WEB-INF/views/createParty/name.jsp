@@ -2,21 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-	#formBox{
-		width: 50%;
-		margin-top: 12%;
-	}
-	
-	#pname{
-		border:none;
-		border-bottom: 2px solid black;
-		width: 100%;
-		font-size: 50px;
-		outline: none;
-		text-align: center;
-	}
-</style>
+<link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
 <div id="createParty_wrap">
 	<div id="formBox">
 		<form action="createName" method="post">

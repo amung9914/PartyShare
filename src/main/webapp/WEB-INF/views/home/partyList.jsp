@@ -5,100 +5,8 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<style>
-	html, body {
-	    height: 100%
-	}
-	
-	#wrap {
-		width: 100%;
-	    min-height: 100%;
-	    position: relative;
-	    padding-bottom: 93px;
-	    
-	}
-	
-	#partyListContainer{
-		width: 100%;
-	}
+<link href="${path}/resources/css/ksg/partyList.css" rel="stylesheet"/>
 
-	#partys{
-		display: flex;
-   		flex-wrap: wrap;
-   		justify-content: space-between;
-	}
-	
-	#partys li{
-		list-style:none;
-		width: 300px;
-		height:400px;
-		text-align: left;
-		margin: 1%;
-	}
-	
-	#partys li .partyImg{
-		width: 300px;
-		height: 300px;
-		cursor: pointer;
-		border-radius: 10px;
-	}
-	
-	#partys li .likeBtn{
-		width: 25px;
-		height:25px;
-		cursor: pointer;
-		position: relative;
-		top: 40px;
-		left: 260px;
-	}
-	
-	#mapBtn{
-		position: absolute;
-		bottom: 120px;
-		position: fixed;
-		left:48%;
-		z-index: 1;
-	}
-	
-	#wishListUl{
-		width: 400px;
-	}
-	#newWishList{
-		width: 100%;
-	}
-	#wishListUl li{
-		padding: 5px;
-		width: 100%;
-		list-style: none;
-		height: 100px;
-		display: inline-block;
-		cursor: pointer;
-	}
-	#wishListUl li img{
-		width: 100px;
-		height : 100px;
-		float: left;
-	}
-	#wishListUl li strong{
-		float: left;
-		line-height: 100px;
-		margin-left:10%;
-		font-size:20px;
-	}
-	#newAlias{
-		width: 400px;
-		height:50px;
-		border-radius: 10px;
-		border:1px solid black;
-		text-align: center;
-	}
-	#newAliasBtn{
-		width: 400px;
-		height: 50px;
-		
-	}
-	
-</style>
 <div class="modal fade" id="listModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -152,7 +60,6 @@
 </div>
 	<script>
 	
-	var contextPath = '${pageContext.request.contextPath}';
 	var page = 1;
 	
 	// 파티 상세 페이지로 이동
@@ -194,7 +101,7 @@
 	        				str += "<li id='"+alias+"' class='"+pNum+"' data-he='"+heartElement+"' onclick='addWishlist(this);'>";
 	            			str += "<div>";
 	            			str += "<div>";
-	            			str += "<img src='${contextPath}/image/printPartyImage?fileName="+partyImage1+"'/>";
+	            			str += "<img src='${path}/image/printPartyImage?fileName="+partyImage1+"'/>";
 	            			str += "</div>";
 	            			str += "<div>";
 	            			str += "<strong>"+alias+"</strong>";
@@ -251,4 +158,10 @@
             }
         });
 	}
+	
+	$(document).ajaxSend(function(e,xhr,options){
+		xhr.setRequestHeader(
+				'${_csrf.headerName}',
+				'${_csrf.token}');
+	});
     </script>

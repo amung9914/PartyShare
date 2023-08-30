@@ -1,28 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
-<style>
-	#footerDiv{
-		margin:0;
-		padding:0;
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		height:100px;
-		position: fixed;
-		bottom: 0;
-		border-top: 2px black solid;
-		padding:20px;
-		background-color: white;
-		z-index: 1;
-	}
-	#footerDiv button{
-		width: 150px;
-	}
-</style>
-
+<link href="${path}/resources/css/ksg/createPartyFooter.css" rel="stylesheet"/>
 <div id="footerDiv">
 	<button type="button" id="prevBtn" class="btn btn-dark">이전</button>
 	<button type="button" id="nextBtn" class="btn btn-dark">다음</button>

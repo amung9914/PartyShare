@@ -5,43 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<style>
-	
-	#addressBox{
-		width: 550px;
-		height: 170px;
-		line-height: 30px;
-		margin-top: 3%;
-		text-align: left;
-		border: 1px solid rgb(221,221,221);
-		box-shadow: rgba(0, 0, 0, 0.18) 0px 6px 16px;
-	}
-	#addressBox input{
-	  border: 1px solid rgb(221,221,221);
-	  box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
-	  padding: 2px;
-	}
-	#address{
-		width: 511px;
-	}
-	#detailAddress{
-		width: 310px;
-	}
-	#mapBox{
-		width: 550px;
-		height: 550px;
-		border: 1px solid rgb(221,221,221);
-		box-shadow: rgba(0, 0, 0, 0.18) 0px 6px 16px;
-		margin-top: 2%;
-		margin-bottom:5%;
-	}
-	#addressBox form{
-		padding: 10px;
-	}
-	#addressBox form input{
-		margin: 1%;
-	}
-</style>
+<link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
 <div id="createParty_wrap">
 	<h1>주소를 입력해주세요</h1>
 	<div id="addressBox">

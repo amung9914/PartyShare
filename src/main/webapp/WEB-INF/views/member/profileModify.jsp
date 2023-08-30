@@ -5,129 +5,29 @@
 <%@ include file="../common/header.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<link href="${path}/resources/css/ksg/profileModify.css" rel="stylesheet"/>
 <style>
-	html, body {
-	    height: 100%
-	    
-	}
-	body{
-		text-align: -webkit-center;
-	}
-	#wrap {
-	    min-height: 100%;
-	    position: relative;
-	    padding-bottom: 120px;
-	}
-	
-	#modifyBox{
-		width: 30%;
-	}
-	
-	.profile_img_wrap{
-		right: 90px;
-		width: 250px;
-		position: relative;
-		margin-left: 10%;
-	}
-	
-	.profile_img_wrap .profile_img{
-		width:250px;
-		height:250px;
-		border-radius: 125px;
-	}
-	
-	.profile_img_wrap .trash_cover{
-		width: 40px;
-		height: 40px;
-		position:absolute;
-		bottom: 5px;
-		border:1px solid white;
-		background-color: #aaaaaa99;
-		border-radius:20px;
-		padding: 4px;
-		box-sizing:border-box;
-	}
-	
-	.profile_img_wrap .trash_cover > label{
-		display:block;
-		background-image:url('${path}/resources/img/trash.png');
-		background-size:30px;
-		background-repeat:no-repeat;
-		width: 30px;
-		height: 30px;
-		margin:0;
-	}
-	
-	.profile_img_wrap .img_cover{
-		width: 40px;
-		height: 40px;
-		position:absolute;
-		bottom: 5px;
-		right:5px;
-		border:1px solid white;
-		background-color: #aaaaaa99;
-		border-radius:20px;
-		padding: 4px;
-		box-sizing:border-box;
-	}
-	
-	.profile_img_wrap .img_cover > label{
-		display:inline-block;
-		background-image:url('${path}/resources/img/camera.png');
-		background-size:30px;
-		background-repeat:no-repeat;
-		width: 30px;
-		height: 30px;
-		margin:0;	
-	}
-	
-	.profile_img_wrap .img_cover .img_file, #delete_img{
-		display: none;
-	}
-	
-	#partyListContanier{
-		margin-top: 3%;
-		width: 50%;
-	}
-	#title2{
-		margin-top:3%;
-	}
-	
-	#modifyBox table tr th{
-		font-size: 30px;
-		text-align: center;
-	}
-	#partyImg{
-		width: 200px;
-		height: 200px;
-	}
-	#pmBox{
-		text-align: center;
-		font-size: 20px;
-	}
-	#pmBox a{
-		text-decoration: none;
-		color:black;
-	}
-	#modifyBox table input{
-		border:none;
-		outline: none;
-		text-align: center;
-	}
-	#modifyBox table tr td {
-		text-align: center;
-	}
-	
-	.card-body{
-		text-align: left;
-	}
-	
-	.card-title{
-		font-weight: bold;
-	}
-	
+.profile_img_wrap .trash_cover > label{
+	display:block;
+	background-image:url('${path}/resources/img/trash.png');
+	background-size:30px;
+	background-repeat:no-repeat;
+	width: 30px;
+	height: 30px;
+	margin:0;
+}
+
+.profile_img_wrap .img_cover > label{
+	display:inline-block;
+	background-image:url('${path}/resources/img/camera.png');
+	background-size:30px;
+	background-repeat:no-repeat;
+	width: 30px;
+	height: 30px;
+	margin:0;	
+}
 </style>
+
 <div id="wrap">
 	<h1 id="title">계정 정보</h1>
 	<div class="profile_img_wrap">

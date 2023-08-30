@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+html, body {
+    height: 100%
+}
+
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+/* 네비게이션 바 */
+#top {
+	/* background-color : #FF385C;  */
+	width: 95%;
+	height: 50px;
+	display: flex;
+	justify-content: center; /* 수평 가운데 정렬 */
+	align-items: center; /* 수직 가운데 정렬 */
+	height: 50px; /* 컨테이너의 전체 높이만큼 설정하여 수직 중앙 정렬을 적용 */
+	margin: 20px auto;
+	color: white;
+	border-top: 2px solid black; /* 위쪽 테두리 */
+  		border-bottom: 2px solid black; /* 아래쪽 테두리 */
+	/* border-radius: 10px; */
+}
+
+nav{
+	width : 100%;
+	font-weight: bold;
+}
+
+#navUl{
+	display: flex;
+	justify-content: space-evenly;
+	list-style : none;
+	margin-bottom: 0;
+}
+
+#navUl li a {
+	color: black;
+	text-decoration: none;
+}
+
+#navUl li a:hover {
+	color: #FF385C;
+}
+
+#chatMain{
+	width: 100%;
+	max-height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+#chatSection{
+	width: 70%;
+	max-height: 100%;
+		
+}
+#infoSection{
+	width: 30%;
+	max-height: 100%;
+}
+#chat_container{
+	width : 100%;
+	font-size: 20px;
+	border-radius: 20px;
+	border:1px solid lightgrey;
+	box-shadow: 1px 1px 1px;
+}
+#partyInfoContainer{
+	width: 100%;
+	background-color:white;
+	overflow-y: scroll;
+	height:820px;		
+}
+
+.chatcontent {
+	height: 680px;
+	width : 95%;
+	overflow-y: scroll;
+}
+
+.chat-fix {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+	
+#msgi{	
+	width:75%;
+	resize: none;
+	margin-left:5%;
+	border-radius: 10px;
+		
+}
+.send{
+	height:100px;
+	width:100px;
+	position: relative;
+	bottom: 41px;
+	
+}
+
+li{
+	list-style-type:none;
+}
+.me{
+	text-align : right;
+	margin-right : 10px;
+	border-radius: 10px;
+}
+.me img{
+	width:100px;
+	height:100px;
+	border-radius: 50px;
+}
+
+.myChat{
+	text-align:left;
+	background-color : yellow;
+	display:inline-block;
+	max-width : 50%;  
+	border-radius: 10px;
+	padding:5px;
+	word-wrap:break-word; 
+	word-break:break-all;
+}
+
+.otherChat{
+	display:inline-block;
+	max-width : 400px;
+	margin-left: 10px;
+	background-color: lightgrey;
+	color:black;
+	border-radius: 10px;
+	padding:5px;
+	word-wrap:break-word; 
+	word-break:break-all;
+	margin-top: 10%;
+	
+}
+#otherChat img{
+	width:100px;
+	height:100px;
+	border-radius: 50px;
+	
+}
+#otherChat span{
+	margin-left: 5px;
+	font-size: 25px;
+	height: 30px;
+	line-height: 30px;
+}
+#otherChat{
+	display:flex;
+}
+#otherChatBox{
+	display:flex;
+	flex-direction: column;
+}
+
+#partyInfoContainer img{
+	text-align:center;
+	width : 100%;
+	height : 450px;
+}
+#partyInfoContainer .card #card-border-width{
+	width: 
+}

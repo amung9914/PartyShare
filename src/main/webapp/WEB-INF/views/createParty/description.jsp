@@ -6,45 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-<style>
-	
-	#box{
-		width: 50%;
-		margin-top: 5%;
-	}
-	
-	#description{
-		visibility: hidden;
-	}
-	.widget-list {
-	  display: flex;
-	  flex-wrap:wrap;
-	  list-style: none;
-	  margin: 0;
-	  padding: 0;
-	  border-radius: 8px;
-	}
-	
-	.widget {
-	  width: 25%;
-	  height: 150px;
-	  flex: auto;
-	  margin: 0.5rem;
-	  background: white;
-	  border: 1px solid rgb(221,221,221);
-	  box-shadow:1px 1px 1px;
-	  line-height: 150px;
-	  text-align: center;
-	  border-radius: 4px;
-	  box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
-	}
-	
-	/* extension */
-	html.sr .widget {
-	  visibility: hidden;
-	}
-	
-</style>
+<link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
 <div id="createParty_wrap">
 	<h1>다음 중 당신의 파티를 가장 잘 설명하는 것은 무엇인가요?</h1>
 	<c:if test="${!empty description}">
