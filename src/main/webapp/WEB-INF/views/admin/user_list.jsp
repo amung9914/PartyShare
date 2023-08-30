@@ -46,7 +46,7 @@
 	
 	
 	$("#memberList").click(function list() {
-	 	   var requestUrl = "${path}/admin/memberList/" + page;
+	 	   var requestUrl = "${path}/admin/memberList/"+page;
 			$("#memberModal").show();
 			console.log("page : "+page);
 			 $.getJSON(requestUrl, function(data) {

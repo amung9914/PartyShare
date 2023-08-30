@@ -24,7 +24,7 @@ public interface SearchDAO {
 	 * 
 	 * 전체 파티설명VO 검색, 초기화함수 , 매개변수 없음 
 	 * */
-	@Select("SELECT * FROM partydescription limit #{start} , 17")   //mainCategory DISTINCT
+	@Select("SELECT * FROM partydescription limit #{start} , 18")   //mainCategory DISTINCT
 	public  List<descriptionVO>  description(int start) throws Exception;	// searchDAO
 	
 	/**
