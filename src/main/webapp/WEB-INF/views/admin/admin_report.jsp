@@ -76,7 +76,13 @@
 	<div id="detailDiv"></div>
 	</div>
 	<script>
-
+	  $(document).ajaxSend(function(e,xhr,options){
+	      xhr.setRequestHeader(
+	            '${_csrf.headerName}',
+	            '${_csrf.token}');
+	   });
+	
+	
 	var mode = 'member';
 	function reportedBoard(){
 		$.ajax({

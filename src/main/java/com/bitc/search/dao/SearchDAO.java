@@ -34,7 +34,7 @@ public interface SearchDAO {
 	public PartyVO dateSearch(LocalDate localDate) throws Exception;  // 날짜 값을 입력받아서 ( 캘린더 필요함 ) 
 	
 	
-	@Select("SELECT * FROM dateIndex ORDER BY DATE ")
+	@Select("SELECT * FROM dateindex ORDER BY DATE ")
 	public List<Integer> dateIndex() throws Exception;	// searchDAO
 	//public 
 	@Select("SELECT distinct sido  FROM location")

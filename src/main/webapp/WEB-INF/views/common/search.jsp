@@ -114,12 +114,13 @@
 }
 
 .items {
-	width: 70px;
-	height: 70px;
+	width: 75px;
+	height: 75px;
 	font-size: samll;
 	display: inline-block;
 	padding: 3px;
 	margin: 10px;
+	font-style:bold;
 	border: solid 1px black;
 	flex-direction: row;
 }
@@ -149,7 +150,7 @@
 .barItem {
 	font-size: 4px;
 	display: inline-block;
-	width: 95px;
+	width: 100px;
 	height: 100px;
 	border: 1px solid gray;
 }
@@ -237,7 +238,7 @@
 	<div id="sigunguTemplate" class='template'></div>
 	<div id="keywordTemplate" class='template'></div>
 	<input type="hidden"  id="keywordTemplate" />
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+	<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
 
 </header>
 <script>
@@ -406,7 +407,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  			dataType: 'text', 
  	        success: function(count) {
  	        	countDescription = parseInt(count); 
- 	            console.log('description :' + countDescription + '개');
+ 	          //  console.log('description :' + countDescription + '개');
  	           lastPageDs = Math.ceil(countDescription/10);
  	            
  	        },
@@ -415,7 +416,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 			}
  			
  		});
- 		console.log('이거까지 되나');
+ //		console.log('이거까지 되나');
  	}
   
   
@@ -489,7 +490,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		$("#responsed").html(str);
   		$.ajax({
   			url : "${path}/search/getSearchContents",
-  			method : "POST",
+  			method : "get",
   			data : { targetContents : sido },
   			dataType : "json",
   			success : function(sigungu){	// List<LocationVO>
@@ -893,7 +894,7 @@ $(window).scroll(function(){
       //  $("#selectedLocation").html('장소 선택');
         $.ajax({
         	  url: '${path}/search/getSearchContents', // target컨텐츠가 전달
-        	  method: 'POST',
+        	  method: 'get',
         	  headers: { "${_csrf.parameterName}": "${_csrf.token}" },
         	  data: {targetContents : targetContents},
         	  dataType: 'JSON',  // return : entity

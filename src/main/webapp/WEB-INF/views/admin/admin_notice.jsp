@@ -18,7 +18,7 @@
 <body>
 	<a href="{path}/admin/admin" >관리자 홈</a>
 	
-	</div> <br/>
+	 <br/>
 	<div id="memberModal">
 	<ul id="memberUl">
 	
@@ -36,11 +36,18 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	/* READY OPTION */
+		   $(document).ajaxSend(function(e,xhr,options){
+	      xhr.setRequestHeader(
+	            '${_csrf.headerName}',
+	            '${_csrf.token}');
+	   });
+	
 	$(document).ready(function () {
 		$("#registPost").click(function () {
 			let context = $("#context").val();
 			$.ajax({
-				url:'${path}/notice/sendPost',
+				url:'${path}/admin/sendPost',
+				
 				type: 'post',
 				data:{context : context},
 				dataType: 'text',
