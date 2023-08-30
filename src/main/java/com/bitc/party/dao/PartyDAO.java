@@ -16,7 +16,7 @@ public interface PartyDAO {
 	/**
 	 * 내가 호스트인 파티 목록
 	 */
-	@Select("SELECT * FROM party WHERE host = #{mnum} ORDER BY pnum")
+	@Select("SELECT * FROM party WHERE host = #{mnum} AND finish='N' ORDER BY pnum")
 	List<PartyVO> HostingList(MemberVO vo) throws Exception;
 	
 	/**
