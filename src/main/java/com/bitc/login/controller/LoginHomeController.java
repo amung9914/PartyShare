@@ -24,7 +24,6 @@ import com.bitc.login.vo.LoginDTO;
 import com.bitc.member.vo.MemberVO;
 
 @Controller
-@RequestMapping("/member")
 public class LoginHomeController {
 
     private final JoinService js;
@@ -57,7 +56,7 @@ public class LoginHomeController {
     
     //2023-08-22
     
-    @PostMapping("/join")
+    @PostMapping("/member/join")
     public String join(MemberVO vo,@RequestParam("file") MultipartFile file, Model model)  {
        
        if (!file.isEmpty()) {            
@@ -91,25 +90,34 @@ public class LoginHomeController {
     }
     
     //2023-08-22 
-    
-    @GetMapping("/goJoin")
+
+    // 회원가입 페이지로 이동
+    @GetMapping("/member/goJoin")
     public String goJoin () {
     	return "member/join";
     }
 
-    @GetMapping("/login")
+    // 로그인 페이지로 이동
+    @GetMapping("/member/login")
     public String goLogin() { 
         return "member/login";
     }
     
-    @GetMapping("/loginFailed")
+    // 로그인 실패
+    @GetMapping("/member/loginFailed")
     public String loginFailed() {
     	return "member/loginFailed";
     }
-
-    @PostMapping("/loginCheck")
+    
+    // 로그인 확인
+    @PostMapping("/user/member/loginCheck")
     public String loginCheck(LoginDTO dto, ModelAndView mav,HttpSession session) throws Exception {
        return js.login(dto, session);
+    }
+    
+    @GetMapping("/member/logOff")
+    public String logOff() {
+       return "member/logOff";
     }
 /*
     @RequestMapping("/error500", "/error404" }, method = {RequestMethod.POST })
