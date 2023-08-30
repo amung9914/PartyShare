@@ -140,44 +140,49 @@ public class CreatePartyController {
 	// 파티 생성 - 파티 이미지 등록
 	@PostMapping("/user/party/createImage")
 	public String createParty(MultipartHttpServletRequest request, PartyVO vo, MapVO map) {
-		List<MultipartFile> imageList = new ArrayList<>();
-		imageList.add(request.getFile("image1"));
-		imageList.add(request.getFile("image2"));
-		imageList.add(request.getFile("image3"));
-		System.out.println("contentType : " + imageList.get(0).getContentType());
-		
+		MultipartFile file1 = request.getFile("image1");
+		MultipartFile file2 = request.getFile("image2");
+		MultipartFile file3 = request.getFile("image3");
 		String savedName = "";
-		// 이미지 업로드
-		for(MultipartFile file : imageList) {
-			if(file.getContentType().indexOf("image") < 0) {
-				// 이미지가 아니거나 없으면 default 이미지 경로 저장
-				savedName = "/default.png";
+		try {
+			if(!file1.isEmpty()) {
+				savedName = FileUtils.uploadThumbnailImage(realPath, file1);
 				vo.setPartyImage1(savedName);
 			}else {
-				// 이미지면 파일 업로드 후 경로 저장
-				try {
-					savedName = FileUtils.uploadThumbnailImage(realPath, file);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				savedName = "/default.png";
 				vo.setPartyImage1(savedName);
 			}
-		}
-		
-		try {
-			// 파티 등록 후 파티 pnum가져와서 맵 테이블에 저장
+			
+			if(!file2.isEmpty()) {
+				savedName = FileUtils.uploadOriginalImage(realPath, file2);
+				vo.setPartyImage2(savedName);
+			}else {
+				savedName = "/default.png";
+				vo.setPartyImage2(savedName);
+			}
+			
+			if(!file3.isEmpty()) {
+				savedName = FileUtils.uploadOriginalImage(realPath, file3);
+				vo.setPartyImage3(savedName);
+			}else {
+				savedName = "/default.png";
+				vo.setPartyImage3(savedName);
+			}
+			
 			MemberVO member = (MemberVO) request.getSession().getAttribute("loginMember");
 			int pnum = ps.createParty(vo, member.getMid());
 			map.setPnum(pnum);		
-			ps.setLocation(map);
-			// 파티 참여 맴버 저장
-			ps.joinPartyMember(pnum, vo.getHost());
 			
+			ps.joinPartyMember(pnum, vo.getHost());
+			ps.setLocation(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return "createParty/success";
 	}
+	
+	
 	
 	// 사용자가 헤더에 입력한 키워드를 가지고 파티 리스트로
 	@GetMapping("/party/partyList")

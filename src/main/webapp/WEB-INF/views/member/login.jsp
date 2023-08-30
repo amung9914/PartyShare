@@ -55,7 +55,7 @@
                         <input type="password" id="mpw" name="mpw" class="form-control custom-input" placeholder="비밀번호를 입력해주세요" required>
                     </div>
                     <div class="form-group form-check mb-3" style="margin-left : 10px;">
-                        <input type="checkbox" class="form-check-input" id="cookie" name="cookie">
+                        <input type="checkbox" class="form-check-input" id="cookie" name="rememberme">
                         <label class="form-check-label" for="cookie">로그인 상태 유지</label>
                     </div>
                     <div class="form-group text-center mb-3">

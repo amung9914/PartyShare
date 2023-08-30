@@ -5,14 +5,12 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bitc.common.utils.Criteria;
 import com.bitc.common.utils.PageMaker;
@@ -81,7 +79,7 @@ public class MemberController {
 		}
 		// 수정한 내용을 세션에 업데이트 함
 		session.setAttribute("loginMember", member);
-		return "redirect:/member/profileModify";
+		return "redirect:/user/profileModify";
 	}
 
 	

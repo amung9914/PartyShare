@@ -59,7 +59,7 @@ public class ChatController {
 		mav.addObject("party",party);
 		mav.addObject("firstList",firstList);
 		mav.addObject("joinMemberList", joinMemberList);
-		mav.setViewName("chat");
+		mav.setViewName("party/chat");
     	return mav;
     }
 	

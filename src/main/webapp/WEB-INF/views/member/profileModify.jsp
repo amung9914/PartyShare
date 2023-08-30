@@ -25,10 +25,10 @@
 	}
 	
 	.profile_img_wrap{
-		position: relative;
 		right: 90px;
-		margin: 20px auto;
 		width: 250px;
+		position: relative;
+		margin-left: 10%;
 	}
 	
 	.profile_img_wrap .profile_img{
