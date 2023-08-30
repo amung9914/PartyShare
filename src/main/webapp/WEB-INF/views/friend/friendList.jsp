@@ -22,7 +22,7 @@ html, body {
 }
 main{
 	float:left;
-	margin: 30px 0px 0px 100px; 
+	margin: 30px 0px 0px 27%; 
 }
 aside{
 	float:left;

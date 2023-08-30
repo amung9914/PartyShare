@@ -83,10 +83,8 @@ public class MemberController {
 		session.setAttribute("loginMember", member);
 		return "redirect:profileModify";
 	}
-	@GetMapping("/user/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("loginMember");
-		
-		return "redirect:/";
+	@GetMapping("/user/member/logout")
+	public String logout() {
+		return "member/logout";
 	}
 }
