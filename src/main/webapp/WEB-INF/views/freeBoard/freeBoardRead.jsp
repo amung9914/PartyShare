@@ -243,6 +243,7 @@
 			<input type="hidden" name="bno" value="${freeBoardVO.bno}"/>
 			<input type="hidden" name="page" value="${cri.page}"/>
 			<input type="hidden" name="perPageNum" value="${cri.perPageNum}"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 	</div>
 	<script>
@@ -486,6 +487,12 @@
 			// 팝업창 오픈
 			let url = "${contextPath}/user/freeBoard/reportPopup?fromMid=" + fromMid + "&toMid=" + toMid + "&mnick=" + mnick + "&cno=" + cno;
 		    window.open(url, "댓글 신고", "width=400, height=300, left=550, top=250");
+		});
+		
+		$(document).ajaxSend(function(e,xhr,options){
+		      xhr.setRequestHeader(
+		            '${_csrf.headerName}',
+		            '${_csrf.token}');
 		});
 		
 	</script>

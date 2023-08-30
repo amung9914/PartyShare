@@ -84,6 +84,7 @@
 	<form action="${contextPath}/user/freeBoard/freeBoardWrite" method="POST">
 		<input type="hidden" name="mnick" value="${loginMember.mnick}" />
 		<input type="hidden" name="mid" value="${loginMember.mid}" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<!-- <input type="hidden" name="viewCnt" value=0 /> -->
 		<c:choose>
 			<c:when test="${loginMember.mid eq 'admin'}">

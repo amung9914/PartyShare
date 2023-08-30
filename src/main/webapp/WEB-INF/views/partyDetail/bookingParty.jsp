@@ -83,6 +83,7 @@
 		</div>
 		<form action="${contextPath}/partyDetail/bookingComplete" method="POST">
 			<input type="hidden" name="pNum" value="${vo.pnum}" /> 
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="submit" id="bookingBtn" value="예약하기" onclick="checkLoginAndSubmit()" />
 		</form>
 	</div>

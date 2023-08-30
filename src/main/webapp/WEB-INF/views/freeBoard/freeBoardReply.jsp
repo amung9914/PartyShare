@@ -94,6 +94,7 @@
 		<input type="hidden" name="origin" value="${board.origin}"/>
 		<input type="hidden" name="depth" value="${board.depth}"/>
 		<input type="hidden" name="seq" value="${board.seq}"/>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input id="title" type="text" name="title" placeholder="제목을 입력하세요." required /> <br/>
 		<textarea id="context" name="context" rows=3></textarea> <br/>
 		<div class="container">	
