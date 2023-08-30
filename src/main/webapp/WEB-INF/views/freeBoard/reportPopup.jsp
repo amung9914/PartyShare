@@ -104,7 +104,7 @@
 			<h3>사유선택</h3> 
 		</div>
 		
-		<form name="${contextPath}/freeBoard/reportPopup" method="POST">
+		<form name="${contextPath}/user/freeBoard/reportPopup" method="POST">
 		<div id="report-select">
 			<input type="hidden" name="fromMid" value="${fromMid}"/>
 			<input type="hidden" name="toMid" value="${toMid}"/>

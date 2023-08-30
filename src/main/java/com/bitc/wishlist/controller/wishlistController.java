@@ -24,14 +24,14 @@ import com.bitc.wishlist.vo.WishlistVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/wishlist/*")
+@RequestMapping("/user/wishlist/*")
 @RequiredArgsConstructor
 public class wishlistController {
 	
 	private final wishlistService ws;
 	
-	@GetMapping("/wishlist")
-	public void wishlist(HttpSession session, Model model) {
+	@GetMapping("wishlist")
+	public String wishlist(HttpSession session, Model model) {
 		MemberVO member = (MemberVO) session.getAttribute("loginMember");
 		try {
 			List<WishlistVO> wishlist = ws.readWishlist(member.getMnum());
@@ -45,10 +45,12 @@ public class wishlistController {
 		} catch (Exception e) {
 			System.out.println("wishlist하다가 오류 났어요");
 		}
+		
+		return "wishlist/wishlist";
 	}
 	
-	@GetMapping("/perWishlist")
-	public void perWishlist(HttpServletRequest request, Model model) {
+	@GetMapping("perWishlist")
+	public String perWishlist(HttpServletRequest request, Model model) {
 		String alias = request.getParameter("alias");
 		
 		try {
@@ -58,9 +60,11 @@ public class wishlistController {
 		} catch (Exception e) {
 			System.out.println("perWishlist하다가 오류 났어요");
 		}
+		
+		return "wishlist/perWishlist";
 	}
 	
-	@PostMapping("/addWishlist")
+	@PostMapping("addWishlist")
 	public ResponseEntity<String> addWishList(@RequestParam("pNum") int pNum, @RequestParam("alias") String alias, HttpSession session) {
 	    MemberVO member = (MemberVO) session.getAttribute("loginMember");
 	    if (member != null) {
@@ -78,7 +82,7 @@ public class wishlistController {
 	    }
 	}
 
-	@PostMapping("/deleteWishlist")
+	@PostMapping("deleteWishlist")
 	public ResponseEntity<String> deleteWishList(@RequestParam("pNum") int pNum, HttpSession session) {
 	    MemberVO member = (MemberVO) session.getAttribute("loginMember");
 	    if (member != null) {
@@ -95,7 +99,7 @@ public class wishlistController {
 	        return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
 	    }
 	}
-	@GetMapping("/getWishList")
+	@GetMapping("getWishList")
 	@ResponseBody
 	public List<WishListDTO> getWishList(int mnum){
 		List<WishListDTO> list = null;

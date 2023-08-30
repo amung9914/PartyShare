@@ -264,15 +264,18 @@
 	<div class="grid-container">
 	  <div class="first-image">
 	    <!-- 왼쪽 사진 -->
-	    <img src="${contextPath}/upload/party${f:replace(vo.partyImage1, 's_', '')}"/>
+	    <%-- <img src="${contextPath}/upload/party${f:replace(vo.partyImage1, 's_', '')}"/> --%>
+	    <img src="${contextPath}/image/printPartyImage?fileName=${f:replace(vo.partyImage1, 's_', '')}"/>
 	  </div>
 	    <div class="second-image">
 	      <!-- 상단 오른쪽 사진 -->
-	      <img src="${contextPath}/upload/party${f:replace(vo.partyImage2, 's_', '')}"/>
+	      <%-- <img src="${contextPath}/upload/party${f:replace(vo.partyImage2, 's_', '')}"/> --%>
+	      <img src="${contextPath}/image/printPartyImage?fileName=${f:replace(vo.partyImage2, 's_', '')}"/>
 	    </div>
 	    <div class="third-image">
 	      <!-- 하단 오른쪽 사진 -->
-	      <img src="${contextPath}/upload/party${f:replace(vo.partyImage3, 's_', '')}"/>
+	      <%-- <img src="${contextPath}/upload/party${f:replace(vo.partyImage3, 's_', '')}"/> --%>
+	      <img src="${contextPath}/image/printPartyImage?fileName=${f:replace(vo.partyImage3, 's_', '')}"/>
 	    </div>
 	</div>
 

@@ -66,14 +66,12 @@
 		<c:forEach var="wishlist" items="${wishlist}">
    			 <c:if test="${fn:indexOf(seen, wishlist.alias) eq -1}">
 			      <li>
-			      	<a href="${contextPath}/wishlist/perWishlist?alias=${wishlist.alias}">
+			      	<a href="${contextPath}/user/wishlist/perWishlist?alias=${wishlist.alias}">
 			      		<div class="wishlistBox">
 			      		<c:choose>
                             <c:when test="${not empty wishlist.parties}">
                             <div class="partyImages">
-                                <img class="partyImg" src="${contextPath}/upload/party${wishlist.parties[0].partyImage1}"/>
-                                <%-- <img class="partyImg" src="${contextPath}/upload/party${wishlist.parties[0].partyImage2}"/>
-                                <img class="partyImg" src="${contextPath}/upload/party${wishlist.parties[0].partyImage3}"/> --%> 
+                                <img class="partyImg" src="${contextPath}/image/printPartyImage?fileName=${wishlist.parties[0].partyImage1}"/>
                           	</div>
                             </c:when>
                             <c:otherwise>

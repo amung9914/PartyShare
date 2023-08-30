@@ -81,7 +81,7 @@
 </style>
 </head>
 <body>
-	<form action="${contextPath}/freeBoard/freeBoardWrite" method="POST">
+	<form action="${contextPath}/user/freeBoard/freeBoardWrite" method="POST">
 		<input type="hidden" name="mnick" value="${loginMember.mnick}" />
 		<input type="hidden" name="mid" value="${loginMember.mid}" />
 		<!-- <input type="hidden" name="viewCnt" value=0 /> -->
