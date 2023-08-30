@@ -338,7 +338,9 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		$.ajax({
   			url:"${path}/search/printDescription",
   			method : "post",
-  			data:{descPage : descriptionPage },
+  			data:{descPage : descriptionPage 
+  				${_csrf.parameterName}:${_csrf.token}
+  				},
   			dataType :"json",		// List<descpriptionVO>
   			success: function (list){
   				let str = "";
