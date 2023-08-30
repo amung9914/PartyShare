@@ -237,7 +237,7 @@
 	<div id="sigunguTemplate" class='template'></div>
 	<div id="keywordTemplate" class='template'></div>
 	<input type="hidden"  id="keywordTemplate" />
-
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 </header>
 <script>
@@ -338,8 +338,8 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		$.ajax({
   			url:"${path}/search/printDescription",
   			method : "post",
-  			data:{descPage : descriptionPage 
-  				${_csrf.parameterName}:${_csrf.token}
+  			data:{descPage : descriptionPage ,
+  				${_csrf.parameterName}:"${_csrf.token}"
   				},
   			dataType :"json",		// List<descpriptionVO>
   			success: function (list){
