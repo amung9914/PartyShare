@@ -26,6 +26,7 @@ html, body {
 	<!-- model boardVO -->
 	<!-- board/modify POST -->
 	<form action="${path}/user/partyBoard/modify" method="POST" id="modifyForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
+		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" name="mnum" value="${board.mnum}"/>
 		<input type="hidden" name="bno" value="${board.bno}"/>
 		<input type="hidden" name="writer" value="${board.writer}" />

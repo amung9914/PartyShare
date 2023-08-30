@@ -23,6 +23,7 @@ html, body {
 </style>
 <div id="wrap">
 	<form action="${path}/user/partyBoard/reply" method="POST" id="registerForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
+		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" name="mnum" value="${loginMember.mnum}"/>
 		<input type="hidden" name="writer" value="${loginMember.mnick}" />
 		<input type="hidden" name="pnum" value="${board.pnum}"/>

@@ -224,4 +224,10 @@
 					+pnum+"&bno="+bno+"&cno="+cno,"Pop","width=500,height=600")
 		}
 	})
+	
+	$(document).ajaxSend(function(e,xhr,options){
+		xhr.setRequestHeader(
+				'${_csrf.headerName}',
+				'${_csrf.token}');
+	});
 </script>

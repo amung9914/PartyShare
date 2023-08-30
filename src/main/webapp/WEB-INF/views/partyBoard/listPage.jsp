@@ -42,6 +42,7 @@
 	<div class="tableBox">
 	<div class="control">
 	<form name="changeCri" action="${path}/user/partyBoard/listPage" method="GET">
+	 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" name="pnum" value="${pnum}"/>
 		<select name="perPageNum" class="form-select" onchange="changeCri.submit();">
 			<c:forEach var="i" begin="5" end="20" step="5">
@@ -207,6 +208,7 @@
 	</table>
 	
 	<form action="${path}/user/partyBoard/listPage" method="GET" class="searchForm">
+	 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="hidden" name="pnum" value="${pnum}"/>
 			<div class="input-group">
 				<select class="form-select" name="searchType">

@@ -25,6 +25,7 @@ html, body {
 <h3>파티정보</h3>
 <hr/>
 <form action="${path}/host/party/updateParty" method="POST" enctype="multipart/form-data" id="updateForm">
+ <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <input type="hidden" name="pnum" value="${party.pnum}"/> 
 <table class="table">
 	<tr>

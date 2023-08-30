@@ -44,6 +44,7 @@
 	<hr/>
 	<div class="title"><b>사유선택</b></div>
 	<form method="POST" action="${path}/user/partyBoard/report">
+	   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	  <input type="hidden" name="pnum" value="${board.pnum}"/>
 	  <input type="hidden" name="bno" value="${board.bno}"/>
       <input type="hidden" name="fromMid" value="${loginMember.mid}"/>
