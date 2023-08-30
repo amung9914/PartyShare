@@ -16,28 +16,28 @@ public interface PartyDAO {
 	/**
 	 * 내가 호스트인 파티 목록
 	 */
-	@Select("SELECT * FROM party WHERE host = #{mnum} AND ORDER BY pnum")
+	@Select("SELECT * FROM party WHERE host = #{mnum} ORDER BY pNum")
 	List<PartyVO> HostingList(MemberVO vo) throws Exception;
 	
-	@Select("SELECT * FROM party WHERE host = #{mnum} AND finish='N' ORDER BY pnum")
+	@Select("SELECT * FROM party WHERE host = #{mnum} AND finish='N' ORDER BY pNum")
 	List<PartyVO> HostingListNotFinish(MemberVO vo) throws Exception;
 	
 	/**
 	 * 내가 참여중인 파티 목록
 	 */
-	@Select("SELECT P.* FROM joinmember J, party P WHERE J.pnum = P.pnum AND J.mnum = #{mnum} AND P.finish ='N' ORDER BY pnum ")
+	@Select("SELECT P.* FROM joinmember J, party P WHERE J.pnum = P.pnum AND J.mnum = #{mnum} AND P.finish ='N' ORDER BY pNum ")
 	List<PartyVO> myPartyList(MemberVO vo) throws Exception;
 	
 	/**
 	 * 파티 상세정보 출력
 	 */
-	@Select("SELECT * FROM party WHERE pnum = #{pnum}")
+	@Select("SELECT * FROM party WHERE pNum = #{pnum}")
 	PartyVO read(int pnum) throws Exception;
 	
 	/**
 	 * 파티 정보 수정
 	 */
-	@Update("UPDATE party SET pname = #{pname}, sido = #{sido}, sigungu = #{sigungu} , "
+	@Update("UPDATE party SET pNum = #{pname}, sido = #{sido}, sigungu = #{sigungu} , "
 			+" address = #{address} , detailaddress = #{detailAddress}, "
 			+ "pcontext = #{pcontext}, startdate = #{startDate} , enddate = #{endDate} , "
 			+ "description = #{description}, category = #{category} , "
@@ -48,7 +48,7 @@ public interface PartyDAO {
 	/**
 	 * 파티 사진 수정
 	 */
-	@Update("UPDATE party SET  WHERE pnum = #{pnum}")
+	@Update("UPDATE party SET  WHERE pNum = #{pnum}")
 	int updateImage(PartyVO vo) throws Exception;
 	
 	
@@ -68,7 +68,7 @@ public interface PartyDAO {
 	/**
 	 * 파티 참여 맴버 목록
 	 */
-	@Select("SELECT * FROM member WHERE mnum IN (SELECT mnum FROM joinmember WHERE pnum=#{pnum})")
+	@Select("SELECT * FROM member WHERE mnum IN (SELECT mnum FROM joinmember WHERE pNum=#{pnum})")
 	public List<MemberVO> getJoinPartyMember(int pnum) throws Exception;
 	
 	/**

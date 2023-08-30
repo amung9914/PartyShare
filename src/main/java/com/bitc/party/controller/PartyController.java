@@ -90,7 +90,7 @@ public class PartyController {
 	}
 	
 	// 파티관리 페이지
-	@GetMapping("/host//party/partyHost")
+	@GetMapping("/host/party/partyHost")
 	public String partyHost(int pnum,Model model) {
 		PartyVO vo = null;
 		List<MemberVO> list = null;
