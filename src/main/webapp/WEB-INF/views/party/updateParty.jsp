@@ -85,7 +85,7 @@ html, body {
 	<%@ include file="partyimg.jsp" %>
 </table>
 <!-- 우편번호프로그램으로 얻어지늗 값 -->
-		<input type="hidden" id="sido" name="sido" value="${party.address}"/>
+		<input type="hidden" id="sido" name="sido" value="${party.sido}"/>
 		<input type="hidden" id="sigungu" name="sigungu" value="${party.sigungu}"/>
 		<input type="hidden" id="lat" name="lat" value="${map.lat}"/>
     	<input type="hidden" id="lng" name="lng" value="${map.lng}">

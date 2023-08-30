@@ -4,66 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ include file="../common/header.jsp" %>
+<link href="${path}/resources/css/partyBoardRead.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
-<style>
 
-	 #wrap{
-	text-align: -webkit-center;
-	} 
-	.tableBox{
-		width:800px;
-	}
-	.info{
-		color:gray;
-		display: flex;
-	}
-	.btnBox, .mb-3{
-		text-align: left;
-	}
-	.boardReport:hover{
-	    text-decoration: underline;
-	    cursor:pointer;
-	}
-	#addBtn, #cText, #modDiv .control,#comments pre{
-		margin:10px;
-	}
-
-	#comments li{
-		list-style:none;
-		padding:10px;
-		border:1px solid #ccc;
-		height:130px;
-		}
-	#comments{
-		margin: 5px 0px 200px 0px;
-	}
-		
-	#modDiv{
-		border:1px solid black;
-		padding:10px;
-		display:none; /* 처음에는 안보이게 */
-    	text-align: left;
-	}
-	 .commentInfo, #comments pre{
-		display: flex;
-	} 
-	.control button{
-		background-color:white;
-		border: 1px solid;
-    	margin: 0px 5px;
-    	border-radius: 3px;
-	}
-	.control button:hover{
-		background-color:lightgray;
-		
-	}
-	#modCno{
-		display:none;
-	}
-</style>
-<div id="wrap">
+<div id="wrap" class="wrapper">
 	<div class="tableBox">
 		<table class="table">
 		<tr>
