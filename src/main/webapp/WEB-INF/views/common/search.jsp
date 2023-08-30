@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:set var="imgPath" value="${path}/image/printProfileImage?fileName=" />
-<c:set var="descImgPath" value="${path}/resources/img/descImg/" />
+<c:set var="descImgPath" value="${path}/resources/img/descImg" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>검색 구현</title>
 <link
@@ -137,8 +137,15 @@
 	display: none;
 	display: block;
 	display: flex;
+	height: 120px;
 }
 
+#previousBtn, #nextBtn{
+	width:40px;
+	height: 40px; 
+	border-color: red;
+	border:solid 1px red;
+}
 .barItem {
 	font-size: smaller;
 	display: inline-block;
@@ -186,12 +193,18 @@
 /*   background-color: #e74c3c; */
   border-color : #e74c3c;
 }
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+/*   height: 100%;  */
+}
 
 </style>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <header id="searchHeader" >
-	<div id="barContatiner"></div>
+	<div id="barContatiner" class="flex-container" ></div>
 	
 	<div class="searchBtnContainer">
 		<div class="searchContainer">
@@ -283,15 +296,15 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 
   	var contextPath="${pageContext.request.contextPath}";
   //	<div><a href=''><img src='샘플이미지' /></a></div class="categoryImgDiv">
-  		var isToggle = true;
-  		var countDescription = 1;
-  		var lastPageDs = 10;
-  		var descriptionPage = 1;
-  		var keyword = "${searchValue}";
+	var isToggle = true;
+	var countDescription = 1;
+	var lastPageDs = 10;
+	var descriptionPage = 1;
+	var keyword = "${searchValue}";
 
-  		if(typeof keyword === 'undefined' || keyword ==''){keyword = "noValue"}
-  		var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
-  		console.log(resultQuery);
+	if(typeof keyword === 'undefined' || keyword ==''){keyword = "noValue"}
+	var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
+	console.log(resultQuery);
 
   		//select("");
   	console.log("keyword : " + keyword);
@@ -330,17 +343,17 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			success: function (list){
   				let str = "";
   					console.log('버튼출력할때' +descriptionPage );
-  					str += `<button type="button" id="previousBtn" class="btn btn-danger" onclick="previous(descriptionPage)">&lt; previous</button>`;	
+  					str += `<button type="button" id="previousBtn" class="btn btn-dangerno" onclick="previous(descriptionPage)"> &lt; </button>`;	
   		//			str += `<div id="previousBtn" onclick="previous(descriptionPage)">previous</div>`;			
   					
   	//				str += `<div class='barItem' onclick='select("description"+"\${this.description}")'>`;
   				$(list).each(function(){
   					let descriptionSrc = "";
-  					descriptionSrc = "description";
-  					descriptionSrc += ""+this.no;
-  	//				console.log(descriptionSrc);
+  				//	descriptionSrc = "description";
+  					descriptionSrc += "${descImgPath}/description"+this.no+".jpg";
+  					console.log(descriptionSrc);
   			str+=	  `<div class="card barItem" onclick='select("description"+"\${this.description}")'>`;
-  			str+=	  `<img src="${descImgPath}description2.jpg" height="55px" class="card-img-top" alt="...">`;
+  			str+=	  '<img src="'+descriptionSrc+'" height="55px" class="card-img-top" alt="...">';
   			str+=	  `<div class="card-body">`;
   			str+=	  `<p class="card_Ptag card-text" ><b>\${this.description}</b></p>`;			//내용
   			str+=	  `</div>`;
@@ -351,7 +364,8 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 //  					str += `\${this.description}`;																			/*  */
 //  					str += '</div>';																					/*  */
   				})	
-  				str += `<button type="button" id="nextBtn" class="btn btn-danger" onclick="previous(descriptionPage)">next &gt;</button><br/>`;	
+  				console.log("descriptionPage : "+descriptionPage);
+  				str += `<button type="button" id="nextBtn" class="btn btn-dangerno" onclick="next(descriptionPage)"> &gt; </button><br/>`;	
 // 					str += `<div id="nextBtn" onclick="next(descriptionPage)">next</div><br>`;
   					str += `<div id="cancelDescription" onclick="cancel()">선택해제</div>`;                
   				$("#barContatiner").html(str);
@@ -370,8 +384,8 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  	// 45개가 있다고 치자 -> 마지막 페이지는 5 lastPageDs
  	function next(descriptionPage){
  		if(descriptionPage != lastPageDs){
- 		descriptionPage += 1;
- 		console.log("if절" + descriptionPage);
+ 		descriptionPage++;
+ 		console.log("if절 : " + descriptionPage);
  		printDescription();
  		}
  	//	console.log(descriptionPage);
@@ -500,6 +514,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			data : { targetContents : sido },
   			dataType : "json",
   			success : function(sigungu){	// List<LocationVO>
+  				
   		        	str += `<div class="containerNO">`;    
   		        	str += `<button type="button" onclick='select("sigungu")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
   				//	str += `<div class='itemsNO' class='close' onclick='select("sigungu")'>선택하지 않음</div>`;
@@ -507,10 +522,11 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 				//	str += `<div class='items' class='close' onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</div>`;
 					str += `<button type="button" class="btn btn-outline-danger items" onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</button>`;
 					$("#responsed").html(str); 
-					isToggle = true;
+					
 					
 				})	
 					str += `</div>`;
+  					isToggle = true;
   			},	
   			error : function(error){
 
@@ -545,10 +561,12 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		}
   		
   		if(factor.includes('sido')){
-  			isToggle = false;
+  		
   		$("#sidoTemplate").html(factor);// 시도를 선택했을 때 시군구 선택 창이 open되도록 메소드 추가
   			factor = factor.substring("sido".length);
  // 			alert(factor+"시도");
+ 			//	isToggle = false;
+ 				$("#searchModal").css("display","block");
   			printLocation2(factor);	//factor=울산광역시
   		}
   		if(factor.includes('sigungu')){
@@ -886,7 +904,7 @@ $(window).scroll(function(){
         console.log('searchBtn확인');
         var targetContents = $(this).attr("data-targetContents");
         if(isToggle){
-        $("#searchModal").toggle("slow");
+        $("#searchModal").toggle("fast");
         }
         console.log("targetContents console = " +targetContents);
         // 각 타겟을 이용해 요청명을 Controller에 전달

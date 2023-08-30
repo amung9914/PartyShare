@@ -11,10 +11,35 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <title>admin_report.jsp</title>
 <style type="text/css">
-	#reportTable{
-	border: 1px solid black; 
+	#reportWrap{
+	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+ 	min-height: 100vh;
 	}
-	 .reportTd {
+    #reportTh, #reportTd{ 
+    border: 1px solid;
+    padding: 10px 5px;
+    }
+    #reportTh{
+    border-bottom: double red;
+    background-color: teal;
+    color: white;
+    }        
+ 	#reportTr:nth-child(2n+0){
+ 	background-color: tomato;
+ 	}
+	#reportTable{
+	width: 80%;
+	border: 2px solid; 
+	border-collapse: collapse; 
+	text-align: center; 
+	}
+	#reportTable>:nth-child(1){
+	border: 10px solid blue;
+	}
+	.reportTd {
     width: auto;
     height: 25px;
     border: 1px solid black;
@@ -27,7 +52,7 @@
   .detailDiv{
   	display: none;
   	overflow: auto;
-  	width : 60%;
+  	width: 80%;
   	margin: 0 20% 0 20%;
   	height: auto;
  	background-color: rgb(128, 128, 128);
@@ -41,6 +66,7 @@
 </style>
 </head>
 <body>
+	<div id="reportWrap">
 	<h1>신고 내역 확인</h1>
 	<button id="changeBtn" onclick="reportedBoard()">게시판 신고 내역 보기</button>
 	<button id="partyBoardBtn" onclick="reportedPartyBoard()">party게시판 신고 내역 보기</button>
@@ -48,16 +74,9 @@
 		
 	</table>
 	<div id="detailDiv"></div>
+	</div>
 	<script>
-	/*
-	function printList() {
-		for (let i = 0; i < reportList.length; i++) {
-	        
-	    }
-	   
-	    
-	}
-	*/
+
 	var mode = 'member';
 	function reportedBoard(){
 		$.ajax({
@@ -79,10 +98,8 @@
 				str += "</tr>";
 		//		pageStr += `<div>&lt;</div>`;
 					$(list).each(function(){
-				
 						
 						   	str += `<tr id="reportTr" >`;
-							
 						   	str += `<td class='reportTd' onclick='reportDetail(\${this.no})'>\${this.no}</td>`;
 						   	str += `<td class='reportTd'>\${this.fromMid}</td>`;
 						   	str += `<td class='reportTd'>\${this.toMid}</td>`;
@@ -91,9 +108,7 @@
 						   	str += `<td class='reportTd' id="B" onclick='boardReportDetail("b"+\${this.bno})'>\${this.bno}</td>`;
 						   	str += `<td class='reportTd'class="B" id="C" onclick='boardReportDetail("c"+\${this.cno})'>\${this.cno}</td>`;
 						   	str +=	`</tr>`;
-						
-						   	
-						  }) //each
+						  }) 
 						  $("#detailDiv").css("display","none");
 						  $("#reportTable").html(str);
 						  $("#changeBtn").attr("onclick","reportList()");
@@ -112,7 +127,6 @@
 		 $.post("${path}/report/reportedPartyBoard",function(list){ //List<PbReportVO>
 			    console.log(list);
 			    console.log(typeof list);
-			   // console.log('위가 제이슨');
 			    
 			    let str = "";
 				str += "<tr>";
@@ -140,8 +154,6 @@
 			   	str += `<td class='reportTd'>\${this.pnum}</td>`; //7
 			   	str += `<td class='reportTd' onclick='PbReportDetail("b"+\${this.bno})'>\${this.bno}</td>`; //8
 			   	str += `<td class='reportTd' id="comment" onclick='PbReportDetail("c"+\${this.cno})'>\${this.cno}</td>`; //9	/
-			   		/*		cno를 매개로 전달 -> 원본VO와 댓글VO 모두 로드 		*/
-//내용 안 보이게	   	str += `<td class='reportTd'>\${this.context}</td>`;
 				if(this.cno == 0){
 					$("#comment").attr("disabled","disabled");
 					}
@@ -154,7 +166,7 @@
 		//	    	 $("#changeBtn").html("게시판 신고 내역 보기");
 			    });
 	}
-	/* /* /* /* /* /* /* 그냥 freeboard 원본을 수정 */ 
+
 	// onclick='boardReportDetail("b"+\${this.bno})'
 	function boardReportDetail(no){
 		if(no.startsWith("c")){			//댓글
@@ -164,8 +176,8 @@
 			 	let originalText = "없음";
 			 	let originalWriter = "없음";
 			 	
-			 	let str = ""; // 이전으로 뺐음 (1ajax와 2ajax를 사용)
-			 	$("#detailDiv").html(str);	//가장 먼저 없애고
+			 	let str = "";
+			 	$("#detailDiv").html(str);	
 			 	//원본추출 시작
 			 $.ajax({
 				url : '${path}/report/boardReportOriginal/'+no,
@@ -200,7 +212,6 @@
 	//    	
 	    			str += `댓글 번호: \${comment.cno}<br/>`;
 	    			str += `댓글 내용:\${comment.commentText}<br/>`;
-	//    			console.log(originalWriter + "작성자 2");
 	    			str += `<div id='black_or_ok'>`;
 	    			str += `<button id='blindBoardComment' class='confirm' data-target='\${no}'>댓글 가리기</button>`;
 	    			str += `<button id='ok' class='confirm'>확인</button>`;
@@ -215,10 +226,8 @@
 					alert(error);
 				}
 	    	}); // ajax 코멘트절
-	    			
-	    
 					
-		}else if(no.startsWith("b")){						//원본글						
+		}else if(no.startsWith("b")){						//신고 대상이 원본 글						
 			no = no.substring(1);
 //			 	alert(no);
 	    	$.ajax({
@@ -229,7 +238,7 @@
 	    		success : function (board){ 
 	    			console.log(board);
 	    			let str = "";
-	    			$("#detailDiv").html(str);	//비워주고
+	    			$("#detailDiv").html(str);
 	    			str += `<div>`;
 	    			str += '신고 분류 : 원본 글<br/>';
 	    			str += `게시글 번호: \${no}<br/>`;
@@ -255,7 +264,6 @@
 		}
 		//alert('PbReportDetail 작동 중' + no);
 	}
-	/* /* /* /* /* /* /* 그냥 freeboard 원본을 수정 */ 
 	
 	
 	function PbReportDetail(no){
@@ -266,8 +274,8 @@
 			 	let originalText = "없음";
 			 	let originalWriter = "없음";
 			 	
-			 	let str = ""; // 이전으로 뺐음 (1ajax와 2ajax를 사용)
-			 	$("#detailDiv").html(str);	//가장 먼저 없애고
+			 	let str = ""; 
+			 	$("#detailDiv").html(str);	
 			 	//원본추출
 			 		$.ajax({
 				url : '${path}/report/PbReportOriginal/'+no,
