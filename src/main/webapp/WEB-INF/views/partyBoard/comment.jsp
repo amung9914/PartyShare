@@ -97,13 +97,14 @@
 		
 		$.ajax({
 			type : "POST",
-			url : "${path}/user/partyBoard/comments",
+			url : "${path}/user/partyBoard/comments/add",
 			data : {
 				bno : bno,
 				commentText : text,
 				mnick : mnick,
 				mid : mid,
-				pnum : pnum
+				pnum : pnum,
+				'${_csrf.parameterName}':'${_csrf.token}'
 			},
 			dataType : "text", // 성공유무에 대한 정보를 text로 전달받겠다.
 			success : function(result){
@@ -150,9 +151,10 @@
 		
 		$.ajax({
 			type : "PATCH",
-			url : "${path}/user/partyBoard/comments/"+cno,
+			url : "${path}/user/partyBoard/comments/modify/"+cno,
 			headers : {
-				"Content-Type" : "application/json"
+				"Content-Type" : "application/json",
+				'${_csrf.headerName}': '${_csrf.token}'
 			},
 			data : JSON.stringify({
 				commentText : text,
@@ -175,9 +177,10 @@
 		const cno = $("#modCno").text();
 		$.ajax({
 			type : "DELETE",
-			url : "${path}/user/partyBoard/comments/"+cno,
+			url : "${path}/user/partyBoard/comments/delete/"+cno,
 			headers : {
-				"Content-Type" : "application/json"
+				"Content-Type" : "application/json",
+				'${_csrf.headerName}': '${_csrf.token}'
 			},
 			data : JSON.stringify({
 				pnum : pnum,
@@ -225,9 +228,4 @@
 		}
 	})
 	
-	$(document).ajaxSend(function(e,xhr,options){
-		xhr.setRequestHeader(
-				'${_csrf.headerName}',
-				'${_csrf.token}');
-	});
 </script>

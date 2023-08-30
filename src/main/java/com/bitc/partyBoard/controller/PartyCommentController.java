@@ -59,7 +59,7 @@ public class PartyCommentController {
 	/**
 	 *  댓글 추가 처리
 	 */
-	@PostMapping("") // comments 
+	@PostMapping("/add") 
 	public ResponseEntity<String> addComment(PartyCommentVO vo) {
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -79,7 +79,7 @@ public class PartyCommentController {
 	/**
 	 *  댓글 수정 처리
 	 */
-	@PatchMapping("/{cno}")
+	@PatchMapping("/modify/{cno}")
 	public String update (
 			@PathVariable(name="cno") int cno,
 			@RequestBody PartyCommentVO vo
@@ -91,7 +91,7 @@ public class PartyCommentController {
 	/**
 	 * 댓글 삭제 처리
 	 */
-	@DeleteMapping("/{cno}")
+	@DeleteMapping("/delete/{cno}")
 	public String delete (
 			@PathVariable(name="cno") int cno,
 			@RequestBody PartyCommentVO vo
