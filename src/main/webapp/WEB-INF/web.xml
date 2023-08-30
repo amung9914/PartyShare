@@ -19,7 +19,9 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:/spring/root-context.xml</param-value>
+		<param-value>classpath:/spring/root-context.xml
+					classpath:/security/security-context.xml</param-value>
+		
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -43,8 +45,20 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
+	<!-- join.jsp에서 multipart/form-data라서 multipartResolver가 변환해줌 filter-resolver-servlet순서인데
+		security filter가 먼저 확인해서 token 없구나 라고 인식해버린다. -> filter 추가 등록 필요 -->
+	<!-- multipart-formdata Filter -->
+	<filter>
+		<filter-name>springMultipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>	
+	<filter-mapping>
+		<filter-name>springMultipartFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- security - filter -->
-	<!-- <filter>
+	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>
 			org.springframework.web.filter.DelegatingFilterProxy
@@ -54,5 +68,7 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
- -->
+
+ 
+	
 </web-app>

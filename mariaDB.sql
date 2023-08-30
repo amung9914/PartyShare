@@ -45,3 +45,22 @@ SELECT pName, host, sido, sigungu, address, detailAddress, startDate, endDate, p
 SELECT * FROM map;
 DELETE FROM map WHERE pNum = 1022;
 
+
+-- 권한 table
+CREATE TABLE validation_member_auth(
+	mId VARCHAR(50) NOT NULL,
+    auth VARCHAR(50) NOT NULL,
+    constraint fk_member_auth FOREIGN KEY(mId) 
+    REFERENCES member(mId)
+);
+
+DESC validation_member_auth;
+
+desc blacklist;
+
+DELETE FROM wishlist;
+DROP TABLE location;
+DELETE FROM member;
+DELETE FROM party;
+
+

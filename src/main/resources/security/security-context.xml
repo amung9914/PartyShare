@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.8.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="loginSuccessHandler"
+	 class="com.bitc.common.security.LoginSuccessHandler"/>
+	<bean id="accessDeniedHandler" 
+	 class="com.bitc.common.security.CustomAccessDeniedHandler"/>
+	 <!-- /resources/** 경로 패턴은  security를 적용 하지 않는다. -->
+	<security:http pattern="/resources/**" security="none"/>
+
+	<security:http>
+	
+		<security:form-login 
+		login-page="/member/login" 
+		username-parameter="mid" 
+		password-parameter="mpw"
+		login-processing-url="/member/loginCheck" 
+		authentication-success-handler-ref="loginSuccessHandler"/>
+		<!-- URL대신 handler 지정해서 해당 클래스에서 처리 진행 -->
+		
+		<!-- 자동로그인 처리 -->
+		<security:remember-me
+			 remember-me-cookie="userCookie"
+			 remember-me-parameter="rememberme" 
+			 token-validity-seconds="604800"/>
+		
+		<!-- 중복로그인처리 -->
+		<security:session-management>
+			<security:concurrency-control 
+			 error-if-maximum-exceeded="false" 
+			 max-sessions="1" 
+			 expired-url="/member/logOff"/>
+		</security:session-management>
+		<!-- 403 권한 불충분 사용자 핸들러 등록 accessDeniedHandler -->
+		<security:access-denied-handler
+				  ref="accessDeniedHandler"/>
+		
+		<!-- 로그아웃 처리(POST방식으로만 가능) -->
+		<security:logout 
+				logout-url="/user/member/logout" 
+				logout-success-url="/" 
+				delete-cookies="userCookie"/>
+		<!-- 특정 페이지에 따라 사용자 권한 지정 (좁은게 위로 가야 먼저 체크하고 아래쪽으로 경로 체크함. ) -->
+		<security:intercept-url 
+				  pattern="/admin/**" 
+				  access="hasRole('ROLE_ADMIN')"/>		
+		<security:intercept-url 
+				  pattern="/host/**" 
+				  access="hasAnyRole('ROLE_HOST','ROLE_ADMIN')"/>
+		<security:intercept-url 
+				  pattern="/user/**" 
+				  access="authenticated"/>
+	    <security:intercept-url 
+				  pattern="/" 
+				  access="permitAll"/>
+	</security:http>
+	
+	<!-- 사용자 인증정보 확인할 클래스 -->
+	<bean id="customUsersDetail" 
+		  class="com.bitc.common.security.user.CustomUserDetailsService"/>
+
+  	<!-- 
+  		암호화 하지 않음
+  		No Operation noop
+
+	<bean class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
+	 -->
+	<!-- sha-256 암호화 방식 사용 -->
+	<!-- 
+	<bean class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+	 -->
+	<!-- scrypt 해쉬 알고리즘 (소수) 이용한 암호화 방식(단방향) -->
+	<bean id="bcriptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<security:authentication-manager>
+		<security:authentication-provider
+			 user-service-ref="customUsersDetail">
+			 <security:password-encoder ref="bcriptPasswordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+</beans>
+
+
+
+
