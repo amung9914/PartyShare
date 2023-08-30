@@ -66,7 +66,7 @@ public class NoticeController {
 	@GetMapping("/notice/receivePost") 
 	 public ResponseEntity<List<NoticeVO>> receivePost(String mid){
 		 ResponseEntity<List<NoticeVO>> entity = null;
-		 System.out.println(mid +"mynotice");
+//		 System.out.println(mid +"mynotice");
 		 try {
 			List<NoticeVO> list = ns.myNotice(mid);
 			
@@ -79,7 +79,7 @@ public class NoticeController {
 		 return entity;
 	 }
 	
- 	@PostMapping("/notice/sendPost")
+ 	@PostMapping("/admin/sendPost")
  	public ResponseEntity<String> sendPost(NoticeVO notice){
  		ResponseEntity<String> entity = null; 
  		System.out.println(notice +"sendPost에서 발신");

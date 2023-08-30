@@ -61,7 +61,7 @@ public class SearchController {
 	}
 	
 	
-	@PostMapping("search/getSearchContents")
+	@GetMapping("search/getSearchContents")
 	
 	public ResponseEntity<Object> getSearchContents(
 		String targetContents) {
@@ -79,7 +79,7 @@ public class SearchController {
 			header.setContentType(MediaType.APPLICATION_JSON); //encode
 			entity = new ResponseEntity<>(e.getMessage(),header,HttpStatus.BAD_REQUEST);
 		}
-		System.out.println(entity);
+	//	System.out.println(entity);
         return entity; // ajax dataType = "text",
 	}
 	
@@ -103,8 +103,8 @@ public class SearchController {
 		
 			cri.setPage(page);
 			cri.setPerPageNum(20);
-			System.out.println(cri.getStartRow());
-			System.out.println(page + "< querySearch page");
+//			System.out.println(cri.getStartRow());
+//			System.out.println(page + "< querySearch page");
 		ResponseEntity<Map<String, Object>> entity = null;
 //		System.out.println(resultQuery);
 		
@@ -130,7 +130,7 @@ public class SearchController {
 			count =
 			ss.countPartyDescription();
 		} catch (Exception e) {
-			System.out.println("이상하다");
+//			System.out.println("이상하다");
 		}
 		return count;
 	}
