@@ -67,7 +67,7 @@
 			</tr>
 			<tr>
 				<td><a href="${contextPath}/location/map">지도확인</a></td>
-				<td><a href="${contextPath}/wishlist/wishlist">위시리스트</a></td>
+				<td><a href="${contextPath}/user/wishlist/wishlist">위시리스트</a></td>
 				<td>파티 채팅</td>
 				<td></td>
 				<td></td>

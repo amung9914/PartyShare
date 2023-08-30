@@ -83,6 +83,7 @@
 </head>
 <body>
 	<form action="${contextPath}/user/freeBoard/freeBoardModify" method="POST">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" name="bno" value="${freeBoardVO.bno}"/>
 		<input type="hidden" name="page" value="${criteria.page}"/>
 		<input type="hidden" name="perPageNum" value="${criteria.perPageNum}"/>
