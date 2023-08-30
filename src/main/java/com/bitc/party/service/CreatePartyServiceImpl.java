@@ -93,9 +93,13 @@ public class CreatePartyServiceImpl implements CreatePartyService {
 
 	@Override
 	public String setPartyFinish(int pnum, MemberVO member) throws Exception{
+		// 파티 종료 시 finish='y'
 		if(dao.setPartyFinish(pnum) > 0) {
+			// 파티 채팅 목록 출력 안함
 			dao.setPartyChatFinish(pnum);
-			List<PartyVO> list = partyDAO.HostingList(member);
+			// 파티 호스트의 현재 호스팅 목록
+			List<PartyVO> list = partyDAO.HostingListNotFinish(member);
+			// 호스팅이 마지막이라면 권한 회수
 			if(list.size() == 0) {
 				AuthDTO dto = new AuthDTO(member.getMid(), "ROLE_HOST");
 				joinDAO.deleteAuth(dto);

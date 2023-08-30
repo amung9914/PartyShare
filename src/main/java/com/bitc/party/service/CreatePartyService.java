@@ -44,7 +44,7 @@ public interface CreatePartyService {
 	 */
 	public String partyMemberBan(int pnum, int mnum) throws Exception;
 	/**
-	 * 파티 종료 시 파티 정보 수정 
+	 * 파티 종료 시 파티 finish column 수정 
 	 */
 	public String setPartyFinish(int pnum, MemberVO member) throws Exception;
 	/**
