@@ -1,12 +1,10 @@
 package com.bitc.login.service;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.bitc.common.vo.AuthDTO;
 import com.bitc.login.dao.JoinDAO;
-import com.bitc.login.vo.LoginDTO;
 import com.bitc.member.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +21,11 @@ public class JoinServiceImpl implements JoinService{
 	public String Join(MemberVO vo) throws Exception {
 		String pw = vo.getMpw();
 		vo.setMpw(passwordEncoder.encode(pw));
+		
 		int result = dao.join(vo);
+		if(result > 0) {
+			dao.insertAuth(vo.getMid());
+		}
 		return getResult(result);
 	}
 	

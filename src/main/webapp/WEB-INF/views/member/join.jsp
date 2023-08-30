@@ -98,6 +98,7 @@ input[name="mage"] {
                     <h2 class="card-title text-center">회원가입</h2>
                     <form action="<c:url value='/member/join' />" method="POST"
                id="passwordForm" enctype="multipart/form-data">
+               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                <table class="table table-hover">
                   <tr>
                      <td>아이디:</td>

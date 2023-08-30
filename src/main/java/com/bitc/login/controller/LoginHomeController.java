@@ -110,5 +110,10 @@ public class LoginHomeController {
     public String logOff() {
     	return "member/logOff";
     }
+    
+    @GetMapping("/user/logout")
+	public String logout() {
+		return "member/logout";
+	}
 
 }
