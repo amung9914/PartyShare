@@ -12,6 +12,30 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- 부트스트랩 -->
 	<style>
+	/* 
+	 #cancel{
+	 margin: 0 0 0 15px;
+   /*   border: 1px solid skyblue; */
+   /*   background-color: rgba(0,0,0,0); */
+   /*   color: skyblue; */
+     padding: 5px;
+ 	} 
+ 	*/
+ 	#cancelHr {
+ 	 border: none; /* 기본 hr 테두리 제거 */
+ 	 border-top: 10px solid red; /* 원하는 색으로 상단 테두리 설정 */
+  	 margin: 10px 0; /* hr 위아래 여백 조절 */
+	}
+	.reportInput{
+	width : 300px; 
+	height: 50px;
+	border-top: none;
+	border-bottom: 2px solid black; 
+	border-left: none;
+	border-right: none;
+	margin: 6px 0 6px 0;
+	padding: 2px;
+	}
 	
 	#wrap {
 	 display: flex;
@@ -19,8 +43,12 @@
 	 align-items: center;
 	 min-height: 100vh;
 	 margin: 0;
-	 background-color: #f0f0f0; /* 배경색은 예시로 설정됨 */
-	 padding: 20px 0; /* 내용 위아래로 약간의 간격 추가 */
+	 background-color: white;
+	 padding: 20px 0; 
+	 }
+	 #reportForm{
+	 padding: 10px;
+	 border : solid 1px black;
 	 }
 	.reportDiv{
 	margin: 10px 0 0 0;
@@ -36,12 +64,46 @@
 	display:block; 
 	
 	}
+	.reportDiv table {
+	  width: 100%;
+	  border-collapse: collapse;
+	}
+	
+	.reportDiv th, .reportDiv td {
+	  border: 1px solid #ccc;
+	  padding: 8px;
+	  text-align: left;
+	}
+	.riviewTable {
+	
+	border-collapse: collapse; 
+	width: 100%;
+  	border: 1px solid #ccc;
+	}
+
+	.reviewTR, .reviewTd {
+    border: 1px solid #ccc; /* 테두리 스타일과 색상 */
+    padding: 8px; /* 셀 안 여백 */
+    text-align: left; /* 텍스트 정렬 */
+	}
+	
+	.listUl{
+	
+	}
 	#hideList{
 	display: none; 
 	}
 	
 	#targetInfo{
 	list-style: none;
+	}
+	#result{
+	padding: 5px;
+	border: 1px solid gray;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 	}
 	
 	.listLi{
@@ -71,19 +133,25 @@
 
 </head>
 <body>
-<button id="cancel">뒤로 가기</button>	<!-- data  --> <hr/>
+<hr/>
+<button type="button" id="cancel" class="btn btn-secondary">계정 관리 페이지로</button><hr id="cancelHr"/>
+
+<!-- 
+<button id="cancel">뒤로 가기</button>	data 
+  -->
 	<div id="wrap">
-	<form>						
+	<form id="reportForm">						
 	<!-- 	<div class="form-text" id="basic-addon4">신고자</div> -->
 	
-		<b>신고자</b> <br/>
+		<b>신고자 ID</b> <br/>
 		<input type="text" id="fromMid" value="${loginMember.mid}" disabled="disabled" class="reportInput"/>	<br/>
-		<b>신고 대상</b> <br/>
-		<input type="text" id="searchId"  oninput="searchNick()">
+		<b>신고할 상대방의 닉네임을 입력하세요</b> <br/>
+		<input type="text" id="searchId" class="reportInput" oninput="searchNick()">
 
 			
 			<div id="result">
-			 	<div id="resultNick"></div>선택
+			<b>입력하신 정보와 일치하는 유저</b>
+			 	<div id="resultNick"></div>
 	
 				<!-- 검색된 유저가 나타날 창  -->
 				<!--  mnick로 검색하기 만들어야 함 DAO  -->
@@ -93,10 +161,11 @@
 			<!-- 검색 완료된 유저 프로필 이미지  -->
 			</div>
 			
-			<input type="hidden" id="toMid" class="reportInput" readonly="readonly"/><br/>
+			<input type="hidden" id="toMid" class="reportInput" readonly="readonly"/><br/><b>선택한 유저입니다</b><br/>
 		<input type="hidden" id="date"/><br/>
 		<!-- 사유<input type="text" id="category" class="reportInput"/><br/> -->
-		<input type="text" readonly="readonly" id="toNick"/><br/>
+		<input type="text" readonly="readonly" id="toNick" class="reportInput"/><br/>
+		<!-- 
 		사유<select id="category" class="reportInput" >
 			  <option value="none" >"선택"</option>
 			  <option value="언행이 불량함" >"언행이 불량함"</option>
@@ -104,18 +173,29 @@
 			  <option value="고의적인 방해" >고의적인 방해</option>
 			  <option value="거친 언행" >거친 언행</option>
 		</select>
-			
-		내용<textarea id="context" ></textarea>	<br/> 
-			<button id="report">신고하기</button>	<!-- data  -->
+		 -->
+		 <b>사유를 선택해 주세요</b>
+		<select id="category" class="form-select form-select-sm reportInput" aria-label="Small select example">
+		  <option selected>선택하세요</option>
+		  <option value="언행이 불량함"><b>언행이 불량함</b></option>
+		  <option value="참가 약속을 지키지 않음">참가 약속을 지키지 않음</option>
+		  <option value="고의적인 방해">고의적인 방해</option>
+		  <option value="거친 언행">거친 언행</option>
+		</select>
+		<b>자세한 내용을 입력해 주세요</b><br/>	
+		<textarea id="context" rows="5" cols="60"></textarea>	<br/> 
+		<span id="report" class="badge text-bg-danger">신고하기</span>
+			<!-- <button id="report">신고하기</button>	data  -->
 			
 		<br/><br/><br/><br/><br/>
-		 <button type="button" id="reportReview">나의 신고 내역 확인하기</button>	<!-- data  -->
-		 <button type="button" id="hideList">숨기기</button>	<!-- data  -->
+		<button type="button" id="reportReview" class="btn btn-secondary">나의 신고 내역 확인하기</button>
+	<!-- 	 <button type="button" id="reportReview">나의 신고 내역 확인하기</button>	data  -->
+		 <button type="button" id="hideList" class="btn btn-secondary">숨기기</button>	<!-- data  -->
 		 
-			<ul id="printTarget">
-			
-			</ul>
-			<p>신고 되면 뒤로 가기 활성화 : 주석 임시제거 테스트</p>
+			<div id="printTarget">
+				
+			</div>
+			<!-- <p>신고 되면 뒤로 가기 활성화 : 주석 임시제거 테스트</p> -->
 	</form>
 	</div>
 	
@@ -126,6 +206,7 @@
 		var mid="";
 		var obj = {};
 		function hideList(){
+			$("#hideList").html("나의 신고 내역 확인하기");
 			$("#printTarget").toggle("fast");
 		}
 		
@@ -146,7 +227,7 @@
 		        dataType: "json",
 		        success: function(result) {
 		        	let str ="";
-		            	str += "<ul>";
+		            	str += "<ul id='listUl'>";
 		            $(result).each(function() {
 		            	obj = this;
 		            	profileNick = this.mnick;
@@ -156,9 +237,9 @@
 		                mid = this.mid;
 		                console.log(this);
 						
-		                str += '<li id="targetInfo' + mnum + '" class="listLi" data-profile="' + imgsrc + '" data-mnick="' + profileNick + '" data-mid="' + mid + '">';
-		                
-		                str += `\${profileNick}</li>`;    
+		                str += '<li id="targetInfo' + mnum + '" onclick="pick(' + mnum + ')" class="listLi" data-profile="' + imgsrc + '" data-mnick="' + profileNick + '" data-mid="' + mid + '">';
+		                str += `\${profileNick}</li>`;
+ 
 		                /*
 		                str += '<li  id="targetInfo' + mnum + '" class="listLi" onclick="pick(' + mnum + ')" ';
 		                str += `data-profile="\${imgsrc}" `;
@@ -171,9 +252,9 @@
 						str += `<img id="targetImg"`;
 						str += ' width="80px" ';
 						str += ' height="80px" ';
-						str += `onclick="pick()" `;
-//						str += `data-profile="\${imgsrc}"`; 
-//						str += `data-mnick="\${profileNick}"`;
+						str += 'onclick="pick(' + mnum + ')"  ';
+						str +=  `data-profile="\${imgsrc}"`; 
+						str += `data-mnick="\${profileNick}"`;
 						str += `data-mid="\${mid}"`;
 						str += "src='${imgPath}"+profileName+"'>";
 		                str += `</li>`;
@@ -222,17 +303,36 @@
 		    		},   
 		    		dataType: "json" ,
 		    		success: function(response){
-		    		console.log(response);
+						
 		    			$(response).each(function(){
 		    				let dateFormat = new Intl.DateTimeFormat("ko" , {dateStyle:"full"});
 		    			    let date = dateFormat.format(this.date);
 		    			console.log(str);
 		    			str += `<div class='reportDiv'>`;
-		    			str += `<li class='reportLi'>상대방 id:\${this.toMid} | \${date} | \${this.category}</li><hr/>`;
-		    			str += `<li class='reportLi'>신고 내용:\${this.context}</li>`;
+		    			str += '<table class ="reviewTable">'; 
+		    			str += 	'<tr class="reviewTr">';
+		    			str += 		`<th class='reviewTd'>상대방</th>`;
+		    			str += 		`<th class='reviewTd'>신고 날짜</th>`;
+		    			str += 		`<th class='reviewTd'>사유 </th>`;
+		    			str += 	'</tr>';
+		    			str += 	'<tr class="reviewTr">';
+		    			str += 		`<td class='reviewTd'>\${this.toMid} </td>`;
+		    			str += 		`<td class='reviewTd'>\${date} </td>`;
+		    			str += 		`<td class='reviewTd'>\${this.category}</td>`;
+		    			str += 	'</tr>';
+		    			str += 	'<tr class="reviewTr">';
+		    			str += 		`<td class='reviewTd' colspan="3">신고 내용</td>`;
+		    			str += 	'</tr>';
+		    			str += 	'<tr class="reviewTr">';
+		    			str += 		`<td class='reviewTd' colspan="3">\${this.context}</td>`;
+		    			str += 	'</tr>';
+		    			str += '</table>';
 		    			str += `</div>`;
 		    			//str += "</li>";
 						});
+//		    			str += `<li class='reportLi'>상대방 id:\${this.toMid} | \${date} | \${this.category}</li><hr/>`;
+			    		//	str += `<li class='reportLi'>신고 내용:\${this.context}</li>`;
+		    		
 		    			$("#printTarget").append(str);
 		    			$("#reportReview").toggle("fast");
 		    			$("#hideList").toggle("fast");
@@ -260,10 +360,7 @@
 			// 관리자 SELECT = "SELECT * FROM report "
 			
 		  // 사유 선택이 변경될 때마다 값을 category 변수에 저장
-		  		 $(document).on("click", ".targetImg", function () {
-      			  let mnum = $(this).closest("li").attr("id").replace("targetInfo", "");
-     			  pick(mnum);
-    			});
+		  		
 		  
 		  
 			    $("#category").change(function() {

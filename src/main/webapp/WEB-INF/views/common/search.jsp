@@ -48,7 +48,7 @@
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 95%;
+	width: 100%;
 }
 
 #responded {
@@ -105,6 +105,7 @@
 
 /* 버튼 컨테이너 스타일 */
 .buttonsContainer {
+	margin-top : 10px;
 	display: inline-block;
   }
 
@@ -145,13 +146,20 @@
 	height: 100px;
 	border: 1px solid gray;
 }
-..barItem:hover{
-
+.barItem.clicked {
+	  border-color: #e74c3c;
+	  background-color: #f2f2f2;
+}
+.barItem:hover{
+ 	border-color: #e74c3c;
 }
 
 .card_Ptag{
 	font-size: 2px;
 	font-style: bold;
+}
+.card-body{
+	height: 130;
 }
 
 #keywordBtn {
@@ -275,6 +283,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 
   	var contextPath="${pageContext.request.contextPath}";
   //	<div><a href=''><img src='샘플이미지' /></a></div class="categoryImgDiv">
+  		var isToggle = true;
   		var countDescription = 1;
   		var lastPageDs = 10;
   		var descriptionPage = 1;
@@ -321,8 +330,8 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			success: function (list){
   				let str = "";
   					console.log('버튼출력할때' +descriptionPage );
- 
-  					str += `<div id="previousBtn" onclick="previous(descriptionPage)">previous</div>`;			
+  					str += `<button type="button" id="previousBtn" class="btn btn-danger" onclick="previous(descriptionPage)">&lt; previous</button>`;	
+  		//			str += `<div id="previousBtn" onclick="previous(descriptionPage)">previous</div>`;			
   					
   	//				str += `<div class='barItem' onclick='select("description"+"\${this.description}")'>`;
   				$(list).each(function(){
@@ -333,7 +342,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			str+=	  `<div class="card barItem" onclick='select("description"+"\${this.description}")'>`;
   			str+=	  `<img src="${descImgPath}description2.jpg" height="55px" class="card-img-top" alt="...">`;
   			str+=	  `<div class="card-body">`;
-  			str+=	  `<p class="card_Ptag card-text" >\${this.description}</p>`;			//내용
+  			str+=	  `<p class="card_Ptag card-text" ><b>\${this.description}</b></p>`;			//내용
   			str+=	  `</div>`;
   			str+=	  `</div>`;
   					
@@ -341,8 +350,9 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 //  					str += `<div class='barItem' class="card" onclick='select("description"+"\${this.description}")'>`;    /*  */
 //  					str += `\${this.description}`;																			/*  */
 //  					str += '</div>';																					/*  */
-  				})
-  					str += `<div id="nextBtn" onclick="next(descriptionPage)">next</div><br>`;
+  				})	
+  				str += `<button type="button" id="nextBtn" class="btn btn-danger" onclick="previous(descriptionPage)">next &gt;</button><br/>`;	
+// 					str += `<div id="nextBtn" onclick="next(descriptionPage)">next</div><br>`;
   					str += `<div id="cancelDescription" onclick="cancel()">선택해제</div>`;                
   				$("#barContatiner").html(str);
   			},
@@ -421,7 +431,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   				let str="";
   				str += '<div id="selectedCategory"></div>';
   		$("#responsed").html(str);
-  				str += `<div class="container">`;   
+  				str += `<div class="containerNO">`;   
   	 			str += `<button type="button" onclick='select("category")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
 		  		 
   	  	$(list).each(function(){	
@@ -444,7 +454,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	function printDate(list){ 
   		let str="";
   //		str += '<div id="selectedDate"></div><hr/>';
-  			str += `<div class="container">`;     
+  			str += `<div class="containerNO">`;     
   			str += `<button type="button" onclick='select("date")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
   		//	str +=	`<div class='itemsNO' class='close' onclick='select("date")'>선택하지 않음</div> <br/>`;
   		$(list).each(function(){
@@ -467,7 +477,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		
   	  <!-- Content here -->
  
-  		str += `<div class="container">`;    
+  		str += `<div class="containerNO">`;    
   		str += `<button type="button" onclick='select("sido")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
   //		str += `<div class='itemsNO close' onclick='select("sido")'>선택하지 않음</div> <br/>`;
   		$(list).each(function(){	// locationVO
@@ -490,13 +500,15 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			data : { targetContents : sido },
   			dataType : "json",
   			success : function(sigungu){	// List<LocationVO>
-  		        	str += `<div class="container">`;    
+  		        	str += `<div class="containerNO">`;    
   		        	str += `<button type="button" onclick='select("sigungu")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
   				//	str += `<div class='itemsNO' class='close' onclick='select("sigungu")'>선택하지 않음</div>`;
   					$(sigungu).each(function(){
 				//	str += `<div class='items' class='close' onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</div>`;
 					str += `<button type="button" class="btn btn-outline-danger items" onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</button>`;
-					$("#responsed").html(str);  //셀렉트 기능 구현 아직 안함
+					$("#responsed").html(str); 
+					isToggle = true;
+					
 				})	
 					str += `</div>`;
   			},	
@@ -533,6 +545,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		}
   		
   		if(factor.includes('sido')){
+  			isToggle = false;
   		$("#sidoTemplate").html(factor);// 시도를 선택했을 때 시군구 선택 창이 open되도록 메소드 추가
   			factor = factor.substring("sido".length);
  // 			alert(factor+"시도");
@@ -848,12 +861,11 @@ $(window).scroll(function(){
     	});
     	*/
     	$(".barItem").click(function() {
-    	//	 $(this).css("border-color", "#e74c3c"); // 테두리색 변경 // 배경색 변경
-    		 $(".barItem.clicked").removeClass("clicked");
-
-    		  // 클릭된 요소의 테두리색 변경
-    		  $(this).addClass("clicked");
-    		});
+    	    if (!$(this).hasClass("clicked")) {
+    	      $(".barItem.clicked").removeClass("clicked");
+    	      $(this).addClass("clicked");
+    	    }
+    	  });
     	
     	
     	
@@ -873,7 +885,9 @@ $(window).scroll(function(){
         // 타겟 정의
         console.log('searchBtn확인');
         var targetContents = $(this).attr("data-targetContents");
+        if(isToggle){
         $("#searchModal").toggle("slow");
+        }
         console.log("targetContents console = " +targetContents);
         // 각 타겟을 이용해 요청명을 Controller에 전달
         
