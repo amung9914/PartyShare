@@ -255,6 +255,12 @@ $(".delBtn").on("click",function(){
 	
 });
 
+$(document).ajaxSend(function(e,xhr,options){
+	xhr.setRequestHeader(
+			'${_csrf.headerName}',
+			'${_csrf.token}');
+});
+
 </script>
 </main>
 <aside>

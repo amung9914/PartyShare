@@ -106,6 +106,7 @@
 		</div>
 		
 		<form id="submitForm" method="POST">
+		 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="hidden" name="bno"  value="${board.bno}"/>
 		</form>
 	<script>
