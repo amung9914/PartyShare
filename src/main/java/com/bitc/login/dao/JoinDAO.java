@@ -35,8 +35,8 @@ public interface JoinDAO {
 	
 	// 쿠키관련
 	@Select
-	("SELECT * FROM member WHERE uid = #{uid}")
-	MemberVO getMemberById(String mId)throws Exception;
+	("SELECT * FROM member WHERE mId = #{mid}")
+	MemberVO getMemberById(String mid)throws Exception;
 	
 	/**
 	 * mId로 권한 정보 확인
@@ -44,11 +44,18 @@ public interface JoinDAO {
 	@Select("SELECT auth FROM validation_member_auth " + " WHERE mId = #{mid}")
 	List<String> getAuthList(String mid) throws Exception;
 	
+	
 	/**
-	 * 권한 부여
+	 * 회원가입한 회원 기본 권한 추가 ROLE_USER
 	 */
-	@Insert("INSERT INTO validation_member_auth " + "VALUES(#{mid}, #{auth})")
-	void insertMemberAuth(AuthDTO vo) throws Exception;
+	@Insert("INSERT INTO validation_member_auth " + " VALUES(#{mid},'ROLE_USER')")
+	void insertAuth(String mid) throws Exception;
+	
+	/**
+	 * Host 권한 부여
+	 */
+	@Insert("INSERT INTO validation_member_auth " + "VALUES(#{mid}, 'ROLE_HOST')")
+	void insertHostAuth(String mid) throws Exception;
 
 	/**
 	 * 권한 회수

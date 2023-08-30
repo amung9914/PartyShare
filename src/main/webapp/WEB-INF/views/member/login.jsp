@@ -47,6 +47,7 @@
             </div>
             <div class="modal-body">
                 <form action="${pageContext.request.contextPath}/member/loginCheck" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="form-group mb-3">
                         <input type="text" id="mid" name="mid" class="form-control custom-input" placeholder="아이디를 입력해주세요" required>
                     </div>

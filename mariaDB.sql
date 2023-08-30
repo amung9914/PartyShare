@@ -63,4 +63,7 @@ DROP TABLE location;
 DELETE FROM member;
 DELETE FROM party;
 
+INSERT INTO validation_member_auth
+VALUES ('admin', 'ROLE_ADMIN');
+
 
