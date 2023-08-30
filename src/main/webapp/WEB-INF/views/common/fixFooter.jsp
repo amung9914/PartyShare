@@ -8,6 +8,7 @@
 		bottom: 0;
 		background-color : #f7f7f7;
 		padding: 20px 0px 0px 0px;
+		z-index:100;
 	}
 	#footerAtag, #footerPtag{
 		width: 90%;

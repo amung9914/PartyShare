@@ -37,7 +37,7 @@ public interface PartyDAO {
 	/**
 	 * 파티 정보 수정
 	 */
-	@Update("UPDATE party SET pNum = #{pname}, sido = #{sido}, sigungu = #{sigungu} , "
+	@Update("UPDATE party SET pname = #{pname}, sido = #{sido}, sigungu = #{sigungu} , "
 			+" address = #{address} , detailaddress = #{detailAddress}, "
 			+ "pcontext = #{pcontext}, startdate = #{startDate} , enddate = #{endDate} , "
 			+ "description = #{description}, category = #{category} , "
