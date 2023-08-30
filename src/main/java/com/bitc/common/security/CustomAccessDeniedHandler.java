@@ -20,7 +20,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
-		out.print("alert('접근권한이 없습니다. 관리자에게 문의하세요.');");
+		out.print("alert('접근권한이 없습니다.');");
 		out.print("history.go(-1);");
 		out.print("</script>");
 	}

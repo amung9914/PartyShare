@@ -5,7 +5,7 @@
 <style>
 	#calendar{
 		width : 45%;
-		margin: 30px;
+		margin: 30px 30px 200px 30px;
 	}
 	a{
 	text-decoration: none;

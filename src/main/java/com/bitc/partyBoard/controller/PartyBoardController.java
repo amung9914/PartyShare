@@ -59,7 +59,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/user/partyDetail/detailOfParty?pNum="+pnum;
+			return "redirect:/partyDetail/detailOfParty?pNum="+pnum;
 		}
 		
 	}
@@ -76,7 +76,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/user/partyDetail/detailOfParty?pNum="+pnum;
+			return "redirect:/partyDetail/detailOfParty?pNum="+pnum;
 		}
 	
 	}
@@ -110,7 +110,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/user/partyDetail/detailOfParty?pNum="+pnum;
+			return "redirect:/partyDetail/detailOfParty?pNum="+pnum;
 		}
 	}
 	
@@ -126,7 +126,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/user/partyDetail/detailOfParty?pNum="+board.getPnum();
+			return "redirect:/partyDetail/detailOfParty?pNum="+board.getPnum();
 		}
 		
 	}
@@ -147,7 +147,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/user/partyDetail/detailOfParty?pNum="+board.getPnum();
+			return "redirect:/partyDetail/detailOfParty?pNum="+board.getPnum();
 		}
 	}
 
@@ -191,7 +191,7 @@ public class PartyBoardController {
 		}else{
 			String message = "파티 멤버만 입장할 수 있습니다.";
 			rttr.addFlashAttribute("message",message);
-			return "redirect:/user/partyDetail/detailOfParty?pNum="+pnum;
+			return "redirect:/partyDetail/detailOfParty?pNum="+pnum;
 		}
 		
 	}
