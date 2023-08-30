@@ -33,7 +33,7 @@
 		&copy;2023 PartyShare, Inc. 
 		<a href="<c:url value='/policy'/>">개인정보 처리방침</a> |
 		<a href="<c:url value='/policy2'/>">이용약관</a> |
-		<a href="">사이트맵</a> |
+		<a href="<c:url value='/siteMap'/>">사이트맵</a> |
 		<a href="<c:url value='/infomation'/>">세부정보</a>
 	</div>
 	<div id="footerPtag">
