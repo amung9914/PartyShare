@@ -18,7 +18,7 @@ html, body {
     min-height: 100%;
     position: relative;
     padding-bottom: 100px;
-    margin:30px;
+    margin:30px 30px 100px 30px;
 }
 </style>
 <div id="wrap">

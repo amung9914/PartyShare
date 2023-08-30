@@ -11,7 +11,7 @@
 </script>
 <style>
 #wrap{
-margin:30px;
+margin:30px 30px 100px 30px;
 }
 html, body {
     height: 90%

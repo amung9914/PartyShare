@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+<style>
+
+	 #wrap{
+	width : 100%
+	} 
+	.wrapper{
+	text-align: -webkit-center;
+	}
+	
+	.tableBox{
+		width:90%;
+	
+	}
+	.info{
+		color:gray;
+		display: flex;
+	}
+	.btnBox, .mb-3{
+		text-align: left;
+	}
+	.boardReport:hover{
+	    text-decoration: underline;
+	    cursor:pointer;
+	}
+	#addBtn, #cText, #modDiv .control,#comments pre{
+		margin:10px;
+	}
+
+	#comments li{
+		list-style:none;
+		padding:10px;
+		border:1px solid #ccc;
+		height:130px;
+		}
+	#comments{
+		margin: 5px 0px 200px 0px;
+	}
+		
+	#modDiv{
+		border:1px solid black;
+		padding:10px;
+		display:none; /* 처음에는 안보이게 */
+    	text-align: left;
+	}
+	 .commentInfo, #comments pre{
+		display: flex;
+	} 
+	.control button{
+		background-color:white;
+		border: 1px solid;
+    	margin: 0px 5px;
+    	border-radius: 3px;
+	}
+	.control button:hover{
+		background-color:lightgray;
+		
+	}
+	#modCno{
+		display:none;
+	}
+</style>

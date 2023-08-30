@@ -9,6 +9,9 @@ select * from map;
 commit;
 desc partyboard_comment;
 
+select * from party where pNum = 1037;
+
+
 select * from wishlist;
 select * from party;
 select * from freeboard;
