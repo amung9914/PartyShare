@@ -24,7 +24,6 @@ import com.bitc.login.vo.LoginDTO;
 import com.bitc.member.vo.MemberVO;
 
 @Controller
-@RequestMapping("/member")
 public class LoginHomeController {
 
     private final JoinService js;
@@ -57,7 +56,7 @@ public class LoginHomeController {
     
     //2023-08-22
     
-    @PostMapping("/join")
+    @PostMapping("/member/join")
     public String join(MemberVO vo,@RequestParam("file") MultipartFile file, Model model)  {
        
        if (!file.isEmpty()) {            
@@ -76,7 +75,7 @@ public class LoginHomeController {
 						e.printStackTrace();
 					}
                    // 8 23 수정 - 사용자가 이미지를 등록하였고 가입 완료
-                   return "redirect:/member/login";
+                   return "redirect:/";
                 }
             }
         }    
@@ -87,60 +86,29 @@ public class LoginHomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-       return "redirect:/member/login"; // 여기서 이미지 넣어야함
+       return "redirect:/"; // 여기서 이미지 넣어야함
     }
     
     //2023-08-22 
     
-    @GetMapping("/goJoin")
+    @GetMapping("/member/goJoin")
     public String goJoin () {
     	return "member/join";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/member/login")
     public String goLogin() { 
         return "member/login";
     }
     
-    @GetMapping("/loginFailed")
+    @GetMapping("/member/loginFailed")
     public String loginFailed() {
     	return "member/loginFailed";
     }
 
-    @PostMapping("/loginCheck")
-    public String loginCheck(LoginDTO dto, ModelAndView mav,HttpSession session) throws Exception {
-       return js.login(dto, session);
+    @GetMapping("/membger/logOff")
+    public String logOff() {
+    	return "member/logOff";
     }
-/*
-    @RequestMapping("/error500", "/error404" }, method = {RequestMethod.POST })
-    public String error500() {
-        return "error500"; // 에러 페이지의 뷰 이름
-    }
-*/	
-    /*
-    @PostMapping("error500") 
-    public String error500() {
-    	return "error500";
-    }
-    
-    @PostMapping("error404") 
-    public String error404() {
-    	return "error404";
-    }
-    */
-
-   /*
-    * @PostMapping("uploadImg") public String uploadImg() { return "test"; }
-    */
-
-   /*
-    * @PostMapping("uploadForm") public String uploadForm(@RequestParam("file")
-    * MultipartFile file, Model model) throws IOException { if (!file.isEmpty()) {
-    * byte[] bytes = file.getBytes(); String savedName =
-    * uploadFile(file.getOriginalFilename(), bytes);
-    * model.addAttribute("savedName", savedName); } return "test"; }
-    */
-
-    
 
 }

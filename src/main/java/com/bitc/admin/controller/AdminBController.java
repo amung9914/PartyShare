@@ -18,7 +18,7 @@ public class AdminBController {
 	
 	private final AdminService as;
 	
-	@GetMapping("/blacklist")
+	@GetMapping("/admin/blacklist")
     public String blackList(Model model) {
         List<MemberVO> blackMembers = null;
 
@@ -31,7 +31,7 @@ public class AdminBController {
         model.addAttribute("blackMembers", blackMembers);
         return "admin/admin_blacklist"; 
  	}
-	@PostMapping("/unblock")
+	@PostMapping("/admin/unblock")
 	public String unblock(Model model, String mid) {
 		
 		List<MemberVO> unblock = null;

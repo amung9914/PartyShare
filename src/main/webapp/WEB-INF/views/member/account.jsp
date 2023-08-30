@@ -38,7 +38,7 @@ b{
 		<b>참여중인 파티</b>
 		<div class="form-text" id="basic-addon4">파티 일정을 확인해보세요</div>
 		</a>
-		<a class="btn btn-outline-dark" role="button" href="<c:url value='/wishlist/wishlist'/>">
+		<a class="btn btn-outline-dark" role="button" href="<c:url value='/user/wishlist/wishlist'/>">
 		<b>파티 위시리스트</b>
 		<div class="form-text" id="basic-addon4">참여하고 싶은 공간을 확인해보세요</div>
 		</a>

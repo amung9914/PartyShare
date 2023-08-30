@@ -87,7 +87,7 @@
 </style>
 </head>
 <body>
-	<form action="${contextPath}/freeBoard/freeBoardReply" method="POST">
+	<form action="${contextPath}/user/freeBoard/freeBoardReply" method="POST">
 		<input type="hidden" name="category" value="${board.category}"/>
 		<input type="hidden" name="mid" value="${loginMember.mid}"/>
 		<input type="hidden" name="mnick" value="${loginMember.mnick}"/>

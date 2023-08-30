@@ -67,7 +67,8 @@
 	<div id="bookingParty">
 		<div class="bookingParty-title">
 			<h1>파티 참여하기</h1>
-			<img src="${contextPath}/upload/party${vo.partyImage1}"/> 
+			<%-- <img src="${contextPath}/upload/party${vo.partyImage1}"/>  --%>
+			<img src="${contextPath}/image/printPartyImage?fileName=${vo.partyImage1}"/>
 			<h3>${vo.pname}</h3>
 		</div>
 		<hr/>

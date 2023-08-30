@@ -1,8 +1,12 @@
 package com.bitc.login.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import com.bitc.common.vo.AuthDTO;
 import com.bitc.login.vo.LoginDTO;
 import com.bitc.member.vo.MemberVO;
 
@@ -34,5 +38,22 @@ public interface JoinDAO {
 	("SELECT * FROM member WHERE uid = #{uid}")
 	MemberVO getMemberById(String mId)throws Exception;
 	
+	/**
+	 * mId로 권한 정보 확인
+	 */
+	@Select("SELECT auth FROM validation_member_auth " + " WHERE mId = #{mid}")
+	List<String> getAuthList(String mid) throws Exception;
+	
+	/**
+	 * 권한 부여
+	 */
+	@Insert("INSERT INTO validation_member_auth " + "VALUES(#{mid}, #{auth})")
+	void insertMemberAuth(AuthDTO vo) throws Exception;
+
+	/**
+	 * 권한 회수
+	 */
+	@Delete("DELETE FROM validation_member_auth " + " WHERE mId = #{mid}" + " AND auth = #{auth}")
+	void deleteAuth(AuthDTO auth) throws Exception;
 	
 }

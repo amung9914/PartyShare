@@ -1,5 +1,7 @@
 package com.bitc.member.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,6 +29,9 @@ public class MemberVO {
 	private String mblackYN;
 	private String withdraw;
 	private String profileImageName;
+	
+	// 권한 목록
+	private List<String> authList;
 
 	public MemberVO(String mid, String mpw) {
 		this.mid = mid;
