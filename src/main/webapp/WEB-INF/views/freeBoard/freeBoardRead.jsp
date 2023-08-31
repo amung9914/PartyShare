@@ -301,6 +301,7 @@
 			$(list).each(function(){
 				// commentVO == this
 				
+				let bno = this.bno;
 				let cno = this.cno;
 				let cText = this.commentText;
 				let preText = '<pre>' + cText + '</pre>'
@@ -321,7 +322,7 @@
 					// data가 붙으면 사용자 정의형 속성
 					if(loginMid === mid) {
 						str += ` <button id="modifyBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-text="\${cText}">수정</button>`
-							 + ` <button id="deleteBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid}>삭제</button> `
+							 + ` <button id="deleteBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-bno=\${bno}>삭제</button> `
 							 + ` <button id="reportBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-cno=\${cno}>신고</button> `
 					} else if(mid === 'admin') {
 						
@@ -465,6 +466,7 @@
 		$("#comments").on("click", "button[id^='deleteBtn_${cno}']", function() {
 		    let cno = $(this).data("cno");
 		    let mid = $(this).data("mid");
+		    let bno = $(this).data("bno");
 		    
 		    // 로그인한 사용자의 mid와 댓글 작성자의 mid 비교
 		    if (mid !== "${loginMember.mid}") {
@@ -474,9 +476,10 @@
 		    
 		    $.ajax({
 				type : "DELETE",
-				url : "${contextPath}/user/comment/comments/"+cno,
+				url : "${contextPath}/user/comment/comments/"+cno+"/"+bno,
 				data : {
-					cno : cno
+					cno : cno,
+					bno : bno
 				},
 				dataType : "text",
 				success : function(result){

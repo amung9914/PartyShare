@@ -24,6 +24,7 @@ public class FreeBoardVO {
 	int depth;
 	int seq;
 	String showBoard;
+	int commentCount;
 	
 	// 검색필터
 	private String type; 	// 검색 타입

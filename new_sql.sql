@@ -147,6 +147,10 @@ CREATE TABLE report  -- -- 신고내역 --
     date  		date NOT NULL,
     category   VARCHAR(20) NOT NULL,   -- 신고 카테고리 
     context    TEXT  NOT NULL,   -- 신고 내용 
+    bno INT,
+    cno INT,
+    FOREIGN KEY (bno) REFERENCES freeboard(bno)ON DELETE CASCADE,
+	FOREIGN KEY (cno) REFERENCES freeboard_comment(cno)ON DELETE CASCADE,
 	FOREIGN KEY (fromMid) REFERENCES member(mId) ON UPDATE CASCADE,
     FOREIGN KEY (toMid) REFERENCES member(mId) ON UPDATE CASCADE
 );

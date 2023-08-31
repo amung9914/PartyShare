@@ -15,6 +15,8 @@ SELECT * FROM report;
 select * from wishlist;
 select * from party;
 select * from freeboard;
+select * from freeboard_comment;
+DESC report;
 desc party;
 delete from party where pnum = 5;
 desc party; pContext
@@ -79,4 +81,25 @@ VALUES ('admin', 'ROLE_ADMIN');
 select * from validation_member_auth;
 SELECT * FROM freeboard;
 
+ALTER TABLE freeboard ADD commentCount INT NULL DEFAULT 0;
+ALTER TABLE freeboard DROP COLUMN commentCount;
+DESC freeboard;
 
+SELECT * FROM report;
+DROP TABLE report;
+
+CREATE TABLE report  -- -- 신고내역 --  
+(
+    no    		INT primary key auto_increment,  
+    fromMid     VARCHAR(20)  NOT NULL,  
+    toMid 		VARCHAR(20)  NOT NULL,
+    date  		date NOT NULL,
+    category   VARCHAR(20) NOT NULL,   -- 신고 카테고리 
+    context    TEXT  NOT NULL,   -- 신고 내용
+    bno INT,
+    cno INT,
+    FOREIGN KEY (bno) REFERENCES freeboard(bno)ON DELETE CASCADE,
+	FOREIGN KEY (cno) REFERENCES freeboard_comment(cno)ON DELETE CASCADE,
+	FOREIGN KEY (fromMid) REFERENCES member(mId) ON UPDATE CASCADE,
+    FOREIGN KEY (toMid) REFERENCES member(mId) ON UPDATE CASCADE
+);
