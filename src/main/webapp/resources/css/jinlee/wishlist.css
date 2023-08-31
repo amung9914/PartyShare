@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+	list-style-type : none;
+	justify-content: center;
+	margin-bottom: 250px;
+}
+
+li {
+    margin : 20px;
+}
+
+li a {
+	text-decoration: none;
+	color: black;
+}
+
+#wishlist-title {
+	margin-left: 40px;
+   	margin-top: 20px;
+   	margin-bottom: 40px;
+}
+
+.wishlistBox {
+	display: inline-block;
+	width: 350px;
+	height: 200px;
+	border-radius : 8px;
+	background-color : white;
+	box-shadow : 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 이미지 스타일 */
+.partyImg {
+    width: 100%;
+    max-width: 100%;
+    min-height: 200px;
+    max-height: 200px; 
+    border-radius: 5px;
+    cursor: pointer;   
+    object-fit: cover;
+}
