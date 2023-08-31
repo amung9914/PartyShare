@@ -4,206 +4,13 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:set var="imgPath" value="${path}/image/printProfileImage?fileName=" />
 <c:set var="descImgPath" value="${path}/resources/img/descImg" />
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>검색 구현</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<style>
-/*모달 제어*/
-/* 모달 스타일 */
-.itemsNO {
-	
-}
-
-#searchModal {
-	display: none;
-	position: relative;
-	z-index: 1;
-/* 	left: -100px; */
-	top: 50px;
-	/* width: 400px;
-	height: 600px; */
-	overflow: auto;
-/* 	background-color: aqua; */
-}
-/* 헤더부분 시작 */
-#searchHeader {
-	width: 100%;
-	height: 180px;
-	background: transparent;
-}
-
-#userMenu {
-	
-}
-/* 헤더부분 끝 */
-.modalContent {
-	background-color: #fefefe;
-	margin: auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 100%;
-}
-
-#responded {
-	width: 400px;
-	height: 600px;
-	display: flex;
-	overflow: auto;
-}
-
-
-
-/* 닫기 버튼 스타일 */
-.close {
-	color: #aaaaaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.close:hover {
-	color: #000;
-	text-decoration: none;
-}
-/*모달 제어 끝*/
-
-/* 버튼 스타일 */
- /*
-.searchBtn {
-	display: inline-block;
-	width: auto;
-	height: 50px;
- 	background-color: #3498db; 
-	color: white;
-	border: none;
-	border-radius: 25%;
-	text-align: center;
-	font-size: 16px;
-	line-height: 50px;
-	margin-right: 10px; 
-	cursor: pointer;
-
-	 position: absolute; 
-      top: 300px; 
-	 left:100px; 
-}
-*/
-/* 버튼과 검색창을 감싸는 부모 컨테이너 스타일 */
-
-/* 검색창을 감싸는 div 스타일 */
-.searchContainer {
-	display: inline-block;
-  }
-
-/* 버튼 컨테이너 스타일 */
-.buttonsContainer {
-	margin-top : 10px;
-	display: inline-block;
-  }
-
-#flexContainer {
-	display: flex;
-}
-
-.items {
-	width: 75px;
-	height: 75px;
-	font-size: samll;
-	display: inline-block;
-	padding: 3px;
-	margin: 10px;
-	font-style:bold;
-	border: solid 1px black;
-	flex-direction: row;
-}
-
-#selectedCategory {
-	font: bold;
-}
-
-.template {
-	display: fixed;
-	background-color: gray;
-}
-
-#barContatiner {
-	display: none;
-	display: block;
-	display: flex;
-	height: 120px;
-}
-
-#previousBtn, #nextBtn{
-	width:40px;
-	height: 40px; 
-	border-color: red;
-	border:solid 1px red;
-}
-.barItem {
-	font-size: 4px;
-	display: inline-block;
-	width: 100px;
-	height: 100px;
-	border: 1px solid gray;
-}
-.barItem.clicked {
-	  border-color: #e74c3c;
-	  background-color: #f2f2f2;
-}
-.barItem:hover{
- 	border-color: #e74c3c;
-}
-
-.card_Ptag{
-	font-size: 4px;
-	font-style: bold;
-}
-.card-body{
-	height: 130;
-}
-
-#keywordBtn {
-	position: block;
-	top: 100px;
-	left: 300px;
-}
-
-.template {
-	display: none;
-}
-
-#previousBtn {
-	float: left;
-	top: 50px;
-}
-
-#nextBtn {
-	float: right;
-	top: 50px;
-	left: 1800px;
-}
-.clicked {
-/*   background-color: #e74c3c; */
-  border-color : #e74c3c;
-}
-.flex-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-/*   height: 100%;  */
-}
-
-</style>
-
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="${path}/resources/css/in/searchheader.css" rel="stylesheet"/>
+
 <header id="searchHeader" >
 	<div id="barContatiner" class="flex-container" ></div>
 	
@@ -310,14 +117,16 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  	 disableP();
   	 disableN();
   	countDesc();
- 	printDescription(); 		//버튼이벤트 없이 호출이니까 ready에서 ㄴㄴㄴrmsid aㅓㅁㅌㄹ
+ 	printDescription(descriptionPage); 		//버튼이벤트 없이 호출이니까 ready에서 ㄴㄴㄴrmsid aㅓㅁㅌㄹ
  	console.log(lastPageDs);
-  	function printDescription(){
+ 	// page를 같이 넘겨준다.
+  	function printDescription(descriptionPage){
   		$.ajax({
-  			url:"${path}/search/printDescription",
-  			method : "post",
+			type : "POST",
+  			url : "${path}/search/printDescription",
   			headers: { "${_csrf.parameterName}": "${_csrf.token}" },
-  			data:{descPage : descriptionPage ,
+  			data:{
+  				descPage : descriptionPage ,
   				${_csrf.parameterName}:"${_csrf.token}"
   				},
   			dataType :"json",		// List<descpriptionVO>
@@ -366,7 +175,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  		if(descriptionPage != lastPageDs){
  		descriptionPage++;
  		console.log("if절 : " + descriptionPage);
- 		printDescription();
+ 		printDescription(descriptionPage);
  		}
  	//	console.log(descriptionPage);
  		disableN();
