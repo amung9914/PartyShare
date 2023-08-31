@@ -39,7 +39,11 @@ html, body {
 	margin: 1%;
 }
 /* categorty */
-#box{
+#categoryBox{
+	width: 50%;
+	margin-top: 5%;
+}
+#descriptionBox{
 	width: 50%;
 	margin-top: 5%;
 }
@@ -57,6 +61,7 @@ html, body {
 }
 
 .widget {
+  font-size: 25px;
   width: 25%;
   height: 150px;
   flex: auto;
@@ -198,6 +203,13 @@ html.sr .widget {
 }
 
 /* success */
+
+#successWrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 120px;
+    text-align: -webkit-center;
+}
 #successBox{
 	text-align: center;
 	width: 600px;
@@ -213,3 +225,24 @@ html.sr .widget {
 	box-shadow: 2px 2px 2px;
 	background-color: black;
 }
+
+@media (max-width:1000px){
+	.widget{
+		font-size:3vw;
+	}
+	
+	#categoryBox{
+		width: 80%;
+	}
+	
+	#descriptionBox{
+		width: 80%;
+	}
+	#addressBox{
+		width: 70%;
+	}
+	#mapBox{
+		width: 70%;
+	}
+}
+

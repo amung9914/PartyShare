@@ -10,7 +10,7 @@
 <div id="createParty_wrap">
 	<h1>다음 중 당신의 파티를 가장 잘 설명하는 것은 무엇인가요?</h1>
 	<c:if test="${!empty description}">
-		<div id="box">
+		<div id="descriptionBox">
 			<ul class="widget-list">
 				<c:forEach var="list" items="${description}">
 					<li class="widget">

@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-<link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
+<link href="${path}/resources/css/ksg/period.css" rel="stylesheet"/>
 	
 	<div id="createParty_wrap">
 		<div id="periodBox">

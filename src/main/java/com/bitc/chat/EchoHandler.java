@@ -19,7 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class EchoHandler extends TextWebSocketHandler{
 	
 	// 소캣에 연결된 사용자 세션 목록 
@@ -74,7 +73,6 @@ public class EchoHandler extends TextWebSocketHandler{
 		String lastChatNum = "";
 		try {
 			lastChatNum += cs.insertChat(chat);
-			System.out.println("cnum : " + lastChatNum);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
