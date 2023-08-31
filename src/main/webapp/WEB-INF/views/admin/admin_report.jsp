@@ -466,8 +466,8 @@
 	    			str += `게시글 번호:\${reportVO.bno}<br/>`;
 	    			str += `댓글 번호:\${reportVO.cno}<br/>`;
 	    			str += `<div id='black_or_ok'>`;
-	    			str += `<button id='black' class='confirm' data-target='\${reportVO.toMid}'>유저 블랙리스트</button>`;
-	    			str += `<button id='ok' class='confirm'>확인</button>`;
+	    			str += `<button id='black' class='confirm btn btn-dark' data-target='\${reportVO.toMid}'>유저 블랙리스트</button>`;
+	    			str += `<button id='ok' class='confirm btn btn-dark'>확인</button>`;
 	    			str += `</div>`;
 	    			str += `<div>`;
 	    			

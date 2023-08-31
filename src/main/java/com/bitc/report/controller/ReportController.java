@@ -51,7 +51,6 @@ public class ReportController {
 			header.setContentType(MediaType.APPLICATION_JSON); //encode
 			entity = new ResponseEntity<>(header,HttpStatus.BAD_REQUEST);
 		}
- 		System.out.println(entity);
  		return entity;
  	}			// returnType = list<ReportVO>
 	
@@ -66,11 +65,9 @@ public class ReportController {
 		ResponseEntity<String> entity = null;
 		String result ="";
 	
-			System.out.println(report);
 		try {
 			String date = rs.makeStringDate();
 			List<ReportVO> list = rs.reportInMonth(report);
-			System.out.println("m30리스트: " + list);
 			
 			if(list.size() > 0) {
 				result = "같은 유저는 한 달에 한 번만 신고 가능합니다.";
@@ -83,7 +80,6 @@ public class ReportController {
 			rs.addReportCnt(report.getToMid());
 			rs.addReport(report);
 			int a = rs.cntOut();
-			System.out.println(a +"< 밴 되면 1 ");
 			result = "신고가 접수되었습니다.";
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type","text/plain;charset=utf-8");
@@ -116,8 +112,6 @@ public class ReportController {
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			e.printStackTrace();
 		}
-		System.out.println(errorMessage);
-		System.out.println(entity);
 			return entity;		
 		}	
 			 
@@ -129,12 +123,9 @@ public class ReportController {
 	 		try {
 				ReportVO vo = rs.selectReport(no);
 				entity = new ResponseEntity<ReportVO>(vo,HttpStatus.OK);
-				System.out.println("try detail end");
 			} catch (Exception e) {
-				System.out.println();
 				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println(entity + "from reportDetail");
 	 		return entity;
 	 	}
 	 	
@@ -153,7 +144,6 @@ public class ReportController {
 			} catch (Exception e) {
 				entity = new ResponseEntity<List<ReportVO>>(HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println(entity);
 	 		return entity;
 	 	}
 	 	
@@ -174,7 +164,6 @@ public class ReportController {
 			} catch (Exception e) {
 				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println(entity);
 	 		return entity;
 	 	}
 	 	
@@ -193,7 +182,6 @@ public class ReportController {
 			} catch (Exception e) {
 				entity = new ResponseEntity<List<PbReportVO>>(HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println(entity);
 	 		return entity;
 	 	}
 	 	
@@ -212,7 +200,6 @@ public class ReportController {
 			} catch (Exception e) {
 				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println(entity);
 	 		return entity;
 	 	}
 	 	
@@ -230,7 +217,6 @@ public class ReportController {
 			} catch (Exception e) {
 				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println(entity);
 	 		return entity;
 	 	}
 	 	
@@ -251,7 +237,6 @@ public class ReportController {
 				header.add("Content-Type","text/plain;charset=utf-8");
 				entity = new ResponseEntity<>(header,HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println(entity);
 	 		return entity;
 	 	}
 	 	
@@ -274,7 +259,6 @@ public class ReportController {
 				header.add("Content-Type","text/plain;charset=utf-8");
 				entity = new ResponseEntity<>(header,HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println(entity);
 	 		return entity;
 	 	}
 	 	
@@ -293,7 +277,6 @@ public class ReportController {
 				header.add("Content-Type","text/plain;charset=utf-8");
 				entity = new ResponseEntity<>(header,HttpStatus.BAD_REQUEST);
 			}
-	 		System.out.println("original추출:" +entity);
 	 		return entity;
 	 	}
 	 	
@@ -310,7 +293,6 @@ public class ReportController {
 				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 				System.out.println("searchID 망함");
 			}
-	 		System.out.println(entity);
 	 		
 	 		return entity;
 	 	}
