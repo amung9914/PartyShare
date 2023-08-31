@@ -14,7 +14,7 @@
 		<c:forEach var="party" items="${parties}">
 	    	<li class="perWishlist-li">
 	      		<img id="${party.pnum}" class="heart" src="${contextPath}/resources/img/redHeart.png" alt="하트" onclick="toggleHeart(this)"> <br/><br/><br/>
-				<img class="partyImg" src="${contextPath}/image/printPartyImage?fileName=${party.partyImage1}"/>
+				<img class="partyImg" src="${contextPath}/image/printPartyImage?fileName=${fn:replace(party.partyImage1, 's_', '')}"/>
 		      	<a href="${contextPath}/partyDetail/detailOfParty?pNum=${party.pnum}">
 		      	<b>${party.pname}</b> <br/>
 		      	${party.sido} ${party.sigungu}<br/>

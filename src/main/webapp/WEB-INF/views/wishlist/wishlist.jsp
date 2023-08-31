@@ -20,7 +20,7 @@
 			      		<c:choose>
                             <c:when test="${not empty wishlist.parties}">
                             <div class="partyImages">
-                                <img class="partyImg" src="${contextPath}/image/printPartyImage?fileName=${wishlist.parties[0].partyImage1}"/>
+                                <img class="partyImg" src="${contextPath}/image/printPartyImage?fileName=${fn:replace(wishlist.parties[0].partyImage1, 's_', '')}"/>
                           	</div>
                             </c:when>
                             <c:otherwise>
