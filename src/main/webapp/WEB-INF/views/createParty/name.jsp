@@ -19,7 +19,7 @@
 			<input type="hidden" name="endDate" value="${vo.endDate}" />
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			
-			<input type="text" name="pname" id="pname" class="reqInput" placeholder="파티 이름은 무엇인가요?"/><br/>
+			<input type="text" name="pname" id="pname" class="reqInput" autocomplete="off" placeholder="파티 이름은 무엇인가요?"/><br/>
 		</form>
 	</div>
 </div>	

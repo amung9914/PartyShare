@@ -24,8 +24,10 @@
 }
 
 #header_searchBox{
-	width: 300px;
+	width: 350px;
 	margin-top:1%;
+	position: relative;
+	right: 50px;
 	
 }
 #header_searchBox .searchContainer{
@@ -72,6 +74,9 @@
 	cursor: pointer;
 }
 
+.dropdown-item{
+	font-size:20px;
+}
 @media (max-width:1000px){
 	#header_menuDiv{
 		right: 10%;

@@ -36,7 +36,7 @@ public class AdminController {
 	private final MakeQuery mq;
 
 	// 관리자 카테고리 추가 메소드
-	@PostMapping("search/addCategory")
+	@PostMapping("admin/search/addCategory")
 	public ResponseEntity<String> addCategory(
           CategoryVO vo
     ) {
@@ -59,7 +59,7 @@ public class AdminController {
         return entity; // ajax dataType = "text",
 	}
 	
-	@GetMapping("search/addDescription")
+	@GetMapping("admin/search/addDescription")
 	public ResponseEntity<String> addDescription(
           descriptionVO vo
     ) {

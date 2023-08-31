@@ -24,7 +24,7 @@
 	<form action="${path}/user/party/createDescription" method="post">
 		<input type="hidden" name="host" value="${loginMember.mnum}"/>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<input type="text" id="description" class="reqInput" name="description" required/> <br/>
+		<input type="text" id="description" class="reqInput" name="description" autocomplete="off" required/> <br/>
 	</form>
 </div>	
 <script>

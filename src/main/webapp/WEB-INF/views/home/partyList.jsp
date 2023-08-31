@@ -33,7 +33,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" align="center">
-		<input type="text" id="newAlias" /> <br/>최대 50자<br/><br/>
+		<input type="text" id="newAlias" autocomplete="off"/> <br/>최대 50자<br/><br/>
 		<button id="newAliasBtn" class="btn btn-outline-dark" onclick="newAliasBtnClick();">새로 만들기</button>
       </div>
       <div class="modal-footer">
