@@ -1,80 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-
+<%@ include file="../common/header.jsp" %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<link href="${path}/resources/css/in/admin/adminReport.css" rel="stylesheet"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<meta charset="UTF-8">
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<title>admin_report.jsp</title>
-<style type="text/css">
-	#reportWrap{
-	display: flex;
-  	flex-direction: column;
-  	align-items: center;
-  	justify-content: center;
- 	min-height: 100vh;
-	}
-    #reportTh, #reportTd{ 
-    border: 1px solid;
-    padding: 10px 5px;
-    }
-    #reportTh{
-    border-bottom: double red;
-    background-color: teal;
-    color: white;
-    }        
- 	#reportTr:nth-child(2n+0){
- 	background-color: tomato;
- 	}
-	#reportTable{
-	width: 80%;
-	border: 2px solid; 
-	border-collapse: collapse; 
-	text-align: center; 
-	}
-	#reportTable>:nth-child(1){
-	border: 10px solid blue;
-	}
-	.reportTd {
-    width: auto;
-    height: 25px;
-    border: 1px solid black;
-    border-collapse: collapse;
- 	}
- 	#reportTr:hover{
- 	cursor: pointer;
-  	}
-   
-  .detailDiv{
-  	display: none;
-  	overflow: auto;
-  	width: 80%;
-  	margin: 0 20% 0 20%;
-  	height: auto;
- 	background-color: rgb(128, 128, 128);
- 	color: white;
- 	border: 1px solid black;
-  }
-  #black_or_ok{
-  border: 1px solid black;
-  }
-  	
-</style>
-</head>
-<body>
+
+<div id="wrap">
 	<div id="reportWrap">
-	<h1>신고 내역 확인</h1>
-	<button id="changeBtn" onclick="reportedBoard()">게시판 신고 내역 보기</button>
-	<button id="partyBoardBtn" onclick="reportedPartyBoard()">party게시판 신고 내역 보기</button>
-	<table id="reportTable">
-		
-	</table>
-	<div id="detailDiv"></div>
+		<h1>신고 내역 확인</h1>
+		<div id="btnBox">
+			<button id="changeBtn" class="btn btn-dark" onclick="reportedBoard()">게시판 신고 내역 보기</button>
+			<button id="changeBtn" class="btn btn-dark" onclick="reportedBoard()">게시판 신고 내역 보기</button>
+			<button id="partyBoardBtn" class="btn btn-dark" onclick="reportedPartyBoard()">party게시판 신고 내역 보기</button>
+		</div>
+		<table id="reportTable" class="table">
+			
+		</table>
+		<div id="detailDiv"></div>
 	</div>
+</div>
 	<script>
 	  $(document).ajaxSend(function(e,xhr,options){
 	      xhr.setRequestHeader(
@@ -82,7 +29,7 @@
 	            '${_csrf.token}');
 	   });
 	
-	
+	// 자유게시판 신고 내역
 	var mode = 'member';
 	function reportedBoard(){
 		$.ajax({
@@ -129,6 +76,7 @@
 		})
 	}
 
+	// 파티게시판 신고내역
 	function reportedPartyBoard(){
 		 $.post("${path}/report/reportedPartyBoard",function(list){ //List<PbReportVO>
 			    console.log(list);
@@ -544,5 +492,4 @@
 			}
 			
 	</script>
-</body>
-</html>
+<%@ include file="../common/footer.jsp" %>
