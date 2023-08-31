@@ -5,9 +5,18 @@
 .itemsNO {
 	
 }
+.card_Ptag.card-text{
+font-size: medium;
+    font-weight: 600;	
+}
+.ctext{
+	padding : 10px;
+}
+
 img.icon{
 	width: 40px;
     height: auto;
+    margin: 5px 0px 0px 0px
 }
 .card.barItem{
 	text-align: center;
@@ -140,7 +149,8 @@ img.icon{
 	display: inline-block;
 	width: 100px;
 	height: 100px;
-	border: 1px solid gray;
+	border:white;
+	
 }
 .barItem.clicked {
 	  border-color: #e74c3c;
@@ -150,10 +160,6 @@ img.icon{
  	border-color: #e74c3c;
 }
 
-.card_Ptag{
-	font-size: 4px;
-	font-style: bold;
-}
 .card-body{
 	height: 130;
 }
@@ -171,13 +177,24 @@ img.icon{
 #previousBtn {
 	float: left;
 	top: 50px;
+	border: solid 1px lightgray;
+    border-radius: 50px;
+    margin: 10px;
 }
 
 #nextBtn {
 	float: right;
 	top: 50px;
 	left: 1800px;
+	border: solid 1px lightgray;
+    border-radius: 50px;
+	margin: 10px;
 }
+#cancelDescription{
+	cursor:pointer;
+	margin: 10px;
+}
+
 .clicked {
 /*   background-color: #e74c3c; */
   border-color : #e74c3c;
