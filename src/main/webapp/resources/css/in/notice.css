@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+html, body {
+    height: 100%
+}
+
+#wrap{
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 93px;
+    margin: 30px 30px 100px 100px;
+}
+
+.first{
+	width : 200px;
+}
+
+/* admin_notice 스타일 */
+	#memberModal{
+	display: none;
+	position: fixed;
+	overflow: auto;
+	}
+    #textBox{
+    	text-align:center;
+    }
+    #textBox button,#textBox a{
+    	margin: 20px 10px;
+    	width: 150px;
+    }
+    
+    #textBox textarea{
+    padding : 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    border-color: rgb(221,221,221);
+    border: 1px solid rgb(221,221,221);
+    }
+    
+    

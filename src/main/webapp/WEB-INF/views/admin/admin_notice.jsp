@@ -2,23 +2,14 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	<style>
-		#memberModal{
-	display: none;
-	position: fixed;
-	overflow: auto;
-	}
-	</style>
-</head>
-<body>
-	<a href="${path}/admin/admin" >관리자 홈</a>
-	
-	 <br/>
+<%@ include file="../common/header.jsp" %>
+<link href="${path}/resources/css/in/notice.css" rel="stylesheet"/>
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<div id="wrap">
+	<div id="textBox">
 	<div id="memberModal">
 	<ul id="memberUl">
 	
@@ -27,13 +18,13 @@
 	<br/>
 	
 	<!-- 유저목록 테이블 생성  -->
-	<h5>알림 보내기  </h5> <br/>
+	<h4><b>알림 보내기</b></h4> <br/>
 	<form>
-		<textarea id="context" rows="5" cols="50"></textarea>
-		<button type="button" id="registPost">알림 보내기</button>
+		<textarea id="context" rows="10" cols="80"></textarea><br/>
+		<button class="btn btn-dark" type="button" id="registPost">알림 보내기</button>
+		<a href="${path}/admin/admin" class="btn btn-outline-dark" >관리자 홈</a>
 	</form>
 	
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	/* READY OPTION */
 		   $(document).ajaxSend(function(e,xhr,options){
@@ -63,5 +54,6 @@
 		});
 	})//ready
 		</script>
-</body>
-</html>
+		</div>
+</div>
+<%@ include file="../common/footer.jsp" %>
