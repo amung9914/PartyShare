@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#siteMap {
+	margin: 30px auto;
+	margin-bottom: 220px;
+	width: 80%;
+}
+
+#siteMap {
+    border-collapse: separate;
+    border-spacing: 8px; /* 원하는 간격 크기로 조정 */
+}
+
+#siteMap td {
+    padding: 15px; /* 셀 내부 여백 설정 (선택 사항) */
+    font-weight: bold;
+}
+
+#siteMap td a {
+    text-decoration: none;
+    color: black;
+}
+
+#siteMap td a:hover {
+	color: #FF385C;
+}

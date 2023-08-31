@@ -1,42 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="../common/header.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
-    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
-
-	#siteMap {
-		margin: 30px auto;
-		width: 80%;
-	}
-
-	#siteMap {
-	    border-collapse: separate;
-	    border-spacing: 8px; /* 원하는 간격 크기로 조정 */
-	}
-	
-	#siteMap td {
-	    padding: 15px; /* 셀 내부 여백 설정 (선택 사항) */
-	    font-weight: bold;
-	}
-	
-	#siteMap td a {
-	    text-decoration: none;
-	    color: black;
-	}
-	
-	#siteMap td a:hover {
-		color: #FF385C;
-	}
-	
-</style>
-</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="${contextPath}/resources/css/jinlee/siteMap.css" rel="stylesheet">
 <body>
 	<%@ include file="../member/login.jsp" %>
 	<div id="siteMap">
@@ -107,5 +75,4 @@
 		$("#loginModal").modal("show");
 	}
 </script>
-</body>
-</html>
+<%@ include file="../common/fixFooter.jsp" %>
