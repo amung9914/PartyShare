@@ -133,7 +133,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			success: function (list){
   				let str = "";
   					console.log('버튼출력할때' +descriptionPage );
-  					str += `<button type="button" id="previousBtn" class="btn btn-dangerno" onclick="previous(descriptionPage)"> &lt; </button>`;	
+  					str += `<button type="button" id="previousBtn" class="btn btn-dangerno" onclick="previous(descriptionPage)"><b>&lt;</b></button>`;	
   		//			str += `<div id="previousBtn" onclick="previous(descriptionPage)">previous</div>`;			
   					
   	//				str += `<div class='barItem' onclick='select("description"+"\${this.description}")'>`;
@@ -143,8 +143,8 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   					descriptionSrc += "${descImgPath}/description"+this.no+".jpg";
   			str+=	  `<div class="card barItem" onclick='select("description"+"\${this.description}")'>`;
   			str+=	  '<img src="'+descriptionSrc+'" class="icon"/>';
-  			str+=	  `<div class="card-body">`;
-  			str+=	  `<p class="card_Ptag card-text" ><b>\${this.description}</b></p>`;			//내용
+  			str+=	  `<div class="ctext">`;
+  			str+=	  `<p class="card_Ptag card-text" >\${this.description}</p>`;			//내용
   			str+=	  `</div>`;
   			str+=	  `</div>`;
   					
@@ -154,7 +154,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 //  					str += '</div>';																					/*  */
   				})	
   				console.log("descriptionPage : "+descriptionPage);
-  				str += `<button type="button" id="nextBtn" class="btn btn-dangerno" onclick="next(descriptionPage)"> &gt; </button><br/>`;	
+  				str += `<button type="button" id="nextBtn" class="btn btn-dangerno" onclick="next(descriptionPage)"><b>&gt;<b/></button><br/>`;	
 // 					str += `<div id="nextBtn" onclick="next(descriptionPage)">next</div><br>`;
   					str += `<div id="cancelDescription" onclick="cancel()">선택해제</div>`;                
   				$("#barContatiner").html(str);
