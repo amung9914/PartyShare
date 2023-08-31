@@ -4,7 +4,7 @@
 	<c:choose>
 			<c:when test="${!empty responseList}">
 				<c:forEach var="list" items="${responseList}">
-				    <div class="card ${list.ffrom}">
+				    <div class="card friendView ${list.ffrom}">
 					  <div class="card-body">
 					  	<div class="cardBox">
 					  		<img class="profileImg" src="${path}/user/friend/printImg?fileName=${list.profileImageName}" />

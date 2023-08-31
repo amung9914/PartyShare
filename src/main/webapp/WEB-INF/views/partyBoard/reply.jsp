@@ -3,24 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="${path}/resources/css/sy/partyBoard.css" rel="stylesheet"/>
  <!-- Editor's Style -->
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 <!-- 부트스트랩 추가 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
-<style>
 
-html, body {
-    height: 90%
-}
-#wrap {
-    min-height: 100%;
-    position: relative;
-    padding-bottom: 100px;
-    margin:30px 30px 100px 30px;
-}
-</style>
 <div id="wrap">
 	<form action="${path}/user/partyBoard/reply" method="POST" id="registerForm"> <!-- action 지정이 안되어 있으면 동일한 url요청 경로에 전송방식만 POST로 요청감 -->
 		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

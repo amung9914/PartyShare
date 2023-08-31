@@ -3,38 +3,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="${path}/resources/css/sy/updateParty.css" rel="stylesheet"/>
  <!-- Editor's Style -->
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 <!-- 부트스트랩 추가 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
-<style>
-html, body {
-    height: 90%
-}
-#wrap {
-    min-height: 100%;
-    position: relative;
-    padding-bottom: 100px;
-    margin:30px;
-}
 
-</style>
 <div id="wrap">
 <h3>파티정보</h3>
 <hr/>
 <form action="${path}/host/party/updateParty" method="POST" enctype="multipart/form-data" id="updateForm">
  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <input type="hidden" name="pnum" value="${party.pnum}"/> 
-<table class="table">
+<table class="table" id="updateTable">
 	<tr>
-		<td>파티명</td>
-		<td><input type="text" class="form-control" name="pname" value="${party.pname}"/></td>
+		<td class="tdStyle">파티명</td>
+		<td><input type="text" class="textBox form-control" name="pname" value="${party.pname}"/></td>
 	</tr>
 	<tr>
-		<td rowspan="2">파티장소</td>
-		<td><input type="text" class="form-control"  onclick="cDaumPostcode()" name="address" id="address" value="${party.address}"/></td>
+		<td class="tdStyle" rowspan="2">파티장소</td>
+		<td><input type="text" class="textBox form-control"  onclick="cDaumPostcode()" name="address" id="address" value="${party.address}"/></td>
 	</tr>
 	<tr>
 		<td>
@@ -45,17 +35,17 @@ html, body {
 			<div class="form-text" id="basic-addon4">상세주소</div>
 		</td>
 	<tr>
-		<td>시작일</td>
+		<td class="tdStyle" >시작일</td>
 		<td><input type="date" name="startDate" value="${party.startDate}" id="startDateInput"/></td>
 	</tr>
 	<tr>
-		<td>종료일</td>
+		<td class="tdStyle" >종료일</td>
 		<td><input type="date" name="endDate" value="${party.endDate}"/></td>
 	</tr>
 	<tr>
-		<td>주제</td>
+		<td class="tdStyle" >주제</td>
 		<td>
-			<select class="form-select" name="description" >
+			<select class="form-select textBox" name="description" >
 			    <option value="${party.description}">${party.description}</option>
 			
 				<c:forEach items="${description}" var="description">    
@@ -66,9 +56,9 @@ html, body {
 		</td>
 	</tr>
 	<tr>
-		<td>카테고리</td>
+		<td class="tdStyle" >카테고리</td>
 		<td>
-		<select class="form-select" name="category" >
+		<select class="form-select textBox" name="category" >
 			<option value="${party.category}">${party.category}</option>
 			<c:forEach items="${category}" var="category">    
 		    <option value="${category}">${category}</option>
@@ -77,7 +67,7 @@ html, body {
 		</td>
 	</tr>
 	<tr>
-		<td>소개글</td>
+		<td class="tdStyle" >소개글</td>
 		<td><textarea name="pcontext" id="content">${party.pcontext}</textarea></td>
 	</tr>	
 	

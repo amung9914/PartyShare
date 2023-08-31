@@ -164,8 +164,7 @@
 		
 		$(function() {
 			var messageInput = $('textarea[name="msg"]');
-			let sockAddr = 'echo/${pnum}';
-			var sock = new SockJS(sockAddr);
+			var sock = new SockJS("echo");
 			
 			sock.onopen = function(){
 				sock.send(JSON.stringify({

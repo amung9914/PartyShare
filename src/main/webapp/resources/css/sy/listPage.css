@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+	a{
+	text-decoration:none;
+	color:black;
+	}
+	a:hover{
+	text-decoration:underline;
+	}
+	.control{
+		display:flex;
+		margin:10px;
+	}
+	.searchForm{
+		width : 50%;
+		margin : 20px;
+	}
+
+	.title{
+		width: 50%;
+	}
+
+	.tableBox{
+		text-align: -webkit-center;
+		    margin: 0px 50px;
+	}
+	.input-group{
+		margin:100px 0px;
+	}
+	.pm{
+		text-align:center;
+	}
+	
+	/* footer */
+	html, body {
+    height: 90%
+}
+
+	

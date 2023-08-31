@@ -3,21 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<style type="text/css">
-	.findResult{
-		display: none;
-	}
-	.btn.btn-primary{
-		background:#FF385C;
-		border:none;
-	}
-	.btn.btn-primary:hover{
-		background:black;
-		border:none;
-	}
-</style>
-
+<link href="${path}/resources/css/sy/friend.css" rel="stylesheet"/>
 
 <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasfind" role="button" aria-controls="offcanvasExample">
   친구찾기
