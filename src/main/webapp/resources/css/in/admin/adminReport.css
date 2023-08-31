@@ -1,0 +1,51 @@
+@charset "UTF-8";
+html, body {
+    height: 100%
+}
+
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 93px;
+    margin: 0px 0px 100px 0px;
+}
+#reportWrap{
+	display: flex;
+ 	flex-direction: column;
+ 	align-items: center;
+ 	justify-content: center;
+}
+#reportTh, #reportTd{ 
+   padding: 10px 5px;
+}
+
+#reportTable{
+	width: 100%;
+	text-align: center; 
+	font-size:13px;
+}
+
+.reportTd {
+   width: auto;
+   height: 25px;
+}
+
+#reportTr:hover{
+	cursor: pointer;
+}
+  
+.detailDiv{
+ 	display: none;
+ 	overflow: auto;
+ 	width: 80%;
+ 	margin: 0 20% 0 20%;
+ 	height: auto;
+	color: white;
+	border: 1px solid black;
+}
+#black_or_ok{
+	border: 1px solid black;
+}
+#btnBox{
+	
+}
