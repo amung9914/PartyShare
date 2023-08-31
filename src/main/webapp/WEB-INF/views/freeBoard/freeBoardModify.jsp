@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../common/header.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="loginMember" value="${sessionScope.loginMember}" />
 <!-- 작성자와 수정하려는 사용자의 회원정보가 다를 때 -->
@@ -10,24 +12,25 @@
     	history.back();
     </script>
 </c:if>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>freeBoardModify.jsp</title>
+<title>freeBoardModify.jsp</title> -->
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
     * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
 
 	form {
 		margin: 0 auto;
-		width: 650px;
+		margin-bottom: 180px;
+		width: 679px;
 	}
 	
 	#title {
 		width: 100%;
 		height: 35px;
-		padding: 15px 15px;
+		padding: 32px 15px;
 		margin-top: 20px;
 		margin-bottom: 20px;
 		border: none;
@@ -42,7 +45,7 @@
 	
 	.container {
 	    display: flex; 
-	    width: 104.5%;
+	    width: 100%;
 	    justify-content: space-between; 
 	    align-items: center;
 	    margin-top: 20px; 
@@ -155,5 +158,6 @@
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
     });
  	</script>
-</body>
-</html>
+<!-- </body>
+</html> -->
+<%@ include file="../common/fixFooter.jsp" %>
