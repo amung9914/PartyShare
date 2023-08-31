@@ -11,6 +11,8 @@
 	    display: flex; 
 	    justify-content: space-between; 
 	    align-items: center; 
+	    width: 95%;
+	    margin: 0 auto;
 	}
     
     #writeFreeBoard {
@@ -72,7 +74,8 @@
     /* 게시물 목록 */
    	#boardtable {
    		border-top: 2px solid black;
-	   	width: 100%;
+   		margin: 0 auto;
+	   	width: 95%;
 	    border-collapse: collapse;
 	    margin-bottom: 122px;
    	}

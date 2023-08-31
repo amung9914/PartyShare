@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,7 @@
     
     #bookingParty{
     	margin: 50px auto;
-    	width: 45%;
+    	width: 35%;
     	text-align: center;
     	border: 1px solid rgb(221, 221, 221);
     	border-radius: 12px;
@@ -25,7 +26,7 @@
     #bookingBtn {
 		width : 50%;
 		margin: 0 auto;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
 		height: 50px;
 		color: white;
 		background-color: #FF385C;
@@ -38,9 +39,30 @@
 		line-height: 50px;
 	}
 	
+	#backBtn {
+		width : 50%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		height: 50px;
+		color: black;
+		background-color: #F5F5F5;
+		border: none;
+		font-size: 16px;
+		font-weight: bold;
+		text-decoration: none;
+		border-radius: 5px;
+		text-align: center;
+		line-height: 50px;
+	}
+	
 	#bookingBtn:hover {
 		cursor: pointer;
 		background-color: #FF6666;
+	}
+	
+	#backBtn:hover {
+		cursor: pointer;
+		background-color: #DADADA;
 	}
 	
 	.bookingParty-title{
@@ -68,7 +90,7 @@
 		<div class="bookingParty-title">
 			<h1>파티 참여하기</h1>
 			<%-- <img src="${contextPath}/upload/party${vo.partyImage1}"/>  --%>
-			<img src="${contextPath}/image/printPartyImage?fileName=${vo.partyImage1}"/>
+			<img src="${contextPath}/image/printPartyImage?fileName=${f:replace(vo.partyImage1, 's_', '')}" style="width: 95%;"/>
 			<h3>${vo.pname}</h3>
 		</div>
 		<hr/>
@@ -85,6 +107,7 @@
 			<input type="hidden" name="pNum" value="${vo.pnum}" /> 
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="submit" id="bookingBtn" value="예약하기" onclick="checkLoginAndSubmit()" />
+			<input type="button" id="backBtn" value="뒤로가기" onclick="history.back()" />
 		</form>
 	</div>
 	

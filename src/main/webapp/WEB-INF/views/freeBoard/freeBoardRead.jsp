@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <jsp:include page="../common/header.jsp" /> --%>
+<%@ include file="../common/header.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:if test="${freeBoardVO.showBoard eq 'N'}">
 	<script>
@@ -8,18 +11,23 @@
 		history.back();
 	</script>
 </c:if>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>freeBoardRead.jsp</title>
+<title>freeBoardRead.jsp</title> -->
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
-    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
+	/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
+    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;} */
     
     #container {
     	margin: 0 auto;
-		width: 650px;
+    	margin-bottom: 150px;
+		width: 679px;
+    }
+    
+    #container ul {
+    	padding-left: 0px;
     }
     
     #title {
@@ -141,7 +149,6 @@
 	}
 	
 	#pagination li{
-		width: 11px;
 		font-size: 14px;
 		text-align: center;
 	    display: inline-block;
@@ -298,6 +305,7 @@
 				let cText = this.commentText;
 				let preText = '<pre>' + cText + '</pre>'
 				let mnick = this.mnick;
+				let loginMid = "${loginMember.mid}";
 				let mid = this.mid;
 				let regdate = this.regdateStr;
 				
@@ -311,9 +319,15 @@
 					str += "<b>" + mnick + "</b>" + "&nbsp;&nbsp;&nbsp;" + "<b>" + regdate + "</b>" + "&nbsp;&nbsp;&nbsp;";
 					// 수정할 댓글 번호, text, auth
 					// data가 붙으면 사용자 정의형 속성
-					str += ` <button id="modifyBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-text="\${cText}">수정</button>`
-						 + ` <button id="deleteBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid}>삭제</button> `
-						 + ` <button id="reportBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-cno=\${cno}>신고</button> `
+					if(loginMid === mid) {
+						str += ` <button id="modifyBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-text="\${cText}">수정</button>`
+							 + ` <button id="deleteBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid}>삭제</button> `
+							 + ` <button id="reportBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-cno=\${cno}>신고</button> `
+					} else if(mid === 'admin') {
+						
+					} else {
+						str += ` <button id="reportBtn_\${cno}" class="commentBtn" data-cno=\${cno} data-mid=\${mid} data-mnick=\${mnick} data-cno=\${cno}>신고</button> `				
+					}
 					str += "<br/><br/>" + preText;
 					str += "</li>";
 				}
@@ -553,5 +567,7 @@
 			
 		});
 	</script>
-</body>
-</html>
+<!-- </body>
+</html> -->
+<%-- <jsp:include page="../common/fixFooter.jsp"> --%>
+<%@ include file="../common/fixFooter.jsp" %>

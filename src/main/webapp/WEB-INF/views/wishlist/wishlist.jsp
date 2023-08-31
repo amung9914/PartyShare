@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<jsp:include page="../common/header.jsp" />
+<%@ include file="../common/header.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!-- <!DOCTYPE html>
 <html>
@@ -50,6 +50,7 @@
     .partyImg {
         width: 100%;
         max-width: 100%;
+        min-height: 200px;
         max-height: 200px; 
         border-radius: 5px;
         cursor: pointer;   

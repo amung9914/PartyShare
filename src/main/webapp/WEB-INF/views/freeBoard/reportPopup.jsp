@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:if test="${mnick eq '관리자'}">
+<c:if test="${toMid eq 'admin'}">
 	<script>
-		alert('공지글은 신고할 수 없습니다.');
+		alert('관리자의 글은 신고할 수 없습니다.');
 		window.close();
 	</script>
 </c:if>
@@ -110,6 +110,7 @@
 			<input type="hidden" name="toMid" value="${toMid}"/>
 			<input type="hidden" name="bno" value="${bno}"/>
 			<input type="hidden" name="cno" value="${cno}"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<select name="category">
 				<option value="nothing" selected>분류</option>
 				<option value="spam">스팸홍보/도배</option>

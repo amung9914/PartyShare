@@ -10,8 +10,8 @@ commit;
 desc partyboard_comment;
 
 select * from party where pNum = 1037;
-
-
+SELECT * FROM member;
+SELECT * FROM report;
 select * from wishlist;
 select * from party;
 select * from freeboard;
@@ -62,6 +62,7 @@ DESC validation_member_auth;
 
 desc blacklist;
 desc party;
+DESC report;
 
 DELETE FROM wishlist;
 DROP TABLE location;
@@ -76,6 +77,6 @@ INSERT INTO validation_member_auth
 VALUES ('admin', 'ROLE_ADMIN');
 
 select * from validation_member_auth;
-
+SELECT * FROM freeboard;
 
 

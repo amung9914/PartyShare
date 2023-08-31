@@ -167,10 +167,12 @@ public class freeBoardController {
 	
 	@GetMapping("user/freeBoard/reportPopup")
 	public String reportPopup(
+			@RequestParam(name="toMid") String toMid,
 			@RequestParam(name="mnick") String mnick,
 			Model model
 			) {
 		
+		model.addAttribute("toMid", toMid);
 		model.addAttribute("mnick", mnick);
 		
 		return "freeBoard/reportPopup";
@@ -186,8 +188,11 @@ public class freeBoardController {
 			String bno,
 			String cno,
 			Model model) {
-		fromMid = fromMid.replace(",", "");
-		toMid = toMid.replace(",", "");
+		
+		int fromMidIndex = fromMid.indexOf(",");
+		int toMidIndex = toMid.indexOf(",");
+		fromMid = fromMid.substring(0, fromMidIndex);
+		toMid = toMid.substring(0, toMidIndex);
 		bno = bno.replace(",", "");
 		cno = cno.replace(",", "");
 		int nbno;
@@ -204,13 +209,6 @@ public class freeBoardController {
 		} else {
 			ncno = Integer.parseInt(cno);
 		}
-		
-		// 나중에 report 테이블에 넣을 bno, cno값 테스트용 출력(나중에 테이블에 삽입할 때 Integer.parseInt해야 함)
-		System.out.println("fromMid : " + fromMid);
-		System.out.println("toMid : " + toMid);
-		System.out.println("category : " + category);
-		System.out.println("bno : " + bno);
-		System.out.println("cno : " + cno);
 		
 		model.addAttribute("mnick", mnick);
 		
