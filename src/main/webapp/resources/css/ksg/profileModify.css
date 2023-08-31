@@ -99,3 +99,9 @@ body{
 .card-title{
 	font-weight: bold;
 }
+
+@media (max-width:1200px){
+	#modifyBox{
+		width:80%;
+	}
+}

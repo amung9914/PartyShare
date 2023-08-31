@@ -1,0 +1,26 @@
+@charset "UTF-8";
+table img{
+	width: 80px;
+	height: 80px;
+}
+table tr td{
+	line-height: 80px;
+	height:80px;
+}
+#banBtn{
+	margin-top:15%;
+}
+#partyMemberListBox{
+	width:100%;
+	
+}
+#partyFinishBox{
+	width: 100%;
+}
+#title{
+	margin-top:8%;	
+}
+
+#partyAdminBox{
+	width:540px;	
+}
