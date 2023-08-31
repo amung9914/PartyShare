@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+/* 모달 스타일 */
+.modal {
+  display: none; /* 모달을 기본적으로 숨김 */
+  position: fixed;
+  z-index: 1; /* 다른 요소들보다 위에 위치 */
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* 스크롤 가능하도록 설정 */
+  background-color: rgba(0,0,0,0.4); /* 배경을 어둡게 */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 모달 창을 중앙에 위치 */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  text-align: left;
+  padding: 30px;
+}
+
+/* 닫기 버튼 스타일 */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+#categoryBtn{
+	position: relative;
+	right: 120px;
+}
+#addDescription, #addCategory{
+	margin-left : 2%;	
+}
+
+#description{
+	width: 70%;
+	height: 50px;
+	outline: none;
+	border: 1px solid rgb(221,221,221);
+	border-radius: 100px;
+	text-align: center;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
+}
+
+#category{
+	width: 70%;
+	height: 50px;
+	outline: none;
+	border: 1px solid rgb(221,221,221);
+	border-radius: 100px;
+	text-align: center;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
+}
+#wrap{
+	text-align: -webkit-center;	
+}
+#searchOptBox{
+	width: 700px;	
+}

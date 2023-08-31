@@ -22,8 +22,8 @@
 			<input type="hidden" name="detailAddress" value="${vo.detailAddress}">
 			<input type="hidden" id="lat" name="lat" value="${mapVO.lat}">
 	    	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
-	    	<input type="text" name="date_startDate" id="date_startDate" /> ~
-	    	<input type="text" name="endDate" id="endDate" />
+	    	<input type="text" name="date_startDate" id="date_startDate" autocomplete="off"/> ~
+	    	<input type="text" name="endDate" id="endDate" autocomplete="off"/>
 	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 	</div>

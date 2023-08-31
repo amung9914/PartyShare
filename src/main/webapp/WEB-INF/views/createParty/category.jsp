@@ -24,7 +24,7 @@
 	<form action="createCategory" method="post"> 
 		<input type="hidden" name="host" value="${loginMember.mnum}"/>
 		<input type="hidden" name="description" value="${vo.description}" />
-		<input type="text" class="reqInput" id="category" name="category" required/><br/>
+		<input type="text" class="reqInput" id="category" name="category" autocomplete="off" required/><br/>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 	</div>

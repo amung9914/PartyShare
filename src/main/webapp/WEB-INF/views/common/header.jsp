@@ -25,7 +25,7 @@
 		<div id="header_searchBox">
 			<div class="searchContainer">
 			<!-- oninput="keywordSearch()"> -->
-		      <input type="text" id="searchKeyword" />  
+		      <input type="text" id="searchKeyword" autocomplete="off" placeholder="찾고싶은 파티가 있나요?"/>  
 		      <img src="${path}/resources/img/search.png" id="searchImg" onclick="goListPage();"/>
 		    </div>
 		</div>
@@ -39,11 +39,10 @@
 
 				  <c:choose>
 				  	<c:when test="${!empty loginMember}">
-                 <c:if test="${loginMember.mid eq 'admin'}">
-			    	<li><a class="dropdown-item" href="${path}/admin/admin">관리자페이지</a></li>
-			    </c:if>
+	                	<c:if test="${loginMember.mid eq 'admin'}">
+				    		<li><a class="dropdown-item" href="${path}/admin/admin">관리자페이지</a></li>
+				    	</c:if>
 				  		<li><a class="dropdown-item" href="${path}/user/account">계정관리</a></li>
-
 				  		<li><a class="dropdown-item" href="${path}/user/party/createParty">파티생성</a></li>
 				  		<li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
 				  		<li><a class="dropdown-item" href="${path}/user/friend">친구리스트</a></li>
@@ -51,7 +50,7 @@
 				  		<li><a class="dropdown-item" href="${path}/user/logout">로그아웃</a></li>
 				  	</c:when>
 				  	<c:otherwise>
-				  		<li><a class="dropdown-item" href="#" onclick="loginModalShow();">로그인</a></li>
+				  		<li><a class="dropdown-item" onclick="loginModalShow();">로그인</a></li>
 					    <li><a class="dropdown-item" href="${path}/member/goJoin">회원가입</a></li>
 					    <li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
 				  	</c:otherwise>

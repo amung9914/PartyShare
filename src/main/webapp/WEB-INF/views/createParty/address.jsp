@@ -14,11 +14,11 @@
 			<input type="hidden" name="description" value="${vo.description}" />
 			<input type="hidden" name="category" value="${vo.category}"/>
 			
-			<input type="text" id="postcode" placeholder="우편번호">
-			<input type="button" onclick="execDaumPostcode()" class="btn btn-outline-dark" value="우편번호 찾기"><br>
-			<input type="text" name="address" id="address" placeholder="주소"><br>
-			<input type="text" name="detailAddress" id="detailAddress" class="reqInput" placeholder="상세주소">
-			<input type="text" id="extraAddress" placeholder="참고항목">
+			<input type="text" id="postcode" autocomplete="off" placeholder="우편번호">
+			<input type="button" onclick="execDaumPostcode()" autocomplete="off" class="btn btn-outline-dark" value="우편번호 찾기"><br>
+			<input type="text" name="address" id="address" autocomplete="off" placeholder="주소"><br>
+			<input type="text" name="detailAddress" id="detailAddress" class="reqInput" autocomplete="off" placeholder="상세주소">
+			<input type="text" id="extraAddress" autocomplete="off" placeholder="참고항목">
 			<input type="hidden" id="sido" name="sido"/>
 			<input type="hidden" id="sigungu" name="sigungu"/>
 			<input type="hidden" id="lat" name="lat">

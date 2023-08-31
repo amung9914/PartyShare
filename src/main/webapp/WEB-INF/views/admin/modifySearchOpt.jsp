@@ -1,111 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>관리자 옵션 관리</title>
-<style>
-/* 모달 스타일 */
-.modal {
-  display: none; /* 모달을 기본적으로 숨김 */
-  position: fixed;
-  z-index: 1; /* 다른 요소들보다 위에 위치 */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto; /* 스크롤 가능하도록 설정 */
-  background-color: rgba(0,0,0,0.4); /* 배경을 어둡게 */
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 모달 창을 중앙에 위치 */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-/* 닫기 버튼 스타일 */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>
+<%@ include file="../common/header.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="${path}/resources/css/in/admin/searchOpt.css" rel="stylesheet"/>
 <!-- jQuery 라이브러리 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<body>
-	<h1>관리자 검색 기준 관리</h1>
-	
-	<!-- 카테고리 수정 버튼 -->
-	<button class="modal-button" data-target="modalCategory">카테고리 수정</button>
-	<button class="modal-button" data-target="modalDate">날짜 수정</button>
-	<button class="modal-button" data-target="modalLocation">위치 수정</button>
-	
-	<!-- 모달 -->
-	<div id="modalCategory" class="modal">
-	  <!-- 모달 내용 -->
-	  <div class="modal-content">
-	    <div>
-	     카테고리 수정 누르면 나오는 모달<br/>
-	     <input id="description" type="text" placeholder="description"/>
-	     <input id="category" type="text" placeholder="category"/><br/>
-	  		<button id="addDescription">설명 추가</button> 
-	  		<button id="addCategory">카테고리 추가</button> <br/>
-	  		
-	  		<div>
-		        <ul id="categoryList"> <!-- li태그로 출력하기 : category TABLE -->
-		         	<!-- 리스트 요소 개수만큼 반복문이 돌 예정 / 고로 나왔냐 이후 반환받는 타입은list == dataType from Ajax  -->
-		         	
-		        </ul>
-   			 </div>
-   			 <div>
-		        <ul id="descriptionList"> <!-- $("#descriptionList").append(str); -->
-		        	<!-- 리스트 요소 개수만큼 반복문이 돌 예정 / 고로 나왔냐 이후 반환받는 타입은list == dataType from Ajax  -->
-		          <!-- 설명 출력하는 function-->
-		        </ul>
-   			 </div>
-	  		
-	     
-	     </div>
-	    
-	    <span class="close" onclick="closeModal('modalCategory')">&times;</span>
-	  </div>
+<div id="wrap">
+	<div id="searchOptBox">	
+		<h1>관리자 검색 기준 관리</h1>
+		<br/>
+		<!-- 카테고리 수정 버튼 -->
+		<button class="modal-button btn btn-dark" id="categoryBtn" data-target="modalCategory">카테고리 수정</button>
+		<!-- <button class="modal-button" data-target="modalDate">날짜 수정</button>
+		<button class="modal-button" data-target="modalLocation">위치 수정</button> -->
+		
+		<!-- 모달 -->
+		<div id="modalCategory" class="modal">
+		  <!-- 모달 내용 -->
+		  <div class="modal-content">
+		    <div>
+		    <h1>카테고리 추가</h1>
+		    <br/>
+		     <input id="description" type="text" autocomplete="off" placeholder="description"/><button id="addDescription" class="btn btn-dark">설명 추가</button>
+		     <br/><br/>
+		     <input id="category" type="text" autocomplete="off" placeholder="category"/><button id="addCategory" class="btn btn-dark">카테고리 추가</button> <br/>
+		  		 
+		  		
+		  		
+		  		<div>
+			        <ul id="categoryList"> <!-- li태그로 출력하기 : category TABLE -->
+			         	<!-- 리스트 요소 개수만큼 반복문이 돌 예정 / 고로 나왔냐 이후 반환받는 타입은list == dataType from Ajax  -->
+			         	
+			        </ul>
+	   			 </div>
+	   			 <div>
+			        <ul id="descriptionList"> <!-- $("#descriptionList").append(str); -->
+			        	<!-- 리스트 요소 개수만큼 반복문이 돌 예정 / 고로 나왔냐 이후 반환받는 타입은list == dataType from Ajax  -->
+			          <!-- 설명 출력하는 function-->
+			        </ul>
+	   			 </div>
+		  		
+		     
+		     </div>
+		    
+		    <span class="close" onclick="closeModal('modalCategory')">&times;</span>
+		  </div>
+		</div>
+		<div id="modalDate" class="modal">
+		  <!-- 모달 내용 -->
+		  <div class="modal-content">
+		    <div>
+		    <h1>날짜 수정</h1><br/>
+		     <input type="text" placeholder="추가,삭제할 날짜" autocomplete="off"/>
+		  		<button id="dateAdd" class="btn btn-dark">날짜 추가</button>	
+		     	<button id="dateDelete" class="btn btn-dark">날짜 삭제</button>
+		     	<br/>
+		     </div>
+		    <span class="close" onclick="closeModal('modalDate')">&times;</span>
+		  </div>
+		</div>
+		<div id="modalLocation" class="modal">
+		  <!-- 모달 내용 -->
+		  <div class="modal-content">
+		    <div> 위치 수정 누르면 나오는 모달</div>
+		    
+		    <span class="close" onclick="closeModal('modalLocation')">&times;</span>
+		  </div>
+		</div>
 	</div>
-	<div id="modalDate" class="modal">
-	  <!-- 모달 내용 -->
-	  <div class="modal-content">
-	    <div>
-	     날짜 수정 누르면 나오는 모달<br/>
-	     <input type="text" placeholder="추가,삭제할 날짜"/>
-	  		<button id="dateAdd">날짜 추가</button>	
-	     	<button id="dateDelete">날짜 삭제</button>
-	     </div>
-	    <span class="close" onclick="closeModal('modalDate')">&times;</span>
-	  </div>
-	</div>
-	<div id="modalLocation" class="modal">
-	  <!-- 모달 내용 -->
-	  <div class="modal-content">
-	    <div> 위치 수정 누르면 나오는 모달</div>
-	    
-	    <span class="close" onclick="closeModal('modalLocation')">&times;</span>
-	  </div>
-	</div>
-	
-	
+</div>	
 	
  
 	<script>
@@ -181,7 +145,7 @@
 			console.log('add카테고리');
 			$.ajax({
 				type : "POST",
-				url : "${path}/search/addCategory",
+				url : "${path}/admin/search/addCategory",
 				data : {
 					category : $("#category").val()
 				},
@@ -205,8 +169,8 @@
 		$("#addDescription").click(function(){
 			console.log('add디스크립션');
 			$.ajax({
-				type : "get",
-				url : "${path}/search/addDescription",
+				type : "post",
+				url : "${path}/admin/search/addDescription",
 				data : {
 					description : $("#description").val()
 				},
@@ -234,5 +198,4 @@
             '${_csrf.token}');
    });
 </script>
-</body>
-</html>
+<%@ include file="../common/fixFooter.jsp" %>

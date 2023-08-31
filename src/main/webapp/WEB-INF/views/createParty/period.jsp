@@ -27,7 +27,7 @@
 		<input type="hidden" name="detailAddress" value="${vo.detailAddress}">
 		<input type="hidden" id="lat" name="lat" value="${mapVO.lat}">
     	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
-    	<input type="text" id="period" name="period" class="reqInput" required/>
+    	<input type="text" id="period" name="period" class="reqInput" autocomplete="off" required/>
     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 <script>

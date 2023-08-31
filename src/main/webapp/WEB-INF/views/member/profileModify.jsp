@@ -75,23 +75,23 @@
 					</tr>
 					<tr>
 						<td>이름</td>
-						<td><input type="text" name="mname" value="${loginMember.mname}" required/></td>
+						<td><input type="text" name="mname" value="${loginMember.mname}" autocomplete="off" required/></td>
 					</tr>
 					<tr>
 						<td>닉네임</td>
-						<td><input type="text" name="mnick" value="${loginMember.mnick}" readonly/></td>
+						<td><input type="text" name="mnick" value="${loginMember.mnick}" autocomplete="off" readonly/></td>
 					</tr>
 					<tr>
 						<td>나이</td>
-						<td><input type="number" name="mage" value="${loginMember.mage}" required/></td>
+						<td><input type="number" name="mage" value="${loginMember.mage}" autocomplete="off" required/></td>
 					</tr>
 					<tr>
 						<td>email</td>
-						<td><input type="email" name="memail" value="${loginMember.memail}" readonly/></td>
+						<td><input type="email" name="memail" value="${loginMember.memail}" autocomplete="off" readonly/></td>
 					</tr>
 					<tr>
 						<td>주소</td>
-						<td><input type="text" name="maddr" value="${loginMember.maddr}" required/></td>
+						<td><input type="text" name="maddr" value="${loginMember.maddr}" autocomplete="off" required/></td>
 					</tr>
 					<tr>
 						<td>성별</td>

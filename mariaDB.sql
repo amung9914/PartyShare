@@ -8,8 +8,10 @@ select * from partydescription;
 select * from map;
 commit;
 desc partyboard_comment;
+1039 1040 1041 1043
+delete from party where pnum=1039;
 
-select * from party where pNum = 1037;
+select * from party; 
 SELECT * FROM member;
 SELECT * FROM report;
 select * from wishlist;
