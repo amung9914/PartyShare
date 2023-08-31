@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
+<%@ include file="header.jsp" %>
+<link href="${path}/resources/css/sy/default.css" rel="stylesheet"/>
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<div id="wrap">
 <h4 data-ke-size="size20"><span style="color: #000000; text-align: start;"><span style="background-color: #ffffff; color: #212529; text-align: start;">파티쉐어<span>&nbsp;</span></span>개인정보처리방침</span><br /><br /></h4>
 <p style="color: #000000; text-align: start;" data-ke-size="size16">(주)<span style="background-color: #ffffff; color: #212529; text-align: start;">파티쉐어<span>&nbsp;</span></span>(이하 "회사")는 개인정보보호 규정을 준수하며, 관련 법령에 의거한 개인정보처리방침을 정하여 이용자 권익 보호에 최선을 다하고 있습니다.</p>
 <p style="color: #000000; text-align: start;" data-ke-size="size16">본 개인 정보 보호 정책은 귀하의 정보에 관한 수집, 사용 및 정보 공개에 대한 회사의 정책과 절차를 설명합니다.</p>
@@ -70,5 +70,5 @@
 <p style="color: #000000; text-align: start;" data-ke-size="size16">11. 개인정보처리방침의 개정과 그 공지</p>
 <p style="color: #000000; text-align: start;" data-ke-size="size16">- 현 개인정보처리방침이 추가 및 삭제, 수정이 있을 시에는 시행 7일 전에 서비스 내 공지 또는 웹사이트를 통해 사전 공지하며, 사전 공지가 곤란한 경우 지체 없이 공지할 수 있습니다. 이 정책은 아래 시행일자부터 시행됩니다.</p>
 <p style="color: #000000; text-align: start;" data-ke-size="size16">- 시행일: 2023년 08월 27일</p>
-</body>
-</html>
+</div>
+<%@ include file="../common/footer.jsp" %>

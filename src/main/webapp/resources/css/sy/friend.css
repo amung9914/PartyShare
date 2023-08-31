@@ -79,6 +79,9 @@ aside{
  h5 .btn-close{
  	float:right;
  }
+ .infotext{
+     margin: 0px 0px 20px 0px;
+ }
  
  @media (max-width: 1510px) {
   main{
@@ -88,7 +91,10 @@ aside{
   aside{
   float: none;
   }
-
+  #wrap{
+  	margin: 0 20%;
+	}
+ 
 	.mainBox hr{
 	color:white;
 	}

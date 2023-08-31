@@ -53,14 +53,14 @@
 			</tr>
 			<tr>
 				<td><a href="${contextPath}/member/goJoin">회원가입</a></td>
-				<td><a href="${contextPath}/party/hostingList">개설한 파티 관리</a></td>
+				<td><a href="${contextPath}/host/party/hostingList">개설한 파티 관리</a></td>
 				<td>파티상세페이지</td>
 				<td><a href="${contextPath}/policy2">이용약관</a></td>
 				<td></td>
 			</tr>
 			<tr>
 				<td><a href="${contextPath}" onclick="loginModalShow();">로그인</a></td>
-				<td><a href="${contextPath}/party/myParty">참여중인 파티</a></td>
+				<td><a href="${contextPath}/user/party/myParty">참여중인 파티</a></td>
 				<td>파티 게시판</td>
 				<td><a href="${contextPath}/infomation">세부정보</a></td>
 				<td></td>
@@ -95,7 +95,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><a href="${contextPath}/friend">친구 리스트</a></td>
+				<td><a href="${contextPath}/user/friend">친구 리스트</a></td>
 				<td></td>
 				<td></td>
 				<td></td>
