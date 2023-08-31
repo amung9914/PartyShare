@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+
+html, body {
+    height: 100%
+}
+
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 93px;
+    margin: 0px 0px 100px 0px;
+}
+#memberList{
+	margin: 10px 40px;
+}
+.table.member-table{
+	font-size: 13px;
+}
