@@ -4,60 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../common/header.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>wishlist.jsp</title> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
-    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
-
-	ul {
-	    display: flex;
-	    flex-wrap: wrap;
-		list-style-type : none;
-		justify-content: center;
-		margin-bottom: 250px;
-	}
-	
-	li {
-        margin : 20px;
-	}
-	
-	li a {
-		text-decoration: none;
-		color: black;
-	}
-	
-	#wishlist-title {
-		margin-left: 40px;
-    	margin-top: 20px;
-    	margin-bottom: 40px;
-	}
-	
-	.wishlistBox {
-		display: inline-block;
-		width: 350px;
-		height: 200px;
-		border-radius : 8px;
-		background-color : white;
-		box-shadow : 0px 2px 4px rgba(0, 0, 0, 0.2);
-	}
-
-    /* 이미지 스타일 */
-    .partyImg {
-        width: 100%;
-        max-width: 100%;
-        min-height: 200px;
-        max-height: 200px; 
-        border-radius: 5px;
-        cursor: pointer;   
-        object-fit: cover;
-    }
-</style>
-</head>
+<link href="${contextPath}/resources/css/jinlee/wishlist.css" rel="stylesheet">
 <body>
 	<div id="wishlist-title">
 		<h1>위시리스트</h1>
@@ -88,6 +36,4 @@
 		    </c:if>
     	</c:forEach>
 	</ul>
-<!-- </body>
-</html> -->
 <%@ include file="../common/fixFooter.jsp" %>

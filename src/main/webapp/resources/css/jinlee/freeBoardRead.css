@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+#container {
+   	margin: 0 auto;
+   	margin-bottom: 150px;
+	width: 679px;
+}
+   
+#container ul {
+   	padding-left: 0px;
+}
+   
+#title {
+	width: 100%;
+	height: 35px;
+	padding: 15px 15px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: none;
+	font-size: 30px;
+	outline: none;
+}
+
+#writer {
+	border: none;
+	outline: none;
+	font-size: 16px;
+	padding-left: 15px;
+}
+
+#writingDate {
+	padding-left: 15px;
+}
+
+#viewCnt {
+	padding-left: 15px;
+}
+   
+#content {
+	padding : 10px;
+	margin : 10px; 
+}
+
+#buttons {
+	text-align: right;
+}
+
+#buttons a{
+	text-decoration: none;
+	color: #FF385C;
+	font-weight: bold;
+}
+
+/* 댓글 작성 */
+#writeComment {
+	display: flex;
+	margin: 20px;
+}
+
+#writeComment #addBtn {
+	width: 21%;
+	background-color: #FF385C;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#writeComment #addBtn:hover {
+	background-color: #FF6666;
+}
+
+#writeComment #cText {
+	font-size: 16px;
+	padding: 6px;
+}
+
+/* 댓글 수정창 */
+#modDiv {
+	border : 1px solid lightgray;
+	padding : 10px;
+	display : none;
+}
+
+#modDiv #modText{
+	border : 1px solid #FFDDDD;
+	width: 100%;
+	outline: none;
+}
+
+#modBtn {
+	padding: 5px;
+	width: 70px;
+	background-color: #FF385C;
+	color: white;
+	font-weight: bold;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	outline: none;
+}
+
+#modBtn:hover {
+	background-color: #FF6666;
+}
+
+#closeBtn {
+	padding: 5px;
+	width: 70px;
+	background-color: #DADADA;
+	color: black;
+	font-weight: bold;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+}
+
+#closeBtn:hover {
+   	background-color: #E9E9E9;
+   }
+
+#comments li {
+	list-style : none;
+	padding : 10px;
+	border : 1px solid #ccc;
+	height : 150px;
+	margin : 5px 0;
+}
+
+#pagination li{
+	font-size: 14px;
+	text-align: center;
+    display: inline-block;
+    margin: 20px 3px;
+    padding: 5px 10px;
+    border: 1px solid #D6D6D6;
+    background-color: white;
+    border-radius: 3px;
+}
+
+#pagination li:hover{
+	background-color: #FFE6E6;
+    color: #fff;
+    border: 1px solid #D6D6D6;
+}	
+
+#pagination li a{
+	text-decoration : none;
+	color : black;
+}
+
+#pagination li a.active{
+	font-weight: bold;
+	color : #FF385C;
+}
+
+.commentBtn {
+	padding: 5px;
+	width: 70px;
+	background-color: #DADADA;
+	color: black;
+	font-weight: bold;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	outline: none;
+}
+
+.commentBtn:hover {
+   	background-color: #E9E9E9;
+}

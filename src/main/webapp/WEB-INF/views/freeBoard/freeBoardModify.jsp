@@ -12,78 +12,7 @@
     	history.back();
     </script>
 </c:if>
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>freeBoardModify.jsp</title> -->
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
-    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
-
-	form {
-		margin: 0 auto;
-		margin-bottom: 180px;
-		width: 679px;
-	}
-	
-	#title {
-		width: 100%;
-		height: 35px;
-		padding: 32px 15px;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		border: none;
-		border-bottom: 1px solid lightgray;
-		font-size: 30px;
-		outline: none;
-	}
-	
-	#context {
-		width: 100%;
-	}
-	
-	.container {
-	    display: flex; 
-	    width: 100%;
-	    justify-content: space-between; 
-	    align-items: center;
-	    margin-top: 20px; 
-	}
-	
-	 .write {
-    	width: 100px;
-	    height: 35px;
-	    border-radius: 10px;
-	    font-weight: bold;
-	    border: none;
-	    background-color: #FF385C;
-	    color: white;
-	    cursor: pointer;
-	    font-size: 16px;
-    }
-    
-    .write:hover {
-    	background-color: #FF6666;
-    }
-    
-    .back {
-   		width: 100px;
-	    height: 35px;
-	    border-radius: 10px;
-	    font-weight: bold;
-	    border: none;
-	    background-color: #F5F5F5;
-	    color: black;
-	    cursor: pointer;
-	    font-size: 16px;
-    }
-    
-    .back:hover {
-    	background-color: #DADADA;
-    }
-</style>
-</head>
+<link href="${contextPath}/resources/css/jinlee/freeBoardModify.css" rel="stylesheet">
 <body>
 	<form action="${contextPath}/user/freeBoard/freeBoardModify" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -105,7 +34,7 @@
 <script src="https://cdn.tiny.cloud/1/av7h5dlwrzjn7ho0gzec0tvmepza55h6sfs7attnmohrhwhd/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 	let plugins = ["link", "image"];
-	let edit_toolbar = "link image forecolor backcolor";
+	let edit_toolbar = "link image forecolor backcolor fontsize";
 
     tinymce.init({
       language : "ko_KR",

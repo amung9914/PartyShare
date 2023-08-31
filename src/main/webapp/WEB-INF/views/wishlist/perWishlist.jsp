@@ -3,68 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../common/header.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>perWishlist.jsp</title> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Noto+Sans+KR:wght@300&display=swap');
-    * {margin: 0; padding: 0; font-family: 'Hahmlet', serif; font-family: 'Noto Sans KR', sans-serif;}
-    
-    #perWishlist-title{
-    	margin-left: 40px;
-    	margin-top: 20px;
-    }
-    
-    #perWishlist-content{
-    	width: 90%;
-    	margin: 0 auto;
-    }
-    
-	ul {
-	    display: flex;
-	    flex-wrap: wrap;
-		list-style-type : none;
-		justify-content: space-around;
-		margin-bottom: 250px;
-		padding-left: 0;
-		padding: 0 20px;
-	}
-		
-	.perWishlist-li {
-		padding: 10px;
-		width: 300px;
-		height: 400px;
-        margin : 20px;
-        margin-bottom : 80px;
-        text-decoration: none;
-	}
-	
-	.perWishlist-li a {
-		 text-decoration: none;
-		 color: black;
-	}
-	
-	.partyImg {
-		width: 300px;
-	    height: 300px;
-	    cursor: pointer;
-	    border-radius: 15px;
-	}
-	
-	.heart {
-    	width: 30px; /* 원하는 너비로 설정 */
-    	height: auto; /* 너비에 따라 자동으로 높이를 조절 */
-    	cursor: pointer;
-    	position: relative;
-    	top: 95px;
-   		left: 255px;
-	}
-	
-</style>
-</head>
+<link href="${contextPath}/resources/css/jinlee/perWishlist.css" rel="stylesheet">
 <body>
 	 <div id="perWishlist-title">
 	 	<h1>${alias}</h1>
@@ -133,6 +73,4 @@
               '${_csrf.token}');
     });
 </script>
-<!-- </body>
-</html> -->
 <%@ include file="../common/fixFooter.jsp" %>
