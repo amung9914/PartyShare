@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.bitc.common.utils.Criteria;
 import com.bitc.party.vo.PartyVO;
 import com.bitc.search.dao.SearchDAO;
 import com.bitc.search.vo.CategoryVO;
@@ -61,10 +62,10 @@ public class SearchServiceImpl implements SearchService {
 	}	//ssi
 
 
-	public List<descriptionVO> description(int page) throws Exception {
-		int start = ((page-1)*10)+1;
-		System.out.println("start:" + start);
-		return dao.description(start);
+	public List<descriptionVO> description(Criteria cri) throws Exception {
+		//int start = ((page-1)*10)+1;
+		//System.out.println("start:" + start);
+		return dao.description(cri);
 	}	//ssi
 
 

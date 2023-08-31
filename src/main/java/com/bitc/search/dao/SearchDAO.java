@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import com.bitc.common.utils.Criteria;
 import com.bitc.party.vo.PartyVO;
 import com.bitc.search.vo.CategoryVO;
 import com.bitc.search.vo.LocationVO;
@@ -24,8 +25,8 @@ public interface SearchDAO {
 	 * 
 	 * 전체 파티설명VO 검색, 초기화함수 , 매개변수 없음 
 	 * */
-	@Select("SELECT * FROM partydescription limit #{start} , 10")   //mainCategory DISTINCT
-	public  List<descriptionVO>  description(int start) throws Exception;	// searchDAO
+	@Select("SELECT * FROM partydescription limit #{startRow} , #{perPageNum}")   //mainCategory DISTINCT
+	public  List<descriptionVO>  description(Criteria cri) throws Exception;	// searchDAO
 	
 	/**
 	 * @param 날짜수

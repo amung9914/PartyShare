@@ -117,7 +117,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  	 disableP();
   	 disableN();
   	countDesc();
- 	printDescription(descriptionPage); 		//버튼이벤트 없이 호출이니까 ready에서 ㄴㄴㄴrmsid aㅓㅁㅌㄹ
+ 	printDescription(descriptionPage); 		
  	console.log(lastPageDs);
  	// page를 같이 넘겨준다.
   	function printDescription(descriptionPage){
@@ -127,7 +127,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			headers: { "${_csrf.parameterName}": "${_csrf.token}" },
   			data:{
   				descPage : descriptionPage ,
-  				${_csrf.parameterName}:"${_csrf.token}"
+  			//	${_csrf.parameterName}:"${_csrf.token}"
   				},
   			dataType :"json",		// List<descpriptionVO>
   			success: function (list){
@@ -189,23 +189,23 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  		disableP();
  	}
  	function disableN(){
- 		console.log("lastP" + lastPageDs)
+ 		console.log("lastP : " + lastPageDs)
  		if(descriptionPage == lastPageDs){
  //			alert('조건 충족');
  			$("#nextBtn").prop("disabled", true);
  			$("#nextBtn").css("opacity","0.5"); 			
  		}else{
  			$("#nextBtn").prop("disabled", false);
- 			$("#nextBtn").css("opacity","0"); 
+ 			$("#nextBtn").css("opacity","1"); 
  		}
  	}
  	function disableP(){
- 	if(descriptionPage != 1){
-			$("#previousBtn").prop("disabled", false);
-			$("#previousBtn").css("opacity","0"); 
+ 	if(descriptionPage == 1){
+			$("#previousBtn").prop("disabled", true);
+			$("#previousBtn").css("opacity","1"); 
 		}else{
 			$("#previousBtn").css("opacity","0.5"); 
-			$("#previousBtn").prop("disabled", true);
+			$("#previousBtn").prop("disabled", false);
 		}
  	}
  	function countDesc(){
@@ -216,8 +216,9 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  			dataType: 'text', 
  	        success: function(count) {
  	        	countDescription = parseInt(count); 
- 	          //  console.log('description :' + countDescription + '개');
+ 	         //  console.log('description :' + countDescription + '개');
  	           lastPageDs = Math.ceil(countDescription/10);
+ 	           console.log(lastPageDs);
  	            
  	        },
 			error: function(count){

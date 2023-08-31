@@ -2,6 +2,7 @@ package com.bitc.search.service;
 
 import java.util.List;
 
+import com.bitc.common.utils.Criteria;
 import com.bitc.party.vo.PartyVO;
 import com.bitc.search.vo.CategoryVO;
 import com.bitc.search.vo.descriptionVO;
@@ -28,7 +29,7 @@ public interface SearchService  {
 	 * @retrun List<descriptionVO>, 
 	 * 처음에 출력하기 위해 printContents와 따로 배치
 	 * */
-	public List<descriptionVO> description(int page) throws Exception;	//ss
+	public List<descriptionVO> description(Criteria cri) throws Exception;	//ss
 	
 	public int countPartyDescription() throws Exception;	//ss
 	
