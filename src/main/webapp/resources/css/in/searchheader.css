@@ -16,10 +16,12 @@ font-size: medium;
 img.icon{
 	width: 40px;
     height: auto;
-    margin: 5px 0px 0px 0px
+    margin: 5px 0px 0px 0px;
+    
 }
 .card.barItem{
 	text-align: center;
+	cursor:pointer !important;
 }
 
 #searchModal {
