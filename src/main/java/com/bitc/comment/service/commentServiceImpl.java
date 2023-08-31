@@ -24,6 +24,11 @@ public class commentServiceImpl implements commentService{
 	}
 	
 	@Override
+	public void addCommentCount(int bno) throws Exception {
+		dao.addCommentCount(bno);
+	}
+	
+	@Override
 	public List<FreeBoardCommentVO> commentListPage(Criteria cri, int bno) throws Exception {
 		List<FreeBoardCommentVO> list = dao.commentListPage(cri, bno);
 		List<FreeBoardCommentVO> newList = new ArrayList<>();
@@ -58,6 +63,10 @@ public class commentServiceImpl implements commentService{
 		return result == 1 ? "댓글 삭제 완료" : "댓글 삭제 실패";
 	}
 
+	@Override
+	public void deleteCommentCount(int bno) throws Exception {
+		dao.deleteCommentCount(bno);
+	}
 
 	
 }

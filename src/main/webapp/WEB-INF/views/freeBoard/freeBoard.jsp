@@ -200,7 +200,7 @@
 		<c:forEach var="notice" items="${FreeBoardNotice}">
 			<tr style="background-color: #FFFAFA;">
 	            <td style="color:#FF385C; font-weight:bold;">공지</td>
-	            <td><a href="${contextPath}/freeBoard/freeBoardRead${pm.mkQueryStr(pm.cri.page)}&bno=${notice.bno}">${notice.title}</a></td>
+	            <td><a href="${contextPath}/freeBoard/freeBoardRead${pm.mkQueryStr(pm.cri.page)}&bno=${notice.bno}">${notice.title} <span style="color: #FF385C; margin-left: 10px; font-weight: normal;">[${notice.commentCount}]</span></a></td>
 	            <td>${notice.mnick}</td>
 	            <td>${notice.formatDate}</td>
 	            <td>${notice.viewCnt}</td>
@@ -237,7 +237,7 @@
 			                    			</c:forEach>
 			                    			└ <!-- ㅂ + 한자 + 6 -->
 			                    		</c:if>
-			                    		<c:out value="${board.title}"/>
+			                    		<c:out value="${board.title}"/><span style="color: #FF385C; margin-left: 10px; font-weight: normal;">[${board.commentCount}]</span>
 			                    	</a>
 			                    </td>
 			                    <td>${board.mnick}</td>

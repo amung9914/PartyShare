@@ -11,6 +11,9 @@ public interface commentService {
 	// 댓글 삽입
 	public String addComment(FreeBoardCommentVO vo) throws Exception;
 	
+	// 댓글 삽입된 게시물 댓글수 추가
+	public void addCommentCount(int bno) throws Exception;
+	
 	// 페이징 처리된 댓글 리스트
 	public List<FreeBoardCommentVO> commentListPage(Criteria cri, int bno) throws Exception;
 	
@@ -22,5 +25,8 @@ public interface commentService {
 
 	// 댓글 삭제
 	public String deleteComment(int cno) throws Exception;
+	
+	// 댓글 삭제된 게시물 댓글수 감소
+	public void deleteCommentCount(int bno) throws Exception;
 	
 }

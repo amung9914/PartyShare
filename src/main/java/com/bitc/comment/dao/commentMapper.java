@@ -10,12 +10,16 @@ import org.apache.ibatis.annotations.Update;
 
 import com.bitc.comment.vo.FreeBoardCommentVO;
 import com.bitc.common.utils.Criteria;
+import com.bitc.freeboard.vo.FreeBoardVO;
 
 public interface commentMapper {
 
 	@Insert("INSERT INTO freeboard_comment(cno, bno, commentText, mnick, mid, regdate, showBoard) VALUES(null, #{bno}, #{commentText}, #{mnick}, #{mid}, now(), 'Y')")
 	public int addComment(FreeBoardCommentVO vo) throws Exception;
 
+	@Update("UPDATE freeboard SET commentCount = commentCount + 1 WHERE bno = #{bno}")
+	public void addCommentCount(int bno) throws Exception;
+	
 	@Select("SELECT * FROM freeboard_comment WHERE bno = #{bno} ORDER BY cno ASC LIMIT #{cri.startRow}, #{cri.perPageNum}")
 	public List<FreeBoardCommentVO> commentListPage(@Param("cri") Criteria cri, @Param("bno") int bno) throws Exception;
 
@@ -27,5 +31,8 @@ public interface commentMapper {
 
 	@Delete("DELETE FROM freeboard_comment WHERE cno = #{cno}")
 	public int deleteComment(int cno) throws Exception;
+	
+	@Update("UPDATE freeboard SET commentCount = commentCount - 1 WHERE bno = #{bno}")
+	public void deleteCommentCount(int bno) throws Exception;
 	
 }

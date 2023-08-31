@@ -40,6 +40,7 @@ public class commentController {
 	
 		try {
 			String message = cs.addComment(vo);
+			cs.addCommentCount(vo.getBno());
 			// 필수 값은 상태 코드
 			entity = new ResponseEntity<>(message, headers, HttpStatus.OK);
 		} catch (Exception e) {
@@ -89,14 +90,18 @@ public class commentController {
 		return entity;
 	}
 	
-	@DeleteMapping("user/comment/comments/{cno}")
-	public ResponseEntity<String> deleteComment(@PathVariable(name="cno") int cno) {
+	@DeleteMapping("user/comment/comments/{cno}/{bno}")
+	public ResponseEntity<String> deleteComment(
+			@PathVariable(name="cno") int cno,
+			@PathVariable(name="bno") int bno
+			) {
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 	
 		try {
 			String message = cs.deleteComment(cno);
+			cs.deleteCommentCount(bno);
 			entity = new ResponseEntity<>(message, headers, HttpStatus.OK);
 		} catch (Exception e) {
 			entity = new ResponseEntity<>(e.getMessage(), headers, HttpStatus.INTERNAL_SERVER_ERROR);
