@@ -5,6 +5,13 @@
 .itemsNO {
 	
 }
+img.icon{
+	width: 40px;
+    height: auto;
+}
+.card.barItem{
+	text-align: center;
+}
 
 #searchModal {
 	display: none;

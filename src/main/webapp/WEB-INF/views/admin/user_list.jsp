@@ -3,33 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="${path}/resources/css/in/admin/user_list.css" rel="stylesheet"/>
+<%@ include file="../common/header.jsp" %>
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
-#memberModal{
-	display: none;
-	position: fixed;
-	overflow: auto;
-	}
-	
-	.member-table {
- 	 border-collapse: collapse;
- 	 width: 100%;
-	}
-
-	.member-table th, .member-table td {
- 	 border: 1px solid black;
-	  padding: 8px;
-	  text-align: center;
-	}
-</style>
-</head>
-<body>
-	<button id="memberList">모든 유저 목록</button>
+<div id="wrap">
+	<button class="btn btn-dark" id="memberList">모든 유저 목록</button>
 	
 	 <br/>
 	<div id="memberModal">
@@ -38,7 +20,7 @@
 	</ul>
 	</div>
 	
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
 	<script>
 	var page = 1;
 	var firstPage = 1;
@@ -55,11 +37,10 @@
 			        console.log(page);
 			        
 			        let str = "";
-			        str += `<table class="member-table">`;
+			        str += `<table class="table member-table">`;
 			        	str += `<tr>`;
 			        	str += `<th>번호</th>`; //1
 			        	str += `<th>ID</th>`;	//2
-			        	str += `<th>pw</th>`;	//3
 			        	str += `<th>이름</th>`;	//4
 			        	str += `<th>닉네임</th>`;
 			        	str += `<th>나이</th>`;
@@ -78,28 +59,27 @@
 			        	
 			        	str += `<tr>`;
 			        	// 페이지 number는 각 멤버가 가진 mNum과 통일할 것
-			        	str += `<td>NO:\${member.mnum}</td>`;	
-			        	str += `<td>ID:\${member.mid}</td>`;
-			        	str += `<td>pw:\${member.mpw}</td>`;
-			        	str += `<td>이름:\${member.mname}</td>`;
-			        	str += `<td>닉네임:\${member.mnick}</td>`; //5
-			        	str += `<td>나이:\${member.mage}</td>`;
-			        	str += `<td>성별:\${member.mgender}</td>`;
-			        	str += `<td>email:\${member.memail}</td>`;
-			        	str += `<td>신고횟수:\${member.mbanCnt}</td>`;
-			        	str += `<td>주소:\${member.maddr}</td>`;    // 10
-			        	str += `<td>참여:\${member.mjoinCnt}</td>`;
-			        	str += `<td>블랙리스트:|\${member.mblackYN}</td>`;
-			        	str += `<td>탈퇴:\${member.withdraw}</td>`;
+			        	str += `<td>\${member.mnum}</td>`;	
+			        	str += `<td>\${member.mid}</td>`;
+			        	str += `<td>\${member.mname}</td>`;
+			        	str += `<td>\${member.mnick}</td>`; //5
+			        	str += `<td>\${member.mage}</td>`;
+			        	str += `<td>\${member.mgender}</td>`;
+			        	str += `<td>\${member.memail}</td>`;
+			        	str += `<td>\${member.mbanCnt}</td>`;
+			        	str += `<td>\${member.maddr}</td>`;    // 10
+			        	str += `<td>\${member.mjoinCnt}</td>`;
+			        	str += `<td>\${member.mblackYN}</td>`;
+			        	str += `<td>\${member.withdraw}</td>`;
 			        	str += `</tr>`;
 			        
 			            console.log("id: " + member.mid);
 			        });
 			    	str += `<tr>`;
 			    	str += `<td colspan='13'>`;
-			    	str += `<button id='previous' onclick="previous(page)">&lt;</button>`;
+			    	str += `<button id='previous' class="btn btn-light" onclick="previous(page)">&lt;</button>`;
 				    str += '&nbsp;&nbsp;&nbsp;';
-				    str += `<button id='next' onclick="next(page)">&gt;</button>`;
+				    str += `<button id='next' class="btn btn-light" onclick="next(page)">&gt;</button>`;
 			    	str += `</td>`;
 			    	str += `</tr>`;
 			        str += `</table>`;
@@ -126,5 +106,5 @@
  	}
 	
 	</script>
-</body>
-</html>
+</div>
+<%@ include file="../common/footer.jsp" %>

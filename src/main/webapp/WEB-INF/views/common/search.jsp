@@ -142,7 +142,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   				//	descriptionSrc = "description";
   					descriptionSrc += "${descImgPath}/description"+this.no+".jpg";
   			str+=	  `<div class="card barItem" onclick='select("description"+"\${this.description}")'>`;
-  			str+=	  '<img src="'+descriptionSrc+'" height="55px" class="card-img-top" alt="...">';
+  			str+=	  '<img src="'+descriptionSrc+'" class="icon"/>';
   			str+=	  `<div class="card-body">`;
   			str+=	  `<p class="card_Ptag card-text" ><b>\${this.description}</b></p>`;			//내용
   			str+=	  `</div>`;

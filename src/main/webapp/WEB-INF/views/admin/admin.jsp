@@ -2,59 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<meta charset="UTF-8">
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<meta charset="UTF-8">
-<title>admin.jsp</title>
-
-<style type="text/css">
-	#dateModal{
-	display: none;
-	position: fixed;
-	overflow: auto;
-	}
-	
-	
-	div{
-	display: inline-block;
-	}
-</style>
-</head>
-<body>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-	<h1>${serverTime}. admin</h1>
+<%@ include file="../common/header.jsp" %>
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="${path}/resources/css/in/admin/admin.css" rel="stylesheet"/>
+<div id="wrap">
 	<%-- <a href="<c:url value='/admin/notice'/>">SIGN UP </a> <br/>
 	<a href="<c:url value='/admin/notice'/>"> 공지 쓰러가기 </a> <br/>
 	<a href="/project/admin/notice">이걸로 공지 쓰러가기</a> --%>
 	<%-- <a href="<c:url value='/admin/admin_notice'/>">공지쓰러가기</a> --%>
-	<div id="dateModal">나중에 date관리창이 modal로 출력됨</div>
+	<!-- <div id="dateModal">나중에 date관리창이 modal로 출력됨</div> -->
 	
-	<div>
-	<button id="modifySearchOpt">검색엔진 관리하기</button>
-	</div>
+	<button class="btn btn-outline-dark" id="modifySearchOpt">검색엔진 관리하기</button>
 	
-	<div>  
-	<button id="notice">알림 페이지</button>
-	</div>
+	<button class="btn btn-outline-dark" id="notice">알림 페이지</button>
 	
-	<div>  
-	<button id="reportPage">신고 페이지</button>
-	</div>
+	<button class="btn btn-outline-dark" id="reportPage">신고 페이지</button>
 	 
-
-	<div> <br/>
-	<button id="home">홈화면</button>
-	<button id="user_list">모든 유저 목록</button>
-	</div>
-	
-	<div>  
-	<button id="blackList">블랙리스트 페이지</button>
-	</div>
 	<br/>
+
+	<button class="btn btn-outline-dark" id="home">홈화면</button>
+	<button class="btn btn-outline-dark" id="user_list">모든 유저 목록</button>
+	
+	<button class="btn btn-outline-dark" id="blackList">블랙리스트 페이지</button>
+	</div>
 	
 	<!-- 유저목록 테이블 생성  -->
 	
@@ -95,7 +68,7 @@
 		
 		$("#blackList").click(function () {
 			console.log('되는데?');
-			location.href = '<c:url value="/blacklist"/>';
+			location.href = '<c:url value="/admin/blacklist"/>';
 			console.log('안되노?');
 		});
 		
@@ -108,5 +81,5 @@
 	
 	}); // docu
 	</script>
-</body>
-</html>
+</div>
+<%@ include file="../common/footer.jsp" %>

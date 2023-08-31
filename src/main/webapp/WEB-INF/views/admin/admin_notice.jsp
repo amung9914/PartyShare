@@ -16,7 +16,7 @@
 	</style>
 </head>
 <body>
-	<a href="{path}/admin/admin" >관리자 홈</a>
+	<a href="${path}/admin/admin" >관리자 홈</a>
 	
 	 <br/>
 	<div id="memberModal">
