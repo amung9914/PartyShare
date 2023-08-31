@@ -11,6 +11,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	align-items: center;
 }
 #logoBox{
 	margin-left: 3%;
@@ -24,7 +25,6 @@
 
 #header_searchBox{
 	width: 300px;
-	height: 80px;
 	margin-top:1%;
 	
 }
@@ -50,11 +50,8 @@
 }
 #header_menuDiv{
 	width:3%;
-	height: 80px;
-	margin-top: 1%;
-	line-height: 50px;
 	position: relative;
-	right: 40px;
+	right: 100px;
 	
 }
 #menuBtn{
@@ -68,10 +65,9 @@
 }
 #menuBtn img{
 	position: relative;
-	right: 12px;
 	bottom: 5px;
+	left:50px;
 }
 #searchImg{
 	cursor: pointer;
 }
-	

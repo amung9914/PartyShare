@@ -44,8 +44,10 @@
 										<c:if test="${chat.mnum eq joinMember.mnum}">
 											<img src="<c:url value='/image/printProfileImage?fileName=${joinMember.profileImageName}'/>" />
 											<div id="otherChatBox">
-												<span>${joinMember.mnick}</span>
+												<div id="otherChatDiv">
+													<span>${joinMember.mnick}</span>
 												<p class="otherChat">${chat.content}</p>
+												</div>
 											</div>
 										</c:if>
 									</c:forEach>
@@ -164,8 +166,7 @@
 		
 		$(function() {
 			var messageInput = $('textarea[name="msg"]');
-			let sockAddr = 'echo/${pnum}';
-			var sock = new SockJS(sockAddr);
+			var sock = new SockJS("echo");
 			
 			sock.onopen = function(){
 				sock.send(JSON.stringify({

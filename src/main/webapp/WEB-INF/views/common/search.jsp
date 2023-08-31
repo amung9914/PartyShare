@@ -291,7 +291,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 //  	console.log("k : " + k);
   	
   	function keywordSearch(){
-  		
+  		console.log('실행됭');
   		keyword = '${searchValue}';
   		$("#keywordTemplate").val(keyword);
   		console.log(keyword);
@@ -518,7 +518,8 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		//final modal에 출력되는 sigungu를 출력한다.
   	}
   	/////////////////////////////셀렉트 된 후 = 모달 속 factor클릭!//////////////////////////
-  	function select(factor){		// 아무 요소나 선택되었을 때
+  	function select(factor){	// 아무 요소나 선택되었을 때
+  		console.log('실행됭');
   		page = 1;
   		$("#partys").html("");
   	  		console.log(factor + "< factor");

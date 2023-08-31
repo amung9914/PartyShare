@@ -18,8 +18,8 @@ html, body {
 
 #partys{
 	display: flex;
-  		flex-wrap: wrap;
-  		justify-content: center;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 #partys li{
@@ -27,7 +27,7 @@ html, body {
 	width: 300px;
 	height:400px;
 	text-align: left;
-	margin: 1%;
+	margin: 3%;
 }
 
 #partys li .partyImg{
@@ -89,5 +89,13 @@ html, body {
 #newAliasBtn{
 	width: 400px;
 	height: 50px;
+	
+}
+
+	
+@media (max-width : 821px){
+	#partys{
+		width: 820px;
+	}	
 	
 }

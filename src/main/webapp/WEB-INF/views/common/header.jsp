@@ -87,7 +87,11 @@
 				keyword:value
 			},
 			success: function(data){
-				searchPrintList(data);
+				// 비동기통신이라 좀 기다려줘야 하는듯
+				// 나왔다 안나왔다 함
+				setTimeout(()=>{
+					searchPrintList(data);
+				},50);
 			}
 		});
 	}
@@ -110,6 +114,7 @@
 			let path = this.partyImage1;
 			let detailAddress = this.detailAddress;
 			
+			
 			str += '<li>';
 			// wishList 받아서 fullHeart.png로 출력
 			if(data.wishlist != null){
@@ -129,7 +134,7 @@
 			str += "</li>";
 		});
 		if(page == 1){
-			$("#partys").html(str);	
+			$("#partys").html(str);
 		}else{
 			$("#partys").append(str);
 		}
