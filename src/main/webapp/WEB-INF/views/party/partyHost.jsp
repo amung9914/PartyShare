@@ -2,33 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<link href="${path}/resources/css/sy/partyHost.css" rel="stylesheet"/>
 <%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 부트스트랩 추가 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
-<style>
-html, body {
-    height: 90%
-}
-#wrap {
-    min-height: 100%;
-    position: relative;
-    padding-bottom: 100px;
-}
-#wrap{
-	text-align: -webkit-center;
-	margin:30px;
-}
-.card.mb-3{
- cursor: pointer;
- text-align: left;
- }
-.img-fluid.rounded-start{
- 	height:100%;
- }
-</style>
+
 
   <div id="wrap">
   <div class="card mb-3" style="max-width: 540px;">

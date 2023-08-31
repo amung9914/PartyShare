@@ -53,7 +53,7 @@ html, body {
 <script src="https://cdn.tiny.cloud/1/ogpnruhgbsh51awvrblkrooy38miyp3g61qzu5jw81jnacn6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>		
 <script>
 	let plugins = ["link","image"];
-	let edit_toolbar = "link image forecolor backcolor"
+	let edit_toolbar = "link image forecolor backcolor fontsize"
     tinymce.init({
 		language: "ko_KR",
       	selector: '#content',
