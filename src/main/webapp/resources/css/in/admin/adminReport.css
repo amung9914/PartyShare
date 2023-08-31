@@ -34,7 +34,7 @@ html, body {
 	cursor: pointer;
 }
   
-.detailDiv{
+detailDiv{
  	display: none;
  	overflow: auto;
  	width: 80%;
@@ -44,8 +44,9 @@ html, body {
 	border: 1px solid black;
 }
 #black_or_ok{
-	border: 1px solid black;
+	
 }
 #btnBox{
-	
+	width: 100%;
+	text-align: left;
 }

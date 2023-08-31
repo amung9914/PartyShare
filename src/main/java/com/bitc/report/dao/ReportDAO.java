@@ -17,7 +17,7 @@ import com.bitc.report.vo.ReportVO;
 public interface ReportDAO {
 		
 	@Select("SELECT * FROM report WHERE bno IS NULL ORDER BY date") //,no,bno,cno ")
-	public List<ReportVO> reportList(Criteria cri, PageMaker pm) throws Exception;	//reportDAO
+	public List<ReportVO> reportList() throws Exception;	//reportDAO
 	
 	@Select("SELECT count(*) FROM report")
 	public int countReport() throws Exception;	//reportDAO

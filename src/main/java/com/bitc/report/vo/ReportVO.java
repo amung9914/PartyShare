@@ -9,7 +9,7 @@ public class ReportVO {
 	private int 	no;
 	private String 	fromMid;		//신고자
 	private String  toMid; 		//대상	
-	private Date 	date;		 	//날짜
+	private String 	date;		 	//날짜
 	private String 	category;  	//  -- 신고 카테고리 
 	private String 	context;   	//  -- 신고 내용 
 	

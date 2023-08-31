@@ -12,7 +12,7 @@
 	<div id="reportWrap">
 		<h1>신고 내역 확인</h1>
 		<div id="btnBox">
-			<button id="changeBtn" class="btn btn-dark" onclick="reportedBoard()">게시판 신고 내역 보기</button>
+			<button id="changeBtn" class="btn btn-dark" onclick="reportList()">유저 신고 내역 보기</button>
 			<button id="changeBtn" class="btn btn-dark" onclick="reportedBoard()">게시판 신고 내역 보기</button>
 			<button id="partyBoardBtn" class="btn btn-dark" onclick="reportedPartyBoard()">party게시판 신고 내역 보기</button>
 		</div>
@@ -34,10 +34,11 @@
 	function reportedBoard(){
 		$.ajax({
 			url:'${path}/report/reportedBoard' ,
-			method:'post',
+			method:'get',
 			data :{},
 			dataType :'json',
 			success:function(list){ //성공절
+				console.log(list);
 				str ="";
 				pageStr = "";
 				str += "<tr>";
@@ -50,8 +51,8 @@
 				str += "<th>댓글 번호</th>";
 				str += "</tr>";
 		//		pageStr += `<div>&lt;</div>`;
+		
 					$(list).each(function(){
-						
 						   	str += `<tr id="reportTr" >`;
 						   	str += `<td class='reportTd' onclick='reportDetail(\${this.no})'>\${this.no}</td>`;
 						   	str += `<td class='reportTd'>\${this.fromMid}</td>`;
@@ -64,8 +65,6 @@
 						  }) 
 						  $("#detailDiv").css("display","none");
 						  $("#reportTable").html(str);
-						  $("#changeBtn").attr("onclick","reportList()");
-						  $("#changeBtn").html("유저 신고 내역 보기");
 						  $("#reportTable").after(pageStr);
 						
 						},
@@ -75,12 +74,38 @@
 			
 		})
 	}
-
+	// 유저 신고 내역
+	function reportList() {
+		 $.getJSON("${path}/report/reportList",function(list){ //List<ReportVO>
+			    console.log(list);
+			  
+			    let str = "";
+				str += "<tr>";
+				str += "<th>순번</th>";
+				str += "<th>신고자</th>";
+				str += "<th>대상</th>";
+				str += "<th>날짜</th>";
+				str += "<th>분류</th>";
+				str += "</tr>";
+			    	$(list).each(function(){	// ReportVO
+			   	str += `<tr id="reportTr" onclick='reportDetail(\${this.no})'>`;
+			   	str += `<td class='reportTd'>\${this.no}</td>`;
+			   	str += `<td class='reportTd'>\${this.fromMid}</td>`;
+			   	str += `<td class='reportTd'>\${this.toMid}</td>`;
+			   	str += `<td class='reportTd'>\${this.date}</td>`;
+			   	str += `<td class='reportTd'>\${this.category}</td>`;
+			   	str +=	`</tr>`;
+			    	console.log(str);
+			    	})
+			    	  $("#detailDiv").css("display","none");
+			    	 $("#reportTable").html(str);
+			    });
+		}
+	
 	// 파티게시판 신고내역
 	function reportedPartyBoard(){
-		 $.post("${path}/report/reportedPartyBoard",function(list){ //List<PbReportVO>
+		 $.get("${path}/report/reportedPartyBoard",function(list){ //List<PbReportVO>
 			    console.log(list);
-			    console.log(typeof list);
 			    
 			    let str = "";
 				str += "<tr>";
@@ -200,14 +225,14 @@
 	    			str += `작성자:\${board.mnick}<br/>`;
 	    			str += `게시글 내용:\${board.context}<br/>`;
 	    			str += `<div id='black_or_ok'>`;
-	    			str += `<button id='blindFreeBoard' class='confirm' data-target='\${no}'>원본 글 가리기</button>`;
-	    			str += `<button id='ok' class='confirm'>확인</button>`;
+	    			str += `<button id='blindFreeBoard' class='confirm btn btn-dark' data-target='\${no}'>원본 글 가리기</button>`;
+	    			str += `<button id='ok' class='confirm btn btn-dark'>확인</button>`;
 	    			str += `</div>`;
 	    			str += `<div>`;
 	    			
 	    			$("#detailDiv").append(str);
 	    		
-	    				$("#detailDiv").css("display","block");
+	    			$("#detailDiv").css("display","block");
 	    		},
 	    		error : function (error) {
 					//alert('에러');
@@ -266,8 +291,8 @@
 	    			str += `댓글 내용:\${comment.commentText}<br/>`;
 	//    			console.log(originalWriter + "작성자 2");
 	    			str += `<div id='black_or_ok'>`;
-	    			str += `<button id='blindPartyComment' class='confirm' data-target='\${no}'>댓글 가리기</button>`;
-	    			str += `<button id='ok' class='confirm'>확인</button>`;
+	    			str += `<button id='blindPartyComment' class='confirm btn btn-dark' data-target='\${no}'>댓글 가리기</button>`;
+	    			str += `<button id='ok' class='confirm btn btn-dark'>확인</button>`;
 	    			str += `</div>`;
 	    			str += `<div>`;
 	    			
@@ -301,8 +326,8 @@
 	    			str += `작성자:\${board.writer}<br/>`;
 	    			str += `게시글 내용:\${board.content}<br/>`;
 	    			str += `<div id='black_or_ok'>`;
-	    			str += `<button id='blindPartyBoard' class='confirm' data-target='\${no}'>원본 글 가리기</button>`;
-	    			str += `<button id='ok' class='confirm'>확인</button>`;
+	    			str += `<button id='blindPartyBoard' class='confirm btn btn-dark' data-target='\${no}'>원본 글 가리기</button>`;
+	    			str += `<button id='ok' class='confirm btn btn-dark'>확인</button>`;
 	    			str += `</div>`;
 	    			str += `<div>`;
 	    			
@@ -461,35 +486,6 @@
 	    } // function
 	  //  function reportList(){
 	//	 $(document).ready(function() {
-		 function reportList() {
-			 $.getJSON("${path}/report/reportList",function(list){ //List<ReportVO>
-				    console.log(list);
-				    console.log(typeof list);
-				  
-				    let str = "";
-					str += "<tr>";
-					str += "<th>순번</th>";
-					str += "<th>신고자</th>";
-					str += "<th>대상</th>";
-					str += "<th>날짜</th>";
-					str += "<th>분류</th>";
-					str += "</tr>";
-				    	$(list).each(function(){	// ReportVO
-				   	str += `<tr id="reportTr" onclick='reportDetail(\${this.no})'>`;
-				   	str += `<td class='reportTd'>\${this.no}</td>`;
-				   	str += `<td class='reportTd'>\${this.fromMid}</td>`;
-				   	str += `<td class='reportTd'>\${this.toMid}</td>`;
-				   	str += `<td class='reportTd'>\${this.date}</td>`;
-				   	str += `<td class='reportTd'>\${this.category}</td>`;
-				   	str +=	`</tr>`;
-				    	console.log(str);
-				    	})
-				    	  $("#detailDiv").css("display","none");
-				    	 $("#reportTable").html(str);
-				    	 $("#changeBtn").attr("onclick","reportedBoard()");
-				    	 $("#changeBtn").html("게시판 신고 내역 보기");
-				    });
-			}
 			
 	</script>
 <%@ include file="../common/footer.jsp" %>

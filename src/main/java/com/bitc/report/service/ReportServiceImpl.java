@@ -22,7 +22,6 @@ public class ReportServiceImpl implements ReportService {
 	
 	@Override
 	public int countReport() throws Exception {
-		
 		return dao.countReport();
 	}	//rsi
 	
@@ -32,7 +31,7 @@ public class ReportServiceImpl implements ReportService {
 	
 	@Override
 	public List<ReportVO> reportList(Criteria cri, PageMaker pm) throws Exception {
-		return dao.reportList(cri,pm);
+		return dao.reportList();
 	}	//rsi
 	
 	@Override
