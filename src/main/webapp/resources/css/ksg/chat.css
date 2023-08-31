@@ -72,7 +72,6 @@ nav{
 #partyInfoContainer{
 	width: 100%;
 	background-color:white;
-	overflow-y: scroll;
 	height:820px;		
 }
 
@@ -167,6 +166,19 @@ li{
 	width : 100%;
 	height : 450px;
 }
-#partyInfoContainer .card #card-border-width{
-	width: 
+
+@media (max-width: 1150px) {
+  #chatMain{
+  	flex-direction: column;
+  }
+  #chatSection{
+  	width:100%;
+  }
+  #infoSection{
+  	width:100%;
+  }
+}
+
+@media (max-width: 545px) {
+		
 }
