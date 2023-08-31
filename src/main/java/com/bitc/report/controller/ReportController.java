@@ -55,6 +55,7 @@ public class ReportController {
  		return entity;
  	}			// returnType = list<ReportVO>
 	
+	
 	 @PostMapping( //value = 
 			 "report/report" 
 			 )
@@ -98,7 +99,7 @@ public class ReportController {
 	}
 	 
 			 @SuppressWarnings("deprecation")
-			@PostMapping(value = "/report/reportReview", 
+	@PostMapping(value = "/report/reportReview", 
 				produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		public ResponseEntity<List<ReportVO>> report(
 			MemberVO fromMid) {
@@ -138,7 +139,7 @@ public class ReportController {
 	 	}
 	 	
 	 	
-	 	@PostMapping("report/reportedBoard")
+	 	@GetMapping("report/reportedBoard")
 	 	public ResponseEntity<List<ReportVO>> reportedBoard(Criteria cri , Model model){
 	 		ResponseEntity<List<ReportVO>> entity = null;
 	 		
@@ -181,7 +182,7 @@ public class ReportController {
 	 	//freeboard화
 	 	
 	 	
-	 	@PostMapping("report/reportedPartyBoard")
+	 	@GetMapping("report/reportedPartyBoard")
 	 	public ResponseEntity<List<PbReportVO>> reportedPartyBoard(){
 	 		 ResponseEntity<List<PbReportVO>> entity =null;
 	 		try {
