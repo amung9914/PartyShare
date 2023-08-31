@@ -71,3 +71,9 @@
 #searchImg{
 	cursor: pointer;
 }
+
+@media (max-width:1000px){
+	#header_menuDiv{
+		right: 10%;
+	}
+}

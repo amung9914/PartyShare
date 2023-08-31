@@ -11,8 +11,8 @@
 		<div id="periodBox">
 			<h1>어떤 만남을 추구하시나요?</h1>
 			<ul class="widget-list">
-				<li class="widget">짜릿한 일회성 만남</li>
-				<li class="widget">오래 보고싶은 인연을 만나고 싶으세요?</li>
+				<li class="widget"><p><br/><br/><br/>짜릿한 일회성 만남</p></li>
+				<li class="widget"><p><br/><br/><br/>오래 보고싶은 인연을 <br/>만나고 싶으세요?</p></li>
 			</ul>
 		</div>
 	</div>
@@ -36,10 +36,12 @@
 	divs.forEach((target) => target.addEventListener("click", handleConcept));
 	function handleConcept(e){
 		for(let i=0; i<divs.length; i++){
-			divs[i].style.backgroundColor = "white";
+			divs[i].style.backgroundColor = "white";			
+			const p = divs[i].children;
+			$(p).css("background-color", "white");
 		}
 		let value = e.target.innerText;
-		$("#period").val(value);
+		$("#period").val(value.trim());
 		e.target.style.backgroundColor = "#FF385C";
 	}
 	

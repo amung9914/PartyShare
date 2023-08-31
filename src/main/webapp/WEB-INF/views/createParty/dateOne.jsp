@@ -8,24 +8,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link href="${path}/resources/css/ksg/createParty.css" rel="stylesheet"/>
 <div id="createParty_wrap">
-	<div id="calBox">
-		<h1 id="title">날짜를 선택하세요</h1>
-	</div>
-	<div id="dateBox">
-		<form action="createDate" method="post">
-			<input type="hidden" name="host" value="${loginMember.mnum}"/>
-			<input type="hidden" name="description" value="${vo.description}" />
-			<input type="hidden" name="category" value="${vo.category}" />
-			<input type="hidden" name="address" value="${vo.address}">
-			<input type="hidden" name="sido" value="${vo.sido}">
-			<input type="hidden" name="sigungu" value="${vo.sigungu}">
-			<input type="hidden" name="detailAddress" value="${vo.detailAddress}">
-			<input type="hidden" id="lat" name="lat" value="${mapVO.lat}">
-	    	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
-	    	<input type="text" name="startDate" id="dateOne_startDate" /> 
-	    	<input type="hidden" name="endDate" id="endDate" />
-	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		</form>
+	<div id="dateOneBox">
+		<div id="calBox">
+			<h1 id="title">날짜를 선택하세요</h1>
+		</div>
+		<div id="dateBox">
+			<form action="createDate" method="post">
+				<input type="hidden" name="host" value="${loginMember.mnum}"/>
+				<input type="hidden" name="description" value="${vo.description}" />
+				<input type="hidden" name="category" value="${vo.category}" />
+				<input type="hidden" name="address" value="${vo.address}">
+				<input type="hidden" name="sido" value="${vo.sido}">
+				<input type="hidden" name="sigungu" value="${vo.sigungu}">
+				<input type="hidden" name="detailAddress" value="${vo.detailAddress}">
+				<input type="hidden" id="lat" name="lat" value="${mapVO.lat}">
+		    	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
+		    	<input type="text" name="startDate" id="dateOne_startDate" /> 
+		    	<input type="hidden" name="endDate" id="endDate" />
+		    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			</form>
+		</div>
 	</div>
 </div>
 	<script>

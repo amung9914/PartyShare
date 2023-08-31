@@ -27,7 +27,9 @@ html, body {
 	width: 300px;
 	height:400px;
 	text-align: left;
-	margin: 3%;
+	margin-left:2%;
+	margin-bottom: 3%;
+	font-size:1vw;
 }
 
 #partys li .partyImg{
@@ -91,11 +93,10 @@ html, body {
 	height: 50px;
 	
 }
-
-	
-@media (max-width : 821px){
-	#partys{
-		width: 820px;
+@media (max-width: 1000px){
+	#partys li{
+		width:40%;
+		font-size:2vw;
 	}	
 	
 }
