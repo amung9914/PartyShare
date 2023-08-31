@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
-<jsp:include page="../common/header.jsp" />
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %> --%>
+<%@ include file="../common/header.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="lat" value="${location[0]}" />
@@ -265,17 +265,17 @@
 	  <div class="first-image">
 	    <!-- 왼쪽 사진 -->
 	    <%-- <img src="${contextPath}/upload/party${f:replace(vo.partyImage1, 's_', '')}"/> --%>
-	    <img src="${contextPath}/image/printPartyImage?fileName=${f:replace(vo.partyImage1, 's_', '')}"/>
+	    <img src="${contextPath}/image/printPartyImage?fileName=${fn:replace(vo.partyImage1, 's_', '')}"/>
 	  </div>
 	    <div class="second-image">
 	      <!-- 상단 오른쪽 사진 -->
 	      <%-- <img src="${contextPath}/upload/party${f:replace(vo.partyImage2, 's_', '')}"/> --%>
-	      <img src="${contextPath}/image/printPartyImage?fileName=${f:replace(vo.partyImage2, 's_', '')}"/>
+	      <img src="${contextPath}/image/printPartyImage?fileName=${fn:replace(vo.partyImage2, 's_', '')}"/>
 	    </div>
 	    <div class="third-image">
 	      <!-- 하단 오른쪽 사진 -->
 	      <%-- <img src="${contextPath}/upload/party${f:replace(vo.partyImage3, 's_', '')}"/> --%>
-	      <img src="${contextPath}/image/printPartyImage?fileName=${f:replace(vo.partyImage3, 's_', '')}"/>
+	      <img src="${contextPath}/image/printPartyImage?fileName=${fn:replace(vo.partyImage3, 's_', '')}"/>
 	    </div>
 	</div>
 

@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+html, body {
+    height: 90%
+}
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+    margin:30px;
+}
+.textBox.form-control, .form-select.textBox{
+	width: 100%;
+}
+
+.input-group{
+	width: 100% !important;
+}
+#updateTable{
+	width: 100%;
+}
+#updateTable img{
+	width: 90%;
+}
+.tdStyle{
+	width: 20%;
+}
