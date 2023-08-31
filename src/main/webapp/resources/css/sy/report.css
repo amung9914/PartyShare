@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.reportWindow{
+	margin : 10px;
+	width: 80%;
+}
+ .titleH2{
+ text-align:center;
+ margin: 10px;
+ }
+#wrap{
+	text-align: -webkit-center;
+}
+ .title{
+ 	text-align: left;
+ 	margin: 0px 50px;
+ }
+.form-select.reportWindow{
+	width: 90%;
+}
+.form-control.reportWindow{
+	width: 90%;	
+}

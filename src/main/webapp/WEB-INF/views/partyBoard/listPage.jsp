@@ -2,47 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<style>
-	a{
-	text-decoration:none;
-	color:black;
-	}
-	a:hover{
-	text-decoration:underline;
-	}
-	.control{
-		display:flex;
-		margin:10px;
-	}
-	.searchForm{
-		width : 50%;
-		margin : 20px;
-	}
-
-	.title{
-		width: 50%;
-	}
-
-	.tableBox{
-		text-align: -webkit-center;
-		    margin: 0px 50px;
-	}
-	.input-group{
-		margin:100px 0px;
-	}
-	.pm{
-		text-align:center;
-	}
-	
-	/* footer */
-	html, body {
-    height: 90%
-}
-
-	
-</style>
-	
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>	
+<link href="${path}/resources/css/sy/listPage.css" rel="stylesheet"/>
 	<div class="tableBox">
 	<div class="control">
 	<form name="changeCri" action="${path}/user/partyBoard/listPage" method="GET">

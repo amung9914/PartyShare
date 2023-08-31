@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+
+<link href="${path}/resources/css/sy/updateParty.css" rel="stylesheet"/>
 <!-- form태그 내부입니다. -->
 	<!-- 사진 선택 안했을 경우 이전값 전달 -->
 	<input type="hidden" name="partyImage1" value="${party.partyImage1}"> 
@@ -10,7 +12,7 @@
 	
 	
 		<tr>
-			<td rowspan="2">대표사진</td>
+			<td class="tdStyle" rowspan="2">대표사진</td>
 			<td><img src="${path}/party/printImg?fileName=${party.partyImage1}" id="img1"/></td>
 		</tr>
 		<tr>
@@ -22,7 +24,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td rowspan="2">사진1</td>
+			<td class="tdStyle" rowspan="2">사진1</td>
 			<td><img src="${path}/party/printImg?fileName=${party.partyImage2}" id="img2"/></td>
 		</tr>
 		<tr>
@@ -34,7 +36,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td rowspan="2">사진2</td>
+			<td class="tdStyle" rowspan="2">사진2</td>
 			<td><img src="${path}/party/printImg?fileName=${party.partyImage3}" id="img3"/></td>
 		</tr>
 		<tr>

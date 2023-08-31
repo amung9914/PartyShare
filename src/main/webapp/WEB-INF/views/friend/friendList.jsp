@@ -5,79 +5,12 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ include file="../common/header.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="${path}/resources/css/sy/friend.css" rel="stylesheet"/>
 <!-- 부트스트랩 추가 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 </script>
-<style>
-html, body {
-    height: 100%
-}
 
-#wrap {
-    min-height: 100%;
-    position: relative;
-    padding-bottom: 93px;
-    margin: 0px 0px 100px 0px;
-}
-main{
-	float:left;
-	margin: 30px 0px 0px 27%; 
-}
-aside{
-	float:left;
-	margin : 30px;
-}
- .delBtn{
- 	float:right;
- }
- .card li label{
-     cursor: pointer;}
- .profileImg{
- 		width:100px;
-		height:100px;
-		border-radius:50px;
-		border:1px solid #ccc;
-	}
- .cardBox{
- 	display: inline-flex;
-    align-items: center;
-    margin:10px;
- }
-  div.info{
-    margin:10px;
- }
- .detailLoad{
- 	cursor:pointer;
- }
- #previousView{
- margin: 10px 10px 200px 10px;
- }
- .result{
- margin: 0px 0px 200px 0px;
- }
- 
- body img{
-    width: fit-content;
- }
- 
- .card.mb-3{
- cursor: pointer;
- text-align: left;
- }
- .endParty{
- 	color:red;
- }
- .img-fluid.rounded-start{
- 	height:100%;
- }
- .partyView{
- 	margin: 10px;
- }
- h5 .btn-close{
- 	float:right;
- }
-</style>
 </head>
 <body>
 <div id="wrap">
@@ -85,7 +18,7 @@ aside{
 <main>
 <h3>친구 목록</h3>
 <hr/>	
-<div class="card" style="width: 420px;">
+<div class="card friendView" style="width: 420px;">
   <ul class="list-group list-group-flush">
   	<c:choose>
   	<c:when test="${!empty list}">

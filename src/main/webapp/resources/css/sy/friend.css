@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+	.findResult{
+		display: none;
+	}
+	.btn.btn-primary{
+		background:#FF385C;
+		border:none;
+	}
+	.btn.btn-primary:hover{
+		background:black;
+		border:none;
+	}
+	/* 친구리스트 */
+html, body {
+    height: 100%
+}
+
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 93px;
+    margin: 0px 0px 100px 0px;
+}
+main{
+	float:left;
+	margin: 30px 0px 0px 27%; 
+}
+aside{
+	float:left;
+	margin : 30px;
+}
+ .delBtn{
+ 	float:right;
+ }
+ .card li label{
+     cursor: pointer;}
+ .profileImg{
+ 		width:100px;
+		height:100px;
+		border-radius:50px;
+		border:1px solid #ccc;
+	}
+ .cardBox{
+ 	display: inline-flex;
+    align-items: center;
+    margin:10px;
+ }
+  div.info{
+    margin:10px;
+ }
+ .detailLoad{
+ 	cursor:pointer;
+ }
+ #previousView{
+ margin: 10px 10px 200px 10px;
+ }
+ .result{
+ margin: 0px 0px 200px 0px;
+ }
+ 
+ body img{
+    width: fit-content;
+ }
+ 
+ .card.mb-3{
+ cursor: pointer;
+ text-align: left;
+ }
+ .endParty{
+ 	color:red;
+ }
+ .img-fluid.rounded-start{
+ 	height:100%;
+ }
+ .partyView{
+ 	margin: 10px;
+ }
+ h5 .btn-close{
+ 	float:right;
+ }
+ 
+ @media (max-width: 1510px) {
+  main{
+ 	float: none;
+ 	margin : 30px;
+  }
+  aside{
+  float: none;
+  }
+
+	.mainBox hr{
+	color:white;
+	}
+	.card.friendView{
+	width: 530px !important;
+	}
+}
