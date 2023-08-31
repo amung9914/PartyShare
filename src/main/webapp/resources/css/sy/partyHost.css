@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+html, body {
+    height: 90%
+}
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+}
+#wrap{
+	text-align: -webkit-center;
+	margin:30px;
+}
+.card.mb-3{
+ cursor: pointer;
+ text-align: left;
+ }
+.img-fluid.rounded-start{
+ 	height:100%;
+ }
