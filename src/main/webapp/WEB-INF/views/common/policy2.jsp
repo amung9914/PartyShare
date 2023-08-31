@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
+<%@ include file="header.jsp" %>
+<link href="${path}/resources/css/sy/default.css" rel="stylesheet"/>
+<!-- 부트스트랩 추가 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<div id="wrap">
 <h4 data-ke-size="size20"><span style="color: #000000; text-align: start;"><span style="background-color: #ffffff; color: #212529; text-align: start;">파티쉐어<span>&nbsp;</span></span>이용약관</span><br /><br /></h4>
 <p data-ke-size="size16"><span>제 </span><span>1 </span><span>조 </span><span>(</span><span>목적</span><span>)</span></p>
 <p data-ke-size="size16"><span>이 약관은 </span><span>(</span><span>주</span><span>)</span><span>파티쉐어</span><span>(</span><span>이하 </span><span>'</span><span>회사</span><span>')</span><span>가 제공하는 파티쉐어서비스</span><span>(</span><span>이하 </span><span>'</span><span>서비스</span><span>')</span><span>를 이용하는 서비스 사용자</span><span>(</span><span>이하 </span><span>'</span><span>회원</span><span>')</span><span>와 관련하여 회사와 회원과의 권리</span><span>, </span><span>의무 및 책임사항</span><span>, </span><span>운영수칙</span><span>, </span><span>기타 필요한 사항을 규정함을 목적으로 합니다</span><span>.</span></p>
@@ -332,5 +332,5 @@
 <p data-ke-size="size16"><span>*</span><span>부칙</span></p>
 <p data-ke-size="size16"><span>이 약관은 </span><span>2023</span><span>년 8</span><span>월 27</span><span>일 부터 적용됩니다</span><span>. </span><span>종전 약관은 본 약관으로 대체됩니다</span><span>. </span><span>개정된 이용약관의 적용일자 이전 가입자 또한 개정된 이용약관의 적용을 받습니다</span><span>.</span></p>
 
-</body>
-</html>
+</div>
+<%@ include file="../common/footer.jsp" %>

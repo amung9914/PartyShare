@@ -13,7 +13,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <div>
+    <div class="infotext">
       내가 친구신청을 보낸 목록입니다.<br/>원치 않을 경우 친구신청을 취소할 수 있습니다. 
     </div>
     <c:choose>
