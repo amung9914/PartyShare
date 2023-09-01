@@ -14,7 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AspectAdvice {
 
-	/*
+/*
+
 	@Around("execution(* com.bitc.*.controller.*.*(..))")
 	public Object checkControllerObj(
 			ProceedingJoinPoint pjp
@@ -38,6 +39,8 @@ public class AspectAdvice {
 		log.info("---------------- Advice checkServiceObject END");
 		return o;
 	}
-	*/
+
 	
+*/	
+
 }

@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JoinServiceImpl implements JoinService{
 	
-	// 의존성 주입?
 	private final JoinDAO dao;
 	private final PasswordEncoder passwordEncoder;
 
