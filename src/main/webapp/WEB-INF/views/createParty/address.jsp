@@ -108,7 +108,6 @@
                         
                         document.getElementById('lat').value = result[0].y;
                         document.getElementById('lng').value = result[0].x;
-                        console.log(result[0].y,result[0].x);
                         var imageSrc = '${path}/resources/img/marker.png', // 마커이미지의 주소입니다    
                         imageSize = new kakao.maps.Size(64, 64), // 마커이미지의 크기입니다
                         imageOption = {offset: new kakao.maps.Point(20, 64)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.

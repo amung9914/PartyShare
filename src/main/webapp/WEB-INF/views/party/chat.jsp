@@ -200,7 +200,6 @@
 			
 			function onMessage(msg){
 				var chat = JSON.parse(msg.data);
-				console.log(chat);
 				var html = renderList(chat);
 				$("#chatList").append(html);
 				moveDown();
