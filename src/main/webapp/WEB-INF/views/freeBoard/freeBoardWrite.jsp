@@ -8,8 +8,7 @@
 <!-- loginMember 값이 없을 때 -->
 <c:if test="${empty loginMember}">
     <script>
-    	alert('로그인을 하셔야 이용가능합니다.');
-    	location.href = '${contextPath}/login';
+    	location.href = '${contextPath}/member/login';
     </script>
 </c:if>
 <link href="${contextPath}/resources/css/jinlee/freeBoardWrite.css" rel="stylesheet">
