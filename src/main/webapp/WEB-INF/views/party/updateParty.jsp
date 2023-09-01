@@ -162,9 +162,9 @@
                         
                         document.getElementById('lat').value = result[0].y;
                         document.getElementById('lng').value = result[0].x;
-                        console.log(result[0].y,result[0].x);
                     }
                 });
+             
             }
         }).open();
     }
@@ -227,7 +227,6 @@
 
 $("#saveBtn").click(function(){
 			let content = tinymce.activeEditor.getContent();
-			console.log(content);
 			$("#updateForm").submit();
 			
 		});

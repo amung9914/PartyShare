@@ -108,7 +108,6 @@
 
 $("#saveBtn").click(function(){
 			let content = tinymce.activeEditor.getContent();
-			console.log(content);
 			$("#modifyForm").submit();
 			
 		});

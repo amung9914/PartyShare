@@ -85,9 +85,7 @@ public class MapController {
 			model.addAttribute("apiKey",apiKey);
 			try {
 				model.addAttribute("list", ms.mapList());
-			} catch (Exception e) {
-				System.out.println("list정보 불러오기 실패");
-			}
+			} catch (Exception e) {}
 			
 			return "map/map";
 		}
