@@ -223,8 +223,6 @@
 		           	updateMaxPage(1);
 				},
 				error : function(res, status){
-					console.log(res);
-					console.log(status);
 				}
 			});
 		});

@@ -46,7 +46,6 @@
                 url: "${contextPath}/user/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
                 data: {pNum : pNum},
                 success: function(data) {
-                    console.log("Wish List deleted");
                 }
             });
         } else {
@@ -61,7 +60,6 @@
                 	alias : "${alias}"
                 },
                 success: function(data) {
-                    console.log("Wish List added");
                 }
             });
         }

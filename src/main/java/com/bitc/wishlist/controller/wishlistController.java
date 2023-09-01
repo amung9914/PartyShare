@@ -42,9 +42,7 @@ public class wishlistController {
 			}
 				
 			model.addAttribute("wishlist", wishlist);
-		} catch (Exception e) {
-			System.out.println("wishlist하다가 오류 났어요");
-		}
+		} catch (Exception e) {}
 		
 		return "wishlist/wishlist";
 	}
@@ -57,9 +55,7 @@ public class wishlistController {
 			List<PartyVO> parties = ws.readPerWishlist(alias);
 			model.addAttribute("alias", alias);
 			model.addAttribute("parties", parties);
-		} catch (Exception e) {
-			System.out.println("perWishlist하다가 오류 났어요");
-		}
+		} catch (Exception e) {}
 		
 		return "wishlist/perWishlist";
 	}
@@ -71,9 +67,7 @@ public class wishlistController {
 	        // dao.addWishlist() 호출
 	    	try {
 				ws.addWishlist(member.getMnum(), pNum, alias);
-			} catch (Exception e) {
-				System.out.println("addWishlist하다가 오류났어요.");
-			}
+			} catch (Exception e) {}
 	        // 성공하면 HttpStatus.OK를 리턴하거나 원하는 응답을 생성
 	        return new ResponseEntity<>("Wish List added", HttpStatus.OK);
 	    } else {
@@ -89,9 +83,7 @@ public class wishlistController {
 	        // dao.deleteWishlist() 호출
 	    	try {
 				ws.deleteWishlist(member.getMnum(), pNum);
-			} catch (Exception e) {
-				System.out.println("deleteWishlist하다가 오류났어요.");
-			}
+			} catch (Exception e) {}
 	        // 성공하면 HttpStatus.OK를 리턴하거나 원하는 응답을 생성
 	        return new ResponseEntity<>("Wish List deleted", HttpStatus.OK);
 	    } else {
@@ -105,12 +97,7 @@ public class wishlistController {
 		List<WishListDTO> list = null;
 		try {
 			list = ws.getWishList(mnum);
-			
-			System.out.println(list);
-		} catch (Exception e) {
-			System.out.println("getWishList하다가 오류났어요.");
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 		return list;
 	}
 }

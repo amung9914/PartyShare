@@ -49,7 +49,6 @@ public class wishlistServiceImpl implements wishlistService{
 			WishListDTO dto = new WishListDTO(alias, partyImage1);
 			list.add(dto);
 		}
-		System.out.println(list);
 		return list;
 	}
 	
