@@ -53,11 +53,7 @@ public class partyDetailController {
 			}
 			
 			model.addAttribute("location", location);
-		} catch (Exception e) {
-			System.out.println("detailOfParty하다가 오류 났어요");
-			e.getMessage();
-		}
-		/* return "redirect:detailOfParty?pNum=" + pNum; */
+		} catch (Exception e) {}
 	}
 	
 	@GetMapping("/bookingParty")
@@ -80,9 +76,7 @@ public class partyDetailController {
 				model.addAttribute("endDate", vo.getFormatEndDate());
 			}
 			
-		} catch (Exception e) {
-			System.out.println("bookingParty하다가 오류 났어요");
-		}
+		} catch (Exception e) {}
 		
 		return "partyDetail/bookingParty";
 	}
@@ -104,10 +98,7 @@ public class partyDetailController {
 			}else {
 				rttr.addFlashAttribute("result", "이미 참여한 파티입니다.");
 			}
-		} catch (Exception e) {
-			System.out.println("bookingComplete하다가 오류 났어요");
-			System.out.println(e.getMessage());
-		}
+		} catch (Exception e) {}
 		
 		return "redirect:detailOfParty?pNum=" + pNum;
 	}

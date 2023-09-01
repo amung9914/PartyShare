@@ -55,9 +55,7 @@ public class freeBoardController {
 			
 			PageMaker pm = fs.getPageMaker(cri, vo);
 			model.addAttribute("pm", pm);
-		} catch (Exception e) {
-			System.out.println("freeBoard하다가 오류났어요.");
-		}
+		} catch (Exception e) {}
 	}
 	
 	@GetMapping("user/freeBoard/freeBoardWrite")
@@ -68,13 +66,9 @@ public class freeBoardController {
 	@PostMapping("user/freeBoard/freeBoardWrite")
 	public String freeBoardWrite(FreeBoardVO vo) {
 		
-		System.out.println("write한 vo는" + vo);
-		
 		try {
 			fs.freeBoardUpload(vo);
-		} catch (Exception e) {
-			System.out.println("freeBoardWrite하다가 오류났어요.");
-		}
+		} catch (Exception e) {}
 		
 		return "redirect:/freeBoard/freeBoard?page=1";
 	}
@@ -89,9 +83,7 @@ public class freeBoardController {
 			// 상세보기 요청 게시글 정보
 			FreeBoardVO vo = fs.readFreeBoardDetail(bno);
 			model.addAttribute("freeBoardVO", vo);
-		} catch (Exception e) {
-			System.out.println("freeBoardRead하다가 오류났어요.");
-		}
+		} catch (Exception e) {}
 		return "freeBoard/freeBoardRead";
 	}
 	
@@ -100,9 +92,7 @@ public class freeBoardController {
 		try {
 			FreeBoardVO vo = fs.readFreeBoardDetail(bno);
 			model.addAttribute("freeBoardVO", vo);
-		} catch (Exception e) {
-			System.out.println("freeBoardModify하다가 오류났어요.");
-		}
+		} catch (Exception e) {}
 		
 		return "/freeBoard/freeBoardModify";
 	}
@@ -115,9 +105,7 @@ public class freeBoardController {
 		String result = null;
 		try {
 			result = fs.freeBoardModify(vo);
-		} catch (Exception e) {
-			System.out.println("freeBoardModify하다가 오류났어요.");
-		}
+		} catch (Exception e) {}
 		// 이동한 다음 페이지에 Model을 실어준다.
 		rttr.addFlashAttribute("result", result);
 		rttr.addFlashAttribute("cri", cri);
@@ -137,9 +125,7 @@ public class freeBoardController {
 		if(loginMember.getMid().equals("admin")) {
 			try {
 				result = fs.freeBoardRemove(bno);
-			} catch (Exception e) {
-				System.out.println("freeBoardRemove하다가 오류났어요.");
-			}
+			} catch (Exception e) {}
 			rttr.addFlashAttribute("result", result);
 			rttr.addAttribute("page", cri.getPage());
 			rttr.addAttribute("perPageNum", cri.getPerPageNum());
@@ -155,9 +141,7 @@ public class freeBoardController {
 		} else {
 			try {
 				result = fs.freeBoardRemove(bno);
-			} catch (Exception e) {
-				System.out.println("freeBoardRemove하다가 오류났어요.");
-			}
+			} catch (Exception e) {}
 		}
 		 rttr.addFlashAttribute("result", result);
 		 rttr.addAttribute("page", cri.getPage());
@@ -229,10 +213,7 @@ public class freeBoardController {
 		try {
 			String message = fs.report(vo);
 			model.addAttribute("message", message);
-		} catch (Exception e) {
-			System.out.println("reportPopup하다가 오류났어요.");
-			System.out.println(e.getMessage());
-		}
+		} catch (Exception e) {}
 		
 		return "freeBoard/reportPopup";
 	}
@@ -242,9 +223,7 @@ public class freeBoardController {
 		// bno == 답변을 작성하려는 원본글 번호
 		try {
 			model.addAttribute("board", fs.readFreeBoardDetail(bno));
-		} catch (Exception e) {
-			System.out.println("freeBoardReply get하다가 오류났어요.");
-		}
+		} catch (Exception e) {}
 		return "freeBoard/freeBoardReply";
 	}
 	
@@ -253,9 +232,7 @@ public class freeBoardController {
 		// 답변글 등록
 		try {
 			fs.replyFreeBoard(vo);
-		} catch (Exception e) {
-			System.out.println("freeBoardReply post하다가 오류났어요.");
-		}
+		} catch (Exception e) {}
 		// 답변글 등록 완료 시 게시글 목록 페이지로 이동 
 		return "redirect:/freeBoard/freeBoard";
 	}
