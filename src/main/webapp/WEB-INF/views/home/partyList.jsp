@@ -70,7 +70,7 @@
 	
 	function toggleHeart(heartElement) {
 		if('${loginMember}' == ''){
-			$("#loginModal").modal("show");
+			location.href="${path}/member/login";
 		}else{
 			if (heartElement.src.includes("${path}/resources/img/redHeart.png")) {
 	            heartElement.src = "${path}/resources/img/emptyHeart.png"; // 빈 하트 이미지 경로로 변경

@@ -16,7 +16,7 @@
 <title>partyShare</title>
 </head>
 <body>
-<%@ include file="../member/login.jsp" %>
+<%-- <%@ include file="../member/login.jsp" %> --%>
 
 	<div id="headerBox">
 		<div id="logoBox">
@@ -50,7 +50,7 @@
 				  		<li><a class="dropdown-item" href="${path}/user/logout">로그아웃</a></li>
 				  	</c:when>
 				  	<c:otherwise>
-				  		<li><a class="dropdown-item" onclick="loginModalShow();">로그인</a></li>
+				  		<li><a class="dropdown-item" href="${path}/member/login">로그인</a></li>
 					    <li><a class="dropdown-item" href="${path}/member/goJoin">회원가입</a></li>
 					    <li><a class="dropdown-item" href="${path}/freeBoard/freeBoard">자유게시판</a></li>
 				  	</c:otherwise>
