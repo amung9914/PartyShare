@@ -29,8 +29,9 @@
 		      <img src="${path}/resources/img/search.png" id="searchImg" onclick="goListPage();"/>
 		    </div>
 		</div>
-		
 		<div id="header_menuDiv">
+		<div id="noticeDiv"><%@ include file="../member/post.jsp" %></div>
+		
 			<div class="dropdown-center">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" id="menuBtn" aria-expanded="false">
 			  		<img src="${path}/resources/img/menu.png"/>

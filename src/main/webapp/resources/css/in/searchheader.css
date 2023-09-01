@@ -151,13 +151,14 @@ img.icon{
 	display: inline-block;
 	width: 100px;
 	height: 100px;
-	border:white;
+	border: 0;
+	/*
+	border-color: #e74c3c;
+	*/
+	
 	
 }
-.barItem.clicked {
-	  border-color: #e74c3c;
-	  background-color: #f2f2f2;
-}
+
 .barItem:hover{
  	border-color: #e74c3c;
 }
@@ -197,9 +198,15 @@ img.icon{
 	margin: 10px;
 }
 
-.clicked {
+.barItem.clicked{
 /*   background-color: #e74c3c; */
+
   border-color : #e74c3c;
+	
+	/*
+  background-color:#e74c3c;
+  */
+  
 }
 .flex-container {
   display: flex;

@@ -51,7 +51,7 @@
 	top: 5px;
 }
 #header_menuDiv{
-	width:3%;
+	width:5%;
 	position: relative;
 	right: 5%;
 	
@@ -77,6 +77,14 @@
 .dropdown-item{
 	font-size:20px;
 }
+#noticeDiv{
+	width:20px;
+	position: relative;
+    top: 31px;
+    left: -12px;
+    z-index: 1;
+}
+
 @media (max-width:1000px){
 	#header_menuDiv{
 		right: 10%;
