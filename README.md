@@ -7,11 +7,12 @@
 
 - **Github Repository :** 
   
-
 - **Presentation (YouTube) :** 유투브주소
 <br/>
 
-# Introduce Project
+* * *
+
+#  ✨ 프로젝트 소개
 About Final Project _ Spring 활용 / Team Project <br/>
 2023.08.02 ~ 2023.09.04 총 34일간 설계 및 개발하였으며, 5명의 팀원이 함께 하였습니다.
 <br><br/>
@@ -19,8 +20,8 @@ About Final Project _ Spring 활용 / Team Project <br/>
 팀원들과의 회의를 통해 일회성 및 다회성 파티를 만날 수 있는 사이트를 만들고자 했습니다.  <br/>
 타인과의 만남이 어려워지는 세상. 익숙하지 않는 타인과 새로운 인연을 맺는 것은 부담도 존재하기에, <br/>
 우리는 짧고 느슨한 연대를 구축하기로 했습니다. <br/>
-사람들이 만날 수 있는 플랫폼. 그것이 저희의 프로젝트입니다. <br/>
-<br><br/>
+사람들이 만날 수 있는 플랫폼. 그것이 저희의 프로젝트입니다. 
+<br><br>
 
 ## 📌 Features
 - 파티검색
@@ -35,7 +36,9 @@ About Final Project _ Spring 활용 / Team Project <br/>
 - 회원 신고 및 블랙리스트 관리
 - 파티 카테고리 추가
 - 실시간 알림
-<br><br/>
+<br><br>
+
+
 
 ## 🛠 Languages and Tools:
 <h3 align="left"></h3>
@@ -87,22 +90,17 @@ About Final Project _ Spring 활용 / Team Project <br/>
 - Tomcat v9.0.80
 - Your prefered IDE
     - Spring Tools Suite(STS)
+<br><br/>
+## 🧱 ERD
+![image](https://github.com/amung9914/PartyShare/assets/137124338/113952a5-6f90-4e1b-a638-9a2697b7dd89)
+
+## ‍🧑‍💻 프로젝트 멤버
+- [🔰김서영](https://github.com/amung9914)
+- [김선국](https://github.com/rlatjsrnr)
+- [김진우](https://github.com/kimjw1200)
+- [이인](https://github.com/ini-code)
+- [이진형](https://github.com/JinLeebriller)
 
 
-
-
-
-# PartyShare
-
-
-이걸해내조 노션 https://www.notion.so/The-Project-PartyShare-eddb4277b316476ea479c4c664952e15
-
-## 구성원 및 역할
-
-- 김서영 : 전반적인 일정관리 및 지도구현, 팀게시판, 친구관리,  파티정보수정, 내 파티목록 및 내 일정 보기 구현
-- 김선국 : 메인화면, 파티개설 및 사진 업로드, 팀채팅, 내정보 관리 구현, 파티원 관리,
-- 김진우 : 회원가입, 로그인, 관리자-회원관리, 블랙리스트관리 구현
-- 이진형 : UI 총괄 및 파티상세페이지, 참가확정, 자유게시판, 위시리스트, 챗봇 구현
-- 이인 : 검색, 알림, 신고하기 및 신고관리, 관리자-파티목록 및 관리 구현
 
 나중에 구현하고 싶은 기능 : 소셜로그인, 챗봇
