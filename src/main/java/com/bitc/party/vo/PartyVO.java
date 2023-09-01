@@ -22,16 +22,16 @@ public class PartyVO {
 	private String sigungu;			// 파티 장소(구)
 	private String address;			// 파티 장소(도로명 주소)
 	private String detailAddress;	// 파티 장소(상세 주소)
-	private String startDate;			// 파티 시작 날짜
+	private String startDate;		// 파티 시작 날짜
 	private String endDate;			// 파티 종료 날짜
 	private String pcontext;		// 파티 소개
 	private String description;		// ex. 기상천외한
 	private String category;		// ex. 운동
 	private String finish;			// 파티 종료 여부
 	private int viewCnt;			// 파티 조회수
-	private String partyImage1;		// 파티 이미지1
-	private String partyImage2;		// 파티 이미지2
-	private String partyImage3;		// 파티 이미지3
+	private String partyImage1;		// 파티 이미지 경로1
+	private String partyImage2;		// 파티 이미지 경로2
+	private String partyImage3;		// 파티 이미지 경로3
 	
 	public String getFormatStartDate() {
         String newStartDate = this.startDate;

@@ -15,22 +15,22 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class MemberVO {
-	private int mnum;
-	private String mid;
-	private String mpw;
-	private String mname;
-	private String mnick;
-	private int mage;
-	private String mgender;
-	private String memail;
-	private int mbanCnt;
-	private String maddr;
-	private int mjoinCnt;
-	private String mblackYN;
-	private String withdraw;
-	private String profileImageName;
+	private int mnum;					// 멤버 번호
+	private String mid;					// 멤버 아이디
+	private String mpw;					// 멤버 비밀번호
+	private String mname;				// 멤버 이름
+	private String mnick;				// 멤버 닉네임
+	private int mage;					// 멤버 나이
+	private String mgender;				// 멤버 성별
+	private String memail;				// 멤버 이메일
+	private int mbanCnt;				// 신고받은 횟수
+	private String maddr;				// 멤버 주소
+	private int mjoinCnt;				// 파티 참여 횟수
+	private String mblackYN;			// 멤버 정지 유무
+	private String withdraw;			// 멤버 탈퇴 유무
+	private String profileImageName;	// 멤버 프로필 이미지 경로
 	
-	// 권한 목록
+	// Security 권한 목록
 	private List<String> authList;
 
 	public MemberVO(String mid, String mpw) {
