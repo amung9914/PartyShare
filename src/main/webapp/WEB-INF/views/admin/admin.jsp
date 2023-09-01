@@ -39,9 +39,7 @@
 	
 		
 		$("#user_list").click(function () {
-			console.log('되는데?');
 			location.href = '<c:url value="/admin/user_list"/>';
-			console.log('안되노?');
 		});
 		
 		$("#home").click(function(){
@@ -49,33 +47,23 @@
 		})
 		
 		$("#modifySearchOpt").click(function () {
-			console.log('되는데?');
 			location.href = '<c:url value="/admin/modifySearchOpt"/>';
-			console.log('안되노?');
 		});
 		
 		$("#notice").click(function () {
-			console.log('되는데?');
 			location.href = '<c:url value="/admin/notice"/>';
-			console.log('안되노?');
 		});
 		
 		$("#reportPage").click(function () {
-			console.log('되는데?');
 			location.href = '<c:url value="/admin/admin_report"/>';
-			console.log('안되노?');
 		});
 		
 		$("#blackList").click(function () {
-			console.log('되는데?');
 			location.href = '<c:url value="/admin/blacklist"/>';
-			console.log('안되노?');
 		});
 		
 		$("#modifyInterval").click(function () {
-			console.log('되는데?');
 			window.location.href = '<c:url value="/search/modifyInterval"/>';
-			console.log('안되노?');
 		});
 		
 	
