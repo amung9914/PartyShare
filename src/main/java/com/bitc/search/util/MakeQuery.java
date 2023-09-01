@@ -24,36 +24,29 @@ public class MakeQuery {
 	 * @return WHERE 과 AND를 활용할 수 있는 SQL용 문자열
 	 * */
 	public static String addStirng(String input, Criteria cri) {
-		// delemeter로 받자 
-		//	delemeter 3개로 작성해야 함에 유의 
-		// String input은 "description|""|"date"|location"으로 도착한다.
-		System.out.println("Makequery addString 입력 :" + input);
 		String finalQuery = "SELECT * FROM party WHERE finish = 'N' ";//AND startDate >= NOW() ";
 		
-		
+			
 		if(input.equals("noValue|noValue|noValue|noValue|noValue")) {
 			finalQuery = "SELECT * FROM party WHERE finish = 'N' ";
-		}     // 젤 먼저 로드되었을 때 resultQ로 1회 호출 -> 전체 파티 검색
+		}     // 로드되었을 때 resultQ로 1회 호출 -> 전체 파티 검색
         String[] result = input.split("\\|");
-        System.out.println(Arrays.toString(result));
-        // "WHERE" -> "SELECT * FROM party WHERE"
         
         if(!result[0].equals("noValue")) {
         	finalQuery +=" AND description = '"+result[0]+"'";
         }
         if(!result[1].equals("noValue")) {
         	finalQuery +=" AND category = '"+result[1]+"'";
-        }					//WHERE startDate BETWEEN NOW() AND NOW() + INTERVAL 30 DAY;
+        }					
         if(!result[2].equals("noValue")) {
         	finalQuery +=" AND  startDate <= NOW() + INTERVAL "+result[2]+"DAY ";  
-        	//result[2] ==숫자 자리  date >= NOW() - INTERVAL 1 DAY AND date <= NOW()
         }
         if(!result[3].equals("noValue")) {
         	finalQuery +=" AND sido = '"+result[3]+"'";
         }
         if(!result[4].equals("noValue")) {
         	finalQuery +=" AND sigungu = '"+result[4]+"'";
-        }	// 전달페이지에서 resultQ = location 나누기 - > 5개 짜리로
+        }	
         if(!result[5].equals("noValue")) {
         	finalQuery +=" AND pName Like '%"+result[5]+"%'";
         }
@@ -63,7 +56,6 @@ public class MakeQuery {
          * 페이징
          * */
         finalQuery = finalQuery + "limit " + cri.getStartRow()+ ", "+cri.getPerPageNum()+";";
-        System.out.println("Makequery addString final :" + finalQuery);
 		return finalQuery;
 	}
 	

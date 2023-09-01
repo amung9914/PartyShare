@@ -62,7 +62,6 @@
 						str += '<td colspan="3"><button id="deleteBtn" class="btn btn-outline-dark" onclick="deletePost('+this.noticeNum+')" ';
 						str += '>확인</button> 버튼을 누르면 삭제됩니다.</td>';
 						str += '</tr>';
-			//			console.log(this.noticeNum);
 					}) // foreach
 					str += '</table>'; // 끝
 					$("#post").html(str);
@@ -75,9 +74,6 @@
 		} //end 
 		
 		function deletePost(no) {
-			/* let stringNo = $("#deleteBtn").data("num");
-			console.log(stringNo);
-			no = stringNo/1;  */
 			console.log(no);
 			$.ajax({
 				url : '${path}/notice/deletePost/'+no, 

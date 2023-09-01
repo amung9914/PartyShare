@@ -37,7 +37,7 @@
 			method:'get',
 			data :{},
 			dataType :'json',
-			success:function(list){ //성공절
+			success:function(list){ 
 				console.log(list);
 				str ="";
 				pageStr = "";
@@ -50,7 +50,6 @@
 				str += "<th>게시글 번호</th>";
 				str += "<th>댓글 번호</th>";
 				str += "</tr>";
-		//		pageStr += `<div>&lt;</div>`;
 		
 					$(list).each(function(){
 						   	str += `<tr id="reportTr" >`;
@@ -77,7 +76,6 @@
 	// 유저 신고 내역
 	function reportList() {
 		 $.getJSON("${path}/report/reportList",function(list){ //List<ReportVO>
-			    console.log(list);
 			  
 			    let str = "";
 				str += "<tr>";
@@ -87,7 +85,7 @@
 				str += "<th>날짜</th>";
 				str += "<th>분류</th>";
 				str += "</tr>";
-			    	$(list).each(function(){	// ReportVO
+			    	$(list).each(function(){	
 			   	str += `<tr id="reportTr" onclick='reportDetail(\${this.no})'>`;
 			   	str += `<td class='reportTd'>\${this.no}</td>`;
 			   	str += `<td class='reportTd'>\${this.fromMid}</td>`;
@@ -137,17 +135,13 @@
 					$("#comment").attr("disabled","disabled");
 					}
 			   	str +=	`</tr>`;
-	//		    	console.log(str);
 			    	})
 			    	  $("#detailDiv").css("display","none");
 			    	 $("#reportTable").html(str);
-		//	    	 $("#changeBtn").attr("onclick","reportedBoard()");
-		//	    	 $("#changeBtn").html("게시판 신고 내역 보기");
 			    });
 	}
 
-	// onclick='boardReportDetail("b"+\${this.bno})'
-	function boardReportDetail(no){
+		function boardReportDetail(no){
 		if(no.startsWith("c")){			//댓글
 			no = no.substring(1);
 			 	//alert(no);
@@ -165,8 +159,6 @@
 				dataType:'json',
 				async : false ,
 				success : function (original) {
-					console.log(original);
-					console.log('원본 추출이 먼저');
 					str += `원본 글 번호: \${original.bno}<br/>`;
 					str += `원본 글 작성자: \${original.mnick}<br/>`;
 					str += `원본 글 내용: \${original.context}<br/>`;
@@ -201,13 +193,12 @@
 	    				$("#detailDiv").css("display","block");
 	    		},
 	    		error : function (error) {
-		//			alert(error);
 				}
-	    	}); // ajax 코멘트절
-					
-		}else if(no.startsWith("b")){						//신고 대상이 원본 글						
+	    	}); 
+	    	
+	    	//신고 대상이 원본 글			
+		}else if(no.startsWith("b")){					
 			no = no.substring(1);
-//			 	alert(no);
 	    	$.ajax({
 	    		url:'${path}/report/boardReportBoard/'+no,	//bno
 	    		method : 'post',
@@ -240,7 +231,6 @@
 		}else{
 			alert('확인할 수 없습니다.');
 		}
-		//alert('PbReportDetail 작동 중' + no);
 	}
 	
 	
@@ -262,8 +252,6 @@
 				dataType:'json',
 				async : false ,
 				success : function (original) {
-					console.log(original);
-					console.log('원본 추출이 먼저');
 					str += `원본 글 번호: \${original.bno}<br/>`;
 					str += `원본 글 작성자: \${original.writer}<br/>`;
 					str += `원본 글 내용: \${original.content}<br/>`;
@@ -277,7 +265,7 @@
 			 	//원본추출 끝
 			
 	    	$.ajax({
-	    		url:'${path}/report/PbReportComment/'+no,	// cno 
+	    		url:'${path}/report/PbReportComment/'+no,	//댓글 번호
 	    		method : 'post',
 	    		data : {},
 	    		dataType:'json',
@@ -287,7 +275,6 @@
 	 
 	    			str += `댓글 번호: \${comment.cno}<br/>`;
 	    			str += `댓글 내용:\${comment.commentText}<br/>`;
-	//    			console.log(originalWriter + "작성자 2");
 	    			str += `<div id='black_or_ok'>`;
 	    			str += `<button id='blindPartyComment' class='confirm btn btn-dark' data-target='\${no}'>댓글 가리기</button>`;
 	    			str += `<button id='ok' class='confirm btn btn-dark'>확인</button>`;
@@ -307,7 +294,7 @@
 					
 		}else if(no.startsWith("b")){						//원본글						
 			no = no.substring(1);
-//			 	alert(no);
+		
 	    	$.ajax({
 	    		url:'${path}/report/PbReportBoard/'+no,	//bno
 	    		method : 'post',
@@ -316,7 +303,7 @@
 	    		success : function (board){ 
 	    			console.log(board);
 	    			let str = "";
-	    			$("#detailDiv").html(str);	//비워주고
+	    			$("#detailDiv").html(str);	
 	    			str += `<div>`;
 	    			str += '신고 분류 : 원본 글<br/>';
 	    			str += `게시글 번호: \${no}<br/>`;
@@ -334,13 +321,13 @@
 	    				$("#detailDiv").css("display","block");
 	    		},
 	    		error : function (error) {
-					//alert('에러');
+					alert('처리하지 못함');
 				}
 	    	}); // ajax
 		}else{
 			alert('확인할 수 없습니다.');
 		}
-		//alert('PbReportDetail 작동 중' + no);
+		
 	}
 	
 	    reportList();
@@ -365,7 +352,7 @@
 			}); //ajax
 			
 		});//on click
-		//blindFreeBoard
+		
 		$("#detailDiv").on("click", "#blindFreeBoard", function(){ //버튼
 			let target = $(this).data('target');
 			console.log(target);
@@ -384,7 +371,6 @@
 			}); //ajax
 		})
 			
-			//blindBoardComment
 		$("#detailDiv").on("click", "#blindBoardComment", function(){ //버튼
 			let target = $(this).data('target');
 			console.log(target);
@@ -398,12 +384,12 @@
 				alert(result);
 				} ,
 				error : function(error){
-				//	alert("어");
+					alert("x");
 				}
 			}); //ajax	
 		})
-		//ㄱㅊ
-		$("#detailDiv").on("click", "#blindPartyBoard", function(){ //버튼
+		
+		$("#detailDiv").on("click", "#blindPartyBoard", function(){ 
 			let target = $(this).data('target');
 			console.log(target);
 			$.ajax({
@@ -415,7 +401,7 @@
 					alert(result);
 				} ,
 				error : function(error){
-				//	alert("어");
+					alert("처리 못함");
 				}
 			}); //ajax
 			
@@ -433,20 +419,18 @@
 					alert(result);
 				} ,
 				error : function(error){
-				//	alert("어");
+					alert("처리 못함");
 				}
-			}); //ajax
+			}); 
 		});
 		
 		$("#detailDiv").on("click", "#ok", function(){
-			//alert("확인했습니다.");
 			$("#detailDiv").css("display", "none");
 		});
 		
-	 }); // ready
+	 }); 
 		
 	
-//	$(document).ready(function() {
 	    function reportDetail(no){
 	    	//alert(no);
 	    	$.ajax({

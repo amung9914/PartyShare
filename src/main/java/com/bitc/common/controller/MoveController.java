@@ -48,13 +48,11 @@ public class MoveController {
 	
 	@GetMapping("admin/admin_notice")
 	public String adminNotice() {
-	//	System.out.println("호출");
 		return "/admin/admin_notice";
 	}
 	
 	@GetMapping("go")
  	public String go() {
- 		System.out.println("ㄱㄷㄱ");
  		return "redirect:/admin/go";
  	}
  	@GetMapping("/admin/go")

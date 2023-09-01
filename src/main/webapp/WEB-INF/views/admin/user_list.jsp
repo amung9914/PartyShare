@@ -32,9 +32,7 @@
 			$("#memberModal").show();
 			console.log("page : "+page);
 			 $.getJSON(requestUrl, function(data) {
-			        // data는 JSON으로 받은 멤버 리스트
-			        console.log(data);
-			        console.log(page);
+			        // data는 멤버 리스트
 			        
 			        let str = "";
 			        str += `<table class="table member-table">`;
@@ -54,11 +52,9 @@
 			        	str += `</tr>`;
 			        	
 			        // 받은 JSON을 객체로 사용하기 위한 처리
-			        // 예를 들어, 각 멤버의 이름을 출력하는 예제
 			        data.forEach(function(member) {
 			        	
 			        	str += `<tr>`;
-			        	// 페이지 number는 각 멤버가 가진 mNum과 통일할 것
 			        	str += `<td>\${member.mnum}</td>`;	
 			        	str += `<td>\${member.mid}</td>`;
 			        	str += `<td>\${member.mname}</td>`;

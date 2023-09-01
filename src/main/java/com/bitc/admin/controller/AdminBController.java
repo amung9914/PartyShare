@@ -27,7 +27,6 @@ public class AdminBController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        System.out.println(blackMembers);
         model.addAttribute("blackMembers", blackMembers);
         return "admin/admin_blacklist"; 
  	}

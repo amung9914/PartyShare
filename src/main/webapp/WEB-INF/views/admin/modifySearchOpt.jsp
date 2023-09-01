@@ -25,23 +25,6 @@
 		     <input id="description" type="text" autocomplete="off" placeholder="description"/><button id="addDescription" class="btn btn-dark">설명 추가</button>
 		     <br/><br/>
 		     <input id="category" type="text" autocomplete="off" placeholder="category"/><button id="addCategory" class="btn btn-dark">카테고리 추가</button> <br/>
-		  		 
-		  		
-		  		
-		  		<div>
-			        <ul id="categoryList"> <!-- li태그로 출력하기 : category TABLE -->
-			         	<!-- 리스트 요소 개수만큼 반복문이 돌 예정 / 고로 나왔냐 이후 반환받는 타입은list == dataType from Ajax  -->
-			         	
-			        </ul>
-	   			 </div>
-	   			 <div>
-			        <ul id="descriptionList"> <!-- $("#descriptionList").append(str); -->
-			        	<!-- 리스트 요소 개수만큼 반복문이 돌 예정 / 고로 나왔냐 이후 반환받는 타입은list == dataType from Ajax  -->
-			          <!-- 설명 출력하는 function-->
-			        </ul>
-	   			 </div>
-		  		
-		     
 		     </div>
 		    
 		    <span class="close" onclick="closeModal('modalCategory')">&times;</span>
@@ -63,7 +46,6 @@
 		<div id="modalLocation" class="modal">
 		  <!-- 모달 내용 -->
 		  <div class="modal-content">
-		    <div> 위치 수정 누르면 나오는 모달</div>
 		    
 		    <span class="close" onclick="closeModal('modalLocation')">&times;</span>
 		  </div>
@@ -76,24 +58,21 @@
 		// 모달 열기 함수				
 		function openModal(id) {
 		  $("#"+id).css("display", "block");
-		  if(id == "modalCategory" ){ //'카테고리 수정'버튼을 눌렀을 때
+		  if(id == "modalCategory" ){ 
 			  let str = "";
-			  let url = ""; 	// 카테고리와 리스트 모두를 불러올 수 있는것 
+			  let url = ""; 	
 			  let data = ""; 
-			  $.getJSON(url,function(data){ // 안쪽은 data 활용구문 // 출력값은 list 인데  // categoryList와 descriptionList를 모두....
-				  	// list<list<>>
-					// data == Map
-					// {'list':{}, 'pm' : {}}
+			  $.getJSON(url,function(data){ 
+				 
 					console.log(data);
 					printList(data.list);
-					// printPage(data.pm);
 				});
 			  
 			  $("#description").append(str);
 		  }else if(id == "modalDate"){
 			  let str = "";
 			  let url = ""; 	 
-			  $.getJSON(url,function(data){ // 안쪽은 data 활용구문 // 출력값은 list 인데  // categoryList와 descriptionList를 모두....
+			  $.getJSON(url,function(data){ 
 				  
 					
 				});
@@ -153,11 +132,7 @@
 				success : function(result){
 					alert(result);
 					$("#category").val("");
-				//	$("#targetid").val("");
-				//	$("#sender").val("");  	val의 매개변수가 없다면 값을 흡수한다.
-				//	$("#message").val("");	val의 매개변수가 존재하면 그 매개변수로 값을 변경한다.
-				//	$("#targetid").focus(); 포커스가 들어간다.
-				//	getMessageList();
+				
 				
 				},
 				error : function(res,status,error){
@@ -176,13 +151,8 @@
 				},
 				dataType : "text",
 				success : function(result){
-					alert("여기야? desc");
 					$("#description").val("");
-				//	$("#targetid").val("");
-				//	$("#sender").val("");  	val의 매개변수가 없다면 값을 흡수한다.
-				//	$("#message").val("");	val의 매개변수가 존재하면 그 매개변수로 값을 변경한다.
-				//	$("#targetid").focus(); 포커스가 들어간다.
-				//	getMessageList();
+				
 				
 				},
 				error : function(res,status,error){

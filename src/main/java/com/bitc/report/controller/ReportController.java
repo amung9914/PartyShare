@@ -148,14 +148,11 @@ public class ReportController {
 	 	}
 	 	
 	 	
-	 	//freeboard화
 	 	@PostMapping("report/PbReportBoard/{no}")
 	 	public ResponseEntity<PartyBoardVO> PbReportBoard(
 	 			@PathVariable(name="no") int no
 	 			){
 	 		ResponseEntity<PartyBoardVO> entity = null;
-	 		// no를 가지고 partyBoard반환 
-	 		System.out.println("PbReportBoard/{no}" + no);
 	 		try {
 				PartyBoardVO vo = bs.partyBoard(no);
 				HttpHeaders hd = new HttpHeaders();
@@ -168,7 +165,6 @@ public class ReportController {
 	 	}
 	 	
 	 	
-	 	//freeboard화
 	 	
 	 	
 	 	@GetMapping("report/reportedPartyBoard")

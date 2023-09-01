@@ -65,30 +65,25 @@ public class ReportServiceImpl implements ReportService {
 	public String makeStringDate() {
 		LocalDateTime now = LocalDateTime.now();
 
-        // 원하는 형식으로 포맷
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String date = now.format(formatter);
 		return date;
 		
 	}
 
-	@Override					//기본생성자로 생성 (page1,per10)
+	@Override					
 	public PageMaker getPageMaker(Criteria cri) throws Exception {
-		// criteria 요청한 페이지 정보에 따라 페이징 블럭 정보를 저장하는
-		// PageMaker 객체 반환
 		int countReport = dao.countReport();
 		return new PageMaker(cri,countReport);
 		}
 
 	@Override
 	public List<ReportVO> reportedBoard(Criteria cri) throws Exception {
-		// database 에서 criteria 정보를 이용하여 
-				// 사용자가 요청한 페이지에 따라 게시글 목록 검색하여 전달
 				return dao.reportedBoard(cri);
 	}
 
 	@Override
 	public List<PbReportVO> reportedPartyBoard() throws Exception {
 		return dao.reportedPartyBoard();
-	}	//rsi
+	}	
 }
