@@ -3,9 +3,9 @@
 ![image](https://github.com/amung9914/PartyShare/assets/137124338/a0eb259b-6a6e-4ad5-8394-877e0f766918)
 <br><br/>
 ## 🔗 Link
-- **Deploy Site :** 배포사이즈 주소
+- **Deploy Site :** 배포사이트 주소
 
-- **Github Repository :** 
+- **Github Repository :** https://github.com/amung9914/PartyShare
   
 - **Presentation (YouTube) :** 유투브주소
 <br/>
