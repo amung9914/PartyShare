@@ -26,16 +26,7 @@
 		<button type="button" id="locationBtn" data-targetContents="location" class="btn btn-outline-danger searchBtn">위치 선택</button>
 		</div>
 		
-		<!-- 
-		<div class="buttonsContainer">
-			<button data-targetContents="category" id="categoryBtn"
-				class="searchBtn">카테고리 선택</button>
-			<button data-targetContents="date" id="dateBtn"
-			 class="searchBtn">날짜 선택</button>
-			<button data-targetContents="location" id="locationBtn"
-				class="searchBtn">위치 선택</button>
-		</div>
-		 -->
+	
 		 
 	</div>
 	<div id="categoryTemplate" class='template'></div>
@@ -45,7 +36,6 @@
 	<div id="sigunguTemplate" class='template'></div>
 	<div id="keywordTemplate" class='template'></div>
 	<input type="hidden"  id="keywordTemplate" />
-	<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
 
 </header>
 <script>
@@ -56,13 +46,11 @@
 	<div class="modalContent">
 	 <span class="close">&times;</span>
 		<div id="responsed">
-			<!-- responsed의 html을 정의함 -->
-			responded
+		<!-- 선택버튼 출력 -->
 		</div>
 		
 	</div>
 </div>
-<!-- 모달창이 위치합니다 끝 searchModal -->
 <script>
 	   $(document).ajaxSend(function(e,xhr,options){
 	      xhr.setRequestHeader(
@@ -89,24 +77,17 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 
 	if(typeof keyword === 'undefined' || keyword ==''){keyword = "noValue"}
 	var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
-//	console.log(resultQuery);
 
-  		//select("");
-//  	console.log("keyword : " + keyword);
   	$("#keywordTemplate").val(keyword);
   	let k = $("#keywordTemplate").val();
-//  	console.log("k : " + k);
   	
   	function keywordSearch(){
-  		console.log('실행됭');
   		keyword = '${searchValue}';
   		$("#keywordTemplate").val(keyword);
-  		console.log(keyword);
-  		console.log($("#keywordTemplate").val());
   		
   		if(keyword.includes("㉾")){
   			alert('해당 문자는 사용할 수 없습니다.');
-  			$("#searchKeyword").val('');	// factor구분자 제거
+  			$("#searchKeyword").val('');	//구분자 제거
   		}
   	
   		
@@ -118,7 +99,6 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	 disableN();
   	countDesc();
  	printDescription(descriptionPage); 		
- 	console.log(lastPageDs);
  	// page를 같이 넘겨준다.
   	function printDescription(descriptionPage){
   		$.ajax({
@@ -127,21 +107,16 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			headers: { "${_csrf.parameterName}": "${_csrf.token}" },
   			data:{
   				descPage : descriptionPage ,
-  			//	${_csrf.parameterName}:"${_csrf.token}"
   				},
   			dataType :"json",		// List<descpriptionVO>
   			success: function (list){
   				let str = "";
-  					console.log('버튼출력할때' +descriptionPage );
   					str += '<button type="button" id="previousBtn" class="btn btn-dangerno" onclick="previous('+descriptionPage+')"><b>&lt;</b></button>';	
-  		//			str += `<div id="previousBtn" onclick="previous(descriptionPage)">previous</div>`;			
   					
-  	//				str += `<div class='barItem' onclick='select("description"+"\${this.description}")'>`;
   				$(list).each(function(){
   					let descriptionSrc = "";
-  				//	descriptionSrc = "description";
   					descriptionSrc += "${descImgPath}/description"+this.no+".jpg";
-  			str+=	  `<div class="card barItem"  onclick='select("description"+"\${this.description}")'>`;	//id="barItem_'+this.no+'"
+  			str+=	  `<div class="card barItem"  onclick='select("description"+"\${this.description}")'>`;	
   			str+=	  '<img src="'+descriptionSrc+'" class="icon"/>';
   			str+=	  `<div class="ctext">`;
   			str+=	  `<p class="card_Ptag card-text" >\${this.description}</p>`;			//내용
@@ -149,18 +124,13 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			str+=	  `</div>`;
   					
   					
-//  					str += `<div class='barItem' class="card" onclick='select("description"+"\${this.description}")'>`;    /*  */
-//  					str += `\${this.description}`;																			/*  */
-//  					str += '</div>';																					/*  */
   				})	
-  				console.log("descriptionPage : "+descriptionPage);
   				str += '<button type="button" id="nextBtn" class="btn btn-dangerno" onclick="next('+descriptionPage+')"><b>&gt;<b/></button><br/>';	
-// 					str += `<div id="nextBtn" onclick="next(descriptionPage)">next</div><br>`;
   					str += `<div id="cancelDescription" onclick="cancel()">선택해제</div>`;                
   				$("#barContatiner").html(str);
   			},
   			error : function(error){
-  	//			alert(error);
+		
   			}
   		});	
   	}
@@ -170,27 +140,23 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		select("");
 		
 	}
- 	// 45개가 있다고 치자 -> 마지막 페이지는 5 lastPageDs
- 	function next(descriptionPage){
+
+  	function next(descriptionPage){
  		if(descriptionPage != lastPageDs){
  		descriptionPage++;
- 		console.log("if절 : " + descriptionPage);
  		printDescription(descriptionPage);
  		}
- 	//	console.log(descriptionPage);
+
  		disableN();
  	}
  	function previous(descriptionPage){
- 		console.log("클릭했어요");
- 		if(descriptionPage != 1){//2
+ 		if(descriptionPage != 1){
  		descriptionPage--;
- 		console.log(descriptionPage);
  		printDescription(descriptionPage);
  		}
  		disableP();
  	}
  	function disableN(descriptionPage){
- 		console.log("lastP : " + lastPageDs)
  		if(descriptionPage == lastPageDs){
  //			alert('조건 충족');
  			$("#nextBtn").prop("disabled", true);
@@ -217,9 +183,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  			dataType: 'text', 
  	        success: function(count) {
  	        	countDescription = parseInt(count); 
- 	         //  console.log('description :' + countDescription + '개');
  	           lastPageDs = Math.ceil(countDescription/10);
- 	           console.log(lastPageDs);
  	            
  	        },
 			error: function(count){
@@ -227,12 +191,10 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
 			}
  			
  		});
- //		console.log('이거까지 되나');
  	}
   
   
   	function printCategory(list){ 
-//  		console.log('작동');
   				let str="";
   				str += '<div id="selectedCategory"></div>';
   		$("#responsed").html(str);
@@ -240,38 +202,26 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	 			str += `<button type="button" onclick='select("category")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
 		  		 
   	  	$(list).each(function(){	
-  	  			// categoryVO
-		//	   	str += `<div onclick='select("category"+"\${this.category}")' 
-		//	   	class='items' class='close'>\${this.category}</div> `;
 			   	str += `<button type="button" class="btn btn-outline-danger items" style="font-size: 13px;" `; 
 			   	str += ` onclick='select("category"+"\${this.category}")'>\${this.category}</button>`;
-//			   	console.log('ㅇ');
   	  	})
   			str +=	`</div>`;
-  					    //	console.log(str); 주르륵 나오는거
   		$("#responsed").append(str);
   	};
   	
   	
   	
-  	//////////////////////////////////////////////////////////////////////////////
   	// List<Integer>
   	function printDate(list){ 
   		let str="";
-  //		str += '<div id="selectedDate"></div><hr/>';
   			str += `<div class="containerNO">`;     
   			str += `<button type="button" onclick='select("date")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
-  		//	str +=	`<div class='itemsNO' class='close' onclick='select("date")'>선택하지 않음</div> <br/>`;
   		$(list).each(function(){
-  			//str += `<div class='items' class='close' onclick='select("date\${this}")'>\${this}일 이내</div>`;
   			str += `<button type="button" class="btn btn-outline-danger items" onclick='select("date\${this}")'>\${this}일 이내</button>`;
   		})
   			 str +=	`</div>`;
-  	//	console.log(str);
   		$("#responsed").html(str);//
-  		
-  	//	$("#responsed").append(str); 
-  		//alert('오류?');
+
   	};
   	
  	 //List<String>
@@ -284,10 +234,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  
   		str += `<div class="containerNO">`;    
   		str += `<button type="button" onclick='select("sido")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
-  //		str += `<div class='itemsNO close' onclick='select("sido")'>선택하지 않음</div> <br/>`;
   		$(list).each(function(){	// locationVO
-  		//	str += `<div class='items close' onclick='select("sido\${this.sido}")'>\${this.sido}</div>`;
-  	  	//	str += `<span class="badge bg-light items" onclick='select("sido\${this.sido}")'>\${this.sido}</span>`;
   		  	str += `<button type="button" class="btn btn-outline-danger items" onclick='select("sido\${this.sido}")'>\${this.sido}</button>`;
   		})
   		str +=	`</div>`;
@@ -308,9 +255,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   				
   		        	str += `<div class="containerNO">`;    
   		        	str += `<button type="button" onclick='select("sigungu")' class='itemsNO btn btn-outline-dark'>선택하지 않음</button> <br/> `;
-  				//	str += `<div class='itemsNO' class='close' onclick='select("sigungu")'>선택하지 않음</div>`;
   					$(sigungu).each(function(){
-				//	str += `<div class='items' class='close' onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</div>`;
 					str += `<button type="button" class="btn btn-outline-danger items" onclick='select("sigungu\${this.sigungu}")'>\${this.sigungu}</button>`;
 					$("#responsed").html(str); 
 					
@@ -324,19 +269,11 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			}
   			
   		})
-  		// 출력 target = responded
-  		//울산광역시를 매개변수로 그에 해당하는 sigungu 목록을 검색하는 쿼리를 작동시킨다. -> targetContents
-  		//final modal에 출력되는 sigungu를 출력한다.
   	}
-  	/////////////////////////////셀렉트 된 후 = 모달 속 factor클릭!//////////////////////////
+  	
   	function select(factor){	// 아무 요소나 선택되었을 때
-  		console.log('실행됭');
   		page = 1;
   		$("#partys").html("");
-  	  		console.log(factor + "< factor");
-  	 // 	$("#sigunguTemplate").html("");
-  		// 키워드 검색 추가하기 
-  		// select factor로 변경되는 문자열이 들어온다 빈 문자열부터 찬 문자열까지 undefined는 안나오고
   		if(factor.includes('description')){
   	  		$("#descriptionTemplate").html(factor);
   	  		}
@@ -349,23 +286,21 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		}
   		
   		if(factor.includes('date')){
-  		$("#dateTemplate").html(factor); //console.log(factor +"factor");	
+  		$("#dateTemplate").html(factor); 	
   		}
   		
   		if(factor.includes('sido')){
   		
-  		$("#sidoTemplate").html(factor);// 시도를 선택했을 때 시군구 선택 창이 open되도록 메소드 추가
+  		$("#sidoTemplate").html(factor);
   			factor = factor.substring("sido".length);
- // 			alert(factor+"시도");
- 			//	isToggle = false;
+ 
  				$("#searchModal").css("display","block");
-  			printLocation2(factor);	//factor=울산광역시
+  			printLocation2(factor);	
   		}
   		if(factor.includes('sigungu')){
   	  		$("#sigunguTemplate").html(factor);
   	  		}		
-  		/* description은 토글이 작동하지 않게 */ 
-  		// select호출이라서 토글이 작동하는중 호출이 되었는데 그것이 키워드 검색이 아닐 때
+  		
   		if(!factor.includes('description') ){
   			if(!(factor.includes('㉾')||factor ==""))
   			$("#searchModal").toggle("fast");
@@ -373,59 +308,48 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   		}
   		
   		
-  	//	selectedCategory = $("#selectedCategory").html();
   	
-//  		let selectedKeyword = $("#kewordTemplate").html();		
   		let selectedDescription = $("#descriptionTemplate").html();
   		let selectedCategory = $("#categoryTemplate").html();
-//	  	console.log(selectedDescription);
   		let selectedDate = $("#dateTemplate").html();
   		let selectedSido= $("#sidoTemplate").html();
   		let selectedSigungu= $("#sigunguTemplate").html();
   		
   		if (typeof selectedDescription === 'undefined'
-  				|| selectedDescription == "" ) { // category절 추가
+  				|| selectedDescription == "" ) { 
   			selectedDescription = "noValue";
   		} else {
   			let length = "description".length;
   			selectedDescription = selectedDescription.substring(length);
   		}
-  		//cate절
+  		
   		if (typeof selectedCategory === 'undefined'
-  				|| selectedCategory == "" || selectedCategory=="category") { // category절 추가
-//  			$("#categoryBtn").html("카테고리 선택");
+  				|| selectedCategory == "" || selectedCategory=="category") { 
   			selectedCategory = "noValue";
   		} else {
   			let length = "category".length;
   			selectedCategory = selectedCategory.substring(length);
-  			// 선택버튼의 출력값을 변화 
-  			//categoryBtn dateBtn locationBtn 
   			
   		}
-  		//cate절
-  		if (typeof selectedDate === 'undefined' // ||추가
+  	
+  		if (typeof selectedDate === 'undefined' 
   			|| selectedDate == "" || selectedDate == "date" ) {
   			selectedDate = "noValue";
-//  			$("#dateBtn").html("날짜 선택");
   		} else {
   			let length = "date".length;
   			selectedDate = selectedDate.substring(length);
-  			// 출력값
- // 			$("#dateBtn").html(selectedDate +"일 이내");
   		}
-  		if (typeof selectedSido === 'undefined'//||추가
+  		if (typeof selectedSido === 'undefined'
   			|| selectedSido == ""	|| selectedSido =="sido") {
   			
   			selectedSido = "noValue";
-  			console.log(selectedSido);
-//  			selectedSigungu = "noValue";
- // 			$("#locationBtn").html("지역 선택");
+  			
   		} else {
   			let length = "sido".length;
   			selectedSido = selectedSido.substring(length);
   			$("#locationBtn").html(selectedSido);
   		}
-  		if (typeof selectedSigungu === 'undefined'//||추가
+  		if (typeof selectedSigungu === 'undefined'
   			|| selectedSigungu == ""	|| selectedSigungu =="sigungu") {
   			selectedSigungu = "noValue";
   		} else {
@@ -433,10 +357,9 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   			selectedSigungu = selectedSigungu.substring(length);
   		}
   		
-  		if(factor.includes("㉾")){ // 해결
+  		if(factor.includes("㉾")){ 
   			$("#keywordTemplate").html(factor);
   			
-  			//alert("selectedKeyword: " +selectedKeyword);
   		}
   		// 버튼 값을 정리
   		$("#locationBtn").html(selectedSido +" : "+ selectedSigungu);
@@ -459,38 +382,26 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
  
   					//description
   		let selectedKeyword = $("#keywordTemplate").val();
-  					console.log(selectedKeyword);
 
   		  			if(selectedKeyword ==""){
   		  				selectedKeyword = "noValue";
   		  			}
   		if(selectedSido == "noValue"){selectedSigungu = "noValue"}
-  			console.log(selectedSido);
   			
   		resultQuery = selectedDescription+"|"+selectedCategory+"|"
   		+selectedDate+"|"+selectedSido+"|"+selectedSigungu+"|"+selectedKeyword;
-  		console.log("resultQ: " + resultQuery);					
-
-  		console.log('listAjax호출 당시 page' + page);
-  		console.log('listAjax호출 당시 resultQuery' + resultQuery);
   		
   		listAjax(page,resultQuery);
   		
   
-  	} // select(factor)
+  	} 
   	
   	
   	
   	
-  	//////함수화 시킬 ajax 
   	function listAjax(page,resultQuery ){
-  		console.log('listAjax호출됨');
-  		console.log(page);
   	// 선택값이 없을 시  noValue
-  		// 이제 ajax로 보낸다
   		
-  		console.log('listAjax호출 당시 page' + page);
-  		console.log('listAjax호출 당시 resultQuery' + resultQuery);
   		 $.ajax({
 			
    			url : "${path}/search/querySearch/"+page ,
@@ -498,14 +409,11 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
    			data : {
    				resultQuery : resultQuery
    			},
-   			dataType : "JSON",  //partyVO 리스트로 받아옴 finish N 조건 추가
+   			dataType : "JSON",  
 
    			success :  function(data){
-   				  	console.log("ListAjax에서 출력")
-   			  		console.log(data.partyList);
    				let str = "";
    				let wishlistPnum = [];
-//   				console.log("printListAjax 들어옴");
 
    				if(data.wishlist != null){
    					$(data.wishlist).each(function(){
@@ -523,7 +431,6 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
    					let detailAddress = this.detailAddress;
    					
    					str += '<li>';
-   					// wishList 받아서 fullHeart.png로 출력
    					if(data.wishlist != null){
    						if(wishlistPnum.indexOf(pnum) < 0){
    							str += "<img src='${path}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
@@ -541,13 +448,10 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
    					str += "</li>";
    				});
 
-   				console.log("출력, 현재 페이지:" + page);
    				
    				if(page == 1){
    					$("#partys").html(str);
-   					console.log('html');
    				}else{
-   					console.log('appned');
    					$("#partys").append(str);
    				}
 			
@@ -560,72 +464,7 @@ var resultQuery ="noValue|noValue|noValue|noValue|noValue|" +keyword;
   	}// listAjax(page,resultQuery)
   		
   		
-  		/*
-  		
-  		*/
-  //	} // select(factor)
-
-  /*
-  이사 시작
-  	function printListAjax(data){
-	  	console.log("printListAjax에서 출력")
-  		console.log(data);
-	let str = "";
-
-	
-	let wishlistPnum = [];
-//	console.log("printListAjax 들어옴");
-
-	if(data.wishlist != null){
-		$(data.wishlist).each(function(){
-			let wishPnum = this.pnum;
-			wishlistPnum.push(wishPnum);
-		});	
-	}
-	
-	$(data).each(function(){
-		let pname = this.pname;
-		let address = this.address;
-		let date = this.formatStartDate +"~"+ this.formatEndDate;		
-		let pnum = this.pnum;
-		let path = this.partyImage1;
-		let detailAddress = this.detailAddress;
-		
-		str += '<li>';
-		// wishList 받아서 fullHeart.png로 출력
-		if(data.wishlist != null){
-			if(wishlistPnum.indexOf(pnum) < 0){
-				str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
-			}else{
-				str += "<img src='${contextPath}/resources/img/redHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
-			}
-		}else{
-			str += "<img src='${contextPath}/resources/img/emptyHeart.png' id='"+pnum+"' class='likeBtn' onclick='toggleHeart(this);'/>";
-		}
-		str += '<img src="'+contextPath+'/image/printPartyImage?fileName='+path+'" class="partyImg" onclick="partyDetail('+pnum+');">';
-		str += "<hr/>";
-		str += "<strong onclick='partyDetail("+pnum+");' style='cursor: pointer;'>"+pname+"</strong><br/>";
-		str += address+" "+detailAddress+"<br/>";
-		str += date;
-		str += "</li>";
-	});
-
-	console.log("출력, 현재 페이지:" + page);
-	
-	if(page == 1){
-		$("#partys").html(str);
-		console.log('html');
-	}else{
-		console.log('appned');
-		$("#partys").append(str);
-	}
-
-//	$("#partys").html(str);
-} 
-  */ 
-  //이사 끝
-
-// 파티 상세 페이지로 이동
+  
 function partyDetail(pnum){
 	location.href="<c:url value='/partyDetail/detailOfParty?pNum="+pnum+"'/>";
 }
@@ -641,35 +480,21 @@ $(window).scroll(function(){
 	
 	if((wt+wh) >= (dh  )){
 		if($("#partys li").size() <= 1){
-			console.log('return false');
 			return false;
 		}
-		console.log(dh);
-		console.log(wh);
-		console.log(wt);
-		console.log(wt+wh);
-		console.log("wt+wh-dh : ");
-		console.log(wt+wh-dh);
 		page++;
 		listAjax(page,resultQuery);
-		console.log('listAjax실행' + page + resultQuery);
 	}//
 });	//
   	
   	
   	
-  	//////함수화 시킬 ajax 
+ 
   	
   	
   	
-    // MODAL OPEN + 문서 업로드 후 실행 함수 표기
     $(document).ready(function() {
     	
-    	/*
-    	$(window).on("change", function(){
-    		console.log('무한반복')
-    	});
-    	*/
     	$(".barItem").click(function() {
     	    if (!$(this).hasClass("clicked")) {
     	      $(".barItem").removeClass("clicked");
@@ -680,31 +505,18 @@ $(window).scroll(function(){
     	
     	
     	
-    	// 이 자체가 실행이 안 된다.
     	$("#keywordBtn").click(function(){
-    //		keywordSearch();
-    	console.log(page);
-    	console.log("이 사이에");
-    	console.log(resultQuery);
     		 listAjax(page,resultQuery);
     	});
     		
     	
-      // 문서가 로드된 후 실행되는 코드
       $(".searchBtn").click(function () {
-    //    console.log('searchBtnClick');
         // 타겟 정의
-        console.log('searchBtn확인');
         var targetContents = $(this).attr("data-targetContents");
         if(isToggle){
         $("#searchModal").toggle("fast");
         }
-        console.log("targetContents console = " +targetContents);
-        // 각 타겟을 이용해 요청명을 Controller에 전달
-        
-    //    $("#selectedCategory").html('카테고리 선택');
-     //   $("#selectedDate").html('일정 범위 선택');
-      //  $("#selectedLocation").html('장소 선택');
+  
         $.ajax({
         	  url: '${path}/search/getSearchContents', // target컨텐츠가 전달
         	  method: 'get',
@@ -712,12 +524,8 @@ $(window).scroll(function(){
         	  data: {targetContents : targetContents},
         	  dataType: 'JSON',  // return : entity
         	  success: function(response) {
-        	    // entity<Object>
-        	    // console.log('Object성공! : ', response);
-        	    // 이게 어느 타입이냐에 따라 메서드가 나뉘어야 함
         	    
         	    if(targetContents == "category" ){
-        	    //	console.log(response);
         	     printCategory(response); 
         	    }
         	    // 날짜 선택 버튼 클릭
@@ -731,7 +539,6 @@ $(window).scroll(function(){
         	    
         	  },
         	  error: function(res, status, error) {
-        		  console.log('json이 왜 안 오지', res);
         	  }
         	});
       });
@@ -743,25 +550,6 @@ $(window).scroll(function(){
         $("#searchModal").hide();
         $("#responsed").html("");
       });
-      
-      // 스크롤
-    /*  
-    $(window).scroll(function(){
-			let dh = $(document).height();
-			let wh = $(window).height();
-			let wt = $(window).scrollTop();
-				
-			if((wt+wh) >= (dh - 10)){
-				if($("#comments li").size() <= 1){
-					return false;
-				}
-				page++;
-				listPage(page);
-			}	
-		}); 
-      */
-      
-    
 	
     }); // ready
     

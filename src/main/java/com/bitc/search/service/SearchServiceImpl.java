@@ -43,7 +43,6 @@ public class SearchServiceImpl implements SearchService {
 			String query = " SELECT distinct sido  FROM location ";
 			contents = dao.sido(query); // 대기중
 		}else {
-			System.out.println(targetContents + "가 sido로 전달됨");
 			String query = "SELECT * FROM location WHERE sido = '" +targetContents +"' ";
 			contents = dao.sigungu(query);
 		} // dao.location 메소드로 location ( sido, sigungu는 모두 출력됨) 
@@ -57,7 +56,6 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public List<PartyVO> partySearch(String input) throws Exception {
-		System.out.println("serviceImpl : " + input);
 		return dao.partySearch(input);
 	}	//ssi
 
