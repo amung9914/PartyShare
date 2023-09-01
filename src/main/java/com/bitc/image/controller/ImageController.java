@@ -44,13 +44,11 @@ public class ImageController {
 		File file = new File(profileRealPath);
 		if(!file.exists()) {
 			file.mkdirs();
-			System.out.println("profile 디렉토리 생성완료");
 		}
 		partyRealPath = context.getRealPath(File.separator+uploadPartyDir);
 		File file1 = new File(partyRealPath);
 		if(!file1.exists()) {
 			file1.mkdirs();
-			System.out.println("party 디렉토리 생성완료");
 		}
 	}
 	
@@ -101,7 +99,6 @@ public class ImageController {
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(@RequestBody String fileName) throws Exception{
 		ResponseEntity<String> entity = null;
-		System.out.println(fileName);
 		boolean isDeleted = FileUtils.deleteOriginalImage(profileRealPath, fileName);
 		
 		if(isDeleted) {

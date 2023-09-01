@@ -98,5 +98,9 @@ html, body {
 		width:40%;
 		font-size:2vw;
 	}	
+	#partys li .likeBtn{
+		top: -120px;
+		left: 275px;
+	}
 	
 }
