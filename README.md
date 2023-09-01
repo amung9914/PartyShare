@@ -1,3 +1,4 @@
+
 # The Project - Partyshare
 
 ![image](https://github.com/amung9914/PartyShare/assets/137124338/a0eb259b-6a6e-4ad5-8394-877e0f766918)
@@ -41,9 +42,26 @@ About Final Project _ Spring 활용 / Team Project <br/>
 
 
 ## 🛠 Languages and Tools:
-<h3 align="left"></h3>
-<p align="left"> <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://mariadb.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/mariadb/mariadb-icon.svg" alt="mariadb" width="40" height="40"/> </a> <a href="https://spring.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a> </p>
 
+<div align="center">
+	<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" />
+	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
+	<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white" />
+  <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jQuery&logoColor=white" />
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=Bootstrap&logoColor=white" />
+  <img src="https://img.shields.io/badge/Chart.js-FF6384?style=flat&logo=Chart.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/Apache Maven-C71A36?style=flat&logo=Apache Maven&logoColor=white" />
+  <br/>
+  <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=Spring&logoColor=white" />
+  <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat&logo=Spring Security&logoColor=white" />
+  <img src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=MariaDB&logoColor=white" />
+  <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat&logo=Amazon AWS&logoColor=white" />
+  <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat&logo=Apache Tomcat&logoColor=white" />
+  <img src="https://img.shields.io/badge/Kakao-FFCD00?style=flat&logo=Kakao&logoColor=white" />
+  <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white" />
+  <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white" />
+</div>
 
 ### 
 - jQuery v.3.7.1
@@ -95,10 +113,16 @@ About Final Project _ Spring 활용 / Team Project <br/>
 ![image](https://github.com/amung9914/PartyShare/assets/137124338/113952a5-6f90-4e1b-a638-9a2697b7dd89)
 
 ## ‍🧑‍💻 프로젝트 멤버
-- [🔰김서영](https://github.com/amung9914)
-- [김선국](https://github.com/rlatjsrnr)
-- [김진우](https://github.com/kimjw1200)
-- [이인](https://github.com/ini-code)
-- [이진형](https://github.com/JinLeebriller)
+
+|담당자(깃허브)|기능보기|담당기능|
+|:---|:---|:---|
+|[🔰김서영](https://github.com/amung9914) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|위치기반지도,친구 시스템, 파티정보수정, 이미지 업로드, 개설한 파티 관리, 참여중인 파티 보기,파티 일정 관리, 파티별 게시판,게시글 및 댓글 신고|
+|[김선국](https://github.com/rlatjsrnr) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|파티리스트 출력, 파티개설, 이미지 업로드, 파티별 채팅, 내 정보 관리, 파티원 관리, 파티종료|
+|[김진우](https://github.com/kimjw1200) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|회원가입, 로그인,회원 차단 및 해제(블랙리스트)|
+|[이인](https://github.com/ini-code) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|회원가입, 로그인,회원 차단 및 해제(블랙리스트)|
+- [담당역할](#)
+- [][담당역할](#)
+- [담당역할](#)
+- [이진형](https://github.com/JinLeebriller)[담당역할](#)
 
 
