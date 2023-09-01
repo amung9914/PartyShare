@@ -102,5 +102,3 @@ About Final Project _ Spring 활용 / Team Project <br/>
 - [이진형](https://github.com/JinLeebriller)
 
 
-
-나중에 구현하고 싶은 기능 : 소셜로그인, 챗봇
