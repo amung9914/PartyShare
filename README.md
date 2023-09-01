@@ -117,7 +117,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 |담당자(깃허브)|기능보기|담당기능|
 |:---|:---|:---|
 |[🔰김서영](https://github.com/amung9914) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|위치기반지도,친구 시스템, 파티정보수정, 이미지 업로드, 개설한 파티 관리, 참여중인 파티 보기,파티 일정 관리, 파티별 게시판,게시글 및 댓글 신고|
-|[김선국](https://github.com/rlatjsrnr) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|파티리스트 출력, 파티개설, 이미지 업로드, 파티별 채팅, 내 정보 관리, 파티원 관리, 파티종료|
+|[김선국](https://github.com/rlatjsrnr) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|파티리스트 출력, 파티개설, 이미지 업로드, 파티별 채팅, 내 정보 관리, 파티원 관리, 파티종료, 파티 제목 검색|
 |[김진우](https://github.com/kimjw1200) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|회원가입, 로그인,회원 차단 및 해제(블랙리스트)|
 |[이인](https://github.com/ini-code) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|파티 검색, 알림메세지,회원신고 및 신고내역 관리, 블랙리스트 추가, 파티 카테고리 추가|
 |[이진형](https://github.com/JinLeebriller) |[기능보기](https://github.com/amung9914/PartyShare/edit/master/README.md)|파티 상세페이지, 파티 참가확정, 자유게시판, 파티 위시리스트|
