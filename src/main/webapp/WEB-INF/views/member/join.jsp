@@ -181,7 +181,6 @@ input[name="mage"] {
 	
 	$("#profileImage").on("change", function(){
 		var files = $(this)[0].files[0];
-		console.log(files.type);
 		if (!files.type.startsWith('image/')) {
 			alert('이미지를 선택해주세요.');
 			removeImage();
