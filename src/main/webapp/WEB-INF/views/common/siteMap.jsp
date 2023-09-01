@@ -13,7 +13,7 @@
 		<table id="siteMap">
 			<tr>
 				<td><a href="${contextPath}">홈</a></td>
-				<td><a href="${contextPath}/party/createParty">파티생성</a></td>
+				<td><a href="${contextPath}/user/party/createParty">파티생성</a></td>
 				<td><a href="${contextPath}/freeBoard/freeBoard">자유게시판</a></td>
 				<td><a href="${contextPath}/policy">개인정보 처리방침</a></td>
 				<td><a href="${contextPath}/admin/admin">관리자 페이지</a></td>
@@ -35,7 +35,7 @@
 			<tr>
 				<td><a href="${contextPath}/location/map">지도확인</a></td>
 				<td><a href="${contextPath}/user/wishlist/wishlist">위시리스트</a></td>
-				<td>파티 채팅</td>
+				<td><a href="${contextPaht}/user/chat">파티 채팅</a></td>
 				<td></td>
 				<td></td>
 			</tr>
@@ -48,7 +48,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><a href="${contextPath}/member/profileModify">계정 설정</a></td>
+				<td><a href="${contextPath}/user/profileModify">계정 설정</a></td>
 				<td></td>
 				<td></td>
 				<td></td>

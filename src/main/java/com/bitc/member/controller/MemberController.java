@@ -36,7 +36,6 @@ public class MemberController {
 		File file = new File(realPath);
 		if(!file.exists()) {
 			file.mkdirs();
-			System.out.println("데렉토리 생성완료");
 		}
 	}
 	
