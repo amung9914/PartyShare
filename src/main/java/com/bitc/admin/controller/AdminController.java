@@ -49,7 +49,6 @@ public class AdminController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type","text/plain;charset=utf-8");
 			entity = new ResponseEntity<String>(message,header,HttpStatus.OK);
-//			System.out.println("addCategory success");
 		} catch (Exception e) {
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(MediaType.APPLICATION_JSON); //encode
@@ -71,8 +70,7 @@ public class AdminController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type","text/plain;charset=utf-8");
 			entity = new ResponseEntity<String>("description등록 완료",header,HttpStatus.OK);
-			System.out.println("addDescription success");
-		} catch (Exception e) {
+			} catch (Exception e) {
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(MediaType.APPLICATION_JSON); //encode
 			entity = new ResponseEntity<>(e.getMessage(),header,HttpStatus.BAD_REQUEST);
@@ -93,7 +91,6 @@ public class AdminController {
 	public ResponseEntity<String> modDate() {
 		ResponseEntity<String> entity = null;
 		try {
-			System.out.println("modDate : " );
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type","text/plain;charset=utf-8");
 			entity = new ResponseEntity<>("SUCCESS",header,HttpStatus.OK);
@@ -111,7 +108,6 @@ public class AdminController {
 	public ResponseEntity<String> modLocation() {
 		ResponseEntity<String> entity = null;
 		try {
-			System.out.println("modLocation : " );
 			//AOP @AROUND 전처리
 			
 			entity = new ResponseEntity<>("SUCCESS",HttpStatus.OK);
@@ -128,14 +124,10 @@ public class AdminController {
  	@GetMapping("admin/memberList/{page}")
  	public ResponseEntity<List<MemberVO>> memberList(Criteria cri 
  			,@PathVariable( name="page") int page){
- 		System.out.println(page +"page");
  		ResponseEntity<List<MemberVO>> entity = null;
- 		//	int startNum = ((1-page)*15)+1;
- 		//	System.out.println(startNum);
  		try {
  			cri.setPerPageNum(15);
  			cri.setPage(page);
- 			System.out.println(cri.getStartRow());
 			List<MemberVO> list = as.memberList(cri);
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(MediaType.APPLICATION_JSON);
@@ -144,7 +136,6 @@ public class AdminController {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<MemberVO>>(HttpStatus.BAD_REQUEST);
 		}
- 		System.out.println(entity);
  		return entity;
  	}
  	
@@ -162,25 +153,20 @@ public class AdminController {
  		String result = "";
 		try {	// mId
 			NoticeVO vo = new NoticeVO();
-			System.out.println("new vo:" + vo);
 			ns.blackPost(target, vo);
 			result = mq.stringResult(as.blackMember(target));
-			System.out.println(target+"은 블랙입니까?" + as.selectMember(target).getMblackYN());
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(MediaType.APPLICATION_JSON); 
 			entity = new ResponseEntity<String>(result,header,HttpStatus.OK);
 		} catch (Exception e) {
 			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
- 		System.out.println(result);
- 		System.out.println(entity);
  		return entity;
  	}
  	
 	
  	/*
 	  @GetMapping("admin/notice") public String notice() {
-		  System.out.println("이거냐고"); 
 		  return "/admin/notice";
 	}
 	 */

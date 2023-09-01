@@ -16,13 +16,7 @@ html, body {
 	padding-bottom: 93px;
 }
 
-/* .container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   min-height: 100vh;
-   margin-top: -5%;
-} */
+
 .btn-primary-custom {
 	background-color: #FF385C;
 	border-color: #FF385C;
@@ -33,18 +27,17 @@ html, body {
 	background-color: white;
 	border: 1px solid #ccc;
 	padding: 20px;
-	width: 800px; /* 조정 가능한 너비 */
+	width: 800px; 
 }
 
 #mid {
-	width: 400px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
+	width: 400px;
+	padding: 10px; 
 }
 
-/* 예시: 비밀번호 입력 필드의 너비 조정 */
 #mpw {
-	width: 400px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
+	width: 400px;
+	padding: 10px;
 }
 
 input[name="repw"] {
@@ -52,33 +45,31 @@ input[name="repw"] {
 	padding: 10px;
 }
 
-/* 예시: 이름 입력 필드의 너비 조정 */
+
 input[name="mname"] {
-	width: 400px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
+	width: 400px; 
+	padding: 10px;
 }
 
-/* 예시: 이메일 입력 필드의 너비 조정 */
 input[name="memail"] {
-	width: 400px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
+	width: 400px; 
+	padding: 10px; 
 }
 
-/* 예시: 주소 입력 필드의 너비 조정 */
+
 input[name="maddr"] {
-	width: 400px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
+	width: 400px;
+	padding: 10px;
 }
 
 input[name="mnick"] {
-	width: 400px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
+	width: 400px;
+	padding: 10px;
 }
 
-/* 예시: 나이 입력 필드의 너비 조정 */
 input[name="mage"] {
-	width: 400px; /* 원하는 너비로 조정 */
-	padding: 10px; /* 내용과 테두리 사이의 여백 설정 */
+	width: 400px; 
+	padding: 10px; 
 }
 
 .uploadImage {
@@ -110,11 +101,6 @@ input[name="mage"] {
 									<td><input type="password" name="mpw" id="mpw"
 										style="display: grid;" placeholder="비밀번호를 8자리 이상 입력해주세요"></td>
 								</tr>
-								<!-- <tr>
-                     <td>비밀번호 확인 :</td>
-                     <td><input type="password" name="repw" id="repw"
-                        placeholder="비밀번호를 다시확인해주세요"></td>
-                  </tr> -->
 								<tr>
 									<td>이름:</td>
 									<td><input type="text" name="mname" id="mname"
@@ -171,14 +157,8 @@ input[name="mage"] {
 													<button type="submit" class="btn btn-primary"
 														style="background-color: #FF385C; border-color: #FF385C;">가입</button>
 												</div>
-												
 												</div>
 											</div>
-
-
-
-
-
 									</td>
 								</tr>
 							</table>
@@ -193,38 +173,6 @@ input[name="mage"] {
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
-<script>
-/* 
-      const passwordInput = document.getElementById('password');
-      const mIdInput = document.getElementById('mId');
-
-      document.getElementById('passwordForm').addEventListener('submit',
-            function(event) {
-               if (passwordInput.value.length <= 7) {
-                  alert("비밀번호는 8자 이상이어야 합니다.");
-                  event.preventDefault(); // 제출 막기
-               }
-
-               if (hasSpecialCharacters(mIdInput.value)) {
-                  alert("아이디에 특수 문자를 사용할 수 없습니다.");
-                  event.preventDefault(); // 제출 막기
-               }
-            });
-
-      function hasSpecialCharacters(input) {
-         const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-         return specialCharacters.test(input);
-      }
-      function togglePasswordVisibility() {
-         var passwordField = document.getElementById("password");
-         if (passwordField.type === "password") {
-            passwordField.type = "text";
-         } else {
-            passwordField.type = "password";
-         }
-      }
-       */
-   </script>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 <script>
@@ -252,7 +200,6 @@ input[name="mage"] {
 		$("#viewImage").attr("src",imgTemp);
 	}
 	
-	// 정규표현식을 통한 검증 추가
 	$.validator.addMethod("regex",function(value,element,regexpr){
 		return regexpr.test(value);
 	});
@@ -260,9 +207,7 @@ input[name="mage"] {
 	var regexPass = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;	
 	var regexMobile = /^[0-9]{2,3}?[0-9]{3,4}?[0-9]{4}$/;
 	
-	// 8월 31일
 	$("#joinForm").validate({
-		// 포커스 out시 유효성 검사
 		onfocusout: function(element) {
             this.element(element);
         },

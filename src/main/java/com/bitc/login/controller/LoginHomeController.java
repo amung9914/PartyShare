@@ -46,27 +46,21 @@ public class LoginHomeController {
         File file = new File(realPath);
         if (!file.exists()) {
             file.mkdirs();
-            System.out.println("디렉토리 생성 완료");
         }
-        System.out.println("Controller 생성 및 사용준비 완료");
     }
 
     
     private static final String[] ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png"};
     
-    //2023-08-22
-    
     @PostMapping("/member/join")
     public String join(MemberVO vo,@RequestParam("file") MultipartFile file, Model model)  {
        
        if (!file.isEmpty()) {            
-            //-- 이미지처리
             String originalFilename = file.getOriginalFilename();
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
 
             for (String allowedExtension : ALLOWED_EXTENSIONS) {
                 if (fileExtension.equalsIgnoreCase(allowedExtension)) {
-                    // 파일 처리 로직 추가
                 	 try {
                 		 String savedName = FileUtils.uploadOriginalImage(realPath, file);
 			             vo.setProfileImageName(savedName);
@@ -74,22 +68,18 @@ public class LoginHomeController {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-                   // 8 23 수정 - 사용자가 이미지를 등록하였고 가입 완료
                    return "redirect:/";
                 }
             }
         }    
-       // 사용자가 이미지를 등록하지 않으면
 		vo.setProfileImageName("/profile.jpg");
 		try {
 			js.Join(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-       return "redirect:/"; // 여기서 이미지 넣어야함
+       return "redirect:/";
     }
-    
-    //2023-08-22 
     
     @GetMapping("/member/goJoin")
     public String goJoin () {
@@ -116,9 +106,6 @@ public class LoginHomeController {
 		return "member/logout";
 	}
     
-    @GetMapping("/member/loginPage")
-    	public void loginPage() {
-    		
-    	}
+    
     }
 
