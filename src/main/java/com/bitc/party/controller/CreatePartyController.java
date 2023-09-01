@@ -12,11 +12,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -34,6 +37,7 @@ import com.bitc.wishlist.vo.WishlistVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@PropertySource("classpath:/prop/maria.properties")
 @RequiredArgsConstructor
 public class CreatePartyController {
 	
@@ -43,6 +47,9 @@ public class CreatePartyController {
 	private final ServletContext context;
 	
 	private String realPath;
+	
+	@Value("${kakao.key}")
+	private String apiKey;
 	
 	// 파일 업로드 경로 설정
 	@PostConstruct
@@ -85,6 +92,7 @@ public class CreatePartyController {
 	@PostMapping("/user/party/createCategory")
 	public String createSubCategory(PartyVO vo, Model model) {
 		model.addAttribute("vo", vo);
+		model.addAttribute("apiKey",apiKey);
 		return "createParty/address";
 	}
 	
