@@ -98,7 +98,7 @@
 	        			let str = "";
 	        			$(list).each(function(){
 	        				let alias = this.alias;
-	            			let partyImage1 = this.partyImage1;
+	            			let partyImage1 = this.partyImage1;	            			
 	        				str += "<li id='"+alias+"' class='"+pNum+"' data-he='"+heartElement+"' onclick='addWishlist(this);'>";
 	            			str += "<div>";
 	            			str += "<div>";

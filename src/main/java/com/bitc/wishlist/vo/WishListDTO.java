@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WishListDTO {
-	private String alias;
-	private String partyImage1;
+	private String alias;			// 위시리스트 별칭
+	private String partyImage1;		// 위시리스트에 등록된 파티 이미지 경로
 }

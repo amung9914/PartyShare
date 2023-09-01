@@ -17,9 +17,9 @@ public class FreeBoardCommentVO {
 	String commentText;	 // 댓글 내용
 	String mnick;		 // 작성자 닉네임
 	String mid;			 //	작성자 아이디
-	Date regdate;		 //	작성 시간
-	String regdateStr;
-	String showBoard;
+	Date regdate;		 //	댓글 작성 일시	(Date)
+	String regdateStr;	 // 댓글 작성 일시 (String)
+	String showBoard;    // 댓글 블라인드 처리 유무
 	
 	public void setRegdateStr() {
 	    String regdateStr = null;

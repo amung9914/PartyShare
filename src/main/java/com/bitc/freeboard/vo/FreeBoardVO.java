@@ -12,19 +12,19 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class FreeBoardVO {
 
-	int bno;
-	String category;
-	String title;
-	String context;
-	Date date;
-	String mnick;
-	int viewCnt;
-	String mid;
-	int origin;
-	int depth;
-	int seq;
-	String showBoard;
-	int commentCount;
+	int bno;				// 게시글 번호
+	String category;		// 게시글 카테고리(공지, 일반)
+	String title;			// 게시글 제목
+	String context;			// 게시글 내용
+	Date date;				// 게시글 작성일시
+	String mnick;			// 게시글 작성자 닉네임
+	int viewCnt;			// 게시글 조회수
+	String mid;				// 게시글 작성자 아이디
+	int origin;				// 원본 게시글 번호 (답변글 작성용)
+	int depth;				// 딥변글 들여쓰기 깊이
+	int seq;				// 답변글 순서
+	String showBoard;		// 게시글 블라인드 처리 유무
+	int commentCount;		// 게시글 댓글수
 	
 	// 검색필터
 	private String type; 	// 검색 타입

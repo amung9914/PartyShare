@@ -114,8 +114,6 @@
 			let pnum = this.pnum;
 			let path = this.partyImage1;
 			let detailAddress = this.detailAddress;
-			
-			
 			str += '<li>';
 			// wishList 받아서 fullHeart.png로 출력
 			if(data.wishlist != null){
