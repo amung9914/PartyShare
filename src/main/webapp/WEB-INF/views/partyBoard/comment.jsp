@@ -114,8 +114,6 @@
 				listPage(page);
 			},
 			error : function(res,status){
-				console.log(res);
-				console.log(status);
 			}
 		});
 	});

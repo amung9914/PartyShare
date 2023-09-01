@@ -183,10 +183,6 @@ public class PartyController {
 			
 			result3 = ps.update(vo);
 			
-			System.out.println("result1 map 업데이트 : "+ result1);
-			System.out.println("result2 이미지 업로드 : "+ result2);
-			System.out.println("result3 DB 업데이트 : "+ result3);
-			
 			// 파일업로드
 		} catch (Exception e) {
 			e.printStackTrace();

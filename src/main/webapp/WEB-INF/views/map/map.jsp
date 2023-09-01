@@ -63,7 +63,6 @@ function onGeoOk(position){
 	
     const lat = position.coords.latitude; //위도
     const lng = position.coords.longitude; //경도
-    console.log("You live in",lat,lng);
     mapOption.center = new kakao.maps.LatLng(lat,lng); //지도의 중심좌표를 현재좌표로 변경 
     open(); //지도 생성
 }

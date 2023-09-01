@@ -159,7 +159,6 @@ public class FriendAjaxController {
 		 header.add("Content-Type", "text/plain;charset=utf-8");
 		 try {
 			result = fs.reject(session, ffrom);
-			System.out.println(ffrom);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -61,7 +61,6 @@ $(".withdraw").click(function(e){
 	// pnum가지고 오기
 	const pnum = $(this).attr("data-pnum");
 	const host = $(this).attr("data-host");
-	console.log()
 	
 	let conf = confirm("정말로 파티를 나가시겠습니까?");
 	if(conf){
