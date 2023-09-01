@@ -80,7 +80,7 @@ public class LoginHomeController {
             }
         }    
        // 사용자가 이미지를 등록하지 않으면
-		vo.setProfileImageName("/default.jpg");
+		vo.setProfileImageName("/profile.jpg");
 		try {
 			js.Join(vo);
 		} catch (Exception e) {
