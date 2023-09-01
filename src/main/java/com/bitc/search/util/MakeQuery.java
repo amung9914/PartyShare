@@ -39,7 +39,7 @@ public class MakeQuery {
         	finalQuery +=" AND category = '"+result[1]+"'";
         }					
         if(!result[2].equals("noValue")) {
-        	finalQuery +=" AND  startDate <= NOW() + INTERVAL "+result[2]+"DAY ";  
+        	finalQuery +=" AND  startDate <= NOW() + INTERVAL "+result[2]+" DAY ";  
         }
         if(!result[3].equals("noValue")) {
         	finalQuery +=" AND sido = '"+result[3]+"'";
@@ -51,7 +51,6 @@ public class MakeQuery {
         	finalQuery +=" AND pName Like '%"+result[5]+"%'";
         }
         finalQuery = finalQuery + "ORDER BY pnum DESC ";
-      
         /*
          * 페이징
          * */
