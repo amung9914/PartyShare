@@ -8,8 +8,7 @@
 <!-- loginMember 값이 없을 때 -->
 <c:if test="${empty loginMember}">
     <script>
-    	alert('로그인을 하셔야 이용가능합니다.');
-    	location.href = 'login';
+    	location.href = '${contextPath}/member/login';
     </script>
 </c:if>
 <c:if test="${board.category ne '일반'}">

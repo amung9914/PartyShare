@@ -6,7 +6,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="${contextPath}/resources/css/jinlee/siteMap.css" rel="stylesheet">
 <body>
-	<%@ include file="../member/login.jsp" %>
 	<div id="siteMap">
 		<h1>사이트맵</h1>
 		<br/>
@@ -27,7 +26,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><a href="${contextPath}" onclick="loginModalShow();">로그인</a></td>
+				<td><a href="${contextPath}/member/login">로그인</a></td>
 				<td><a href="${contextPath}/user/party/myParty">참여중인 파티</a></td>
 				<td>파티 게시판</td>
 				<td><a href="${contextPath}/infomation">세부정보</a></td>
@@ -70,9 +69,4 @@
 			</tr>
 		</table>
 	</div>
-<script>
-	function loginModalShow(){
-		$("#loginModal").modal("show");
-	}
-</script>
 <%@ include file="../common/fixFooter.jsp" %>
