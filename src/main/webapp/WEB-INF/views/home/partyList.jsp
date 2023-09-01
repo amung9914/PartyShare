@@ -82,7 +82,6 @@
 	                url: "${path}/user/wishlist/deleteWishlist", // deleteWishlist에 해당하는 컨트롤러 URL
 	                data: {pNum : pNum},
 	                success: function(data) {
-	                    console.log("Wish List deleted");
 	                }
 	            });
 	        } else {
@@ -145,7 +144,6 @@
 	
 	function newAliasBtnClick(){
 		let inputAlias = $("#newAlias").val();
-		console.log(inputAlias);
 		let pnum = $("#newAlias").attr("data-pnum");
 		$.ajax({
 			type:"POST",

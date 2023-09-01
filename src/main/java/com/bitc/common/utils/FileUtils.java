@@ -35,7 +35,6 @@ public class FileUtils {
 		String savedName = uid.toString().replace("-", "");
 		
 		savedName += "_"+(originalName.replace("_", " "));
-		System.out.println(savedName);
 		
 		// URL encoding으로 변환된 파일 이름일 경우 공백을 + 로 치환하여 전달되기 때문에 
 		// + 기호를 공백으로 치환
@@ -52,7 +51,6 @@ public class FileUtils {
 		// 업로드 된 파일의 확장자
 		// JPG, JPEG, PNG, GIF - 제외한 나머지 이미지들은 용량이 너무 큼 업로드 안시켜줌
 		String formatName = originalName.substring(originalName.lastIndexOf(".")+1);
-		System.out.println(formatName);
 		if(MediaUtils.getMediaType(formatName) != null) {
 			// 이미지 파일 - Thumbnail 이미지 경로 반환
 			uploadFileName = makeThumbnail(realPath, datePath, savedName, formatName);
@@ -73,7 +71,6 @@ public class FileUtils {
 		String savedName = uid.toString().replace("-", "");
 		
 		savedName += "_"+(originalName.replace("_", " "));
-		System.out.println(savedName);
 		
 		savedName = savedName.replace("+", " ");
 		
@@ -82,7 +79,6 @@ public class FileUtils {
 		file.transferTo(f);
 		
 		String formatName = originalName.substring(originalName.lastIndexOf(".")+1);
-		System.out.println(formatName);
 		
 		uploadFileName = makePathName(datePath, savedName);
 		
@@ -123,7 +119,6 @@ public class FileUtils {
 		if(!file.exists()) {
 			file.mkdirs();
 		}
-		System.out.println(datePath);
 		return datePath;
 	}
 	
