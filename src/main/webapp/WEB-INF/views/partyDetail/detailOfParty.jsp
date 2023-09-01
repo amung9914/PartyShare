@@ -112,7 +112,7 @@
 	
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0534688966ae7b4ea20ffd95099348e8"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
 <script>
 
 	var result = '${result}';

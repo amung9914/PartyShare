@@ -4,6 +4,8 @@ package com.bitc.partyDetail.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +21,14 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/partyDetail/*")
+@PropertySource("classpath:/prop/maria.properties")
 @RequiredArgsConstructor
 public class partyDetailController {
 	
 	private final partyDetailService ps;
+	
+	@Value("${kakao.key}")
+	private String apiKey;
 	
 	@GetMapping("/detailOfParty")
 	public void detailOfParty(HttpSession session, HttpServletRequest request, Model model) {
@@ -53,6 +59,7 @@ public class partyDetailController {
 			}
 			
 			model.addAttribute("location", location);
+			model.addAttribute("apiKey",apiKey);
 		} catch (Exception e) {}
 	}
 	
