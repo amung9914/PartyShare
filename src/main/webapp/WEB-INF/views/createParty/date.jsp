@@ -22,7 +22,7 @@
 			<input type="hidden" name="detailAddress" value="${vo.detailAddress}">
 			<input type="hidden" id="lat" name="lat" value="${mapVO.lat}">
 	    	<input type="hidden" id="lng" name="lng" value="${mapVO.lng}">
-	    	<input type="text" name="date_startDate" id="date_startDate" autocomplete="off"/> ~
+	    	<input type="text" name="startDate" id="date_startDate" autocomplete="off"/> ~
 	    	<input type="text" name="endDate" id="endDate" autocomplete="off"/>
 	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
@@ -46,10 +46,9 @@
 	    "endDate": new Date(),
 	    "drops": "down"
 	}, function (start, end, label) {
-	    console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 	    $("#date_startDate").val(start.format('YYYY-MM-DD'));
 	    $("#endDate").val(end.format('YYYY-MM-DD'));
 	});
 	$("#calBox").click();
 	</script>
-	<%@ include file="partyCreateFooter.jsp" %>
+<%@ include file="partyCreateFooter.jsp" %>
