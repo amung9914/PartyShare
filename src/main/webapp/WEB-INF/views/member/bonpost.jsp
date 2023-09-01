@@ -15,21 +15,32 @@
 	</div>
   </div>	
 	<script type="text/javascript">
-	var loginMemberId = ""+'${loginMember.mid}'+"";
+	
+	$(document).ajaxSend(function(e,xhr,options){
+	    xhr.setRequestHeader(
+	          '${_csrf.headerName}',
+	          '${_csrf.token}');
+	 });
+		 
+	
+	
 	
 		bonPostList();	
 		//확인 누르면 제거까지 됨
 		function bonPostList(){
 			
 			str = "";
+			$("#post").html(str);
 			$.ajax({
-				url : '${path}/notice/bonpostList', 
+				url : '${path}/notice/bonPostList', 
 				method : 'post',
 				data:{
-					mid : loginMemberId
+					'${_csrf.headerName}':'${_csrf.token}',
+					mid : '${loginMember.mid}'
 				}, 
-				dataType: 'text',
-				success: function (list) {	
+				dataType: 'json',
+				success: function (list) {
+					
 					str += '<table class="table" id="postTable">';
 					str += "<tr class='tableTr'>";
 					str += '<th class="first">일자</th>';
@@ -48,9 +59,10 @@
 						str += `<td>\${this.context}</td>`; 
 						str += '</tr>';
 						str += '<tr>';
-						str += '<td colspan="3"><button id="deleteBtn" class="btn btn-outline-dark" onclick="deletePost()" ';
-						str += ' data-num="\${this.no}">확인</button></td>';
+						str += '<td colspan="3"><button id="deleteBtn" class="btn btn-outline-dark" onclick="deletePost('+this.noticeNum+')" ';
+						str += '>확인</button> 버튼을 누르면 삭제됩니다.</td>';
 						str += '</tr>';
+			//			console.log(this.noticeNum);
 					}) // foreach
 					str += '</table>'; // 끝
 					$("#post").html(str);
@@ -62,18 +74,23 @@
 			})	//ajax	
 		} //end 
 		
-		function deletePost() {
-			let no = $("#deleteBtn").data("num");
-			$ajax({
-				url : '${path}/notice/deletePost', 
+		function deletePost(no) {
+			/* let stringNo = $("#deleteBtn").data("num");
+			console.log(stringNo);
+			no = stringNo/1;  */
+			console.log(no);
+			$.ajax({
+				url : '${path}/notice/deletePost/'+no, 
 				method : 'post',
 				data:{
-					no : no , 
-					mid : loginMemberId
+					'${_csrf.headerName}':'${_csrf.token}',
+					mid : '${loginMember.mid}'
 				}, 
 				dataType: 'text',
-				success: function (list) {	
-					bonPostList();	
+				success: function (message) {
+					alert(message);
+					bonPostList();
+					
 				},
 				error: function (error) {
 					alert(error);	

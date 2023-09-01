@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.bitc.member.vo.MemberVO;
@@ -120,20 +121,25 @@ public class NoticeController {
  		return entity;
  	}
  	
- 	@PostMapping("/notice/deletePost")
-	public ResponseEntity<String> deletePost(int no, String mid){
+ 	@PostMapping("/notice/deletePost/{no}")
+	public ResponseEntity<String> deletePost(@PathVariable(name="no")int no, String mid){
+ 		//int no = Integer.parseInt(stringNo);
  		ResponseEntity<String> entity = null; 
  		System.out.println(mid +": deletePost에서 발신한 mid");
+ 		System.out.println(no +": deletePost에서 no");
  		String message = ""; 
  		try {
 			ns.deletePost(no,mid);
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type","text/plain;charset=utf-8");
-			message	= "삭제되었습니다.";
+			message	= "삭제되었습니다. 삭제한 알림 번호:" +no;
 			entity = new ResponseEntity<>(message,header,HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			message	= "ㄴㄴㄴ.";
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type","text/plain;charset=utf-8");
+			entity = new ResponseEntity<>(message,header,HttpStatus.BAD_REQUEST);
 		}
  		System.out.println("deletePost: "+entity );
  		return entity;

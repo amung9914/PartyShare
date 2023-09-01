@@ -150,7 +150,7 @@
 	function boardReportDetail(no){
 		if(no.startsWith("c")){			//댓글
 			no = no.substring(1);
-			 	alert(no);
+			 	//alert(no);
 			 	let originalBoardNum = 0;
 			 	let originalText = "없음";
 			 	let originalWriter = "없음";
@@ -173,7 +173,6 @@
 					$("#detailDiv").html(str);
 				},
 				error : function(error){
-					alert('아나');
 				}
 			}) 
 			console.log(str + "원본 이후");
@@ -202,7 +201,7 @@
 	    				$("#detailDiv").css("display","block");
 	    		},
 	    		error : function (error) {
-					alert(error);
+		//			alert(error);
 				}
 	    	}); // ajax 코멘트절
 					
@@ -271,7 +270,7 @@
 					$("#detailDiv").html(str);
 				},
 				error : function(error){
-					alert('아나');
+					alert('처리하지 못함');
 				}
 			}) 
 			console.log(str + "원본 이후");
@@ -285,7 +284,6 @@
 	    		async : false ,
 	    		success : function (comment){
 	    			let str = "";
-	    			console.log('댓글 추출이 먼저');
 	 
 	    			str += `댓글 번호: \${comment.cno}<br/>`;
 	    			str += `댓글 내용:\${comment.commentText}<br/>`;
@@ -301,7 +299,7 @@
 	    				$("#detailDiv").css("display","block");
 	    		},
 	    		error : function (error) {
-					alert(error);
+					alert('처리하지 못함');
 				}
 	    	}); // ajax 코멘트절
 	    			
@@ -309,7 +307,7 @@
 					
 		}else if(no.startsWith("b")){						//원본글						
 			no = no.substring(1);
-			 	alert(no);
+//			 	alert(no);
 	    	$.ajax({
 	    		url:'${path}/report/PbReportBoard/'+no,	//bno
 	    		method : 'post',
@@ -381,7 +379,7 @@
 				alert(result);
 				} ,
 				error : function(error){
-				//	alert("어");
+					alert('처리하지 못함');
 				}
 			}); //ajax
 		})
@@ -441,7 +439,8 @@
 		});
 		
 		$("#detailDiv").on("click", "#ok", function(){
-			alert("확인했습니다.");
+			//alert("확인했습니다.");
+			$("#detailDiv").css("display", "none");
 		});
 		
 	 }); // ready
@@ -467,7 +466,7 @@
 	    			str += `댓글 번호:\${reportVO.cno}<br/>`;
 	    			str += `<div id='black_or_ok'>`;
 	    			str += `<button id='black' class='confirm btn btn-dark' data-target='\${reportVO.toMid}'>유저 블랙리스트</button>`;
-	    			str += `<button id='ok' class='confirm btn btn-dark'>확인</button>`;
+	    			str += `<button id='ok' class='confirm btn btn-dark'>접기</button>`;
 	    			str += `</div>`;
 	    			str += `<div>`;
 	    			

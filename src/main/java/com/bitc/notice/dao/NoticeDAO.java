@@ -47,7 +47,7 @@ public interface NoticeDAO {
 	@Select("SELECT * FROM notice WHERE  readed ='Y' AND mid = #{mid} ORDER BY date DESC")
 	public List<NoticeVO> bonPostList (String mid) throws Exception;
 	
-	@Delete("DELETE FROM notice WHERE no = #{no} AND mid = #{mid}")
-	public void deletePost (@Param("no") int no ,@Param("mid") String mid ) throws Exception;
+	@Delete("DELETE FROM notice WHERE noticeNum = #{noticeNum} AND mid = #{mid}")
+	public void deletePost (@Param("noticeNum") int noticeNum ,@Param("mid") String mid ) throws Exception;
 	
 }
