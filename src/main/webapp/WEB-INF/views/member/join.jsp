@@ -171,18 +171,12 @@ input[name="mage"] {
 													<button type="submit" class="btn btn-primary"
 														style="background-color: #FF385C; border-color: #FF385C;">가입</button>
 												</div>
-												<div class="col-sm-6 text-start">
-													<button
-														onclick="window.location.href = '${path}/member/loginPage';"
-														class="btn btn-secondary"
-														style="background-color: #007BFF; border-color: #007BFF;">로그인
-														페이지로</button>
+												
 												</div>
 											</div>
 
 
 
-										</div>
 
 
 									</td>

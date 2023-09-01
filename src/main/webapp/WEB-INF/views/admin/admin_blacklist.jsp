@@ -30,7 +30,7 @@
   
   <table>
     <tr>
-        <th>정지먹은 계정</th>
+        <th>정지계정</th>
         <th>차단해제</th>
     </tr>
     <c:forEach var="member" items="${blackMembers}">
