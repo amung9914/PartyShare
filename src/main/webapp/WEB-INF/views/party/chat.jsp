@@ -46,7 +46,7 @@
 											<div id="otherChatBox">
 												<div id="otherChatDiv">
 													<span>${joinMember.mnick}</span>
-												<p class="otherChat">${chat.content}</p>
+													<p class="otherChat">${chat.content}</p>
 												</div>
 											</div>
 										</c:if>
@@ -142,8 +142,9 @@
 			else{
 				const mnum = vo.mnum;
 				html = "<li id='otherChat' data-no="+endNo+">"
-					+ "<img src='<c:url value='/image/printProfileImageNum?mnum="+mnum+"'/>'/><span>"+vo.nick+"</span>"
-					+"<div>"
+					+ "<img src='<c:url value='/image/printProfileImageNum?mnum="+mnum+"'/>'/>"
+					+"<div id='otherChatDiv'>"
+					+"<span>"+vo.nick+"</span>"
 					+ "<p class='otherChat'>"+vo.content+"</p>"
 					+"</div>"
 					+ "</li>";
