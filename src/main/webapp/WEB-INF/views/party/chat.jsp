@@ -167,7 +167,7 @@
 		
 		$(function() {
 			var messageInput = $('textarea[name="msg"]');
-			var sock = new SockJS("echo");
+			var sock = new SockJS("https://partyshare.store/user/echo");
 			
 			sock.onopen = function(){
 				sock.send(JSON.stringify({
