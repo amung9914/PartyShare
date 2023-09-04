@@ -121,7 +121,7 @@
 	</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<script src="https://code.jquery.com/jquery-latest.min.js"></script> 
 <script>
 	   $(document).ajaxSend(function(e,xhr,options){
 	      xhr.setRequestHeader(

@@ -61,7 +61,7 @@
 			alert(result);
 		}
 	</script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 		// 문서가 모두 로드 되었을 때...
 		$(function(){

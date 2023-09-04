@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
 <c:if test="${!empty loginMember}"> <!-- 로그인한 사용자만 댓글작성가능 -->
 	<!-- 댓글 등록 폼 -->

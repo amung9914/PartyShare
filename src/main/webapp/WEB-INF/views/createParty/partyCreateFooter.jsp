@@ -6,7 +6,7 @@
 	<button type="button" id="prevBtn" class="btn btn-dark">이전</button>
 	<button type="button" id="nextBtn" class="btn btn-dark">다음</button>
 </div>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$("#nextBtn").click(function(){
 		let value = $(".reqInput").val();

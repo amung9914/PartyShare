@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
  <c:set var="path" value="${pageContext.request.contextPath}"/>
- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+ <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <%@ include file="../common/header.jsp" %>
 <link href="${path}/resources/css/in/notice.css" rel="stylesheet"/>
 <!-- 부트스트랩 추가 -->

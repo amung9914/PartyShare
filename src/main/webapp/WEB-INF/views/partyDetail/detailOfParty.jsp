@@ -111,7 +111,7 @@
 	</div>
 	
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
 <script>
 
