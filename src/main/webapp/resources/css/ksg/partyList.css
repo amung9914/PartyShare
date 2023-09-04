@@ -95,12 +95,22 @@ html, body {
 }
 @media (max-width: 1000px){
 	#partys li{
-		width:40%;
-		font-size:2vw;
-	}	
+		width:80%;
+		font-size: 4vw;
+		height : 55vh;
+	}
+	#partys li .partyImg{
+		width: 100%;
+		height: 35vh;
+	}
+	
+	
 	#partys li .likeBtn{
-		top: -120px;
-		left: 275px;
+		width: 3vh;
+		height: 3vh;
+		position: relative;
+		left:70vw;
+		top:5vh;
 	}
 	
 }
