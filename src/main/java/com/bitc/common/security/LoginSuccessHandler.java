@@ -20,8 +20,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		CustomUser user = (CustomUser) auth.getPrincipal(); // 인가완료된 사용자 정보 가져옴, ID정보, 권한정보만 확인 가능
 		MemberVO vo = user.getMember(); //CustomUser에 등록시켜놓은 ValidationMemberVO member정보 확인 가능
 		request.getSession().setAttribute("loginMember", vo);
-		String context = request.getContextPath();
-		response.sendRedirect(context);
+		response.sendRedirect("/");
 
 	}
 
