@@ -78,7 +78,7 @@
 		}
 		
 	</script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 		// 댓글 관련 JS
 		

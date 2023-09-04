@@ -4,7 +4,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="${path}/resources/css/in/admin/searchOpt.css" rel="stylesheet"/>
 <!-- jQuery 라이브러리 추가 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <div id="wrap">
 	<div id="searchOptBox">	
