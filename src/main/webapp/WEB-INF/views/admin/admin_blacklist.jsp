@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 <meta charset="UTF-8">
 <title>블랙리스트 목록</title>
 <style>
