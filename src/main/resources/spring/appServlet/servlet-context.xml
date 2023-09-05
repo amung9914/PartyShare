@@ -41,7 +41,7 @@
 	
 	 <!-- 채팅 -->
 	<websocket:handlers allowed-origins="https://partyshare.store">
-		<websocket:mapping handler="echoHandler" path="https://partyshare.store/user/echo"/>
+		<websocket:mapping handler="echoHandler" path="user/echo"/>
 		<websocket:sockjs />
 	</websocket:handlers> 
 		
