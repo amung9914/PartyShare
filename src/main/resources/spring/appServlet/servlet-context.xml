@@ -40,7 +40,7 @@
 	<aop:aspectj-autoproxy/>
 	
 	 <!-- 채팅 -->
-	<websocket:handlers allowed-origins="http://">
+	<websocket:handlers allowed-origins="https://, http://">
 		<websocket:mapping handler="echoHandler" path="https://partyshare.store/user/echo"/>
 		<websocket:sockjs />
 	</websocket:handlers> 
