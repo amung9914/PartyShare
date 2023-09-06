@@ -89,5 +89,34 @@
 	#header_menuDiv{
 		right: 10%;
 	}
-	
+	#headerBox{
+		height:7vh;	
+	}
+	#logoBox img{
+		width: 30vw;
+	}
+	#header_searchBox{
+		width: 40vw;
+	}
+	#header_searchBox #searchKeyword{
+		height: 4vh;
+		font-size: 2rem;
+		font-weight: bold;
+	}
+	#header_searchBox #searchKeyword::placeholder{
+		font-size:1.3rem;	
+	}
+	#searchImg{
+		width: 6vw;
+		height:3vh;
+		right:65px;
+		top:10px;
+	}
+	#menuBtn, #menuBtn img{
+		width: 5vw;
+		height:2vh;
+	}
+	#menuBtn img{
+		bottom:17px;
+	}
 }
