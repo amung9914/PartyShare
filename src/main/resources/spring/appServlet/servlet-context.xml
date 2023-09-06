@@ -26,8 +26,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-
-	
 	<!-- 이 폴더에 업로드한 파일 넣어줄거다 -->
 	<beans:bean id="uploadPartyDir" class="java.lang.String">
 		<beans:constructor-arg value="upload/party"/>
