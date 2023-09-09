@@ -25,7 +25,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 사람들이 만날 수 있는 플랫폼. 그것이 저희의 프로젝트입니다. 
 <br><br>
 
-## 📌 Features
+## 📌 Features (항목 클릭시 세부사항 확인 가능)
 
 
 <details>
