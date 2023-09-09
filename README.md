@@ -176,6 +176,17 @@ About Final Project _ Spring 활용 / Team Project <br/>
 </div>
 </details>
 
+<details>
+<summary>회원가입(유효성 검사 적용)</summary>
+<div markdown="1">
+
+![image](https://github.com/amung9914/PartyShare/assets/137124338/ae2b03e8-d1a6-4d31-81bf-15695a32d34f)
+
+
+</div>
+</details>
+
+
 <br><br>
 
 ## 🛠 Languages and Tools:
