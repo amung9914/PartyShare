@@ -26,7 +26,17 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <br><br>
 
 ## 📌 Features
-- 파티검색
+
+<details>
+<summary>파티검색</summary>
+<div markdown="1">
+
+![image](https://github.com/amung9914/PartyShare/assets/137124338/b5c967d2-36fd-473f-a2c7-cd5e9db5553c)
+
+
+</div>
+</details>
+
 - 위치기반 지도로 파티검색
 - 파티생성 & 파티관리
 - 파티 위시리스트
