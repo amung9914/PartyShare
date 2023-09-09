@@ -5,6 +5,7 @@
 <br><br/>
 ## 🔗 Link
 - **Deploy Site :** https://partyshare.store
+- 테스트용 ID: admin / Password : 123456789
 
 - **Github Repository :** https://github.com/amung9914/PartyShare
   
