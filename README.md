@@ -26,14 +26,6 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <br><br>
 
 ## 📌 Features
-
-<details>
-<summary>파티검색</summary>
-<div markdown="1">
-![image](https://github.com/amung9914/PartyShare/assets/137124338/b5c967d2-36fd-473f-a2c7-cd5e9db5553c)
-</div>
-</details>
-
 <details>
 <summary>파티검색</summary>
 <div markdown="1">
@@ -86,13 +78,15 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>파티별 게시판</summary>
 <div markdown="1">
-![image](https://github.com/amung9914/PartyShare/assets/137128415/4d35f3fb-6bb2-416d-be2c-9c635fac19a3)
+	
+![image](https://github.com/amung9914/PartyShare/assets/137128415/3b526695-c309-4874-a559-2202865efafd)
 </div>
 </details>
 
 <details>
 <summary>파티별 실시간 채팅</summary>
 <div markdown="1">
+	
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/bfa7a824-3d4c-4fae-bda4-fef0eee65b5a)
 </div>
 </details>
@@ -100,6 +94,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>자유게시판</summary>
 <div markdown="1">
+	
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/439cf435-2952-405c-8016-2c4892fdd50a)
 </div>
 </details>
@@ -107,6 +102,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>파티 일정관리</summary>
 <div markdown="1">
+	
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/8e10e7d5-a01a-4019-b06f-973f6a276c0e)
 </div>
 </details>
@@ -114,6 +110,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>친구 시스템</summary>
 <div markdown="1">
+	
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/a96f9836-ada7-4cd7-b8cb-746d4a02b261)
 </div>
 </details>
@@ -121,6 +118,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>회원 신고 및 블랙리스트 관리</summary>
 <div markdown="1">
+	
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/6aaa6879-85ed-4d59-8170-97666ad82ffc)
 </div>
 </details>
@@ -128,6 +126,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>파티 카테고리 추가</summary>
 <div markdown="1">
+	
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/b3c375bc-fa5c-4e54-849c-a828ffde588b)
 </div>
 </details>
@@ -135,6 +134,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>실시간 알림</summary>
 <div markdown="1">
+	
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/35daf4b7-f5d0-45f7-a9b6-2ac6b55ef04d)
 </div>
 </details>
