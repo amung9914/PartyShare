@@ -26,6 +26,26 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <br><br>
 
 ## 📌 Features
+
+
+<details>
+<summary>무한스크롤이 적용된 홈화면</summary>
+<div markdown="1">
+
+## 파티 만들어서 채워주세요^^ 
+
+</div>
+</details>
+
+<details>
+<summary>파티 상세 페이지</summary>
+<div markdown="1">
+
+## gif 복사해서 채워주세요^^ 
+
+</div>
+</details>
+
 <details>
 <summary>파티검색</summary>
 <div markdown="1">
@@ -33,9 +53,20 @@ About Final Project _ Spring 활용 / Team Project <br/>
 ![image](https://github.com/amung9914/PartyShare/assets/137124338/0ec15023-e2cc-40ba-9973-000fa1562470)
 
 
+</div>
+</details>
+
+<details>
+<summary>카테고리로 검색하기</summary>
+<div markdown="1">
+
+![카테고리 검색](https://github.com/amung9914/PartyShare/assets/137124338/ba327972-12ca-4886-8b0c-a017036d69a1)
+
+
 
 </div>
 </details>
+
 
 <details>
 <summary>위치기반 지도로 파티 목록 보기</summary>
@@ -69,8 +100,10 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>파티 위시리스트</summary>
 <div markdown="1">
-	
+
+![위시리스트](https://github.com/amung9914/PartyShare/assets/137124338/a590eaab-a5fd-4b22-aabd-42981ad30cbc)
 ![image](https://github.com/amung9914/PartyShare/assets/137124338/d07fc165-9829-425a-acd8-455faac9e479)
+
 
 </div>
 </details>
@@ -94,7 +127,9 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>자유게시판</summary>
 <div markdown="1">
-	
+
+![자유게시판](https://github.com/amung9914/PartyShare/assets/137124338/e6afb1d3-2ba2-4b88-add6-85e74b982de5)
+
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/439cf435-2952-405c-8016-2c4892fdd50a)
 </div>
 </details>
@@ -110,7 +145,9 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <details>
 <summary>친구 시스템</summary>
 <div markdown="1">
-	
+
+![친구리스트](https://github.com/amung9914/PartyShare/assets/137124338/49f74fb1-0507-4ab2-a268-83be92ee2363)
+
 ![image](https://github.com/amung9914/PartyShare/assets/137128415/a96f9836-ada7-4cd7-b8cb-746d4a02b261)
 </div>
 </details>
