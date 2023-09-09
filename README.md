@@ -4,7 +4,7 @@
 ![image](https://github.com/amung9914/PartyShare/assets/137124338/a0eb259b-6a6e-4ad5-8394-877e0f766918)
 <br><br/>
 ## 🔗 Link
-- **Deploy Site :** 배포사이트 주소
+- **Deploy Site :** https://partyshare.store
 
 - **Github Repository :** https://github.com/amung9914/PartyShare
   
