@@ -95,7 +95,7 @@ About Final Project _ Spring 활용 / Team Project <br/>
 ### ✔️ Open API
 - Kakao Map API
 - Daum PostCode Service
-  
+- geolocation API
 <br><br/>
 ## 💿 Installation
 > #### ℹ️ Working with Partyshare (this project) in your IDE
