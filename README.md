@@ -32,7 +32,8 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <summary>무한스크롤이 적용된 홈화면</summary>
 <div markdown="1">
 
-## 파티 만들어서 채워주세요^^ 
+![메인페이지-min](https://github.com/amung9914/PartyShare/assets/137124338/bfdea7d9-5acc-4424-8fdc-9cc9890e9267)
+
 
 </div>
 </details>
@@ -41,7 +42,8 @@ About Final Project _ Spring 활용 / Team Project <br/>
 <summary>파티 상세 페이지</summary>
 <div markdown="1">
 
-## gif 복사해서 채워주세요^^ 
+![파티 상세페이지-min](https://github.com/amung9914/PartyShare/assets/137124338/cf2f2803-f0cb-4dfe-bbb5-93f2aab30aa4)
+
 
 </div>
 </details>
