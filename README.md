@@ -9,7 +9,7 @@
 
 - **Github Repository :** https://github.com/amung9914/PartyShare
   
-- **Presentation (YouTube) :** 유투브주소
+- **Presentation (YouTube) :** https://youtu.be/UknwG1cs1CQ?si=MzUKfbvntYuzXSp0
 - [WBS보기](https://dog-bass-079.notion.site/9dbf60f1c3824f0e9a7caa5c8e8cc29c?v=7e0b669663214994b8321bc952eb862d&pvs=4)
 <br/>
 
